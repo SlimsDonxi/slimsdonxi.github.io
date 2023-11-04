@@ -119,7 +119,7 @@ function FileHelper(url){
 
 
 function GenerateStory(element){
-    console.log('clicked');
+    
 listPictures =[];
 currentPage=0;
    var divs = document.querySelectorAll("#container .storyContainer");
@@ -127,16 +127,17 @@ currentPage=0;
 
   currentStory = listStories[selectedStory];
 
-  document.getElementById('ReadingDiv').style.display = "block";
+  document.querySelector('#ReadingDiv').style.display = "block";
 
   GetStoryPictures(currentStory.title);
   currentSentence = currentStory.sentences[0];
 
-  document.getElementById('currentPicture').src = listPictures[0];   
+  document.querySelector('#currentPicture').src = listPictures[0];   
   PopulateSentence(currentSentence);
 }
 
 function GetStoryPictures(el){
+    console.log("clickedddd");
 var url = root+'/'+el;
 var exist;
 var counter=0;
@@ -160,8 +161,11 @@ function PopulateSentence(sentence){
 
     listWords.forEach((word)=>{
         if(word != '‎')
-      document.getElementById('wordList').innerHTML+=    `<div class="word" onclick='SpeakIt(this)'>${word}</div> `;
+      document.getElementById('wordList').innerHTML+=    `<div class="word shake" onclick='SpeakIt(this)'>${word}</div> `;
     })}
+
+
+
 
 function GetNext(){
  synth.cancel();
@@ -184,6 +188,10 @@ PopulateSentence(currentSentence);
          prevButton.style.opacity = "1";
            prevButton.style.boxShadow = "0px 16px #cb2e26";  
         prevButton.setAttribute("onclick", "GetPrevious()" );}
+
+
+
+
 
 function GetPrevious(){
 synth.cancel();
@@ -209,6 +217,8 @@ if(currentPage == 0){
         nextButton.setAttribute("onclick", "GetNext()" );}
 
 const synth = window.speechSynthesis;
+
+
 function SpeakIt(el){
     const utterance = new SpeechSynthesisUtterance(el.innerText);
     synth.cancel();
