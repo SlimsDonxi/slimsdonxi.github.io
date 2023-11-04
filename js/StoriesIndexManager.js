@@ -8,48 +8,23 @@ class Story {
  
   }}
 
-
+var root ="/stories/listStories";
 var currentStory;
 var currentPage =0;
 
-var listStories =[];
+var listStories =["Alex's super medicine", "Grow flower GROW!", "The Bear and the Bee"];
 var listPictures=[];
-var root ="/stories/listStories";
+var listSentences =[];
+
 var currentSentence;
-var directories = [
-`${root}/Alex's super medicine`,
-`${root}/Grow flower GROW!`,
-`${root}/The Bear and the Bee`
-
-]
+var currentPicture = document.querySelector('#currentPicture');
 
 
 
-CreateClasses();
+
+ CreateStories();
 
 
-function CreateClasses(){
-
-  var counter=0;
-
-    directories.forEach((url) =>{ 
-
-        var storyText =FileHelper(`${url}/storyText.txt`);
-        var listSentences =  GetSentences(storyText);
-         
-        var newStory = new Story();
-        newStory.title = listSentences[0];
-       newStory.id = counter;
-       newStory.pictures = GetStoryPictures();
-        newStory.sentences = listSentences;
-        newStory.text = storyText;
-
-        listStories.push(newStory);
-       
-        counter++;
-    });
-
-   CreateStories();}
 
 
 function CreateStories(){
@@ -58,30 +33,17 @@ var counter=0;
 
     listStories.forEach((story)=>{
 
-        var block = ` 
-<div class="storyContainer" onclick ="GenerateStory(this) ">
-            <img class="cover" src="../stories/listStories/${story.title}/cover.jpg" >
-            <label ><p>${story.title}</p></label>
-</div>
-
-
-         `
-/*
-<div class="col-sm-6 col-xs-6 col-md-4 col-lg-4 storyContainer" >
-  <img src="../stories/listStories/${story.title}/0.jpg" class="img-responsive img-rounded" alt="${story.title}">
-<div id="title"><span>${story.title}</span></div>
-</div>`
-*/
-    
-    document.getElementById('container').innerHTML+= block;
+        var block = ` <div class="storyContainer" onclick ="GenerateStory(this) "><img class="cover" src="../stories/listStories/${listStories[counter]}/cover.jpg" ><label ><p>${listStories[counter]}</p></label></div>`
+counter++;
+    document.querySelector('#container').innerHTML+= block;
     });}
 
 
 function GetSentences(el){
 
-var listSentences =  el.split(/\r?\n/);
-
-
+var file = FileHelper('listStories/'+el.innerText+'/storyText.txt');
+ listSentences =  file.split(/\r?\n/);
+  currentSentence = listSentences[0];
 return listSentences;}
 
 
@@ -100,12 +62,7 @@ else
 
     if (request.status === 404)   return false;
         
-   else  return true;
-}
-
-
-
-
+   else  return true;}
 
 
 function FileHelper(url){
@@ -119,25 +76,31 @@ function FileHelper(url){
 
 
 function GenerateStory(element){
-    
-listPictures =[];
-currentPage=0;
+
+  
+   listPictures =  GetStoryPictures(element);
+
+   
+    currentPage=0;
+
    var divs = document.querySelectorAll("#container .storyContainer");
           selectedStory = Array.from(divs).indexOf(element);
 
-  currentStory = listStories[selectedStory];
+  currentStory = element.innerText;
 
   document.querySelector('#ReadingDiv').style.display = "block";
 
-  GetStoryPictures(currentStory.title);
-  currentSentence = currentStory.sentences[0];
+ listSentences = GetSentences(element);
 
-  document.querySelector('#currentPicture').src = listPictures[0];   
+
+
+  currentPicture.src = `${root}/${listSentences[0]}/${currentPage}.jpg`;  
   PopulateSentence(currentSentence);
 }
 
+
 function GetStoryPictures(el){
-    console.log("clickedddd");
+ 
 var url = root+'/'+el;
 var exist;
 var counter=0;
@@ -161,7 +124,7 @@ function PopulateSentence(sentence){
 
     listWords.forEach((word)=>{
         if(word != '‎')
-      document.getElementById('wordList').innerHTML+=    `<div class="word shake" onclick='SpeakIt(this)'>${word}</div> `;
+      document.querySelector('#wordList').innerHTML+=    `<div class="word shake" onclick='SpeakIt(this)'>${word}</div> `;
     })}
 
 
@@ -170,13 +133,13 @@ function PopulateSentence(sentence){
 function GetNext(){
  synth.cancel();
 currentPage++;
-currentSentence = currentStory.sentences[currentPage];
-document.getElementById('currentPicture').src = listPictures[currentPage];
+currentSentence = listSentences[currentPage];
+currentPicture.src = `${root}/${listSentences[0]}/${currentPage}.jpg`;  
 
 PopulateSentence(currentSentence);
 
- if(currentPage == currentStory.sentences.length-1){
-        var nextButton =  document.getElementById("nextSound");
+ if(currentPage == listSentences.length-1){
+        var nextButton =  document.querySelector("#nextSound");
         nextButton.style.backgroundColor = "gray";
          nextButton.style.opacity = "0.2";
            nextButton.style.boxShadow = "0px 0px #46a52d";  
@@ -196,8 +159,9 @@ PopulateSentence(currentSentence);
 function GetPrevious(){
 synth.cancel();
 currentPage--;
-currentSentence = currentStory.sentences[currentPage];
-document.getElementById('currentPicture').src = listPictures[currentPage];
+currentSentence = listSentences[currentPage];
+currentPicture.src = `${root}/${listSentences[0]}/${currentPage}.jpg`;  
+
 PopulateSentence(currentSentence);
 
 if(currentPage == 0){
