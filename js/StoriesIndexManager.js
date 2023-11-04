@@ -59,11 +59,10 @@ var counter=0;
     listStories.forEach((story)=>{
 
         var block = ` 
-
- <div class="storyContainer" onclick ="GenerateStory(this) ">
+<div class="storyContainer" onclick ="GenerateStory(this) ">
             <img class="cover" src="../stories/listStories/${story.title}/cover.jpg" >
-            <label style='background-color:<?php printf( "#%06X\n", mt_rand( 0, 0x222222 )); ?>' >${story.title}</label>
-        </div>
+            <label ><p>${story.title}</p></label>
+</div>
 
 
          `

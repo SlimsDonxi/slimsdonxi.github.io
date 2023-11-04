@@ -3,48 +3,45 @@
     <head>
 
 <link rel="stylesheet" href="../css/bootstrap.css">
-<link rel="stylesheet" href="../css/Loader.css"> 
+
 <link rel="stylesheet" href="../css/base.css"> 
 <link rel="stylesheet" href="../css/ReadingBase.css"> 
 
  <title>Story books</title>
- <link rel="icon" type="image/x-icon" href="../sprites/favicon.ico">
+ <link rel="icon" type="image/x-icon" href="../favicon.ico">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 
 <style>
 
 
-.mainButton{
-   width: 800px;
-   text-align: left;
-   padding:50px;
-   transform:translateX(-100px);
-   background-color:#924fd1 ;
-    box-shadow: #7f46b4 0px 20px 0px 0px;
 
-}
 
    body{
 overflow:hidden;
       }
 
 
-      #container {
-     padding: 20px;
+#container {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    grid-auto-rows: minmax(0, auto);
+    max-width: 2000px;
+}
+@media screen and (max-width: 600px){
+    #container {
+  
+    grid-template-columns: repeat(4, 1fr);
    
- display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  grid-auto-rows: minmax(0, auto);
-max-width: 2000px;
-
+}
 }
    
 label{
     background:#333333;
-    border-radius: 50px;
- font-size: 30px;
+    border-radius: 25px;
+    font-size: 30px;
     color:white;
     padding:5px;
     width:100%;
@@ -53,26 +50,46 @@ label{
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     line-height: 30px;
+    position:relative;
+    max-width: 300px;
+    box-shadow: 0px 20px 0px 0px;
+
+
 }
 img{
     width:100%;
     margin: 0 auto;
-    border-top-right-radius: 50px;
-     border-top-left-radius: 50px;
+    border-top-right-radius: 25px;
+     border-top-left-radius: 25px;
+     max-width: 300px;
+}
+
+p{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    maring:0;
+    font-size: 25px;
+    width:100%;
+
 }
 
     
-     .word{
-          overflow: auto; 
-          height:115px;
- font-size: 55px;
-     }
-    .storyContainer{
-        padding:10px;
-        max-width: 800px;
-    }
-    #ReadingContainer{
-        background:#f5f5f5;
+.word{
+    overflow: auto; 
+    height:115px;
+    font-size: 55px;
+}
+
+.storyContainer{
+    padding:10px;
+    max-width: 300px;
+    display:block;
+}
+
+#ReadingContainer{
+    background:#f5f5f5;
     }
 </style>
 </head>
@@ -84,12 +101,24 @@ img{
 
 
  <div id="container" >
-
+ 
+ <div class="storyContainer" onclick ="GenerateStory(this) ">
+            <img class="cover" src="../stories/listStories/Grow flower GROW!/cover.jpg" >
+            <label ><p>Grow flower GROW!</p></label>
+</div>
+ <div class="storyContainer" onclick ="GenerateStory(this) ">
+            <img class="cover" src="../stories/listStories/Grow flower GROW!/cover.jpg" >
+            <label ><p>Grow flower GROW!</p></label>
+</div>
+ <div class="storyContainer" onclick ="GenerateStory(this) ">
+            <img class="cover" src="../stories/listStories/Grow flower GROW!/cover.jpg" >
+            <label ><p>Grow flower GROW!</p></label>
+</div>
 </div>
 
 
  <script type="text/javascript" src="../js/appendReadingStories.js"></script>
- <script type="text/javascript" src="../js/Stories/StoriesIndexManager.js"></script>
+<!-- <script type="text/javascript" src="../js/StoriesIndexManager.js"></script>-->
 
 
 
