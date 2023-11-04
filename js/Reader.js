@@ -1,0 +1,172 @@
+
+var arrayLetters = ["a", "t", "i", "p", "n", "ck", "e", "h","r","m","d","g","o","u","l","f","b","ai","j","oa","ie","ee","or","z","w","ng","v","oo","oo1","y","x","ch","sh","th","th1","qu","ou","oi","ue","er","ar"];
+var arrayAt = ["bat", "cat", "fat", "hat", "lat", "mat","pat"];
+var arrayCh = ["chip", "chat", "chow", "chew", "chin", "chop","chess","chic", "chase","chalk", "china", "chirp", "chest", "catch","batch", "fetch", "watch", "match" ];
+var arrayOO = ["too", "zoo", "goo", "boo", "poo", "moo","goop","good", "look","took", "book", "poor", "tool", "foot", "pool","moon", "fool", "loot", "hook", "boom", "root", "roof", "doom","cookie", "vroom", "goose", "groom" ];
+var arraySh = ["shake", "shade", "shape", "shack", "she","sheep","sheet", "shed","shy", "shine", "shell", "shin", "shoe", "shut","shop", "shoot", "ship", "shot", "ash", "bash", "dash", "flash", "trash", "cash", "mesh", "flesh", "fish", "wash", "push" ];
+var arrayGood = ["I am good at basketball", "I am very good at dancing", "You are extremely good at running", "He is great at swimming", "I am bad at drawing","She is really bad at climbing","We are horrible at singing"];
+var arrayToo = ["I like apples and i like oranges too", "I cannot fly and I cannot swim either", "I do not like to dance and I do not like to play either", "If you are happy then I am happy too", "You are not my friend and I am not your friend either","I like to drink milk but I do not like to drink water","I like to eat vegetables but I do not like to eat fruits"];
+var arraySchool = ["This is my pencil case", "I have a huge pencil case", "I can put an eraser in my pencil case", "Eraser is a school supply", "I can put a marker in my pencil case","Marker is a school supply too","I can put a glue stick in my pencil case","Glue is also a school supply","I cannot put an elephant in my pencil case","I have a lot of crayons","I put all of my school supplies in my schoolbag","Because the elephant is too big!"];
+var currentArray = [];
+
+var isForLetters = false;
+var clickable;
+var currentText =0;
+
+
+function populate(id){
+  
+switch(id){
+
+case 'at': currentArray = arrayAt; break;
+case 'ch': currentArray = arrayCh;break;
+case 'sh': currentArray = arraySh;break;
+case 'oo': currentArray = arrayOO;break;
+case 'school': currentArray = arraySchool; clickable ="clickable";break;
+case 'too': currentArray = arrayToo;clickable ="clickable";break;
+case 'good': currentArray = arrayGood;clickable ="clickable";break;
+  case 'letters': currentArray = arrayLetters; isForLetters = true; break;}
+
+var blockStr;
+
+for(var i=0; i< currentArray.length; i++)
+{
+    if(currentArray[i].indexOf('1')>0) {
+      currentArray[i] = currentArray[i].replace('1', '');}
+
+      blockStr+= `<li><button class="mainButton" onclick ="GetText(this)">${currentArray[i]}</button></li>`    
+}
+  document.querySelector("#content").innerHTML ='';
+  document.querySelector("#content").innerHTML +=blockStr;
+  document.querySelector("#wrapper").style.display ="block";
+}
+
+
+
+
+
+
+function GetText(element) {
+
+
+  var divs = document.querySelectorAll("#content button");
+  currentText = Array.from(divs).indexOf(element);
+  console.log(currentText);
+  document.querySelector('#ReadingContainer').style.display = "block"; 
+
+  if(clickable != "clickable")   
+  document.querySelector('#displayedText').innerText = element.innerText;
+  else {
+    CreateBoxes(GetWords(element.innerText));
+    document.querySelector('#Lines').style.display = 'none';
+  }
+
+  console.log("This array has :" +currentArray[0]);
+}
+
+
+
+function CreateBoxes(element){
+ document.getElementById('displayedPhrase').innerHTML='';
+
+    for(var i in element)
+        { 
+            var block = `<button class="word shake" onclick="SpeakIt(this, this)">${element[i]}</button>`;
+        document.getElementById('displayedPhrase').innerHTML +=block;
+    }
+
+      document.getElementById('displayedPhrase').innerHTML +=`<div style="margin-top: 120%; margin-bottom:500px;">`;
+}
+
+function GetWords(element){
+var arraySpliced = element.split(" ");
+
+return arraySpliced;
+}
+
+
+function Next(){
+  
+  currentText +=  1;
+  var listButtons = document.querySelectorAll("#container button");
+
+
+  if(currentText == currentArray.length-1)
+  {
+    var nextButton =  document.getElementById("nextSound");
+        nextButton.style.backgroundColor = "gray";
+        nextButton.style.opacity = "0.2";
+        nextButton.style.boxShadow = "0px 0px #46a52d";  
+        nextButton.removeAttribute('onclick');
+  }
+
+  var prevButton = document.getElementById("previousSound");
+      prevButton.style.backgroundColor = "#f53228";
+      prevButton.style.opacity = "1";
+      prevButton.style.boxShadow = "0px 16px #cb2e26";  
+      prevButton.setAttribute("onclick", "Previous()" );
+
+     document.querySelector('#displayedText').innerText = currentArray[currentText];
+   if(clickable =="clickable"){
+     CreateBoxes(GetWords(currentArray[currentText]));
+   }
+} 
+
+function Previous(){
+   
+   currentText-=1;
+     var listButtons = document.querySelectorAll("#container button");
+   
+
+    if(currentText == 0){
+         var prevButton =  document.getElementById("previousSound");
+           prevButton.style.backgroundColor = "gray";
+         prevButton.style.opacity = "0.2";
+           prevButton.style.boxShadow = "0px 0px #cb2e26";    
+        prevButton.removeAttribute('onclick');
+    }
+
+        var nextButton = document.getElementById("nextSound");
+          nextButton.style.backgroundColor = "#4dbd2f";
+           nextButton.style.boxShadow = "0px 16px #46a52d";         
+         nextButton.style.opacity = "1";
+        nextButton.setAttribute("onclick", "Next()" );
+
+         document.querySelector('#displayedText').innerText = currentArray[currentText];
+} 
+
+function CloseReader(el){
+  if(el == 'ReadingContainer')
+     document.querySelector('#ReadingContainer').style.display = "none";
+   else 
+     document.querySelector('#wrapper').style.display = "none";
+}
+currentText=0;
+const synth = window.speechSynthesis;
+
+function SpeakIt(el, thisEl){
+  
+if(isForLetters)  {
+    var sound = new Audio();
+    sound.src = `../audios/LetterSounds/${currentArray[currentText]}.mp3`;  //  preload
+   sound.play();
+ }
+
+else{
+  synth.cancel();
+  if(thisEl ==  null){
+
+   const utterance = new SpeechSynthesisUtterance(currentArray[currentText]);
+    utterance.voice = synth.getVoices()[10];
+    synth.speak(utterance);
+} else{
+  const utterance = new SpeechSynthesisUtterance(thisEl.innerText);
+    utterance.voice = synth.getVoices()[10];
+    synth.speak(utterance);
+}
+   
+   
+}
+    
+  }
+
