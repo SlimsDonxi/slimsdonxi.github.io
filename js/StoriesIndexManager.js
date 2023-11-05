@@ -52,10 +52,15 @@ return listSentences;}
 function CheckIfURLExists(url){
     var request;
 
+console.log(url);
 if(window.XMLHttpRequest)
     request = new XMLHttpRequest();
-/*else
-    request = new ActiveXObject("Microsoft.XMLHTTP");*/
+else
+    request = new ActiveXObject("Microsoft.XMLHTTP");
+
+
+
+
 
     request.open('GET', url, false); 
     request.send();
@@ -77,8 +82,8 @@ function FileHelper(url){
 
 function GenerateStory(element){
 
-  
-   listPictures =  GetStoryPictures(element);
+
+   listPictures =  GetStoryPictures(element.innerText);
 
    
     currentPage=0;
@@ -187,13 +192,18 @@ function SpeakIt(el){
     const utterance = new SpeechSynthesisUtterance(el.innerText);
     synth.cancel();
     utterance.voice = synth.getVoices()[10];
-    synth.speak(utterance);}
+    utterance.rate =0.8;
+    synth.speak(utterance);
+
+
+}
 
 function ReadSentence(){
     console.log(currentSentence);
      const utterance = new SpeechSynthesisUtterance(currentSentence);
     synth.cancel();
     utterance.voice = synth.getVoices()[10];
+     utterance.rate =0.8;
     synth.speak(utterance);}
 
 

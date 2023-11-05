@@ -87,12 +87,12 @@ user-select: none;
 
 
 .controllers{
-	z-index: 300;
+
 position:absolute;
 text-shadow: 0 16px rgba(0,0,0,.1);
-transition: all .2s;
-	font-size:175px;
-	justify-content: center;
+
+
+
 		height:175px;
 width:175px;
 bottom:100px;
@@ -102,6 +102,10 @@ bottom:100px;
 .controllers svg{
 	
 	height:150px;
+	position:absolute;
+	left:50%;
+	top:50%;
+	transform: translate(-50%,-50%);
 	width:150px;
 	fill:#fff;
 	fill-rule:evenodd;
@@ -136,6 +140,12 @@ left :10%;
 background-color:gray;
 
 color:#e5fece;
+}
+#previousSound svg{
+	margin-left:-15px;
+}
+#nextSound svg{
+	margin-left:15px;
 }
 
 
