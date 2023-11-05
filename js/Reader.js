@@ -27,18 +27,21 @@ case 'too': currentArray = arrayToo;clickable ="clickable";isForLetters = false;
 case 'good': currentArray = arrayGood;clickable ="clickable";isForLetters = false;break;
 case 'letters': currentArray = arrayLetters; isForLetters = true; break;}
 
-console.log(isForLetters);
-var blockStr;
 
+var blockStr;
+ document.querySelector("#content").innerHTML ='';
 for(var i=0; i< currentArray.length; i++)
 {
+  
+  
     if(currentArray[i].indexOf('1')>0) {
       currentArray[i] = currentArray[i].replace('1', '');}
 
-      blockStr+= `<li><button class="mainButton" onclick ="GetText(this)">${currentArray[i]}</button></li>`    
+       document.querySelector("#content").innerHTML+= `<li><button class="mainButton" onclick ="GetText(this)">${currentArray[i]}</button></li>`    
+  
 }
-  document.querySelector("#content").innerHTML ='';
-  document.querySelector("#content").innerHTML +=blockStr;
+ 
+
   document.querySelector("#wrapper").style.display ="block";
 }
 
@@ -204,8 +207,12 @@ async function showReadingText(textPart) {
   return new Promise(resolve => { resolve(); });
 }
 
+document.querySelector("#speaker").addEventListener('click', function(){
+  speak();
+})
 
-function SpeakIt(thisEl) {
+var speakingObject;
+function speak(){
   synthObj.cancel();
   var speakObj = new SpeechSynthesisUtterance();
 
@@ -217,13 +224,13 @@ function SpeakIt(thisEl) {
    sound.play();
  }
  else{
-   if(thisEl ==  null){
+   if(speakingObject ==  null){
 
     speakObj = new SpeechSynthesisUtterance(currentArray[currentText]);   
  
 }
  else{
-   speakObj = new SpeechSynthesisUtterance(thisEl.innerText);
+   speakObj = new SpeechSynthesisUtterance(speakingObject.innerText);
    
 }
 
@@ -235,6 +242,10 @@ speakObj.rate = 0.8;
 
  
   return new Promise(resolve => { speakObj.onend = resolve; });
+}
+
+function SpeakIt(thisEl) {
+  speakingObject = thisEl;
 }
 
 
