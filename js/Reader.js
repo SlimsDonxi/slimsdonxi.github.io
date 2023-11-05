@@ -18,15 +18,16 @@ function populate(id){
   
 switch(id){
 
-case 'at': currentArray = arrayAt; break;
-case 'ch': currentArray = arrayCh;break;
-case 'sh': currentArray = arraySh;break;
-case 'oo': currentArray = arrayOO;break;
-case 'school': currentArray = arraySchool; clickable ="clickable";break;
-case 'too': currentArray = arrayToo;clickable ="clickable";break;
-case 'good': currentArray = arrayGood;clickable ="clickable";break;
-  case 'letters': currentArray = arrayLetters; isForLetters = true; break;}
+case 'at': currentArray = arrayAt; isForLetters = false;break;
+case 'ch': currentArray = arrayCh;isForLetters = false;break;
+case 'sh': currentArray = arraySh;isForLetters = false;break;
+case 'oo': currentArray = arrayOO; isForLetters = false;break;
+case 'school': currentArray = arraySchool; clickable ="clickable";isForLetters = false;break;
+case 'too': currentArray = arrayToo;clickable ="clickable";isForLetters = false;break;
+case 'good': currentArray = arrayGood;clickable ="clickable";isForLetters = false;break;
+case 'letters': currentArray = arrayLetters; isForLetters = true; break;}
 
+console.log(isForLetters);
 var blockStr;
 
 for(var i=0; i< currentArray.length; i++)
@@ -144,29 +145,100 @@ function CloseReader(el){
 currentText=0;
 const synth = window.speechSynthesis;
 
-function SpeakIt(el, thisEl){
+
+// const fullScreenButton=document.querySelector('#full-screen-button');
+const inputText = document.querySelector('#displayedPhrase');
+
+
+
+const lizen = document.querySelector('#speaker');
+
+
+
+
+//Setting Variables
+let voices = [];
+const synthObj = window.speechSynthesis;
+
+//Execution Statements and Event Handlers
+populateVoices();
+
+if (speechSynthesis.onvoiceschanged !== undefined) {
+  speechSynthesis.onvoiceschanged = populateVoices;
+}
+
+
+lizen.addEventListener('click', function () {
+  parseSentences();
+  lizen.disabled = true;
   
-if(isForLetters)  {
+});
+
+
+//FUNCTIONS SECTION
+
+//Fetches and Populates the Voices Array in Alphabetical Order
+function populateVoices() {
+  voices = synthObj.getVoices();
+}
+
+
+
+async function parseSentences() {
+  const selectedVoice = voices[9].name;
+  
+
+
+  
+  
+  await showReadingText();
+  
+
+  lizen.disabled = false;
+}
+
+
+async function showReadingText(textPart) {
+  
+  
+  return new Promise(resolve => { resolve(); });
+}
+
+
+function SpeakIt(thisEl) {
+  synthObj.cancel();
+  var speakObj = new SpeechSynthesisUtterance();
+
+  
+
+  if(isForLetters)  {
     var sound = new Audio();
     sound.src = `../audios/LetterSounds/${currentArray[currentText]}.mp3`;  //  preload
    sound.play();
  }
+ else{
+   if(thisEl ==  null){
 
-else{
-  synth.cancel();
-  if(thisEl ==  null){
-
-   const utterance = new SpeechSynthesisUtterance(currentArray[currentText]);
-    utterance.voice = synth.getVoices()[10];
-    synth.speak(utterance);
-} else{
-  const utterance = new SpeechSynthesisUtterance(thisEl.innerText);
-    utterance.voice = synth.getVoices()[10];
-    synth.speak(utterance);
+    speakObj = new SpeechSynthesisUtterance(currentArray[currentText]);   
+ 
 }
-   
+ else{
+   speakObj = new SpeechSynthesisUtterance(thisEl.innerText);
    
 }
-    
-  }
+
+speakObj.voice = voices[9];
+speakObj.rate = 0.8;
+  synthObj.speak(speakObj);
+ }
+
+
+ 
+  return new Promise(resolve => { speakObj.onend = resolve; });
+}
+
+
+
+
+
 

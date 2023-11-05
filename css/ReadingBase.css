@@ -32,8 +32,8 @@ background-color: rgba(0,0,0,.25);
 	
 }
 #ReadingContainer{
-	height:90%;
-	width:90%;
+	height:100%;
+	width:100%;
 	max-width: 2000px;
 
 	position:fixed;
@@ -56,13 +56,11 @@ overflow:hidden;
 }
 
 #speaker {
-	position:absolute;
-height:250px;
-width:250px;
+
+
 background-color: #38b6ff;
-
-
-
+width:250px;
+height:250px;
 bottom:100px;
 border-radius: 500px;
 box-shadow:0px 16px #2b95d2;
@@ -231,7 +229,7 @@ left:50%;
 transform:translate(-50%,-65%);
 position:absolute;
 padding:50px;
-
+background:#ffe064;
 display:inline;
 overflow:scroll;
 
