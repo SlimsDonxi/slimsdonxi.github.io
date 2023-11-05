@@ -56,7 +56,7 @@ function GetText(element) {
   var divs = document.querySelectorAll("#content button");
   currentText = Array.from(divs).indexOf(element);
   console.log(currentText);
-  document.querySelector('#ReadingContainer').style.display = "block"; 
+  document.querySelector('#ReadingDiv').style.display = "block"; 
 
   if(clickable != "clickable")   
   document.querySelector('#displayedText').innerText = element.innerText;

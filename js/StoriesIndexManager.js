@@ -58,10 +58,6 @@ if(window.XMLHttpRequest)
 else
     request = new ActiveXObject("Microsoft.XMLHTTP");
 
-
-
-
-
     request.open('GET', url, false); 
     request.send();
 
