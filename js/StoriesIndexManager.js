@@ -54,8 +54,8 @@ function CheckIfURLExists(url){
 
 if(window.XMLHttpRequest)
     request = new XMLHttpRequest();
-else
-    request = new ActiveXObject("Microsoft.XMLHTTP");
+/*else
+    request = new ActiveXObject("Microsoft.XMLHTTP");*/
 
     request.open('GET', url, false); 
     request.send();
