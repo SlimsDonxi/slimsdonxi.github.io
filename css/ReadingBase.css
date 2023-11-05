@@ -18,6 +18,9 @@
 #closeReader span{
 	position:relative;
 	top:25px;
+	-webkit-user-select: none; /* Safari */
+-ms-user-select: none; /* IE 10 and IE 11 */
+user-select: none;
 }
 
 
@@ -74,6 +77,9 @@ box-shadow:0px 16px #2b95d2;
 	width:175px;
 	fill:#fff;
 	fill-rule:evenodd
+	-webkit-user-select: none; /* Safari */
+-ms-user-select: none; /* IE 10 and IE 11 */
+user-select: none;
 }
 
 
@@ -98,7 +104,10 @@ bottom:100px;
 	height:150px;
 	width:150px;
 	fill:#fff;
-	fill-rule:evenodd
+	fill-rule:evenodd;
+	-webkit-user-select: none; /* Safari */
+-ms-user-select: none; /* IE 10 and IE 11 */
+user-select: none;
 }
 
 
