@@ -75,7 +75,7 @@ function CreateBoxes(element){
 
     for(var i in element)
         { 
-            var block = `<button class="word shake" onclick="SpeakIt(this, this)">${element[i]}</button>`;
+            var block = `<button class="word shake" onclick="SpeakIt(this)">${element[i]}</button>`;
         document.getElementById('displayedPhrase').innerHTML +=block;
     }
 
@@ -246,6 +246,7 @@ speakObj.rate = 0.8;
 
 function SpeakIt(thisEl) {
   speakingObject = thisEl;
+  speak();
 }
 
 
