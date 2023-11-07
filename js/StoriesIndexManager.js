@@ -107,7 +107,7 @@ function PopulateSentence(sentence){
 
     listWords.forEach((word)=>{
         if(word != '‎')
-      document.querySelector('#displayedPhrase').innerHTML+=    ` <button class="word shake" ><span onclick="SpeakIt(this)">${word}</span></button> `;
+      document.querySelector('#displayedPhrase').innerHTML+=    ` <button class="word shake" onclick="SpeakIt(this)">${word}</button> `;
     })
 
 document.querySelector("#loaderContainer").style.display = "none";
@@ -141,9 +141,9 @@ speaker.style.boxShadow = "0px 5px 0px 0px #f5971d"
 }
 
 
-
+var selectedVoice;
 async function parseSentences() {
-  const selectedVoice = voices[9].name;
+  selectedVoice = voices.find((voice)=> voice.name =="Google UK English Female"); 
   
   await showReadingText();
   
@@ -175,9 +175,10 @@ document.querySelector("#speakingLoader").style.display = "flex";
    speakObj = new SpeechSynthesisUtterance(speakingObject.innerText);
    
 }
-speakObj.voice =voices.find((voice)=> voice.name =="Google UK English Female");
+speakObj.default = false;
+speakObj.voice =selectedVoice;
 speakObj.rate = 0.8;
-  synth.speak(speakObj);
+synth.speak(speakObj);
  speakingObject = null;
 }else{
   // Speech Synthesis Not Supported 😣

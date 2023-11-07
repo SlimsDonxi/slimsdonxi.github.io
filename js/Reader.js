@@ -38,6 +38,7 @@ var blockStr;
 
 
  document.querySelector("#listPhonics .container .row").innerHTML ='';
+
 for(var i=0; i< currentArray.length; i++)
 {
   
@@ -162,28 +163,26 @@ function CloseReader(el){
 }
 
 
+
+
+
+var  selectedVoice;
+
+
 currentText=0;
 const synth = window.speechSynthesis;
 
 
-
-
-
-
-
 let voices = [];
+ voices = window.speechSynthesis.getVoices();
 window.speechSynthesis.onvoiceschanged = function() {
   voices = window.speechSynthesis.getVoices();
-
-  voices.forEach((voice)=>{
-    console.log(voice);
-  });
 };
 
 
 
 async function parseSentences() {
-  const selectedVoice = voices[9].name; 
+   selectedVoice = voices.find((voice)=> voice.name =="Google UK English Female"); 
   await showReadingText();  
 }
 
@@ -231,9 +230,9 @@ console.log(currentArray[currentText]);
    speakObj = new SpeechSynthesisUtterance(speakingObject.innerText);
    
 }}
-
+speakObj.default = false;
 speakObj.lang="en";
-speakObj.voice = voices.find((voice)=> voice.name =="Google UK English Female");
+speakObj.voice = selectedVoice;
 speakObj.rate = 0.8;
   synth.speak(speakObj);
  speakingObject = null;
