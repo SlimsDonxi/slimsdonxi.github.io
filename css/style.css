@@ -1137,6 +1137,7 @@ ul.social_icon li a:hover {
 
 
   -webkit-animation-name: shake;
+  animation-duration: :0.5s;
     -webkit-animation-duration: 0.5s;
     -moz-animation-name: shake;
      -moz-animation-duration: 0.5s;
@@ -1144,6 +1145,16 @@ ul.social_icon li a:hover {
      -o-animation-duration: 0.5s;
 }
 
+@keyframes shake {
+    0% { transform:translate(0,6px); } 
+      1% { transform:translate(0,0px); } 
+       10% {  transform:translate(0,2px); }  
+        20% { transform:translate(0,4px);}  
+         40% {  transform:translate(0,6px);}  
+          60% {  transform:translate(0,4px);}  
+           80% {  transform:translate(0,2px);}  
+            100% {   transform:translate(0,0);}  
+}
 @-o-keyframes shake {
     0% { transform:translate(0,6px); } 
       1% { transform:translate(0,0px); } 
@@ -1194,4 +1205,120 @@ box-shadow: 0px 7px 0px 0px #ba2f39;
 height: 50px;
 width:50px;
 border-radius: 50px;
+}
+
+
+@keyframes quiet {
+  25%{
+    transform: scaleY(.6);
+  }
+  50%{
+    transform: scaleY(.4);
+  }
+  75%{
+    transform: scaleY(.8);
+  }
+}
+
+@keyframes normal {
+  25%{
+    transform: scaleY(1);
+  }
+  50%{
+    transform: scaleY(.4);
+  }
+  75%{
+    transform: scaleY(.6);
+  }
+}
+@keyframes loud {
+  25%{
+    transform: scaleY(1);
+  }
+  50%{
+    transform: scaleY(.4);
+  }
+  75%{
+    transform: scaleY(1.2);
+  }
+}
+
+.boxContainer{
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+  --boxSize: 6px;
+  --gutter: 3px;
+  width: calc((var(--boxSize) + var(--gutter)) * 5);
+  transform:translate(-3.5px,0);
+}
+
+.box{
+  transform: scaleY(.4);
+  height: 100%;
+  width: var(--boxSize);
+  background: #fff;
+  animation-duration: 1.2s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  border-radius: 8px;
+}
+
+.box1{
+  animation-name: quiet;
+}
+
+.box2{
+  animation-name: normal;
+}
+
+.box3{
+  animation-name: quiet;
+}
+
+.box4{
+  animation-name: loud;
+}
+
+.box5{
+  animation-name: quiet;
+}
+
+.loader {
+  width: 150px;
+  height: 18px;
+  position: absolute;
+  top:35%;
+  left:50%;
+  transform: translate(-50%,-50%);
+
+}
+.loader::before , .loader::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translate(-50% , 10%);
+  top: 0;
+  background: #FF3D00;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  animation: jump 0.5s ease-in infinite alternate;
+}
+
+.loader::after {
+  background: #0000;
+  color: #4d89e3;
+  top: 100%;
+  box-shadow: 32px -20px , -32px -20px;
+  animation: split 0.5s ease-out infinite alternate;
+}
+
+@keyframes split {
+  0% { box-shadow: 8px -20px, -8px -20px}
+  100% { box-shadow: 32px -20px , -32px -20px}
+}
+@keyframes jump {
+ 0% { transform: translate(-50% , -150%)}
+ 100% { transform: translate(-50% , 10%)}
 }

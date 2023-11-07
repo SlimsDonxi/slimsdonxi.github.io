@@ -16,7 +16,9 @@ var currentText =0;
  var nextButton = document.getElementById("next");
 var prevButton = document.getElementById("previous");
 var displayedPhrase =  document.getElementById('displayedPhrase');
-var displayedText = document.getElementById('displayedText')
+var displayedText = document.getElementById('displayedText');
+ var speaker = document.querySelector("#speaker");
+
 function populate(id){
   
 switch(id){
@@ -42,7 +44,7 @@ for(var i=0; i< currentArray.length; i++)
     if(currentArray[i].indexOf('1')>0) {
       currentArray[i] = currentArray[i].replace('1', '');}
 
-blockStr= clickable?AppendForReading(currentArray[i]):AppendForPhonics(currentArray[i]);
+blockStr = clickable?AppendForReading(currentArray[i]):AppendForPhonics(currentArray[i]);
 
        document.querySelector("#listPhonics .container .row").innerHTML+= blockStr;
   
@@ -53,18 +55,19 @@ blockStr= clickable?AppendForReading(currentArray[i]):AppendForPhonics(currentAr
 }
 
 function AppendForPhonics(el){
-return `<div class="col-md-4 margi_bottom">
+
+return `<div class="col-md-4 margi_bottom" onmouseup="GetText(this)">
       <div class="class_box text_align_center" style="background:#ef2a38; box-shadow:0 10px 0 0 #d22834">            
-        <h1 onclick="GetText(this)"> ${el}</h1>
+        <h1> ${el}</h1>
         </div>
     </div>`    
 
 }
 
 function AppendForReading(el){
- return `<div class="col-md-6 margi_bottom">
+ return `<div class="col-md-6 margi_bottom" onmouseup="GetText(this)">
       <div class="class_box text_align_center" style="background:#ef2a38; box-shadow:0 10px 0 0 #d22834; text-align:start; ">            
-        <span onclick="GetText(this)">${el}</span>
+        <span>${el}</span>
         </div>
     </div>`    
 }
@@ -76,14 +79,22 @@ function GetText(element) {
 
 document.querySelector("#reading").style.display ="block";
 
-if(clickable == "clickable")    CreateBoxes(GetWords(element.innerText));
-else document.querySelector('#displayedText').innerText = element.innerText;
-   
-var divs = document.querySelectorAll('#listPhonics span');
+var clicked = element.children[0].children[0];
+
+if(clickable == "clickable")   
+ CreateBoxes(GetWords(clicked.innerText));
+
+else 
+ document.querySelector('#displayedText').innerText = clicked.innerText;
+
+  var content = document.querySelector("#rowContent");
+  var divs = content.querySelectorAll(".margi_bottom");
+
 
 currentText = Array.from(divs).indexOf(element);
-console.log(currentText);
 
+CheckButtonNextAvailability();
+CheckButtonPreviousAvailability();
 }
 
 
@@ -130,7 +141,7 @@ function Previous(){
      
   CheckButtonNextAvailability();
   CheckButtonPreviousAvailability();
-       console.log(clickable);
+       
  
    if(clickable =="clickable"){
      CreateBoxes(GetWords(currentArray[currentText]));
@@ -149,13 +160,12 @@ function CloseReader(el){
    else 
      document.querySelector('#reading').style.display = "none";
 }
+
+
 currentText=0;
 const synth = window.speechSynthesis;
 
 
-
-
-const speaker = document.querySelector('#speaker');
 
 //Setting Variables
 let voices = [];
@@ -168,24 +178,15 @@ if (speechSynthesis.onvoiceschanged !== undefined) {
   speechSynthesis.onvoiceschanged = populateVoices;
 }
 
-
-
-
-
-//FUNCTIONS SECTION
-
 //Fetches and Populates the Voices Array in Alphabetical Order
 function populateVoices() {
   voices = synthObj.getVoices();
 }
 
-
-
 async function parseSentences() {
   const selectedVoice = voices[9].name; 
   await showReadingText();  
 }
-
 
 async function showReadingText(textPart) {
   
@@ -193,22 +194,26 @@ async function showReadingText(textPart) {
   return new Promise(resolve => { resolve(); });
 }
 
-
 var speakingObject;
 
 
-document.querySelector("#speaker").addEventListener('mouseup', function(){
-    parseSentences();
+
+function StartSpeaking(){
+  speaker.style.backgroundColor = "#f5971d";
+speaker.style.boxShadow = "0px 5px 0px 0px #f5971d";
+  parseSentences();
   speak();
-})
+}
+
 
 
 
 function speak(){
 
   if ('speechSynthesis' in window) {
- // Speech Synthesis supported 🎉
-}else{
+
+}
+else{
   // Speech Synthesis Not Supported 😣
   alert("Sorry, your browser doesn't support text to speech!");
 }
@@ -216,10 +221,9 @@ function speak(){
   synthObj.cancel();
   var speakObj = new SpeechSynthesisUtterance();
 
-  
-
   if(isForLetters)  {
     var sound = new Audio();
+    
     sound.src = `audios/LetterSounds/${currentArray[currentText]}.mp3`;  //  preload
    sound.play();
  }
@@ -239,6 +243,19 @@ speakObj.voice = voices[9];
 speakObj.rate = 0.8;
   synthObj.speak(speakObj);
  speakingObject = null;
+
+document.querySelector("#speakerIcon").style.display = "none";
+document.querySelector("#speakingLoader").style.display = "flex";
+
+speakObj.addEventListener('end', function () {
+     speaker.style.backgroundColor = "#1a95f4";
+speaker.style.boxShadow = "0px 6px 0px 0px #1a7ac5";
+document.querySelector("#speakerIcon").style.display = "flex";
+document.querySelector("#speakingLoader").style.display = "none";
+})
+
+
+
 
 
  
@@ -261,7 +278,7 @@ function CheckButtonNextAvailability(){
  } else{
 
           nextButton.style.backgroundColor = "#4dbd2f";
-           nextButton.style.boxShadow = "0px 10px #46a52d";         
+           nextButton.style.boxShadow = "0px 3px #46a52d";         
          nextButton.style.opacity = "1";
         nextButton.setAttribute("onclick", "Next()" );
  }
@@ -277,7 +294,7 @@ function CheckButtonPreviousAvailability(){
 }else{
  prevButton.style.backgroundColor = "#f53228";
       prevButton.style.opacity = "1";
-      prevButton.style.boxShadow = "0px 10px #cb2e26";  
+      prevButton.style.boxShadow = "0px 3px #cb2e26";  
       prevButton.setAttribute("onclick", "Previous()" );
 }
 }

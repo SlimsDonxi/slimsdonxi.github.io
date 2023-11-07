@@ -65,6 +65,7 @@ function FileHelper(url){
 
 function GenerateStory(element){
 
+  document.querySelector('#Reader').style.display = "block";
 
    listPictures =  GetStoryPictures(element.innerText);
  
@@ -75,7 +76,6 @@ function GenerateStory(element){
 
   currentStory = element.innerText;
 
-  document.querySelector('#Reader').style.display = "block";
 
  listSentences = GetSentences(element);
 
@@ -98,8 +98,6 @@ var counter=0;
     }
     while(exists)
 
-    
-
 }
 
 
@@ -110,12 +108,16 @@ function PopulateSentence(sentence){
     listWords.forEach((word)=>{
         if(word != '‎')
       document.querySelector('#displayedPhrase').innerHTML+=    ` <button class="word shake" ><span onclick="SpeakIt(this)">${word}</span></button> `;
-    })}
+    })
+
+document.querySelector(".loader").style.display = "none";
+  }
 
 
 function CloseReader(){
      document.getElementById('Reader').style.display = "none";
-     synth.cancel();}
+     synth.cancel();
+     document.querySelector(".loader").style.display = "block";}
 
 
 const synth = window.speechSynthesis;
@@ -131,11 +133,12 @@ if (speechSynthesis.onvoiceschanged !== undefined) {
 
 
 
-document.querySelector("#speaker").addEventListener('mouseup', function () {
+function StartSpeaking(){
+   speaker.style.backgroundColor = "#f5971d";
+speaker.style.boxShadow = "0px 5px 0px 0px #f5971d"
   parseSentences();
   speak();
-  
-});
+}
 
 //Fetches and Populates the Voices Array in Alphabetical Order
 function populateVoices() {
@@ -167,6 +170,9 @@ function speak(){
    if(speakingObject ==  null){
 console.log("Centener == " + listSentences[currentSentence]);
     speakObj = new SpeechSynthesisUtterance(currentSentence);   
+    document.querySelector("#speakerIcon").style.display = "none";
+document.querySelector("#speakingLoader").style.display = "flex";
+
  
 }
  else{
@@ -183,7 +189,12 @@ speakObj.rate = 0.8;
   alert("Sorry, your browser doesn't support text to speech!");
 }
 
-
+speakObj.addEventListener('end', function() {
+     speaker.style.backgroundColor = "#1a95f4";
+speaker.style.boxShadow = "0px 6px 0px 0px #1a7ac5";
+document.querySelector("#speakerIcon").style.display = "flex";
+document.querySelector("#speakingLoader").style.display = "none";
+});
 }
 
 function SpeakIt(thisEl) {
@@ -203,7 +214,7 @@ function CheckButtonNextAvailability(){
  } else{
 
           nextButton.style.backgroundColor = "#4dbd2f";
-           nextButton.style.boxShadow = "0px 10px #46a52d";         
+           nextButton.style.boxShadow = "0px 3px #46a52d";         
          nextButton.style.opacity = "1";
         nextButton.setAttribute("onclick", "Next()" );
  }
@@ -220,7 +231,7 @@ function CheckButtonPreviousAvailability(){
 }else{
  prevButton.style.backgroundColor = "#f53228";
       prevButton.style.opacity = "1";
-      prevButton.style.boxShadow = "0px 10px #cb2e26";  
+      prevButton.style.boxShadow = "0px 3px #cb2e26";  
       prevButton.setAttribute("onclick", "Previous()" );
 }
 }
