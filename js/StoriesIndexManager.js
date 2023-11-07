@@ -110,14 +110,14 @@ function PopulateSentence(sentence){
       document.querySelector('#displayedPhrase').innerHTML+=    ` <button class="word shake" ><span onclick="SpeakIt(this)">${word}</span></button> `;
     })
 
-document.querySelector(".loader").style.display = "none";
+document.querySelector("#loaderContainer").style.display = "none";
   }
 
 
 function CloseReader(){
      document.getElementById('Reader').style.display = "none";
      synth.cancel();
-     document.querySelector(".loader").style.display = "block";}
+     document.querySelector("#loaderContainer").style.display = "block";}
 
 
 const synth = window.speechSynthesis;
@@ -162,7 +162,7 @@ function speak(){
    synth.cancel();
    var speakObj = new SpeechSynthesisUtterance(); 
    if(speakingObject ==  null){
-console.log("Centener == " + listSentences[currentSentence]);
+
     speakObj = new SpeechSynthesisUtterance(currentSentence);   
     document.querySelector("#speakerIcon").style.display = "none";
 document.querySelector("#speakingLoader").style.display = "flex";
