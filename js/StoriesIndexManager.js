@@ -117,7 +117,8 @@ document.querySelector("#loaderContainer").style.display = "none";
 function CloseReader(){
      document.getElementById('Reader').style.display = "none";
      synth.cancel();
-     document.querySelector("#loaderContainer").style.display = "block";}
+     
+   }
 
 
 const synth = window.speechSynthesis;
