@@ -123,14 +123,13 @@ function CloseReader(){
 const synth = window.speechSynthesis;
 const speaker = document.querySelector('#speaker');
 //Setting Variables
-let voices = [];
-const synthObj = window.speechSynthesis;
-//Execution Statements and Event Handlers
-populateVoices();
-if (speechSynthesis.onvoiceschanged !== undefined) {
-  speechSynthesis.onvoiceschanged = populateVoices;
-}
 
+
+
+let voices = [];
+window.speechSynthesis.onvoiceschanged = function() {
+  voices = window.speechSynthesis.getVoices();
+};
 
 
 function StartSpeaking(){
@@ -138,11 +137,6 @@ function StartSpeaking(){
 speaker.style.boxShadow = "0px 5px 0px 0px #f5971d"
   parseSentences();
   speak();
-}
-
-//Fetches and Populates the Voices Array in Alphabetical Order
-function populateVoices() {
-  voices = synthObj.getVoices();
 }
 
 
@@ -165,7 +159,7 @@ var speakingObject;
 function speak(){
 
   if ('speechSynthesis' in window) {
-   synthObj.cancel();
+   synth.cancel();
    var speakObj = new SpeechSynthesisUtterance(); 
    if(speakingObject ==  null){
 console.log("Centener == " + listSentences[currentSentence]);
@@ -180,9 +174,9 @@ document.querySelector("#speakingLoader").style.display = "flex";
    speakObj = new SpeechSynthesisUtterance(speakingObject.innerText);
    
 }
-speakObj.voice = voices[9];
+speakObj.voice =voices.find((voice)=> voice.name =="Google UK English Female");
 speakObj.rate = 0.8;
-  synthObj.speak(speakObj);
+  synth.speak(speakObj);
  speakingObject = null;
 }else{
   // Speech Synthesis Not Supported 😣

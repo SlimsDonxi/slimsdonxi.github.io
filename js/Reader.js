@@ -167,21 +167,20 @@ const synth = window.speechSynthesis;
 
 
 
-//Setting Variables
+
+
+
+
 let voices = [];
-const synthObj = window.speechSynthesis;
+window.speechSynthesis.onvoiceschanged = function() {
+  voices = window.speechSynthesis.getVoices();
 
-//Execution Statements and Event Handlers
-populateVoices();
+  voices.forEach((voice)=>{
+    console.log(voice);
+  });
+};
 
-if (speechSynthesis.onvoiceschanged !== undefined) {
-  speechSynthesis.onvoiceschanged = populateVoices;
-}
 
-//Fetches and Populates the Voices Array in Alphabetical Order
-function populateVoices() {
-  voices = synthObj.getVoices();
-}
 
 async function parseSentences() {
   const selectedVoice = voices[9].name; 
@@ -212,13 +211,7 @@ function speak(){
 
   if ('speechSynthesis' in window) {
 
-}
-else{
-  // Speech Synthesis Not Supported 😣
-  alert("Sorry, your browser doesn't support text to speech!");
-}
-
-  synthObj.cancel();
+  synth.cancel();
   var speakObj = new SpeechSynthesisUtterance();
 
   if(isForLetters)  {
@@ -239,9 +232,10 @@ console.log(currentArray[currentText]);
    
 }}
 
-speakObj.voice = voices[9];
+speakObj.lang="en";
+speakObj.voice = voices.find((voice)=> voice.name =="Google UK English Female");
 speakObj.rate = 0.8;
-  synthObj.speak(speakObj);
+  synth.speak(speakObj);
  speakingObject = null;
 
 document.querySelector("#speakerIcon").style.display = "none";
@@ -260,6 +254,12 @@ document.querySelector("#speakingLoader").style.display = "none";
 
  
   return new Promise(resolve => { speakObj.onend = resolve; });
+}
+else{
+  // Speech Synthesis Not Supported 😣
+  alert("Sorry, your browser doesn't support text to speech!");
+}
+
 }
 
 function SpeakIt(thisEl) {
