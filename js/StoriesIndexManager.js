@@ -8,7 +8,7 @@ class Story {
  
   }}
 
-var root ="/stories/listStories";
+var root ="stories/listStories";
 var currentStory;
 var currentPage =0;
 
@@ -20,30 +20,17 @@ var currentSentence;
 var currentPicture = document.querySelector('#currentPicture');
 
 
-
-
- CreateStories();
-
-
-
-
-function CreateStories(){
-
-var counter=0;
-
-    listStories.forEach((story)=>{
-
-        var block = ` <div class="storyContainer" onclick ="GenerateStory(this) "><img class="cover" src="../stories/listStories/${listStories[counter]}/cover.jpg" ><label ><p>${listStories[counter]}</p></label></div>`
-counter++;
-    document.querySelector('#container').innerHTML+= block;
-    });}
-
+ var nextButton = document.getElementById("next");
+var prevButton = document.getElementById("previous");
+var displayedPhrase =  document.getElementById('displayedPhrase');
 
 function GetSentences(el){
 
-var file = FileHelper('listStories/'+el.innerText+'/storyText.txt');
+var file = FileHelper('stories/listStories/'+el.innerText+'/storyText.txt');
  listSentences =  file.split(/\r?\n/);
   currentSentence = listSentences[0];
+console.log(currentSentence);
+ 
 return listSentences;}
 
 
@@ -52,7 +39,7 @@ return listSentences;}
 function CheckIfURLExists(url){
     var request;
 
-console.log(url);
+
 if(window.XMLHttpRequest)
     request = new XMLHttpRequest();
 else
@@ -80,20 +67,17 @@ function GenerateStory(element){
 
 
    listPictures =  GetStoryPictures(element.innerText);
-
-   
+ 
     currentPage=0;
 
-   var divs = document.querySelectorAll("#container .storyContainer");
-          selectedStory = Array.from(divs).indexOf(element);
+   var divs = document.querySelectorAll(".class_box h3");
+    selectedStory = Array.from(divs).indexOf(element);
 
   currentStory = element.innerText;
 
-  document.querySelector('#ReadingDiv').style.display = "block";
+  document.querySelector('#Reader').style.display = "block";
 
  listSentences = GetSentences(element);
-
-
 
   currentPicture.src = `${root}/${listSentences[0]}/${currentPage}.jpg`;  
   PopulateSentence(currentSentence);
@@ -101,7 +85,7 @@ function GenerateStory(element){
 
 
 function GetStoryPictures(el){
- 
+ listPictures =[];
 var url = root+'/'+el;
 var exist;
 var counter=0;
@@ -120,91 +104,155 @@ var counter=0;
 
 
 function PopulateSentence(sentence){
- document.getElementById('wordList').innerHTML='';
+ document.getElementById('displayedPhrase').innerHTML='';
     var listWords = sentence.split(' ');
 
     listWords.forEach((word)=>{
         if(word != '‎')
-      document.querySelector('#wordList').innerHTML+=    `<div class="word shake" onclick='SpeakIt(this)'>${word}</div> `;
+      document.querySelector('#displayedPhrase').innerHTML+=    ` <button class="word shake" ><span onclick="SpeakIt(this)">${word}</span></button> `;
     })}
 
 
+function CloseReader(){
+     document.getElementById('Reader').style.display = "none";
+     synth.cancel();}
 
-
-function GetNext(){
- synth.cancel();
-currentPage++;
-currentSentence = listSentences[currentPage];
-currentPicture.src = `${root}/${listSentences[0]}/${currentPage}.jpg`;  
-
-PopulateSentence(currentSentence);
-
- if(currentPage == listSentences.length-1){
-        var nextButton =  document.querySelector("#nextSound");
-        nextButton.style.backgroundColor = "gray";
-         nextButton.style.opacity = "0.2";
-           nextButton.style.boxShadow = "0px 0px #46a52d";  
-        nextButton.removeAttribute('onclick');
-    }
-
- var prevButton = document.getElementById("previousSound");
-       prevButton.style.backgroundColor = "#f53228";
-         prevButton.style.opacity = "1";
-           prevButton.style.boxShadow = "0px 16px #cb2e26";  
-        prevButton.setAttribute("onclick", "GetPrevious()" );}
-
-
-
-
-
-function GetPrevious(){
-synth.cancel();
-currentPage--;
-currentSentence = listSentences[currentPage];
-currentPicture.src = `${root}/${listSentences[0]}/${currentPage}.jpg`;  
-
-PopulateSentence(currentSentence);
-
-if(currentPage == 0){
-         var prevButton =  document.getElementById("previousSound");
-           prevButton.style.backgroundColor = "gray";
-         prevButton.style.opacity = "0.2";
-           prevButton.style.boxShadow = "0px 0px #cb2e26";    
-        prevButton.removeAttribute('onclick');
-    }
-
-  
-
-        var nextButton = document.getElementById("nextSound");
-          nextButton.style.backgroundColor = "#4dbd2f";
-           nextButton.style.boxShadow = "0px 16px #46a52d";         
-         nextButton.style.opacity = "1";
-        nextButton.setAttribute("onclick", "GetNext()" );}
 
 const synth = window.speechSynthesis;
+const speaker = document.querySelector('#speaker');
+//Setting Variables
+let voices = [];
+const synthObj = window.speechSynthesis;
+//Execution Statements and Event Handlers
+populateVoices();
+if (speechSynthesis.onvoiceschanged !== undefined) {
+  speechSynthesis.onvoiceschanged = populateVoices;
+}
 
 
-function SpeakIt(el){
-    const utterance = new SpeechSynthesisUtterance(el.innerText);
-    synth.cancel();
-    utterance.voice = synth.getVoices()[10];
-    utterance.rate =0.8;
-    synth.speak(utterance);
+
+document.querySelector("#speaker").addEventListener('mouseup', function () {
+  parseSentences();
+  speak();
+  
+});
+
+//Fetches and Populates the Voices Array in Alphabetical Order
+function populateVoices() {
+  voices = synthObj.getVoices();
+}
+
+
+
+async function parseSentences() {
+  const selectedVoice = voices[9].name;
+  
+  await showReadingText();
+  
+}
+
+async function showReadingText(textPart) {
+  
+  
+  return new Promise(resolve => { resolve(); });
+}
+var speakingObject;
+
+
+function speak(){
+
+  if ('speechSynthesis' in window) {
+   synthObj.cancel();
+   var speakObj = new SpeechSynthesisUtterance(); 
+   if(speakingObject ==  null){
+console.log("Centener == " + listSentences[currentSentence]);
+    speakObj = new SpeechSynthesisUtterance(currentSentence);   
+ 
+}
+ else{
+  console.log("Supposed to speak the word now");
+   speakObj = new SpeechSynthesisUtterance(speakingObject.innerText);
+   
+}
+speakObj.voice = voices[9];
+speakObj.rate = 0.8;
+  synthObj.speak(speakObj);
+ speakingObject = null;
+}else{
+  // Speech Synthesis Not Supported 😣
+  alert("Sorry, your browser doesn't support text to speech!");
+}
 
 
 }
 
-function ReadSentence(){
-    console.log(currentSentence);
-     const utterance = new SpeechSynthesisUtterance(currentSentence);
-    synth.cancel();
-    utterance.voice = synth.getVoices()[10];
-     utterance.rate =0.8;
-    synth.speak(utterance);}
+function SpeakIt(thisEl) {
+  speakingObject = thisEl;
+  speak();
+}
 
 
-function CloseReader(){
-     document.getElementById('ReadingDiv').style.display = "none";
-     synth.cancel();}
 
 
+function CheckButtonNextAvailability(){
+  if(currentPage == listSentences.length-1){
+    nextButton.style.backgroundColor = "gray";
+         nextButton.style.opacity = "0.2";
+           nextButton.style.boxShadow = "0px 0px #cb2e26";    
+        nextButton.removeAttribute('onclick');
+ } else{
+
+          nextButton.style.backgroundColor = "#4dbd2f";
+           nextButton.style.boxShadow = "0px 10px #46a52d";         
+         nextButton.style.opacity = "1";
+        nextButton.setAttribute("onclick", "Next()" );
+ }
+}
+
+
+function CheckButtonPreviousAvailability(){
+  if(currentPage <=0){
+
+           prevButton.style.backgroundColor = "gray";
+         prevButton.style.opacity = "0.2";
+           prevButton.style.boxShadow = "0px 0px #cb2e26";    
+        prevButton.removeAttribute('onclick');
+}else{
+ prevButton.style.backgroundColor = "#f53228";
+      prevButton.style.opacity = "1";
+      prevButton.style.boxShadow = "0px 10px #cb2e26";  
+      prevButton.setAttribute("onclick", "Previous()" );
+}
+}
+
+
+function Next(){
+  
+  currentPage++;
+currentSentence = listSentences[currentPage];
+currentPicture.src = `${root}/${listSentences[0]}/${currentPage}.jpg`;  
+
+
+
+  CheckButtonNextAvailability();
+  CheckButtonPreviousAvailability();
+     
+  
+ 
+    PopulateSentence(currentSentence);
+   
+} 
+
+function Previous(){
+   
+  currentPage--;
+currentSentence = listSentences[currentPage];
+currentPicture.src = `${root}/${listSentences[0]}/${currentPage}.jpg`;  
+
+PopulateSentence(currentSentence);
+     
+  CheckButtonNextAvailability();
+  CheckButtonPreviousAvailability();
+       
+
+} 

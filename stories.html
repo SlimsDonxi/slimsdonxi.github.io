@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>Stories</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- bootstrap css -->
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <!-- style css -->
+      <link rel="stylesheet" href="css/style.css">
+      <!-- Responsive-->
+      <link rel="stylesheet" href="css/responsive.css">
+      <!-- fevicon -->
+      <link rel="icon" href="images/fevicon.png" type="image/gif" />
+      <!-- Tweaks for older IEs-->
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+      <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+        <style>
+            .storyCover{
+                border-radius:10px;
+                width:100%;
+
+            }
+            .class_box{
+                padding:0px;
+
+            }
+            .interactiveContainer{
+display:flex; 
+align-items: center; 
+justify-content: center;
+gap:20px;
+}
+
+.interactive{
+ background:red;
+height:85px;
+width: 85px; 
+display:flex; 
+align-items: center; 
+justify-content: center;
+
+border-radius:150px;
+transform:translateY(-30px);
+}
+
+
+
+.closeReader{
+position:absolute;
+display:flex; 
+align-items: center; 
+justify-content: center;
+top:10px;
+right:10px;
+background: #e02f3c;
+box-shadow: 0px 7px 0px 0px #ba2f39;
+height: 50px;
+width:50px;
+border-radius: 50px;
+}
+#Reader{
+  overflow-y:scroll;
+  background:#f5f5f5;
+   position:fixed; 
+   top:0; 
+   height:100%;
+   width:100%;
+   display:none;
+    z-index: 600; 
+
+align-items: center; 
+justify-content: center;
+}
+#currentPicture{
+
+border-radius:20px;
+
+
+
+}
+
+.word span{
+   font-size: 30px;
+   padding:0;
+}
+
+        </style>
+   </head>
+   <!-- body -->
+   <body class="main-layout inner_page">
+   
+      <div class="class">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="titlepage text_align_center">
+                     <h2>Stories</h2>
+                    
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-4 col-sm-6 col-xs-6 margi_bottom" onmouseup ="GenerateStory(this);">
+                  <div class="class_box text_align_center" style="background:#4ea06c; box-shadow:0 10px 0 0 #43865b">
+                     <img class ="storyCover" src="stories/listStories/Alex's super medicine/cover.jpg" alt="#"/>
+                     <h3>Alex's super medicine</h3>                     
+                  </div>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-6 margi_bottom" onmouseup ="GenerateStory(this)">
+                      <div class="class_box text_align_center" style="background:#2e76b4; box-shadow:0 10px 0 0 #28669b">
+                         <img class ="storyCover" src="stories/listStories/Grow flower GROW!/cover.jpg" alt="#"/>
+                         <h3>Grow flower GROW!</h3>                     
+                      </div>                     
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-6 margi_bottom" onmouseup ="GenerateStory(this)">
+                      <div class="class_box text_align_center" style="background:#6d6654; box-shadow:0 10px 0 0 #615a46">
+                         <img class ="storyCover" src="stories/listStories/The Bear and the bee/cover.jpg" alt="#"/>
+                         <h3>The Bear and the bee</h3>                     
+                      </div>                     
+                </div>
+                 
+               </div>
+               
+            </div>
+         </div>
+      </div>
+
+    
+
+        <div id="Reader" class="class">        
+        <div class="container" >
+         <div class="row">
+            <div class="col-md-12" style="display:flex;justify-content: center; ">
+         <img class="img-responsive" src="" id="currentPicture" style="display:block">
+      </div>
+      <div class="col-md-12" style="maring-top:250px">
+        <div id="displayedPhrase" style="display:block">
+         </div>
+      </div>
+       </div>
+    </div>
+        <div onclick="CloseReader('reading')" class="closeReader shake">
+            <svg width="800px" height="800px" style="height:25px; width:25px;"viewBox="0 0 25 25"> 
+                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+                    <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-469.000000, -1041.000000)" fill="#fff">
+                        <path d="M487.148,1053.48 L492.813,1047.82 C494.376,1046.26 494.376,1043.72 492.813,1042.16 C491.248,1040.59 488.712,1040.59 487.148,1042.16 L481.484,1047.82 L475.82,1042.16 C474.257,1040.59 471.721,1040.59 470.156,1042.16 C468.593,1043.72 468.593,1046.26 470.156,1047.82 L475.82,1053.48 L470.156,1059.15 C468.593,1060.71 468.593,1063.25 470.156,1064.81 C471.721,1066.38 474.257,1066.38 475.82,1064.81 L481.484,1059.15 L487.148,1064.81 C488.712,1066.38 491.248,1066.38 492.813,1064.81 C494.376,1063.25 494.376,1060.71 492.813,1059.15 L487.148,1053.48" id="cross" sketch:type="MSShapeGroup"></path>
+                    </g>
+                </g>
+            </svg>
+        </div>
+
+
+
+       
+            <div class="container" style="position:absolute;bottom:0px"> 
+                <div class="interactiveContainer">                  
+                     
+                     <div class="interactive shake" id="previous" onmouseup="Previous()" style="background:#ed2836; box-shadow:0px 6px 0px 0px #c4232e">
+                        <svg class="center" width="800px" height="800px"style="height:60px; width:60px; transform:translateX(-10px);" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12.4755 5.18341L7.49766 9.60815C6.56708 10.4353 6.10179 10.8489 5.93032 11.3373C5.77974 11.7662 5.77974 12.2335 5.93032 12.6624C6.10179 13.1508 6.56708 13.5644 7.49766 14.3916L12.4755 18.8163C12.8978 19.1917 13.1089 19.3794 13.2883 19.3861C13.4441 19.3919 13.5937 19.3247 13.6929 19.2044C13.807 19.0659 13.807 18.7834 13.807 18.2184V15.4284C16.2351 15.4284 18.7996 16.2083 20.6723 17.5926C21.6471 18.3133 22.1346 18.6737 22.3203 18.6595C22.5012 18.6456 22.6161 18.575 22.71 18.4196C22.8063 18.2603 22.7212 17.7624 22.5511 16.7666C21.4461 10.3004 16.9961 8.57129 13.807 8.57129V5.78134C13.807 5.21632 13.807 4.93381 13.6929 4.79531C13.5937 4.67498 13.4441 4.6078 13.2883 4.61363C13.1089 4.62034 12.8978 4.80803 12.4755 5.18341Z" />
+                        </svg>
+                     </div>
+                  
+                   
+                    
+                     <div class=" interactive shake" id="speaker"  style="transform:translateY(-50px); height:120px; width:120px; background:#1a95f4; box-shadow:0px 10px 0px 0px #1a7ac5">
+                       <svg class="center" width="800px" height="800px"style="height:80px; width:80px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#fff">
+                        <path d="M18.008 2.987C19.34 2.225 21 3.187 21 4.723v12.554c0 1.535-1.659 2.498-2.992 1.736L14 16.723V5.277l4.008-2.29zM12 6H7a5 5 0 0 0-1 9.9v3.6a2.5 2.5 0 0 0 5 0V16h1V6z" clip-rule="evenodd" />
+                       </svg>            
+                    </div>
+              
+                   
+                     
+                     <div class=" interactive shake" id="next" onmouseup="Next()" style="background:#70bd25; box-shadow:0px 6px 0px 0px #578f1f" >
+                       <svg  width="800px" height="800px"  style=" transform:translateX(10px);height:60px; width:60px" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12.3315 5.18341L17.3094 9.60815C18.2399 10.4353 18.7052 10.8489 18.8767 11.3373C19.0273 11.7662 19.0273 12.2335 18.8767 12.6624C18.7052 13.1508 18.2399 13.5644 17.3094 14.3916L12.3315 18.8163C11.9092 19.1917 11.6981 19.3794 11.5187 19.3861C11.3629 19.3919 11.2133 19.3247 11.1142 19.2044C11 19.0659 11 18.7834 11 18.2184V15.4284C8.57196 15.4284 6.00739 16.2083 4.13478 17.5926C3.15988 18.3133 2.67242 18.6737 2.48676 18.6595C2.30578 18.6456 2.19093 18.575 2.09703 18.4196C2.0007 18.2603 2.08578 17.7624 2.25595 16.7666C3.36093 10.3004 7.8109 8.57129 11 8.57129V5.78134C11 5.21632 11 4.93381 11.1142 4.79531C11.2133 4.67498 11.3629 4.6078 11.5187 4.61363C11.6981 4.62034 11.9092 4.80803 12.3315 5.18341Z" />
+                        </svg>
+                   </div>
+                  
+            
+               </div>
+           </div>
+       
+        </div>
+      <script src="js/jquery.min.js"></script>
+      <script src="js/bootstrap.bundle.min.js"></script>
+      <script src="js/jquery-3.0.0.min.js"></script>
+       <script src="js/StoriesIndexManager.js"></script>
+
+      
+   
+     
+   </body>
+</html>

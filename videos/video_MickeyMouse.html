@@ -1,47 +1,45 @@
 <!DOCTYPE html>
-<html>
-    <head>
-
-<link rel="stylesheet" href="../css/bootstrap.css">
-
-
-<link rel="stylesheet" href="../css/base.css"> 
-
-
- <title>Mickey Mouse</title>
- <link rel="icon" type="image/x-icon" href="../favicon.ico">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
+<html lang="en">
+   <head>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>MickeyMouse</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- bootstrap css -->
+      <link rel="stylesheet" href="../css/bootstrap.min.css">
+      <!-- style css -->
+      <link rel="stylesheet" href="../css/style.css">
+      <!-- Responsive-->
+      <link rel="stylesheet" href="../css/responsive.css">
+      <!-- fevicon -->
+      <link rel="icon" href="images/fevicon.png" type="image/gif" />
+      <!-- Tweaks for older IEs-->
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 
 <style>
-video{
-border-top-left-radius:20px;
-border-top-right-radius: 30px;
 
-
-}
 body{
-    padding:80px;
+    background:#f5f5f5;
 }
 
-label{
-    background:#2393e2;
-   
-   border-radius: 20px;
-    color:white;
-    height:auto;
-    font-size: 1vw;
-    padding:10px;
-    width:100%;
-    text-align: center;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-transform:translateY(-10px);
-    position:relative;
-   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+img{
+    border-radius:25px;
+width:100%;
 }
-.col-md-3{
-    padding:20px;
+
+
+.closeReader{
+    top:100%;
+position: absolute;
+left:50%;
+transform:translate(-50%,-150%);
 }
 </style>
 
@@ -50,97 +48,104 @@ transform:translateY(-10px);
 
 </head>
 
-
-<body>
+<body class="main-layout inner_page">
    
+      <div class="class">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="titlepage text_align_center">
+                     <h2>Mickey Mouse</h2>
+                    
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-6" onclick="LoadPlayer('A Flower For Minnie')" >
+                  <div class=" text_align_center" >
+                   <img src="../videos/videos/MickeyMouse/posters/flower.jpg" >
+                     <h3>A Flower For Minnie</h3>                   
+                  </div>             
+               </div>
+               <div class="col-md-6" onclick="LoadPlayer('Bee Inspired')" >
+                  <div class=" text_align_center" >
+                   <img src="../videos/videos/MickeyMouse/posters/bee.jpg" class="img-responsive">
+                     <h3>Bee Inspired</h3>                   
+                  </div>             
+               </div>
+               <div class="col-md-6" onclick="LoadPlayer('Down the Hatch')" >
+                  <div class=" text_align_center" >
+                   <img src="../videos/videos/MickeyMouse/posters/down.jpg" class="img-responsive">
+                     <h3>Down the Hatch</h3>                   
+                  </div>             
+               </div>
+               <div class="col-md-6" onclick="LoadPlayer('Mumbai Madness')" >
+                  <div class=" text_align_center" >
+                   <img src="../videos/videos/MickeyMouse/posters/mumbai.jpg" class="img-responsive">
+                     <h3>Mumbai Madness</h3>                   
+                  </div>             
+               </div>
+               <div class="col-md-6" onclick="LoadPlayer('One Man Band')" >
+                  <div class=" text_align_center" >
+                   <img src="../videos/videos/MickeyMouse/posters/one.jpg" class="img-responsive">
+                     <h3>One Man Band</h3>                   
+                  </div>             
+               </div>
+               <div class="col-md-6" onclick="LoadPlayer('The Boiler Room')" >
+                  <div class=" text_align_center" >
+                   <img src="../videos/videos/MickeyMouse/posters/boiler.jpg" class="img-responsive">
+                     <h3>The Boiler Room</h3>                   
+                  </div>             
+               </div>
+               <div class="col-md-6" onclick="LoadPlayer('The Fancy Gentleman')" >
+                  <div class=" text_align_center" >
+                   <img src="../videos/videos/MickeyMouse/posters/fancy.jpg" class="img-responsive">
+                     <h3>The Fancy Gentleman</h3>                   
+                  </div>             
+               </div>
+               <div class="col-md-6" onclick="LoadPlayer('Two Cant Play')" >
+                  <div class=" text_align_center" >
+                   <img src="../videos/videos/MickeyMouse/posters/cat.jpg" class="img-responsive">
+                     <h3>Two Cant Play</h3>                   
+                  </div>             
+               </div>
+               <div class="col-md-6" onclick="LoadPlayer('Wish Upon a Coin')" >
+                  <div class=" text_align_center" >
+                   <img src="../videos/videos/MickeyMouse/posters/wish.jpg" class="img-responsive">
+                     <h3>Wish Upon a Coin</h3>                   
+                  </div>             
+               </div>
+               <div class="col-md-6" onclick="LoadPlayer('Year of the Dog')" >
+                  <div class=" text_align_center" >
+                   <img src="../videos/videos/MickeyMouse/posters/year.jpg" class="img-responsive">
+                     <h3>Year of the Dog</h3>                   
+                  </div>             
+               </div>
+               
+            </div>
+         </div>
+      </div>
+     
+    
 
-<div class="row" >
+  <div id="divVideoPlayer" style="position:fixed;top:0%; height:100%; width:100%; background:#f5f5f5;z-idnex:100; display:none">
+  
+    <video class="video" width="100%"  controls="controls" preload="metadata"    type="video/mp4" src="videos/MickeyMouse/A Flower For Minnie.mp4"> </video>
+    <div onclick="CloseReader()" class="closeReader">
+            <svg width="800px" height="800px" style="height:35px; width:35px;"viewBox="0 0 25 25"> 
+                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+                    <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-469.000000, -1041.000000)" fill="#fff">
+                        <path d="M487.148,1053.48 L492.813,1047.82 C494.376,1046.26 494.376,1043.72 492.813,1042.16 C491.248,1040.59 488.712,1040.59 487.148,1042.16 L481.484,1047.82 L475.82,1042.16 C474.257,1040.59 471.721,1040.59 470.156,1042.16 C468.593,1043.72 468.593,1046.26 470.156,1047.82 L475.82,1053.48 L470.156,1059.15 C468.593,1060.71 468.593,1063.25 470.156,1064.81 C471.721,1066.38 474.257,1066.38 475.82,1064.81 L481.484,1059.15 L487.148,1064.81 C488.712,1066.38 491.248,1066.38 492.813,1064.81 C494.376,1063.25 494.376,1060.71 492.813,1059.15 L487.148,1053.48" id="cross" sketch:type="MSShapeGroup"></path>
+                    </g>
+                </g>
+            </svg>
+        </div>
+  </div>
+    
 
-<div class="col-md-3 col-sm-12" href="videoPlayer.html" >    
-    <video class="video" width="100%"  controls="controls" preload="metadata" poster="videos/MickeyMouse/posters/flower.jpg" src="videos/MickeyMouse/A Flower For Minnie.mp4" type="video/mp4"> 
-    </video>
-    <label> A Flower For Minnie</label>
-</div>
-<div class="col-md-3 col-sm-12"href="videoPlayer.html" >    
-    <video class="video" width="100%"  controls="controls" preload="metadata" poster="videos/MickeyMouse/posters/bee.jpg"src="videos/MickeyMouse/Bee Inspired.mp4" type="video/mp4"> 
-    </video>
-    <label> Bee Inspired </label>
-</div>
-
-<div class="col-md-3 col-sm-12"href="videoPlayer.html" >    
-    <video class="video" width="100%"  controls="controls" preload="metadata"poster="videos/MickeyMouse/posters/down.jpg" src="videos/MickeyMouse/Down the Hatch.mp4" type="video/mp4"> 
-    </video>
-    <label> Down the Hatch</label>
-</div>
-<div class="col-md-3 col-sm-12"href="videoPlayer.html" >    
-    <video class="video" width="100%"  controls="controls" preload="metadata" poster="videos/MickeyMouse/posters/mumbai.jpg"src="videos/MickeyMouse/Mumbai Madness.mp4" type="video/mp4"> 
-    </video>
-    <label>Mumbai Madness</label>
-</div>
-<div class="col-md-3 col-sm-12"href="videoPlayer.html" >    
-    <video class="video" width="100%"  controls="controls" preload="metadata"poster="videos/MickeyMouse/posters/one.jpg" src="videos/MickeyMouse/One Man Band.mp4" type="video/mp4"> 
-    </video>
-    <label>One Man Band</label>
-</div>
-<div class="col-md-3 col-sm-12"href="videoPlayer.html" >    
-    <video class="video" width="100%"  controls="controls" preload="metadata" poster="videos/MickeyMouse/posters/boiler.jpg"src="videos/MickeyMouse/The Boiler Room.mp4" type="video/mp4"> 
-    </video>
-    <label>The Boiler Room</label>
-</div>
-<div class="col-md-3 col-sm-12"href="videoPlayer.html" >    
-    <video class="video" width="100%"  controls="controls" preload="metadata"poster="videos/MickeyMouse/posters/fancy.jpg" src="videos/MickeyMouse/The Fancy Gentleman.mp4" type="video/mp4"> 
-    </video>
-    <label>The Fancy Gentleman</label>
-</div>
-<div class="col-md-3 col-sm-12"href="videoPlayer.html" >    
-    <video class="video" width="100%"  controls="controls" preload="metadata"poster="videos/MickeyMouse/posters/cat.jpg" src="videos/MickeyMouse/Two Cant Play.mp4" type="video/mp4"> 
-    </video>
-    <label>Two Cant Play</label>
-</div>
-<div class="col-md-3 col-sm-12"href="videoPlayer.html" >    
-    <video class="video" width="100%"  controls="controls" preload="metadata"poster="videos/MickeyMouse/posters/wish.jpg" src="videos/MickeyMouse/Wish Upon a Coin.mp4" type="video/mp4"> 
-    </video>
-    <label>Wish Upon a Coin</label>
-</div>
-<div class="col-md-3 col-sm-12"href="videoPlayer.html" >    
-    <video class="video" width="100%"  controls="controls" preload="metadata" poster="videos/MickeyMouse/posters/year.jpg"src="videos/MickeyMouse/Year of the Dog.mp4" type="video/mp4"> 
-    </video>
-    <label>Year of the Dog</label>
-</div>
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-</div>
-
-
-
-
-
-
-
-<script src="../js/bootstrap.js"></script>
-<script src="../js/jquery.js"></script>
-
-
-
-
-
-
-
-</body>
+      <script src="../js/jquery.min.js"></script>
+      <script src="../js/bootstrap.bundle.min.js"></script>
+      <script src="../js/jquery-3.0.0.min.js"></script>
+<script src="../js/videoplayer.js"></script>
+   </body>
 </html>
