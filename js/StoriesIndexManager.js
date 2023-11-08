@@ -134,10 +134,8 @@ function GetVoices(){
 window.speechSynthesis.onvoiceschanged = function() {
 voices = window.speechSynthesis.getVoices();
 
- selectedVoice = voices.find((voice)=> voice.name =="Google UK English Female" || voice.name =="Karen" );
-if(selectedVoice == undefined){
-selectedVoice = voices.find((voice)=> voice.name =="Microsoft Mark - English (United States)");
-}
+ selectedVoice = voices.find(voice=> voice.name =="Google UK English Female" || voice.name =="Karen" );
+
 if(voices.length > 0)
 clearInterval(gettingVoices)
 
@@ -208,6 +206,7 @@ document.querySelector("#speakingLoader").style.display = "flex";
 }
 speakObj.default = false;
 speakObj.voice =selectedVoice;
+speakObj.lag= selectedVoice.lang;
 speakObj.rate = 0.8;
 synth.speak(speakObj);
 
