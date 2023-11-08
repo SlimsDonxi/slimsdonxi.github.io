@@ -134,7 +134,9 @@ function GetVoices(){
 window.speechSynthesis.onvoiceschanged = function() {
 voices = window.speechSynthesis.getVoices();
 
- selectedVoice = voices.find(voice=> voice.name =="Google UK English Female" || voice.name =="Karen" );
+ selectedVoice = voices.find(voice=> voice.name =="Google UK English Female");
+ if(selectedVoice == undefined) 
+  selectedVoice = voices.find(voice=> voice.name =="Karen" );
 
 if(voices.length > 0)
 clearInterval(gettingVoices)
