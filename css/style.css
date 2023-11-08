@@ -1149,49 +1149,29 @@ ul.social_icon li a:hover {
 }
 
 @keyframes shake {
-    0% { transform:translate(0,6px); } 
-      1% { transform:translate(0,0px); } 
-       10% {  transform:translate(0,2px); }  
-        20% { transform:translate(0,4px);}  
-         40% {  transform:translate(0,6px);}  
-          60% {  transform:translate(0,4px);}  
-           80% {  transform:translate(0,2px);}  
-            100% {   transform:translate(0,0);}  
+     0% { transform:translate(0,0px); }     
+     50% {  transform:translate(0,6px);}  
+     100% {   transform:translate(0,0);}
 }
 @-o-keyframes shake {
-    0% { transform:translate(0,6px); } 
-      1% { transform:translate(0,0px); } 
-       10% {  transform:translate(0,2px); }  
-        20% { transform:translate(0,4px);}  
-         40% {  transform:translate(0,6px);}  
-          60% {  transform:translate(0,4px);}  
-           80% {  transform:translate(0,2px);}  
-            100% {   transform:translate(0,0);}  
+     0% { transform:translate(0,0px); }     
+     50% {  transform:translate(0,6px);}  
+     100% {   transform:translate(0,0);}
 }
 
 
 @-moz-keyframes shake {
-     0% { transform:translate(0,6px); } 
-      1% { transform:translate(0,0px); } 
-       10% {  transform:translate(0,2px); }  
-        20% { transform:translate(0,4px);}  
-         40% {  transform:translate(0,6px);}  
-          60% {  transform:translate(0,4px);}  
-           80% {  transform:translate(0,2px);}  
-            100% {   transform:translate(0,0);}  
+     0% { transform:translate(0,0px); }     
+     50% {  transform:translate(0,6px);}  
+     100% {   transform:translate(0,0);}
 }
 
 
 
 @-webkit-keyframes shake {
-    0% { transform:translate(0,0px); } 
-      1% { transform:translate(0,0px); } 
-       10% {  transform:translate(0,2px); }  
-        20% { transform:translate(0,4px);}  
-         40% {  transform:translate(0,6px);}  
-          60% {  transform:translate(0,4px);}  
-           80% {  transform:translate(0,2px);}  
-            100% {   transform:translate(0,0);}  
+     0% { -webkit-transform:translate(0,0px); }     
+     50% {  -webkit-transform:translate(0,6px);}  
+     100% {   -webkit-transform:translate(0,0);}  
 }
 
 
