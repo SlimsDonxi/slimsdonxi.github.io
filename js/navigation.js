@@ -10,7 +10,17 @@ return;
 
 else{
  document.getElementById(el).style.display = "none";
- if(synth != null) synth.cancel();
-if(currentText != null) currentText =0;
-   }
+
+  try{
+ synth.cancel();
+ } catch(e) {
+
  }
+ try{
+  currentText=0;
+ } catch(e) {
+
+ }
+
+ }
+}
