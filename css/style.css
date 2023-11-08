@@ -1390,17 +1390,19 @@ align-items: center;
 justify-content: center;
 top:10px;
 right:10px;
-background: #464646;
-box-shadow: 0px 7px 0px 0px #313130;
-height: 70px;
-width:70px;
+background: #555555;
+box-shadow: 0px 7px 0px 0px #444444;
+height: 50px;
+width:50px;
 border-radius: 50px;
 }
 
 .closeMainReader svg{
-     height:50px;
-     width:50px;
+     height:35px;
+     width:35px;
 }
+
+
 .nav{
     
 

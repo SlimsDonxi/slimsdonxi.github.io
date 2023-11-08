@@ -11,16 +11,17 @@ return;
 else{
  document.getElementById(el).style.display = "none";
 
+try{
+    videoplayer.pause();
+   videoplayer.currentTime = 0;
+} catch(e){}
+
   try{
  synth.cancel();
- } catch(e) {
-
- }
+ } catch(e) {}
  try{
   currentText=0;
- } catch(e) {
-
- }
+ } catch(e) {}
 
  }
 }
