@@ -128,7 +128,7 @@ let voices = [];
 var selectedVoice;
 
 
-setInterval(GetVoices(), 500);
+var gettingVoices = setInterval(GetVoices(), 1000);
 
 function GetVoices(){
 window.speechSynthesis.onvoiceschanged = function() {
@@ -138,6 +138,8 @@ voices = window.speechSynthesis.getVoices();
 if(selectedVoice == undefined){
 selectedVoice = voices.find((voice)=> voice.name =="Microsoft Mark - English (United States)");
 }
+if(voices.length > 0)
+clearInterval(gettingVoices)
 
 }
 }
