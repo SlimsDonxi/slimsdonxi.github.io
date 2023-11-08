@@ -1295,18 +1295,21 @@ ul.social_icon li a:hover {
  100% { transform: translate(-50% , 10%)}
 }
 
-#loaderConatiner{
-     background:#f7f7f7;
-     position:absolute;
+#loaderContainer{
+     background-color:#fff;
+  
+     position:fixed;
+     display:none;
      height:100%;
      width:100%;
      top:0;
 
 }
 
-#loaderConatiner h1{
-    position:absolute;
+#loaderContainer h1{
+    position:fixed;
     top:40%;
+    z-index:500;
     left:50%;
     transform: translate(-50%,-50%);
     font-weight:bold;
