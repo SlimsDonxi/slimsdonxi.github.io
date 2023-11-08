@@ -23,13 +23,14 @@ var currentPicture = document.querySelector('#currentPicture');
  var nextButton = document.getElementById("next");
 var prevButton = document.getElementById("previous");
 var displayedPhrase =  document.getElementById('displayedPhrase');
+var currentPressed;
 
 function GetSentences(el){
 
 var file = FileHelper('stories/listStories/'+el.innerText+'/storyText.txt');
  listSentences =  file.split(/\r?\n/);
   currentSentence = listSentences[0];
-console.log(currentSentence);
+
  
 return listSentences;}
 
@@ -114,11 +115,7 @@ document.querySelector("#loaderContainer").style.display = "none";
   }
 
 
-function CloseReader(){
-     document.getElementById('Reader').style.display = "none";
-     synth.cancel();
-     
-   }
+
 
 
 const synth = window.speechSynthesis;
@@ -143,7 +140,7 @@ speaker.style.boxShadow = "0px 5px 0px 0px #f5971d"
 
 var selectedVoice;
 async function parseSentences() {
-  selectedVoice = voices.find((voice)=> voice.name =="Google UK English Female"); 
+selectedVoice = voices.find((voice)=> voice.name =="Google UK English Female" || voice.name =="Karen"); 
   
   await showReadingText();
   
@@ -154,7 +151,27 @@ async function showReadingText(textPart) {
   
   return new Promise(resolve => { resolve(); });
 }
-var speakingObject;
+var currentPressed;
+
+
+
+function SpeakIt(thisEl) {
+
+  
+  if(currentPressed!= null){
+
+ currentPressed.style.background = "#1a95f4";
+ currentPressed.style.boxShadow = "0px 10px 0px 0px #1a7ac5";
+  }
+  currentPressed = thisEl;
+ 
+
+ currentPressed.style.background = "#f5971d";
+ currentPressed.style.boxShadow = "0px 10px 0px 0px #f5971d";
+ parseSentences();
+  speak();
+  
+}
 
 
 function speak(){
@@ -162,7 +179,7 @@ function speak(){
   if ('speechSynthesis' in window) {
    synth.cancel();
    var speakObj = new SpeechSynthesisUtterance(); 
-   if(speakingObject ==  null){
+   if(currentPressed ==  null){
 
     speakObj = new SpeechSynthesisUtterance(currentSentence);   
     document.querySelector("#speakerIcon").style.display = "none";
@@ -172,30 +189,33 @@ document.querySelector("#speakingLoader").style.display = "flex";
 }
  else{
   console.log("Supposed to speak the word now");
-   speakObj = new SpeechSynthesisUtterance(speakingObject.innerText);
+   speakObj = new SpeechSynthesisUtterance(currentPressed.innerText);
    
 }
 speakObj.default = false;
 speakObj.voice =selectedVoice;
 speakObj.rate = 0.8;
 synth.speak(speakObj);
- speakingObject = null;
+ currentPressed = null;
 }else{
   // Speech Synthesis Not Supported 😣
   alert("Sorry, your browser doesn't support text to speech!");
 }
-
-speakObj.addEventListener('end', function() {
-     speaker.style.backgroundColor = "#1a95f4";
-speaker.style.boxShadow = "0px 6px 0px 0px #1a7ac5";
-document.querySelector("#speakerIcon").style.display = "flex";
-document.querySelector("#speakingLoader").style.display = "none";
+speakObj.addEventListener('end', function () {
+SetSpeakingUI();
 });
 }
 
-function SpeakIt(thisEl) {
-  speakingObject = thisEl;
-  speak();
+
+
+function SetSeakingUI(){
+  
+     speaker.style.backgroundColor = "#1a95f4";
+speaker.style.boxShadow = "0px 6px 0px 0px #1a7ac5";
+  currentPressed.style.backgroundColor = "#1a95f4";
+currentPressed.style.boxShadow = "0px 10px 0px 0px #1a7ac5";
+document.querySelector("#speakerIcon").style.display = "flex";
+document.querySelector("#speakingLoader").style.display = "none";
 }
 
 

@@ -10,11 +10,11 @@ var block = root + el+'.mp4';
 
 videoplayer.src = block;
 }
-
+/*
 function CloseReader(){
 	divPlayer.style.display = 'none';
 	videoplayer.pause();
           videoplayer.currentTime = 0;
-}
+}*/
 
 

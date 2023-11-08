@@ -19,6 +19,20 @@ var displayedPhrase =  document.getElementById('displayedPhrase');
 var displayedText = document.getElementById('displayedText');
  var speaker = document.querySelector("#speaker");
 
+
+
+//Speaking variables
+var  selectedVoice;
+
+const synth = window.speechSynthesis;
+
+let voices = [];
+ 
+window.speechSynthesis.onvoiceschanged = function() {
+  voices = window.speechSynthesis.getVoices();
+};
+
+
 function populate(id){
   
 switch(id){
@@ -37,7 +51,7 @@ case 'good': currentArray = arrayGood;clickable ="clickable";isForLetters = fals
 var blockStr;
 
 
- document.querySelector("#listPhonics .container .row").innerHTML ='';
+ document.querySelector("#rowContent").innerHTML ='';
 
 for(var i=0; i< currentArray.length; i++)
 {
@@ -78,6 +92,8 @@ function AppendForReading(el){
 
 function GetText(element) {
 
+  
+
 document.querySelector("#reading").style.display ="block";
 
 var clicked = element.children[0].children[0];
@@ -106,23 +122,17 @@ function CreateBoxes(element){
       { 
         var block = `<button class="word shake" onclick="SpeakIt(this)"><span>${element[i]}</span></button>`;
        displayedPhrase.innerHTML +=block;
-      }
-      displayedPhrase.innerHTML +=`<div style="margin-top: 120%; margin-bottom:500px;">`;
-}
-
-
+      }}
 
 function GetWords(element){
 var arraySpliced = element.split(" ");
 
-return arraySpliced;
-}
+return arraySpliced;}
 
 
 function Next(){
   
   currentText +=  1;
-
 
   CheckButtonNextAvailability();
   CheckButtonPreviousAvailability();
@@ -133,8 +143,7 @@ function Next(){
    }
    else{
     displayedText.innerText = currentArray[currentText];
-   }
-} 
+   }} 
 
 function Previous(){
    
@@ -149,40 +158,16 @@ function Previous(){
    }
    else{
     displayedText.innerText = currentArray[currentText];
-   }
-} 
-
-function CloseReader(el){
-  currentText =0;
- 
-   
-  if(el == 'listPhonics')
-     document.querySelector('#listPhonics').style.display = "none";
-   else 
-     document.querySelector('#reading').style.display = "none";
-}
+   }} 
 
 
 
 
-
-var  selectedVoice;
-
-
-currentText=0;
-const synth = window.speechSynthesis;
-
-
-let voices = [];
- voices = window.speechSynthesis.getVoices();
-window.speechSynthesis.onvoiceschanged = function() {
-  voices = window.speechSynthesis.getVoices();
-};
-
+//Speaking Area
 
 
 async function parseSentences() {
-   selectedVoice = voices.find((voice)=> voice.name =="Google UK English Female"); 
+   selectedVoice = voices.find((voice)=> voice.name =="Google UK English Female" || voice.name =="Karen"); 
   await showReadingText();  
 }
 
@@ -192,18 +177,34 @@ async function showReadingText(textPart) {
   return new Promise(resolve => { resolve(); });
 }
 
-var speakingObject;
+var currentPressed;
 
 
 
 function StartSpeaking(){
   speaker.style.backgroundColor = "#f5971d";
-speaker.style.boxShadow = "0px 5px 0px 0px #f5971d";
+  speaker.style.boxShadow = "0px 5px 0px 0px #f5971d";
   parseSentences();
   speak();
 }
 
+function SpeakIt(thisEl) {
 
+  
+  if(currentPressed!= null){
+
+ currentPressed.style.background = "#1a95f4";
+ currentPressed.style.boxShadow = "0px 10px 0px 0px #1a7ac5";
+  }
+  currentPressed = thisEl;
+ 
+
+ currentPressed.style.background = "#f5971d";
+ currentPressed.style.boxShadow = "0px 10px 0px 0px #f5971d";
+ parseSentences();
+  speak();
+  
+}
 
 
 function speak(){
@@ -211,7 +212,7 @@ function speak(){
   if ('speechSynthesis' in window) {
 
   synth.cancel();
-  var speakObj = new SpeechSynthesisUtterance();
+  var speakObj;
 
   if(isForLetters)  {
     var sound = new Audio();
@@ -220,36 +221,32 @@ function speak(){
    sound.play();
  }
  else{
-   if(speakingObject ==  null){
+   if(currentPressed ==  null){
 console.log(currentArray[currentText]);
     speakObj = new SpeechSynthesisUtterance(currentArray[currentText]);   
  
 }
  else{
   console.log("Supposed to speak the word now");
-   speakObj = new SpeechSynthesisUtterance(speakingObject.innerText);
+   speakObj = new SpeechSynthesisUtterance(currentPressed.innerText);
    
 }}
+
 speakObj.default = false;
 speakObj.lang="en";
 speakObj.voice = selectedVoice;
 speakObj.rate = 0.8;
-  synth.speak(speakObj);
- speakingObject = null;
+synth.speak(speakObj);
+
 
 document.querySelector("#speakerIcon").style.display = "none";
 document.querySelector("#speakingLoader").style.display = "flex";
 
+
+
 speakObj.addEventListener('end', function () {
-     speaker.style.backgroundColor = "#1a95f4";
-speaker.style.boxShadow = "0px 6px 0px 0px #1a7ac5";
-document.querySelector("#speakerIcon").style.display = "flex";
-document.querySelector("#speakingLoader").style.display = "none";
-})
-
-
-
-
+SetSpeakingUI();
+});
 
  
   return new Promise(resolve => { speakObj.onend = resolve; });
@@ -261,10 +258,21 @@ else{
 
 }
 
-function SpeakIt(thisEl) {
-  speakingObject = thisEl;
-  speak();
+
+
+function SetSpeakingUI(){
+
+speaker.style.backgroundColor = "#1a95f4";
+speaker.style.boxShadow = "0px 6px 0px 0px #1a7ac5";
+if(currentPressed!=null){
+currentPressed.style.backgroundColor = "#1a95f4";
+currentPressed.style.boxShadow = "0px 10px 0px 0px #1a7ac5";
 }
+document.querySelector("#speakerIcon").style.display = "flex";
+document.querySelector("#speakingLoader").style.display = "none";
+ currentPressed = null;
+}
+
 
 
 
