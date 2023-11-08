@@ -1135,43 +1135,46 @@ ul.social_icon li a:hover {
   
 }
 
+body{
+     user-select: none;
+}
 
 .shake:active {
 
 
   -webkit-animation-name: shake;
-  animation-duration: :0.5s;
-    -webkit-animation-duration: 0.5s;
+  animation-duration: :0.25s;
+    -webkit-animation-duration: 0.25s;
     -moz-animation-name: shake;
-     -moz-animation-duration: 0.5s;
+     -moz-animation-duration: 0.25s;
       -o-animation-name: shake;
-     -o-animation-duration: 0.5s;
+     -o-animation-duration: 0.25s;
 }
 
 @keyframes shake {
-     0% { transform:translate(0,0px); }     
-     50% {  transform:translate(0,6px);}  
-     100% {   transform:translate(0,0);}
+     0% { transform:translate(0,0px); transform:scale(1) }     
+     50% {  transform:translate(0,6px);transform:scale(0.8)}  
+     100% {   transform:translate(0,0); transform:scale(1)}
 }
 @-o-keyframes shake {
-     0% { transform:translate(0,0px); }     
-     50% {  transform:translate(0,6px);}  
-     100% {   transform:translate(0,0);}
+     0% { transform:translate(0,0px); transform:scale(1)}     
+     50% {  transform:translate(0,6px);transform:scale(0.8)}  
+     100% {   transform:translate(0,0); transform:scale(1)}
 }
 
 
 @-moz-keyframes shake {
-     0% { transform:translate(0,0px); }     
-     50% {  transform:translate(0,6px);}  
-     100% {   transform:translate(0,0);}
+     0% { transform:translate(0,0px);  transform:scale(1)}     
+     50% {  transform:translate(0,6px);transform:scale(0.8)}  
+     100% {   transform:translate(0,0);transform:scale(1)}
 }
 
 
 
 @-webkit-keyframes shake {
-     0% { -webkit-transform:translate(0,0px); }     
-     50% {  -webkit-transform:translate(0,6px);}  
-     100% {   -webkit-transform:translate(0,0);}  
+     0% { -webkit-transform:translate(0,0px); transform:scale(1)}     
+     50% {  -webkit-transform:translate(0,6px); transform:scale(0.8)}  
+     100% {   -webkit-transform:translate(0,0); transform:scale(1)}  
 }
 
 
@@ -1390,19 +1393,17 @@ align-items: center;
 justify-content: center;
 top:10px;
 right:10px;
-background: #555555;
-box-shadow: 0px 7px 0px 0px #444444;
-height: 50px;
-width:50px;
+background: #464646;
+box-shadow: 0px 7px 0px 0px #313130;
+height: 70px;
+width:70px;
 border-radius: 50px;
 }
 
 .closeMainReader svg{
-     height:35px;
-     width:35px;
+     height:50px;
+     width:50px;
 }
-
-
 .nav{
     
 
