@@ -125,9 +125,22 @@ const speaker = document.querySelector('#speaker');
 
 
 let voices = [];
+var selectedVoice;
+
+
+setInterval(GetVoices(), 500);
+
+function GetVoices(){
 window.speechSynthesis.onvoiceschanged = function() {
-  voices = window.speechSynthesis.getVoices();
-};
+voices = window.speechSynthesis.getVoices();
+
+ selectedVoice = voices.find((voice)=> voice.name =="Google UK English Female" || voice.name =="Karen" );
+if(selectedVoice == undefined){
+selectedVoice = voices.find((voice)=> voice.name =="Microsoft Mark - English (United States)");
+}
+
+}
+}
 
 
 function StartSpeaking(){
@@ -138,10 +151,9 @@ speaker.style.boxShadow = "0px 5px 0px 0px #f5971d"
 }
 
 
-var selectedVoice;
+
 async function parseSentences() {
-selectedVoice = voices.find((voice)=> voice.name =="Google UK English Female" || voice.name =="Karen"); 
-  
+ 
   await showReadingText();
   
 }
@@ -196,26 +208,30 @@ speakObj.default = false;
 speakObj.voice =selectedVoice;
 speakObj.rate = 0.8;
 synth.speak(speakObj);
- currentPressed = null;
+
 }else{
   // Speech Synthesis Not Supported 😣
   alert("Sorry, your browser doesn't support text to speech!");
 }
 speakObj.addEventListener('end', function () {
-SetSpeakingUI();
+ResetSpeakingUI();
 });
 }
 
 
 
-function SetSeakingUI(){
+function ResetSpeakingUI(){
   
-     speaker.style.backgroundColor = "#1a95f4";
+speaker.style.backgroundColor = "#1a95f4";
 speaker.style.boxShadow = "0px 6px 0px 0px #1a7ac5";
-  currentPressed.style.backgroundColor = "#1a95f4";
+
+if(currentPressed!= null){
+currentPressed.style.backgroundColor = "#1a95f4";
 currentPressed.style.boxShadow = "0px 10px 0px 0px #1a7ac5";
+}
 document.querySelector("#speakerIcon").style.display = "flex";
 document.querySelector("#speakingLoader").style.display = "none";
+ currentPressed = null;
 }
 
 

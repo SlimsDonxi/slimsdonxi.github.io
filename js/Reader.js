@@ -28,10 +28,20 @@ const synth = window.speechSynthesis;
 
 let voices = [];
  
-window.speechSynthesis.onvoiceschanged = function() {
-  voices = window.speechSynthesis.getVoices();
-};
 
+setInterval(GetVoices(), 500);
+
+function GetVoices(){
+window.speechSynthesis.onvoiceschanged = function() {
+voices = window.speechSynthesis.getVoices();
+
+ selectedVoice = voices.find((voice)=> voice.name =="Google UK English Female" || voice.name =="Karen" );
+if(selectedVoice == undefined){
+selectedVoice = voices.find((voice)=> voice.name =="Microsoft Mark - English (United States)");
+}
+
+}
+}
 
 function populate(id){
   
@@ -75,23 +85,19 @@ return `<div class="col-md-4 margi_bottom" onmouseup="GetText(this)">
       <div class="class_box text_align_center" style="background:#ef2a38; box-shadow:0 10px 0 0 #d22834">            
         <h1> ${el}</h1>
         </div>
-    </div>`    
-
-}
+    </div>`    }
 
 function AppendForReading(el){
  return `<div class="col-md-6 margi_bottom" onmouseup="GetText(this)">
       <div class="class_box text_align_center" style="background:#ef2a38; box-shadow:0 10px 0 0 #d22834; text-align:start; ">            
         <span>${el}</span>
         </div>
-    </div>`    
-}
+    </div>`    }
 
 
 
 
 function GetText(element) {
-
   
 
 document.querySelector("#reading").style.display ="block";
@@ -111,8 +117,7 @@ else
 currentText = Array.from(divs).indexOf(element);
 
 CheckButtonNextAvailability();
-CheckButtonPreviousAvailability();
-}
+CheckButtonPreviousAvailability();}
 
 
 function CreateBoxes(element){
@@ -167,13 +172,12 @@ function Previous(){
 
 
 async function parseSentences() {
-   selectedVoice = voices.find((voice)=> voice.name =="Google UK English Female" || voice.name =="Karen"); 
+ 
   await showReadingText();  
 }
 
 async function showReadingText(textPart) {
-  
-  
+    
   return new Promise(resolve => { resolve(); });
 }
 
@@ -184,6 +188,7 @@ var currentPressed;
 function StartSpeaking(){
   speaker.style.backgroundColor = "#f5971d";
   speaker.style.boxShadow = "0px 5px 0px 0px #f5971d";
+
   parseSentences();
   speak();
 }
