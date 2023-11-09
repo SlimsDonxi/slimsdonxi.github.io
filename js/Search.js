@@ -1,19 +1,31 @@
-function myFunction() {
+
+
+
+function search() {
   // Declare variables
-  var input, filter, container, div, label, i, txtValue;
-  input = document.getElementById('myInput');
+  var input;
+  var filter
+  var listVideos
+  var container;
+  var data;
+
+  input = document.querySelector('#searchInput');
+  console.log(input.value);
   filter = input.value.toUpperCase();
-  container = document.getElementById("wrapper");
-  a = container.getElementsByTagName('a');
+
+  container = document.querySelector(".rowVideos");
+  listVideos = container.querySelectorAll('.containerVideo');
 
   // Loop through all list items, and hide those who don't match the search query
-  for (i = 0; i < a.length; i++) {
-    label = a[i].getElementsByTagName("label")[0];
-    txtValue = label.innerText || label.innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-      a[i].style.display = "";
+  for (i = 0; i < listVideos.length; i++) {
+    data = listVideos[i].getAttribute("data");
+    console.log(data);
+  var str = data.toUpperCase(); 
+  console.log(str);
+    if (str.indexOf(filter) > -1) {
+      listVideos[i].style.display = "";
     } else {
-      a[i].style.display = "none";
+      listVideos[i].style.display = "none";
     }
   }
 }
