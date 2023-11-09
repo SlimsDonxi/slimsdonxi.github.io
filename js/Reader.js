@@ -229,11 +229,15 @@ function speak(){
    if(currentPressed!=null){
 currentPressed.style.backgroundColor = "#1a95f4";
 currentPressed.style.boxShadow = "0px 10px 0px 0px #1a7ac5";
+sound.addEventListener("ended", function(){
+     sound.currentTime = 0;
+     SetSpeakingUI();
+});
 }
  }
  else{
    if(currentPressed ==  null){
-console.log(currentArray[currentText]);
+
     speakObj = new SpeechSynthesisUtterance(currentArray[currentText]);   
  
 }
