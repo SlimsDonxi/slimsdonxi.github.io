@@ -69,7 +69,7 @@ document.querySelector("#loaderContainer").style.display = "block";
  
   document.querySelector('body').style.overflowY = "hidden";
 
-  /* listPictures =  GetStoryPictures(element.innerText);
+  listPictures =  GetStoryPictures(element.innerText);
  
     currentPage=0;
 
@@ -82,7 +82,7 @@ document.querySelector("#loaderContainer").style.display = "block";
  listSentences = GetSentences(element);
 
   currentPicture.src = `${root}/${listSentences[0]}/${currentPage}.jpg`;  
-  PopulateSentence(currentSentence);*/
+  PopulateSentence(currentSentence);
 }
 
 
