@@ -64,10 +64,16 @@ function FileHelper(url){
         return returnValue;}
 
 
+
+
+
 function GenerateStory(element){
 document.querySelector("#loaderContainer").style.display = "block";
- 
   document.querySelector('body').style.overflowY = "hidden";
+setTimeout(StartGeneratin(element), 500);
+}
+
+function StartGeneratin(element){
 
   listPictures =  GetStoryPictures(element.innerText);
  
@@ -85,7 +91,6 @@ document.querySelector("#loaderContainer").style.display = "block";
   PopulateSentence(currentSentence);
 }
 
-
 function GetStoryPictures(el){
  listPictures =[];
 var url = root+'/'+el;
@@ -101,6 +106,7 @@ var counter=0;
     while(exists)
 
 }
+
 
 
 function PopulateSentence(sentence){

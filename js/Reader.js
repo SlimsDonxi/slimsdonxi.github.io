@@ -158,23 +158,23 @@ let voices = [];
  
 
 
-const iOS = () => {
-    if (typeof window === `undefined` || typeof navigator === `undefined`) return false;
-
-   return /iPhone|iPad|iPod/i.test(navigator.userAgent || navigator.vendor || (window.opera && opera.toString() === `[object Opera]`));
-};
 
 window.speechSynthesis.addEventListener("voiceschanged",()=>{
 
 voices = window.speechSynthesis.getVoices();
 
-if(iOS)  selectedVoice = voices.find((voice)=> voice.name.includes("Karen");
-  else  selectedVoice = voices.find((voice)=> voice.name.includes("Google UK English Female");
- 
 
-if(selectedVoice == undefined){
-selectedVoice = voices.find((voice)=> voice.name.includes("Microsoft Mark - English (United States)"));
+  selectedVoice = voices.find((voice)=> voice.name.includes("Karen"))
+
+if(selectedVoice == null || selectedVoice == undefined){
+console.log("Karen is not available");  
+
+selectedVoice = voices.find((voice)=> voice.name.includes("Google UK English Female"));
 }
+
+
+
+
 
 
 });
@@ -261,24 +261,23 @@ function speak(){
    
 }}
 
-speakObj.default = false;
-speakObj.voice = selectedVoice;
-speakObj.lang= getVoicesWithLangSubstring(speakObj.voice.lang);
-speakObj.rate = 0.8;
-synth.speak(speakObj);
+if(speakObj!=null)
+{
+  speakObj.default = false;
+  speakObj.voice = selectedVoice;
+  speakObj.lang= getVoicesWithLangSubstring(speakObj.voice.lang);
+  speakObj.rate = 0.8;
+  synth.speak(speakObj);
 
+  speakObj.addEventListener('end', function () {
+  SetSpeakingUI();
+  });
+}
 
 document.querySelector("#speakerIcon").style.display = "none";
 document.querySelector("#speakingLoader").style.display = "flex";
-
-
-
-speakObj.addEventListener('end', function () {
-SetSpeakingUI();
-});
-
  
-  return new Promise(resolve => { speakObj.onend = resolve; });
+return new Promise(resolve => { speakObj.onend = resolve; });
 }
 else{
   // Speech Synthesis Not Supported 😣
