@@ -227,9 +227,10 @@ function speak(){
     sound.src = `audios/LetterSounds/${currentArray[currentText]}.mp3`;  //  preload
    sound.play();
    if(currentPressed!=null){
-currentPressed.style.backgroundColor = "#1a95f4";
-currentPressed.style.boxShadow = "0px 10px 0px 0px #1a7ac5";
+    currentPressed.style.backgroundColor = "#1a95f4";
+    currentPressed.style.boxShadow = "0px 10px 0px 0px #1a7ac5";
 sound.addEventListener("ended", function(){
+  console.log('stoppedSpeaking');
      sound.currentTime = 0;
      SetSpeakingUI();
 });
