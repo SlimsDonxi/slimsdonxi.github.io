@@ -184,6 +184,9 @@ z-index: 999;
      margin-bottom: 30px;
 }
 
+button{
+     border:none;
+}
 
 /** end our class **/
 
