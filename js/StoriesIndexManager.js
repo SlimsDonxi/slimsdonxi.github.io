@@ -66,7 +66,7 @@ function FileHelper(url){
 
 function GenerateStory(element){
 document.querySelector("#loaderContainer").style.display = "block";
-  document.querySelector('#Reader').style.display = "block";
+ 
   document.querySelector('body').style.overflowY = "hidden";
 
    listPictures =  GetStoryPictures(element.innerText);
@@ -113,6 +113,7 @@ function PopulateSentence(sentence){
     })
 
 document.querySelector("#loaderContainer").style.display = "none";
+ document.querySelector('#Reader').style.display = "block";
   document.querySelector('body').style.overflowY = "scroll";
   }
 
