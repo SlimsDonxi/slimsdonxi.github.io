@@ -21,29 +21,7 @@ var displayedText = document.getElementById('displayedText');
 
 
 
-//Speaking variables
-var  selectedVoice;
 
-const synth = window.speechSynthesis;
-
-let voices = [];
- 
-
-var gettingVoices = setInterval(GetVoices(), 1000);
-
-function GetVoices(){
-window.speechSynthesis.onvoiceschanged = function() {
-voices = window.speechSynthesis.getVoices();
-
- selectedVoice = voices.find((voice)=> voice.name =="Google UK English Female" || voice.name =="Karen" );
-if(selectedVoice == undefined){
-selectedVoice = voices.find((voice)=> voice.name =="Microsoft Mark - English (United States)");
-}
-if(voices.length > 0)
-clearInterval(gettingVoices)
-
-}
-}
 
 function populate(id){
   
@@ -171,7 +149,29 @@ function Previous(){
 
 
 //Speaking Area
+//Speaking variables
+var  selectedVoice;
 
+const synth = window.speechSynthesis;
+
+let voices = [];
+ 
+
+
+
+
+window.speechSynthesis.addEventListener("voiceschanged",()=>{
+
+voices = window.speechSynthesis.getVoices();
+
+ selectedVoice = voices.find((voice)=> voice.name.includes("Google UK English Female") || voice.name.includes("Karen") );
+
+if(selectedVoice == undefined){
+selectedVoice = voices.find((voice)=> voice.name.includes("Microsoft Mark - English (United States)"));
+}
+
+
+});
 
 async function parseSentences() {
  
@@ -249,8 +249,8 @@ sound.addEventListener("ended", function(){
 }}
 
 speakObj.default = false;
-speakObj.lang="en";
 speakObj.voice = selectedVoice;
+speakObj.lang="en-GB";
 speakObj.rate = 0.8;
 synth.speak(speakObj);
 
