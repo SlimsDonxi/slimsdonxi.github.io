@@ -89,7 +89,9 @@ h5 {
 h6 {
      font-size: 13px
 }
-
+video{
+background: white;
+}
 *,
 *::after,
 *::before {
