@@ -13,7 +13,7 @@
       <link rel="stylesheet" href="css/bootstrap.min.css">
       <!-- style css -->
       <link rel="stylesheet" href="css/style.css">
-
+ <link rel="stylesheet" href="css/dropdown.css">
 
 
 
@@ -26,7 +26,9 @@
 
 
 
-
+.text_align_center h1{
+    line-height: 50px;
+}
 
 .text_align_center{
     line-height: 200px;
@@ -50,15 +52,19 @@
  font-size:120px;
 text-align: center;
 font-weight:bold;
-
 letter-spacing: -5px;
 
 }
+#displayedText span{
+ font-size:120px;
+text-align: center;
+font-weight:bold;
+letter-spacing: -5px;
+color:#ef3f58;
 
-
-
-        </style>
-   </head>
+}
+</style>
+</head>
    <!-- body -->
    <body class="main-layout inner_page">
  
@@ -79,13 +85,19 @@ letter-spacing: -5px;
                   </div>
                </div>
             </div>
+
             <div class="row">
-                <div class="col-md-12 margi_bottom shake" onclick="populate('letters')">
+                <div class="col-md-6 margi_bottom shake" onclick="populate('letters')">
                   <div class="class_box text_align_center" style="background:#ffb400; box-shadow:0 10px 0 0 #d89a07">            
-                      <h1>A->Z</h1>
+                      <h1>A->Z <br>‎</h1>
                      <p>Practice each letter individually</p>
-                  </div>
-                 
+                  </div>               
+               </div>
+               <div class="col-md-6 margi_bottom shake" onclick="window.location.href='Reading Videos/readingVideos.html'">
+                  <div class="class_box text_align_center" style="background:#1e88cb; box-shadow:0 10px 0 0 #2c76a6">            
+                      <h1>Letter Videos</h1>
+                     <p>Practice while watching</p>
+                  </div>               
                </div>
                <div class="col-md-4 margi_bottom shake" onclick="populate('at')">
                   <div class="class_box text_align_center" style="background:#ef2a38; box-shadow:0 10px 0 0 #d22834">            
@@ -192,7 +204,17 @@ letter-spacing: -5px;
             
                </div>
            </div>
-       
+       <div class="dropdown">
+  <input type="checkbox" id="dropdown">
+  <label class="dropdown__face" for="dropdown">
+    <div class="dropdown__text">Voices</div>
+    <div class="dropdown__arrow"></div>
+  </label>
+
+  <ul class="dropdown__items">
+   
+  </ul>
+</div>
         </div>
 
      <audio id="audioPlayer">

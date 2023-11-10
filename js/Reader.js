@@ -9,7 +9,7 @@ var arrayGood = ["I am good at basketball", "I am very good at dancing", "You ar
 var arrayToo = ["I like apples and i like oranges too", "I cannot fly and I cannot swim either", "I do not like to dance and I do not like to play either", "If you are happy then I am happy too", "You are not my friend and I am not your friend either","I like to drink milk but I do not like to drink water","I like to eat vegetables but I do not like to eat fruits"];
 var arraySchool = ["This is my pencil case", "I have a huge pencil case", "I can put an eraser in my pencil case", "Eraser is a school supply", "I can put a marker in my pencil case","Marker is a school supply too","I can put a glue stick in my pencil case","Glue is also a school supply","I cannot put an elephant in my pencil case","I have a lot of crayons","I put all of my school supplies in my schoolbag","Because the elephant is too big!"];
 var currentArray = [];
-
+var arrayDesired = ["at", "oo", "ch", "sh"]
 var isForLetters = false;
 var clickable;
 var currentText =0;
@@ -61,6 +61,7 @@ blockStr = clickable?AppendForReading(currentArray[i]):AppendForPhonics(currentA
 
 function AppendForPhonics(el){
 
+
 return `<div class="col-md-4 margi_bottom" onmouseup="GetText(this)">
       <div class="class_box text_align_center" style="background:#ef2a38; box-shadow:0 10px 0 0 #d22834">            
         <h1> ${el}</h1>
@@ -68,6 +69,8 @@ return `<div class="col-md-4 margi_bottom" onmouseup="GetText(this)">
     </div>`    }
 
 function AppendForReading(el){
+
+
  return `<div class="col-md-6 margi_bottom" onmouseup="GetText(this)">
       <div class="class_box text_align_center" style="background:#ef2a38; box-shadow:0 10px 0 0 #d22834; text-align:start; ">            
         <span>${el}</span>
@@ -86,18 +89,33 @@ var clicked = element.children[0].children[0];
 
 if(clickable == "clickable")   
  CreateBoxes(GetWords(clicked.innerText));
+else{
+highlight(clicked.innerText);
+}
 
-else 
- document.querySelector('#displayedText').innerText = clicked.innerText;
-
-  var content = document.querySelector("#rowContent");
-  var divs = content.querySelectorAll(".margi_bottom");
-
-
+var content = document.querySelector("#rowContent");
+var divs = content.querySelectorAll(".margi_bottom");
 currentText = Array.from(divs).indexOf(element);
-
 CheckButtonNextAvailability();
 CheckButtonPreviousAvailability();}
+
+
+function highlight(el){
+
+
+var desired = arrayDesired.find((x) => {el.includes(x)});
+console.log(el+"  "+ desired);
+
+arrayDesired.forEach((x)=>{
+if(el.includes(x)){
+var startPosition =  el.indexOf(x);
+ var output =  el.substring(0, startPosition) + `<span>` +  el.substring(startPosition) +`</span>`;
+ document.querySelector('#displayedText').innerHTML = output;
+};
+});
+}
+
+
 
 
 function CreateBoxes(element){
@@ -127,7 +145,7 @@ function Next(){
      CreateBoxes(GetWords(currentArray[currentText]));
    }
    else{
-    displayedText.innerText = currentArray[currentText];
+    highlight(currentArray[currentText]);
    }} 
 
 function Previous(){
@@ -142,34 +160,72 @@ function Previous(){
      CreateBoxes(GetWords(currentArray[currentText]));
    }
    else{
-    displayedText.innerText = currentArray[currentText];
+   highlight(currentArray[currentText]);
    }} 
 
 
 
 
-//Speaking Area
-//Speaking variables
-var  selectedVoice;
+
+
+
+
 
 const synth = window.speechSynthesis;
 
-let voices = [];
- 
+
+var  selectedVoice;
+
+
+var ulContainer = document.querySelector(".dropdown__items");
+// Fetch the list of voices and populate the voice options.
+function loadVoices() {
+  // Fetch the available voices.
+  var voices = speechSynthesis.getVoices();
+   var str;
+  // Loop through each of the voices.
+  voices.forEach(function(voice, i) {
+    if(voice.lang.includes("en")){
+
+
+   str = voice.name.replace('Google', '');
+      str = voice.name.replace('Microsoft', '');
+
+console.log(str);
+      ulContainer.innerHTML += `<li onclick='setVoice(this)'>${str}</li>`
+  
+  }
+  });
+}
+
+// Execute loadVoices.
+loadVoices();
+
+// Chrome loads voices asynchronously.
+synth.onvoiceschanged = function(e) {
+  loadVoices();
+};
 
 
 
-window.speechSynthesis.addEventListener("voiceschanged",()=>{
 
-voices = window.speechSynthesis.getVoices();
+function setVoice(el){
 
+var children = ulContainer.children;
 
-  selectedVoice = voices.find((voice)=> voice.name.includes("Karen"))
+Array.from(children).forEach((x)=>{
+  if(x!= el){
+    x.style.background = "none";
+    x.style.color = "#2f2f2f";
+  }
 
-if(selectedVoice == null || selectedVoice == undefined){
-console.log("Karen is not available");  
+});
 
-selectedVoice = voices.find((voice)=> voice.name.includes("Google UK English Female"));
+el.style.background = "#ffb400";
+el.style.color = "#fff";
+ selectedVoice = speechSynthesis.getVoices().filter(function(voice) { return voice.name.includes(el.innerText) })[0];
+document.querySelector("input").checked = false;
+document.querySelector(".dropdown__text").innerText = el.innerText;
 }
 
 
@@ -177,9 +233,13 @@ selectedVoice = voices.find((voice)=> voice.name.includes("Google UK English Fem
 
 
 
-});
 
- 
+
+
+
+
+
+
 
 async function parseSentences() {
  
@@ -342,3 +402,49 @@ function getVoicesWithLangSubstring (langSubstr) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+//Speaking Area
+//Speaking variables
+
+
+let voices = [];
+ 
+
+
+
+
+window.speechSynthesis.addEventListener("voiceschanged",()=>{
+
+voices = window.speechSynthesis.getVoices();
+
+ selectedVoice = voices.find((voice)=> voice.name.includes("Google UK English Female") || voice.name.includes("Karen") );
+
+if(selectedVoice == undefined){
+selectedVoice = voices.find((voice)=> voice.name.includes("Microsoft Mark - English (United States)"));
+}
+
+
+});
+
+ 
+
+
+*/

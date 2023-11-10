@@ -202,15 +202,16 @@ button:focus {
      background: #3996e5;
      margin-bottom: 20px;
      transition: ease-in all 0.2s;
+        padding:10px;
      padding-left:25px;
      padding-right:25px;
      box-shadow: 0px 10px 0px 0px #3082c7;
      height:auto;
-     margin-left:5px;
+     margin-left:10px;
      min-width: 50px;
 
      font-size: 30px;
-   padding:10px;
+
   
    font-weight: bold;
    color:white;
@@ -222,7 +223,8 @@ button:focus {
 }
 #displayedPhrase{
     
-     padding:10px;
+     padding:50px;
+  
   
 }
 
@@ -463,6 +465,7 @@ transform:translateY(-20px);
 #speaker>svg{
 height:75px;
 transform: translateX(5px);
+ display:block;
 }
 }
 .storyCover{
@@ -491,7 +494,11 @@ background: #e02f3c;
 box-shadow: 0px 5px 0px 0px #ba2f39;
 
 }
-
+.settings{
+   background: #f1bd1f;
+box-shadow: 0px 5px 0px 0px #cb9901;
+top:75px; 
+}
 .mainCancel{
 
 background: #464646;
@@ -501,14 +508,22 @@ box-shadow: 0px 5px 0px 0px #313130;
      
      width:25px;
      height:auto;    
+ 
 }
 
 .mainCancel svg{
      
      width:35px;
-     height:auto;    
+     height:auto;
+    
 }
 
+.settings svg{
+      width:35px;
+     height:auto;  
+     fill:#fff; 
+  
+}
 
 
      #searchInput {
@@ -522,50 +537,71 @@ box-shadow: 0px 5px 0px 0px #313130;
 }
 @media (min-width: 992px) and (max-width: 1199px) {
    .word{
-     font-size: 30px;
+     font-size: 40px;
       box-shadow: 0px 10px 0px 0px #3082c7;
    }
+#speaker svg{
+height:55px;
+transform: translateX(2px);
 
+}
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-    .word{
-    font-size: 22px;
-     box-shadow: 0px 8px 0px 0px #3082c7;
-   } 
- 
+.word{
+font-size: 40px;
+box-shadow: 0px 8px 0px 0px #3082c7;
+
+} 
+
  .interactive{
-     height:75px;
-width: 75px; 
- }
-
-#speaker{
-height:100px;
-width: 100px; 
-box-shadow:0px 8px 0px 0px #1a7ac5;
+     height:90px;
+     width: 90px;
 }
-
+#speaker{
+height:150px;
+width: 150px; 
+box-shadow:0px 5px 0px 0px #1a7ac5;
+}
+#speaker svg{
+height:80px;
+transform: translateX(2px);
+}
+.boxContainer{
+     height:80px;
+    
+      --boxSize: 10px;
+  --gutter: 3px;
+  width: calc((var(--boxSize) + var(--gutter)) * 5)
+}
 }
 
 
 
 @media (max-width: 575px) {
 .word{
-font-size:16px;
- box-shadow: 0px 5px 0px 0px #3082c7;
+font-size:22px;
+ box-shadow: 0px 7px 0px 0px #3082c7;
 }
 .interactive{
-     height:50px;
-     width: 50px;
+     height:70px;
+     width: 70px;
 }
 #speaker{
-height:75px;
-width: 75px; 
+height:100px;
+width: 100px; 
 box-shadow:0px 5px 0px 0px #1a7ac5;
 }
-#speaker>svg{
-height:45px;
+#speaker svg{
+height:60px;
 transform: translateX(2px);
+}
+.boxContainer{
+     height:50px;
+  
+     --boxSize: 7px;
+  --gutter: 3px;
+  width: calc((var(--boxSize) + var(--gutter)) * 5)
 }
 
 }
