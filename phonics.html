@@ -178,9 +178,7 @@ color:#ef3f58;
                         </svg>
                      </div>
                   
-                   
-                    
-                     <div class=" interactive shake" id="speaker" onmouseup="StartSpeaking()" >
+                   <div class=" interactive shake mainInteractive" id="speaker" onmouseup="StartSpeaking()" >
                        <svg class="center" id="speakerIcon"width="80px" height="80px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#fff">
                         <path d="M18.008 2.987C19.34 2.225 21 3.187 21 4.723v12.554c0 1.535-1.659 2.498-2.992 1.736L14 16.723V5.277l4.008-2.29zM12 6H7a5 5 0 0 0-1 9.9v3.6a2.5 2.5 0 0 0 5 0V16h1V6z" clip-rule="evenodd" />
                        </svg>   -
@@ -192,9 +190,38 @@ color:#ef3f58;
                           <div class="box box5"></div>
                         </div> 
                     </div>
-              
+                    
+
+
+                     <div class=" interactive shake mainInteractive" id="micro" onmouseup="StartListening()" >
+                       <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+                        <svg width="80px" height="80px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C8.82436 2 6.25 4.57436 6.25 7.75V10.75C6.25 13.9256 8.82436 16.5 12 16.5C14.9214 16.5 17.334 14.3213 17.7015 11.5L13 11.5C12.5858 11.5 12.25 11.1642 12.25 10.75C12.25 10.3358 12.5858 10 13 10L17.75 10V8.5H13C12.5858 8.5 12.25 8.16421 12.25 7.75C12.25 7.33579 12.5858 7 13 7H17.7015C17.334 4.17873 14.9214 2 12 2Z" fill="#fff"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M4 9C4.41421 9 4.75 9.33579 4.75 9.75V10.75C4.75 14.7541 7.99594 18 12 18C16.0041 18 19.25 14.7541 19.25 10.75V9.75C19.25 9.33579 19.5858 9 20 9C20.4142 9 20.75 9.33579 20.75 9.75V10.75C20.75 15.3298 17.2314 19.0879 12.75 19.4683V21.75C12.75 22.1642 12.4142 22.5 12 22.5C11.5858 22.5 11.25 22.1642 11.25 21.75V19.4683C6.7686 19.0879 3.25 15.3298 3.25 10.75V9.75C3.25 9.33579 3.58579 9 4 9Z" fill="#fff"/>
+                        </svg>
+                      <div id="speakingLoader"class="boxContainer" style="display:none">
+                          <div class="box box1"></div>
+                          <div class="box box2"></div>
+                          <div class="box box3"></div>
+                          <div class="box box4"></div>
+                          <div class="box box5"></div>
+                        </div> 
+                    </div>
+
+                    
                    
-                     
+
+
+
+
+
+
+
+
+
+
+
+                
                      <div class=" interactive shake" id="next"onclick="Next()"  >
                        <svg  width="80px" height="80px"  viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12.3315 5.18341L17.3094 9.60815C18.2399 10.4353 18.7052 10.8489 18.8767 11.3373C19.0273 11.7662 19.0273 12.2335 18.8767 12.6624C18.7052 13.1508 18.2399 13.5644 17.3094 14.3916L12.3315 18.8163C11.9092 19.1917 11.6981 19.3794 11.5187 19.3861C11.3629 19.3919 11.2133 19.3247 11.1142 19.2044C11 19.0659 11 18.7834 11 18.2184V15.4284C8.57196 15.4284 6.00739 16.2083 4.13478 17.5926C3.15988 18.3133 2.67242 18.6737 2.48676 18.6595C2.30578 18.6456 2.19093 18.575 2.09703 18.4196C2.0007 18.2603 2.08578 17.7624 2.25595 16.7666C3.36093 10.3004 7.8109 8.57129 11 8.57129V5.78134C11 5.21632 11 4.93381 11.1142 4.79531C11.2133 4.67498 11.3629 4.6078 11.5187 4.61363C11.6981 4.62034 11.9092 4.80803 12.3315 5.18341Z" />
@@ -223,7 +250,8 @@ color:#ef3f58;
     </audio>
    
       <script src="js/Reader.js"></script>
-     <script src="js/navigation.js"></script>
+       <script src="js/listener.js"></script>
+ 
       
 
 

@@ -443,7 +443,7 @@ justify-content: center;
 display:flex; 
 align-items: center; 
 justify-content: center;
-gap:20px;
+
 
 }
 
@@ -460,14 +460,14 @@ transform:translateY(-20px);
 }
 
 
-#speaker{
+.mainInteractive{
      transform:translateY(-35px); 
      height:100px; 
      width:100px; 
      background:#1a95f4;
      box-shadow:0px 8px 0px 0px #1a7ac5;
 }
-#speaker>svg{
+.mainInteractive>svg{
 height:75px;
 transform: translateX(5px);
  display:block;
@@ -530,6 +530,19 @@ box-shadow: 0px 5px 0px 0px #313130;
   
 }
 
+#micro{
+     border-top-left-radius:0 ;
+     border-bottom-left-radius:0;
+     background: #4dabf3;
+     box-shadow: 0px 5px 0px 0px #318bd2;
+}
+
+#speaker{
+     border-top-right-radius:0 ;
+     border-bottom-right-radius:0 ;
+}
+
+
 
      #searchInput {
  margin-top:50px;
@@ -545,7 +558,7 @@ box-shadow: 0px 5px 0px 0px #313130;
      font-size: 40px;
       box-shadow: 0px 10px 0px 0px #3082c7;
    }
-#speaker svg{
+mainInteractive svg{
 height:55px;
 transform: translateX(2px);
 
@@ -563,12 +576,12 @@ box-shadow: 0px 8px 0px 0px #3082c7;
      height:90px;
      width: 90px;
 }
-#speaker{
+.mainInteractive{
 height:150px;
 width: 150px; 
 box-shadow:0px 5px 0px 0px #1a7ac5;
 }
-#speaker svg{
+.mainInteractive svg{
 height:80px;
 transform: translateX(2px);
 }
@@ -592,13 +605,13 @@ font-size:22px;
      height:70px;
      width: 70px;
 }
-#speaker{
-height:100px;
-width: 100px; 
+.mainInteractive{
+height:80px;
+width: 80px; 
 box-shadow:0px 5px 0px 0px #1a7ac5;
 }
-#speaker svg{
-height:60px;
+.mainInteractive svg{
+height:45px;
 transform: translateX(2px);
 }
 .boxContainer{
