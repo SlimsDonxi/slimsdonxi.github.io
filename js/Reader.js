@@ -104,15 +104,19 @@ function highlight(el){
 
 
 var desired = arrayDesired.find((x) => {el.includes(x)});
-console.log(el+"  "+ desired);
-
+if(el.length>1){
 arrayDesired.forEach((x)=>{
-if(el.includes(x)){
+
+ if(el.includes(x)){
 var startPosition =  el.indexOf(x);
  var output =  el.substring(0, startPosition) + `<span>` +  el.substring(startPosition) +`</span>`;
  document.querySelector('#displayedText').innerHTML = output;
 };
 });
+}
+else{
+   document.querySelector('#displayedText').innerHTML = `<span style="font-size: 220px">${el}</span>`;
+}
 }
 
 
@@ -179,6 +183,8 @@ var  selectedVoice;
 
 var ulContainer = document.querySelector(".dropdown__items");
 // Fetch the list of voices and populate the voice options.
+
+
 function loadVoices() {
   // Fetch the available voices.
   var voices = speechSynthesis.getVoices();
@@ -187,23 +193,29 @@ function loadVoices() {
   voices.forEach(function(voice, i) {
     if(voice.lang.includes("en")){
 
-
    str = voice.name.replace('Google', '');
-      str = voice.name.replace('Microsoft', '');
-
-console.log(str);
-      ulContainer.innerHTML += `<li onclick='setVoice(this)'>${str}</li>`
-  
+   str = voice.name.replace('Microsoft', '');
+   ulContainer.innerHTML += `<li onclick='setVoice(this)'>${str}</li>`    
   }
   });
+
+ 
 }
 
 // Execute loadVoices.
 loadVoices();
 
+
+  
 // Chrome loads voices asynchronously.
 synth.onvoiceschanged = function(e) {
   loadVoices();
+  
+   var children = ulContainer.children;
+
+ document.querySelector(".dropdown__text").innerText = Array.from(children)[1].innerText;
+  Array.from(children)[1].style.background = "#ffb400";
+  Array.from(children)[1].style.color = "#fff";
 };
 
 
@@ -227,17 +239,6 @@ el.style.color = "#fff";
 document.querySelector("input").checked = false;
 document.querySelector(".dropdown__text").innerText = el.innerText;
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -325,7 +326,7 @@ if(speakObj!=null)
 {
   speakObj.default = false;
   speakObj.voice = selectedVoice;
-  speakObj.lang= getVoicesWithLangSubstring(speakObj.voice.lang);
+ // speakObj.lang= getVoicesWithLangSubstring(speakObj.voice.lang);
   speakObj.rate = 0.8;
   synth.speak(speakObj);
 

@@ -127,31 +127,70 @@ document.querySelector("#loaderContainer").style.display = "none";
 
 
 
+
 const synth = window.speechSynthesis;
-const speaker = document.querySelector('#speaker');
-//Setting Variables
 
 
-
-let voices = [];
-var selectedVoice;
+var  selectedVoice;
 
 
-var gettingVoices = setInterval(GetVoices(), 1000);
+var ulContainer = document.querySelector(".dropdown__items");
+// Fetch the list of voices and populate the voice options.
+function loadVoices() {
+  // Fetch the available voices.
+  var voices = speechSynthesis.getVoices();
+   var str;
+  // Loop through each of the voices.
+  voices.forEach(function(voice, i) {
+    if(voice.lang.includes("en")){
 
-function GetVoices(){
-window.speechSynthesis.onvoiceschanged = function() {
-voices = window.speechSynthesis.getVoices();
 
- selectedVoice = voices.find(voice=> voice.name =="Google UK English Female");
- if(selectedVoice == undefined) 
-  selectedVoice = voices.find(voice=> voice.name =="Karen" );
+   str = voice.name.replace('Google', '');
+      str = voice.name.replace('Microsoft', '');
 
-if(voices.length > 0)
-clearInterval(gettingVoices)
-
+console.log(str);
+      ulContainer.innerHTML += `<li onclick='setVoice(this)'>${str}</li>`
+  
+  }
+  });
 }
+
+// Execute loadVoices.
+loadVoices();
+
+// Chrome loads voices asynchronously.
+synth.onvoiceschanged = function(e) {
+  loadVoices();
+};
+
+
+
+
+function setVoice(el){
+
+var children = ulContainer.children;
+
+Array.from(children).forEach((x)=>{
+  if(x!= el){
+    x.style.background = "none";
+    x.style.color = "#2f2f2f";
+  }
+
+});
+
+el.style.background = "#ffb400";
+el.style.color = "#fff";
+ selectedVoice = speechSynthesis.getVoices().filter(function(voice) { return voice.name.includes(el.innerText) })[0];
+document.querySelector("input").checked = false;
+document.querySelector(".dropdown__text").innerText = el.innerText;
 }
+
+
+
+
+
+
+
 
 
 function StartSpeaking(){
