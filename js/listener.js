@@ -14,7 +14,7 @@ recognition.lang = "en-US";
   const score = document.querySelector('#score');
     const comment = document.querySelector('#comment');
    var audio = document.querySelector('#audioPlayer');
-var arraySvg = [ document.querySelector('#greatSvg'),document.querySelector('#happySvg'),document.querySelector('#badSvg') ]
+var arraySvg = [ resultWrapper.querySelector('#greatSvg'),resultWrapper.querySelector('#happySvg'),resultWrapper.querySelector('#badSvg') ]
 
 
       recognition.continuous = true;
@@ -50,15 +50,21 @@ var arraySvg = [ document.querySelector('#greatSvg'),document.querySelector('#ha
 
          resultWrapper.style.display = 'block';
 
-      	if(clickable){
+       
+         if(document.querySelector('title').innerText=='Stories'){
+           score.innerText = similarity(listSentences[currentPage], result);
+          }
+
+      else if(clickable){
          
           score.innerText = similarity(currentArray[currentText], result);
 
         } 
 
-          else {
-              score.innerText = similarity(inputText.innerText, result);
-            } 
+        else 
+        {
+          score.innerText = similarity(inputText.innerText, result);
+        } 
 
            setScoreWithColor(score.innerText);
            score.innerText+='%';
@@ -89,6 +95,7 @@ arraySvg.forEach((x)=> {
      audio.src = './audios/good.wav';
         audio.play();
      resultContainer.classList.add('medium');
+        arraySvg[0].style.display = 'none';
    arraySvg[1].style.display = 'block';
     comment.querySelector('span').innerText = "Not bad";}
 
@@ -96,6 +103,7 @@ arraySvg.forEach((x)=> {
      audio.src = './audios/fail.wav';
         audio.play();
      resultContainer.classList.add('fail');
+          arraySvg[0].style.display = 'none';
      arraySvg[2].style.display = 'block';
      comment.querySelector('span').innerText = "Try again"
   }

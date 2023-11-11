@@ -1,0 +1,91 @@
+
+[
+  {
+"question": "What is the name of our story?",
+ "answers": ["Alex's super medicine"],
+"options": ["Alex the naughty boy", "Alex and the yucky medicine","Alex's super power"]
+},
+
+  {
+  "question": "What happened to Alex?",
+  "answers": ["He felt sick"],
+  "options": ["He felt bored","He felt angry", "He felt hungry"]
+  },
+
+   {
+  "question": "What did his mom do?",
+  "answers": ["Took him to see a doctor"],
+  "options": ["Sent him to sleep", "Gave him a big hug","Gave him a new scarf"]
+  },
+
+  {
+  "question": "What did the doctor do?",
+  "answers": ["Gave him medicine"],
+  "options": ["Sent him to the hospital", "Asked him to eat better","Asked him to drink more water"]
+  },
+
+  {
+  "question": "Did Alex like the medicine taste?",
+  "answers": ["He thought it's yucky"],
+  "options": ["He loved it", "He was ok with it", "He didn't care about the taste"]
+  },
+
+  {
+  "question": "What was his first idea?",
+  "answers": ["Give the medicine to his friend to drink"],
+  "options": ["Drop it in the toilet", "He drank it all", "He forgot about it"]
+  },
+
+  {
+  "question": "What did Alex promise his friend?",
+  "answers": ["To share the red toy car with him"],
+  "options": [ "To share his new basketball with him","Give him a lot of money", "To share a cookie with him"]
+  },
+
+  {
+  "question": "What was Alex's second idea?",
+  "answers": ["Put the medicine on his sandwich"],
+  "options": [ "To drink it","Hide it in the garden", "Give it to his mom"]
+  },
+   {
+  "question": "Why was that a bad idea?",
+  "answers": ["Because the sandwich tasted so bad"],
+  "options": ["Because the sandwich was too small", "Because he spilled his drink", "Because he forgot where he put his sandwich"]
+  }
+  ,
+   {
+  "question": "What was his third idea?",
+  "answers": ["To hide the medicine in the garden"],
+  "options": ["To hide the medicine in the bathroom", "Drink it", "To throw it away"]
+  },
+  {
+  "question": "Why was that a bad idea?",
+  "answers": ["Because the dog found it"],
+  "options": ["Because his mom saw him","Because the bird drank it", "Because he couldn't find a good place"]
+  },
+   {
+  "question": "What was Alex's fourth idea?",
+  "answers": ["Hide the medicine in a bird's nest"],
+  "options": ["Hide it in an owl's nest","Hide it in the dog house", "Hide it in his bedroom"]
+  },
+   {
+  "question": "Why was it a bad idea?",
+  "answers": ["Because the bird kicked it"],
+  "options": ["Because the bird threw it", "Because the bird kicked it","Because the bird flew away with it"]
+  },
+  {
+  "question": "What did Alex do after that?",
+  "answers": ["He decided to drink the medicine"],
+  "options": ["He started to cry", "He got angry at the bird", "He went to sleep"]
+  },
+  {
+  "question": "How did Alex feel after drinking his medicine?",
+  "answers": ["He felt great"],
+  "options": ["He felt worse","He threw up", "He didn't feel anything"]
+  },
+  {
+  "question": "How did Alex's mom feel about Alex?",
+  "answers": ["She was proud"],
+  "options": ["She was angry", "She was sad", "She didn't care"]
+  }
+]

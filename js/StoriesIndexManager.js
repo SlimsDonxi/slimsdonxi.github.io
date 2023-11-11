@@ -1,12 +1,4 @@
-class Story {
-  constructor(id, title,text, pictures, numberSentences) {
-    this.id = id;
-    this.title = title;
-    this.text = text;
-    this.arrayPictures = pictures;
-    this.numberSentences;
- 
-  }}
+
 
 var root ="stories/listStories";
 var currentStory;
@@ -49,7 +41,7 @@ function FileHelper(url){
 
 
 function GenerateStory(element){
-document.querySelector("#loaderContainer").style.display = "block";
+
   document.querySelector('body').style.overflowY = "hidden";
 setTimeout(StartGeneratin(element), 500);
 }
@@ -64,7 +56,7 @@ function StartGeneratin(element){
     selectedStory = Array.from(divs).indexOf(element);
 
   currentStory = element.innerText;
-
+console.log(currentStory);
 
  listSentences = GetSentences(element);
 
@@ -102,7 +94,8 @@ function PopulateSentence(sentence){
       document.querySelector('#displayedPhrase').innerHTML+=    ` <button class="word shake" onclick="SpeakIt(this)">${word}</button> `;
     })
 
-document.querySelector("#loaderContainer").style.display = "none";
+CheckButtonNextAvailability();
+CheckButtonPreviousAvailability();
  document.querySelector('#Reader').style.display = "block";
   document.querySelector('body').style.overflowY = "scroll";
   }
@@ -126,16 +119,28 @@ function loadVoices() {
    var str;
   // Loop through each of the voices.
   voices.forEach(function(voice, i) {
-    if(voice.lang.includes("en")){
+     if(voice.lang.includes("en"))
+    {
 
+         if(!voice.name.includes('Microsoft'))
+         {
+           if(voice.name.includes('Google')) 
+              str = voice.name.replace('Google', '');
+                                   
+                                   
 
-   str = voice.name.replace('Google', '');
-      str = voice.name.replace('Microsoft', '');
-
-console.log(str);
-      ulContainer.innerHTML += `<li onclick='setVoice(this)'>${str}</li>`
-  
-  }
+            var block = `<li onclick='setVoice(this)'>${str}</li>`  
+            console.log(str);
+              if(str == "UK English Female" || str.includes("Karen"))
+                {
+                
+                  setVoice(str);
+                }
+              ulContainer.innerHTML += block;
+                                    
+                                
+        }
+    } 
   });
 }
 
@@ -203,6 +208,7 @@ var currentPressed;
 
 function SpeakIt(thisEl) {
 
+
   
   if(currentPressed!= null){
 
@@ -238,9 +244,9 @@ document.querySelector("#speakingLoader").style.display = "flex";
    speakObj = new SpeechSynthesisUtterance(currentPressed.innerText.toLowerCase());
    
 }
-speakObj.default = false;
+
 speakObj.voice =selectedVoice;
-speakObj.lag= selectedVoice.lang;
+
 speakObj.rate = 0.8;
 synth.speak(speakObj);
 

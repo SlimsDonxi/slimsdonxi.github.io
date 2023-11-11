@@ -146,7 +146,14 @@ z-index: 999;
      padding: 70px 0px 60px 0px;
 }
 .mainFrame{
-     background:#f5f5f5; position:fixed; top:0; height:100%;width:100%;display:none; z-index: 601;
+     background:#f5f5f5; 
+     position:fixed;
+      top:0; 
+      height:100%;
+      width:100%;
+      display:none;
+       z-index: 601;
+       
 }
 .class_box {
      border-radius: 10px;
@@ -199,36 +206,12 @@ button:focus {
 /** end our class **/
 
 
-.word{
-     border-radius: 10px;
-     background: #1a95f4;
-     margin-bottom: 20px;
-     transition: ease-in all 0.2s;
-        padding:10px;
-     padding-left:25px;
-     padding-right:25px;
-     box-shadow: 0px 10px 0px 0px #1a7ac5;
-     height:auto;
-     margin-left:10px;
-     min-width: 50px;
 
-     font-size: 30px;
-
-  
-   font-weight: bold;
-   color:white;
-   
-}
 
 .img_responsive {
      max-width: 100%;
 }
-#displayedPhrase{
-    
-     padding:50px;
-  
-  
-}
+
 
 body{
      user-select: none;
@@ -464,20 +447,21 @@ border-radius:20px;
 
 }
 #Reader{
-  
-  background:#f5f5f5;
 
-   position:fixed; 
-   top:0; 
-   height:100%;
-   width:100%;
-   display:none;
-    z-index: 600; 
-
+}
+#questionPopper{
+position:absolute;
+display:flex; 
 align-items: center; 
 justify-content: center;
+top:110px;
+right:10px;
+height: 50px;
+width:50px;
+border-radius: 50px;
+ background:#f7cce4;
+     box-shadow: 0px 5px 0px 0px #d7a3c0;
 }
-
 
 .interactiveContainer{
 display:flex; 
@@ -488,7 +472,8 @@ gap:10px;
 }
 
 .interactive{
- background:red;
+
+background:red;
   height:50px;
 width: 50px; 
 display:flex; 
@@ -553,10 +538,13 @@ box-shadow: 0px 5px 0px 0px #313130;
 
 
 
-#micro{
+.tinyMicro{
     
+    height: 40px;
+    width: 40px;
      background: #4dabf3;
-     box-shadow: 0px 5px 0px 0px #318bd2;
+     box-shadow: 0px 2px 0px 0px #318bd2;
+     border-radius: 20px;
 }
 
  #searchInput {
@@ -568,25 +556,60 @@ box-shadow: 0px 5px 0px 0px #313130;
  width:100%;
 
 }
+#displayedPhrase{   
+     padding:50px;
+}
+
+.word{
+     border-radius: 10px;
+     background: #1a95f4;
+     margin-bottom: 20px;
+     transition: ease-in all 0.2s;
+
+     padding:10px;
+     padding-left:25px;
+     padding-right:25px;
+
+     box-shadow: 0px 10px 0px 0px #1a7ac5;
+     height:auto;
+     margin-left:10px;
+     min-width: 50px;
+     font-size: 30px;
+     font-weight: bold;
+     color:white;   
+}
 @media (min-width: 992px) and (max-width: 1199px) {
    .word{
      font-size: 40px;
       box-shadow: 0px 10px 0px 0px #3082c7;
    }
-
-
 }
-}
+
 
 @media (min-width: 768px) and (max-width: 991px) {
 .word{
-font-size: 40px;
+font-size: 35px;
 box-shadow: 0px 8px 0px 0px #3082c7;
-
 } 
 
+}
 
+@media (max-width: 575px) {
+.word{
+font-size:20px;
+ box-shadow: 0px 6px 0px 0px #3082c7;
 
+padding:5px;
+padding-left:12px;
+padding-right:12px;
+margin-left:2px;
+margin-bottom: 10px;
+}
+#displayedPhrase{   
+     padding:10px;
+}
+
+}
 
 
 
@@ -606,20 +629,13 @@ box-shadow: 0px 8px 0px 0px #3082c7;
      display:block; 
 }
 
-@media (max-width: 575px) {
-.word{
-font-size:20px;
- box-shadow: 0px 7px 0px 0px #3082c7;
+#backgroundQuestions{
+     position:fixed;
 }
-
-
-
-
-}
-
-#ResultWrapper{
+.scoreWrapper{
     
   position:fixed;
+  z-index: 5001;
   height:100%;
   width:100%;
   background: rgba(0,0,0,.5);
@@ -628,7 +644,7 @@ font-size:20px;
      display:none;
 }
 
-#ResultContainer{
+.scoreContainer{
       height:600px;
      width:350px;
      position:fixed;
@@ -684,20 +700,6 @@ display:inline-block;
      height:50%;
 }
 
-#ok{
-padding:15;
-padding-left:25;
-padding-right:25;
-position:relative;
-box-shadow: 0px 8px 0px 0px #348acc; background:#4ba6ec;
-color:#fff;
-font-size: 35px;
-font-weight: bold;
-position:absolute;
-left:50%; 
-top:100%;
-transform: translate(-50%, calc(-100% - 70px));
-}
 
 .success{
 background: rgb(86,157,46);
@@ -721,4 +723,23 @@ background: -moz-linear-gradient(0deg, rgba(240,0,0,1) 0%, rgba(240,60,0,1) 9%);
 background: -webkit-linear-gradient(0deg, rgba(240,0,0,1) 0%, rgba(240,60,0,1) 9%);
 background: linear-gradient(0deg, rgba(240,0,0,1) 0%, rgba(240,60,0,1) 9%);
 filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f00000",endColorstr="#f03c00",GradientType=1);
+}
+
+
+
+.scoreOK{
+padding:15;
+padding-left:25;
+padding-right:25;
+position:relative;
+box-shadow: 0px 8px 0px 0px #348acc; background:#4ba6ec;
+color:#fff;
+font-size: 35px;
+font-weight: bold;
+position:absolute;
+left:50%; 
+top:100%;
+
+transform: translate(-50%, calc(-100% - 70px));
+border-radius: 25px;
 }

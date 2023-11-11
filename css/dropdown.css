@@ -1,15 +1,18 @@
 .dropdown {
-  position: absolute;
+  position: fixed;
   width:75% ;
   filter: url(#goo);
   left:15px;
   top: 15px;
+  z-index: 5000;
 
 }
+
+
 .dropdown__face, .dropdown__items {
   background-color: #fff;
   padding: 0px;
-
+box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
   border-radius: 25px;
  
 }
@@ -25,12 +28,15 @@
   width: 100%;
   list-style: none;
   list-style-type: none;
-
+box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
   visibility: hidden;
   z-index: -1;
   opacity: 0;
 
   transition: all 0.4s cubic-bezier(0.93, 0.88, 0.1, 0.8);
+}
+#goo{
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
 }
 .dropdown__items::before {
   content: "";
