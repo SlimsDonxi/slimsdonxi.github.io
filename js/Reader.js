@@ -79,13 +79,13 @@ function AppendForReading(el){
 
 
 
-
+var clicked;
 function GetText(element) {
   
 
 document.querySelector("#reading").style.display ="block";
 
-var clicked = element.children[0].children[0];
+ clicked= element.children[0].children[0];
 
 if(clickable == "clickable")   
  CreateBoxes(GetWords(clicked.innerText));
