@@ -1,44 +1,40 @@
+  
 
+  const SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
+      const recognition = new SpeechRecognition();
 
-var originalText = document.querySelector("#displayedText");
-var originalPhrase = document.querySelector("#displayedPhrase");
-var transcript;
-var startedSpeaking = false;
-var micro = document.querySelector('#micro');
+      const inputText = document.querySelector("#displayedText");
+       const inputPhrase = document.querySelector("#displayedPhrase");
+      var result;
+  	const microphone = document.querySelector('#microphone');
 
+      recognition.continuous = true;
 
-function StartListening(){
-console.log("clicked");
-if(!startedSpeaking){
-	startedSpeaking = true;
-	const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-	var speech = true;
-	const recognition = new SpeechRecognition();
-	recognition.interimResults = true;
+      microphone.addEventListener("pointerdown", () => {
 
-recognition.addEventListener('result', e=>{
-	const transcript = Array.from(e.results)
-	.map(result => result[0])
-	.map(result => result.transcript);
-	
-})
-	if(speech == true){
-		recognition.start();
-  micro.style.backgroundColor = "#f5971d";
-  micro.style.boxShadow = "0px 5px 0px 0px #f5971d";
-	}
-}
-else{
-startedSpeaking = false;
-  micro.style.backgroundColor = "#4dabf3";
-  micro.style.boxShadow = "0px 5px 0px 0px #318bd2";
-if(transcript  == originalText.innerText || transcript == originalPhrase.innerText){
-	alert("RIHGT");
+        recognition.start();
+      });
 
-}
-else{
-	alert("FALSE");
-}
-}
-}
+      microphone.addEventListener("pointerup", () => {
+     
+        recognition.stop();
+      });
 
+      recognition.addEventListener("result", (event) => {
+        const transcript = Array.from(event.results)
+          .map((result) => result[0].transcript)
+          .join("");
+
+       result = transcript;
+       CheckResult();
+      });
+
+      function CheckResult(){
+      	if(result == inputText.innerText || result == clicked.innerText)
+      		alert("Youre right")
+
+      	else{
+      		alert("WONRG: You said: "+ result + "Should be : "+ clicked.innerText " or "+ inputText.innerText);
+      	}
+      }

@@ -5,38 +5,13 @@
   </head>
   <body>
     <h1>Speech to Text</h1>
+
     <button id="start-btn">Start</button>
     <button id="stop-btn">Stop</button>
     <div style="color:red"id="output"></div>
 
     <script>
-      const SpeechRecognition =
-        window.SpeechRecognition || window.webkitSpeechRecognition;
-      const recognition = new SpeechRecognition();
-
-      const output = document.querySelector("#output");
-      const startBtn = document.querySelector("#start-btn");
-      const stopBtn = document.querySelector("#stop-btn");
-
-      recognition.continuous = true;
-
-      startBtn.addEventListener("click", () => {
-        console.log("started listening");
-        recognition.start();
-      });
-
-      stopBtn.addEventListener("click", () => {
-         console.log("stopped listening");
-        recognition.stop();
-      });
-
-      recognition.addEventListener("result", (event) => {
-        const transcript = Array.from(event.results)
-          .map((result) => result[0].transcript)
-          .join("");
-
-        output.innerText = transcript;
-      });
+    
     </script>
   </body>
 </html>
