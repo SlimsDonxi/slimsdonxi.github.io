@@ -313,7 +313,7 @@ function speak(){
  else{
    if(currentPressed ==  null){
 
-    speakObj = new SpeechSynthesisUtterance(currentArray[currentText]);   
+    speakObj = new SpeechSynthesisUtterance(currentArray[currentText].toLowerCase());   
  
 }
  else{

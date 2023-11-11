@@ -557,9 +557,7 @@ box-shadow: 0px 5px 0px 0px #313130;
      font-size: 40px;
       box-shadow: 0px 10px 0px 0px #3082c7;
    }
-mainInteractive svg{
-height:55px;
-transform: translateX(2px);
+
 
 }
 }
@@ -590,21 +588,28 @@ box-shadow:0px 5px 0px 0px #1a7ac5;
 }
 }
 
-
+#currentPicture{
+     box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+     display:block; 
+}
 
 @media (max-width: 575px) {
 .word{
-font-size:22px;
+font-size:14px;
  box-shadow: 0px 7px 0px 0px #3082c7;
 }
 .interactive{
-     height:70px;
-     width: 70px;
+     height:50px;
+     width: 50px;
 }
 .mainInteractive{
-height:80px;
-width: 80px; 
-box-shadow:0px 5px 0px 0px #1a7ac5;
+height:60px;
+width: 60px; 
+box-shadow:0px 3px 0px 0px #1a7ac5;
+}
+.mainInteractive svg{
+     height:30px;
+     width:30px;
 }
 
 .boxContainer{

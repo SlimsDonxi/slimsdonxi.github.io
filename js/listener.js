@@ -19,7 +19,7 @@ var arraySvg = [ document.querySelector('#greatSvg'),document.querySelector('#ha
 
       recognition.continuous = true;
 
-    microphone.addEventListener("pointerdown", () => {
+      microphone.addEventListener("pointerdown", () => {
      ActivateButton();
         recognition.start();
       });

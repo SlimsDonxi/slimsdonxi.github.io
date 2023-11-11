@@ -35,25 +35,6 @@ var file = FileHelper('stories/listStories/'+el.innerText+'/storyText.txt');
 return listSentences;}
 
 
-
-
-function CheckIfURLExists(url){
-    var request;
-
-
-if(window.XMLHttpRequest)
-    request = new XMLHttpRequest();
-else
-    request = new ActiveXObject("Microsoft.XMLHTTP");
-
-    request.open('GET', url, false); 
-    request.send();
-
-    if (request.status === 404)   return false;
-        
-   else  return true;}
-
-
 function FileHelper(url){
     
         var request = new XMLHttpRequest();
@@ -75,7 +56,7 @@ setTimeout(StartGeneratin(element), 500);
 
 function StartGeneratin(element){
 
-  listPictures =  GetStoryPictures(element.innerText);
+
  
     currentPage=0;
 
@@ -97,10 +78,13 @@ var url = root+'/'+el;
 var exist;
 var counter=0;
     do{
-        exists = CheckIfURLExists(url+`/${counter}.jpg`);
-        if(exists){
+        exists = url+`/${counter}.jpg`;
+        if(url+`/${counter}.jpg` != null || url+`/${counter}.jpg` != undefined){
         listPictures.push(url+`/${counter}.jpg`);
         counter++;
+        }
+        else{
+          return;
         }
     }
     while(exists)
@@ -251,7 +235,7 @@ document.querySelector("#speakingLoader").style.display = "flex";
 }
  else{
   console.log("Supposed to speak the word now");
-   speakObj = new SpeechSynthesisUtterance(currentPressed.innerText);
+   speakObj = new SpeechSynthesisUtterance(currentPressed.innerText.toLowerCase());
    
 }
 speakObj.default = false;
