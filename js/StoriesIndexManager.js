@@ -258,7 +258,7 @@ ResetSpeakingUI();
 function ResetSpeakingUI(){
   
 speaker.style.backgroundColor = "#1a95f4";
-speaker.style.boxShadow = "0px 6px 0px 0px #1a7ac5";
+speaker.style.boxShadow = "0px 5px 0px 0px #1a7ac5";
 
 if(currentPressed!= null){
 currentPressed.style.backgroundColor = "#1a95f4";
@@ -281,7 +281,7 @@ function CheckButtonNextAvailability(){
  } else{
 
           nextButton.style.backgroundColor = "#4dbd2f";
-           nextButton.style.boxShadow = "0px 3px #46a52d";         
+           nextButton.style.boxShadow = "0px 4px #46a52d";         
          nextButton.style.opacity = "1";
         nextButton.setAttribute("onclick", "Next()" );
  }
@@ -298,7 +298,7 @@ function CheckButtonPreviousAvailability(){
 }else{
  prevButton.style.backgroundColor = "#f53228";
       prevButton.style.opacity = "1";
-      prevButton.style.boxShadow = "0px 3px #cb2e26";  
+      prevButton.style.boxShadow = "0px 4px #cb2e26";  
       prevButton.setAttribute("onclick", "Previous()" );
 }
 }

@@ -50,68 +50,68 @@ width:100%;
             <div class="row">
                <div class="col-md-6" >
                   <div class=" text_align_center" >
-                   <img src="../videos/videos/Dora/posters/benny.jpg"onclick="LoadPlayer('Boots Rescue Bennys Cake')" class="img-responsive">
+                   <img src="../videos/videos/Dora/posters/benny.jpg"onclick="PlayClick(); LoadPlayer('Boots Rescue Bennys Cake')" class="img-responsive">
                      <h3>Boots Rescue Bennys Cake</h3>                   
                   </div>             
                </div>
                <div class="col-md-6" >
                   <div class=" text_align_center" >
-                   <img src="../videos/videos/Dora/posters/boots.jpg" onclick="LoadPlayer('Boots in Fairytale Land')"class="img-responsive">
+                   <img src="../videos/videos/Dora/posters/boots.jpg" onclick="PlayClick(); LoadPlayer('Boots in Fairytale Land')"class="img-responsive">
                      <h3>Boots in Fairytale Land</h3>                   
                   </div>             
                </div>
                <div class="col-md-6" >
                   <div class=" text_align_center" >
-                   <img src="../videos/videos/Dora/posters/halloween.jpg" onclick="LoadPlayer('Boots Wear Halloween Costumes')"class="img-responsive">
+                   <img src="../videos/videos/Dora/posters/halloween.jpg" onclick="PlayClick(); LoadPlayer('Boots Wear Halloween Costumes')"class="img-responsive">
                      <h3>Boots Wear Halloween Costumes</h3>                   
                   </div>             
                </div>
                <div class="col-md-6" >
                   <div class=" text_align_center" >
-                   <img src="../videos/videos/Dora/posters/dino.jpg"onclick="LoadPlayer('Dora and Diego in the Time of Dinosaurs')" class="img-responsive">
+                   <img src="../videos/videos/Dora/posters/dino.jpg"onclick="PlayClick(); LoadPlayer('Dora and Diego in the Time of Dinosaurs')" class="img-responsive">
                      <h3>Dora and Diego in the Time of Dinosaurs</h3>                   
                   </div>             
                </div>
                <div class="col-md-6" >
                   <div class=" text_align_center" >
-                   <img src="../videos/videos/Dora/posters/doctor.jpg" onclick="LoadPlayer('Dora Becomes a Doctor')"class="img-responsive">
+                   <img src="../videos/videos/Dora/posters/doctor.jpg" onclick="PlayClick(); LoadPlayer('Dora Becomes a Doctor')"class="img-responsive">
                      <h3>Dora Becomes a Doctor</h3>                   
                   </div>             
                </div>
                <div class="col-md-6" >
                   <div class=" text_align_center" >
-                   <img src="../videos/videos/Dora/posters/rainbow.jpg" onclick="LoadPlayer('Dora Rescues a Rainbow')"class="img-responsive">
+                   <img src="../videos/videos/Dora/posters/rainbow.jpg" onclick="PlayClick(); LoadPlayer('Dora Rescues a Rainbow')"class="img-responsive">
                      <h3>Dora Rescues a Rainbow</h3>                   
                   </div>             
                </div>
                <div class="col-md-6" >
                   <div class=" text_align_center" >
-                   <img src="../videos/videos/Dora/posters/sail.jpg"onclick="LoadPlayer('Dora Sails the Sea with Pirate Pigs')" class="img-responsive">
+                   <img src="../videos/videos/Dora/posters/sail.jpg"onclick="PlayClick(); LoadPlayer('Dora Sails the Sea with Pirate Pigs')" class="img-responsive">
                      <h3>Dora Sails the Sea with Pirate Pigs</h3>                   
                   </div>             
                </div>
                <div class="col-md-6" >
                   <div class=" text_align_center" >
-                   <img src="../videos/videos/Dora/posters/prince.jpg"onclick="LoadPlayer('Dora Saves A Magic Prince')" class="img-responsive">
+                   <img src="../videos/videos/Dora/posters/prince.jpg"onclick="PlayClick(); LoadPlayer('Dora Saves A Magic Prince')" class="img-responsive">
                      <h3>Dora Saves A Magic Prince</h3>                   
                   </div>             
                </div>
                <div class="col-md-6" >
                   <div class=" text_align_center" >
-                   <img src="../videos/videos/Dora/posters/mermaid.jpg" onclick="LoadPlayer('Doras Rescue in Mermaid Kingdom')" class="img-responsive">
+                   <img src="../videos/videos/Dora/posters/mermaid.jpg" onclick="PlayClick(); LoadPlayer('Doras Rescue in Mermaid Kingdom')" class="img-responsive">
                      <h3>Doras Rescue in Mermaid Kingdom</h3>                   
                   </div>             
                </div>
                <div class="col-md-6" >
                   <div class=" text_align_center" >
-                   <img src="../videos/videos/Dora/posters/married.jpg" onclick="LoadPlayer('The Grumpy Old Troll Gets Married')" class="img-responsive">
+                   <img src="../videos/videos/Dora/posters/married.jpg" onclick="PlayClick(); LoadPlayer('The Grumpy Old Troll Gets Married')" class="img-responsive">
                      <h3>The Grumpy Old Troll Gets Married</h3>                   
                   </div>             
                </div>
                
             </div>
          </div>
-         <div onclick="window.location.href ='../video.html'; " class="cancel subCancel shake">
+         <div onclick="PlayClick(); window.location.href ='../video.html'; " class="cancel subCancel shake">
             <svg width="800px" height="800px"viewBox="0 0 25 25"> 
                 <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
                     <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-469.000000, -1041.000000)" fill="#fff">
@@ -134,7 +134,7 @@ width:100%;
             </svg>
         </div>
   </div>
-    
+      <audio id="audioPlayer"></audio>
   
   <script src="../js/videoplayer.js"></script>
     <script src="../js/navigation.js"></script>

@@ -1,3 +1,8 @@
+
+function PlayClick(){
+   document.querySelector("#audioPlayer").src = './audios/click.wav';
+document.querySelector("#audioPlayer").play();
+}
 function CloseReader(el){
 
 

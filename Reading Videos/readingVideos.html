@@ -49,7 +49,7 @@ span{
    <!-- body -->
    <body class="main-layout inner_page">
  <div onclick="window.location.href='../phonics.html';" class="cancel subCancel shake">
-            <svg width="800px" height="800px" viewBox="0 0 25 25"> 
+            <svg class="icon" viewBox="0 0 25 25"> 
                 <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
                     <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-469.000000, -1041.000000)" fill="#fff">
                         <path d="M487.148,1053.48 L492.813,1047.82 C494.376,1046.26 494.376,1043.72 492.813,1042.16 C491.248,1040.59 488.712,1040.59 487.148,1042.16 L481.484,1047.82 L475.82,1042.16 C474.257,1040.59 471.721,1040.59 470.156,1042.16 C468.593,1043.72 468.593,1046.26 470.156,1047.82 L475.82,1053.48 L470.156,1059.15 C468.593,1060.71 468.593,1063.25 470.156,1064.81 C471.721,1066.38 474.257,1066.38 475.82,1064.81 L481.484,1059.15 L487.148,1064.81 C488.712,1066.38 491.248,1066.38 492.813,1064.81 C494.376,1063.25 494.376,1060.71 492.813,1059.15 L487.148,1053.48" id="cross" sketch:type="MSShapeGroup"></path>
@@ -65,7 +65,7 @@ span{
                <div class="col-md-12">
                   <div class="titlepage text_align_center" style="border:0">
                      <h2>Reading Videos!</h2>
-                     <input type="text" id="searchInput" onkeyup="search()" placeholder="Search for names..">
+                     <input type="text" id="searchInput" onkeyup="PlayClick();search()" placeholder="Search for names..">
                   </div>
                </div>
             </div>
@@ -80,27 +80,27 @@ span{
                      
                   </div>
                </div>
-               <div class="col-md-4 margi_bottom containerVideo" onclick="LoadPlayer('Three Letter Words with a')" data="three letters 3 a">
+               <div class="col-md-4 margi_bottom containerVideo" onclick="PlayClick();LoadPlayer('Three Letter Words with a')" data="three letters 3 a">
                   <div class="class_box text_align_center">          
                      <h1>a</h1>                     
                  </div>             
                </div>
-                <div class="col-md-4 margi_bottom containerVideo" onclick="LoadPlayer('Three letter words with e')" data="three letters 3 e">
+                <div class="col-md-4 margi_bottom containerVideo" onclick="PlayClick();LoadPlayer('Three letter words with e')" data="three letters 3 e">
                   <div class="class_box text_align_center">          
                      <h1>e</h1>                     
                  </div>             
                </div>
-                <div class="col-md-4 margi_bottom containerVideo" onclick="LoadPlayer('Three letter words with i')" data="three letters 3 i">
+                <div class="col-md-4 margi_bottom containerVideo" onclick="PlayClick();LoadPlayer('Three letter words with i')" data="three letters 3 i">
                   <div class="class_box text_align_center">          
                      <h1>i</h1>                     
                  </div>             
                </div>
-                <div class="col-md-4 margi_bottom containerVideo" onclick="LoadPlayer('Three letter words with o')" data="three letters 3 o">
+                <div class="col-md-4 margi_bottom containerVideo" onclick="PlayClick();LoadPlayer('Three letter words with o')" data="three letters 3 o">
                   <div class="class_box text_align_center">          
                      <h1>o</h1>                     
                  </div>             
                </div>
-               <div class="col-md-4 margi_bottom containerVideo" onclick="LoadPlayer('Three letter words with u')" data="three letters 3 u">
+               <div class="col-md-4 margi_bottom containerVideo" onclick="PlayClick();LoadPlayer('Three letter words with u')" data="three letters 3 u">
                   <div class="class_box text_align_center">          
                      <h1>u</h1>                     
                  </div>             
@@ -114,7 +114,7 @@ span{
                      <h2 style="color:#a1a1a1">Blending</h2>               
                   </div>
                </div>
-               <div class="col-md-4 margi_bottom containerVideo" onclick="LoadPlayer('at')" data="a t at" >
+               <div class="col-md-4 margi_bottom containerVideo" onclick="PlayClick();LoadPlayer('at')" data="a t at" >
                   <div class="class_box text_align_center" style="background:#34a2e1; box-shadow: 0px 10px 0px 0px #2a87bd;">          
                      <h1>at</h1>                     
                  </div>             
@@ -122,22 +122,22 @@ span{
                 <div class="col-md-12">
                  <hr>
               </div>
-                <div class="col-md-4 margi_bottom containerVideo" onclick="LoadPlayer('id')" data="id i d">
+                <div class="col-md-4 margi_bottom containerVideo" onclick="PlayClick();LoadPlayer('id')" data="id i d">
                   <div class="class_box text_align_center" style="background:#34a2e1; box-shadow: 0px 10px 0px 0px #2a87bd;">          
                      <h1>id</h1>                     
                  </div>             
                </div>
-                <div class="col-md-4 margi_bottom containerVideo" onclick="LoadPlayer('ip')" data="i p ip">
+                <div class="col-md-4 margi_bottom containerVideo" onclick="PlayClick();LoadPlayer('ip')" data="i p ip">
                   <div class="class_box text_align_center" style="background:#34a2e1; box-shadow: 0px 10px 0px 0px #2a87bd;">          
                      <h1>ip</h1>                     
                  </div>             
                </div>
-                <div class="col-md-4 margi_bottom containerVideo" onclick="LoadPlayer('it')" data="it i t">
+                <div class="col-md-4 margi_bottom containerVideo" onclick="PlayClick();LoadPlayer('it')" data="it i t">
                   <div class="class_box text_align_center" style="background:#34a2e1; box-shadow: 0px 10px 0px 0px #2a87bd;">          
                      <h1>it</h1>                     
                  </div>             
                </div>
-               <div class="col-md-4 margi_bottom containerVideo" onclick="LoadPlayer('ig')" data="ig i g">
+               <div class="col-md-4 margi_bottom containerVideo" onclick="PlayClick();LoadPlayer('ig')" data="ig i g">
                   <div class="class_box text_align_center" style="background:#34a2e1; box-shadow: 0px 10px 0px 0px #2a87bd;">          
                      <h1>ig</h1>                     
                  </div>             
@@ -145,17 +145,17 @@ span{
               <div class="col-md-12">
                  <hr>
               </div>
-               <div class="col-md-4 margi_bottom containerVideo" onclick="LoadPlayer('un')" data="un u n">
+               <div class="col-md-4 margi_bottom containerVideo" onclick="PlayClick();LoadPlayer('un')" data="un u n">
                   <div class="class_box text_align_center" style="background:#34a2e1; box-shadow: 0px 10px 0px 0px #2a87bd;">          
                      <h1>un</h1>                     
                  </div>             
                </div>
-               <div class="col-md-4 margi_bottom containerVideo" onclick="LoadPlayer('ut')" data="ut u t">
+               <div class="col-md-4 margi_bottom containerVideo" onclick="PlayClick();LoadPlayer('ut')" data="ut u t">
                   <div class="class_box text_align_center" style="background:#34a2e1; box-shadow: 0px 10px 0px 0px #2a87bd;">          
                      <h1>ut</h1>                     
                  </div>             
                </div>
-               <div class="col-md-4 margi_bottom containerVideo" onclick="LoadPlayer('ug')" data="ug u g">
+               <div class="col-md-4 margi_bottom containerVideo" onclick="PlayClick();LoadPlayer('ug')" data="ug u g">
                   <div class="class_box text_align_center" style="background:#34a2e1; box-shadow: 0px 10px 0px 0px #2a87bd;">          
                      <h1>ug</h1>                     
                  </div>             
@@ -163,7 +163,7 @@ span{
                 <div class="col-md-12">
                  <hr>
               </div>
-               <div class="col-md-4 margi_bottom containerVideo" onclick="LoadPlayer('og')" data="og o g">
+               <div class="col-md-4 margi_bottom containerVideo" onclick="PlayClick();LoadPlayer('og')" data="og o g">
                   <div class="class_box text_align_center" style="background:#34a2e1; box-shadow: 0px 10px 0px 0px #2a87bd;">          
                      <h1>og</h1>                     
                  </div>             
@@ -177,7 +177,7 @@ span{
 
     <video class="video" width="100%"  controls="controls" preload="metadata"  loop autoplay playsinline  type="video/mp4" src="videos/MickeyMouse/A Flower For Minnie.mp4"> </video>
     <div class="cancel subCancel" onclick="CloseReader('divVideoPlayer')" >
-            <svg width="800px" height="800px" viewBox="0 0 25 25"> 
+            <svg class="icon" viewBox="0 0 25 25"> 
                 <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
                     <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-469.000000, -1041.000000)" fill="#fff">
                         <path d="M487.148,1053.48 L492.813,1047.82 C494.376,1046.26 494.376,1043.72 492.813,1042.16 C491.248,1040.59 488.712,1040.59 487.148,1042.16 L481.484,1047.82 L475.82,1042.16 C474.257,1040.59 471.721,1040.59 470.156,1042.16 C468.593,1043.72 468.593,1046.26 470.156,1047.82 L475.82,1053.48 L470.156,1059.15 C468.593,1060.71 468.593,1063.25 470.156,1064.81 C471.721,1066.38 474.257,1066.38 475.82,1064.81 L481.484,1059.15 L487.148,1064.81 C488.712,1066.38 491.248,1066.38 492.813,1064.81 C494.376,1063.25 494.376,1060.71 492.813,1059.15 L487.148,1053.48" id="cross" sketch:type="MSShapeGroup"></path>
@@ -189,7 +189,7 @@ span{
       
       </div>                                                         
 
-     
+     <audio id="audioPlayer"></audio>
    
       <!-- sidebar -->
       

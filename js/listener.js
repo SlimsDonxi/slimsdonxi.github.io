@@ -13,7 +13,7 @@ recognition.lang = "en-US";
     const resultContainer = document.querySelector('#ResultContainer');
   const score = document.querySelector('#score');
     const comment = document.querySelector('#comment');
-
+   var audio = document.querySelector('#audioPlayer');
 var arraySvg = [ document.querySelector('#greatSvg'),document.querySelector('#happySvg'),document.querySelector('#badSvg') ]
 
 
@@ -22,11 +22,17 @@ var arraySvg = [ document.querySelector('#greatSvg'),document.querySelector('#ha
       microphone.addEventListener("pointerdown", () => {
      ActivateButton();
         recognition.start();
+        
+        audio.src = './audios/startRecord.wav';
+        audio.play();
       });
 
       microphone.addEventListener("pointerup", () => {
      ResetButton();
         recognition.stop();
+        
+        audio.src = './audios/endRecord.mp3';
+        audio.play();
       });
 
       recognition.addEventListener("result", (event) => {
@@ -71,18 +77,24 @@ arraySvg.forEach((x)=> {
      resultContainer.classList.remove('fail');
      resultContainer.classList.remove('medium');
   if(el>70) {
-
+ audio.src = './audios/correct.wav';
+        audio.play();
    resultContainer.classList.add('success');
     comment.querySelector('span').innerText = "Great Job";
   arraySvg[0].style.display = 'block';
+
   }  
 
   else if(el>40){
+     audio.src = './audios/good.wav';
+        audio.play();
      resultContainer.classList.add('medium');
    arraySvg[1].style.display = 'block';
     comment.querySelector('span').innerText = "Not bad";}
 
    else{
+     audio.src = './audios/fail.wav';
+        audio.play();
      resultContainer.classList.add('fail');
      arraySvg[2].style.display = 'block';
      comment.querySelector('span').innerText = "Try again"
@@ -95,7 +107,7 @@ arraySvg.forEach((x)=> {
 
       function ActivateButton(){
       microphone.style.backgroundColor = "#f51d36";
-      microphone.style.boxShadow = "0px 7px 0px 0px #d11c31";
+      microphone.style.boxShadow = "0px 0px 0px 0px #d11c31";
       document.querySelector("#micIcon").style.display = "none"
       document.querySelector("#micLoader").style.display = "flex";
       }
@@ -103,7 +115,7 @@ arraySvg.forEach((x)=> {
       function ResetButton(){
          microphone.style.backgroundColor = "#1a95f4";
 
-        microphone.style.boxShadow = "0px 7px 0px 0px #1a7ac5";
+        microphone.style.boxShadow = "0px 5px 0px 0px #1a7ac5";
        
         document.querySelector("#micIcon").style.display = "flex";
       document.querySelector("#micLoader").style.display = "none";

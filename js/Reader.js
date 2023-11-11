@@ -62,7 +62,7 @@ blockStr = clickable?AppendForReading(currentArray[i]):AppendForPhonics(currentA
 function AppendForPhonics(el){
 
 
-return `<div class="col-md-4 margi_bottom" onmouseup="GetText(this)">
+return `<div class="col-md-4 margi_bottom" onmouseup="PlayClick();GetText(this)">
       <div class="class_box text_align_center" style="background:#ef2a38; box-shadow:0 10px 0 0 #d22834">            
         <h1> ${el}</h1>
         </div>
@@ -71,7 +71,7 @@ return `<div class="col-md-4 margi_bottom" onmouseup="GetText(this)">
 function AppendForReading(el){
 
 
- return `<div class="col-md-6 margi_bottom" onmouseup="GetText(this)">
+ return `<div class="col-md-6 margi_bottom" onmouseup="PlayClick(); GetText(this)">
       <div class="class_box text_align_center" style="background:#ef2a38; box-shadow:0 10px 0 0 #d22834; text-align:start; ">            
         <span>${el}</span>
         </div>
@@ -82,14 +82,15 @@ function AppendForReading(el){
 var clicked;
 function GetText(element) {
   
-
+  microphone.style.display ='block';
 document.querySelector("#reading").style.display ="block";
 
  clicked= element.children[0].children[0];
-
+if(clicked.innerText.length <3)    microphone.style.display ='none';
 if(clickable == "clickable")   
  CreateBoxes(GetWords(clicked.innerText));
 else{
+
 highlight(clicked.innerText);
 }
 
@@ -185,20 +186,37 @@ var ulContainer = document.querySelector(".dropdown__items");
 // Fetch the list of voices and populate the voice options.
 
 
-function loadVoices() {
+function loadVoices() 
+{
   // Fetch the available voices.
-  var voices = speechSynthesis.getVoices();
+   var voices = speechSynthesis.getVoices();
    var str;
   // Loop through each of the voices.
-  voices.forEach(function(voice, i) {
-    if(voice.lang.includes("en")){
+  voices.forEach(function(voice, i) 
+  {
+    if(voice.lang.includes("en"))
+    {
 
-   str = voice.name.replace('Google', '');
-   str = voice.name.replace('Microsoft', '');
-   ulContainer.innerHTML += `<li onclick='setVoice(this)'>${str}</li>`    
-  }
+         if(!voice.name.includes('Microsoft'))
+         {
+           if(voice.name.includes('Google')) 
+              str = voice.name.replace('Google', '');
+                                   
+                                   
+
+            var block = `<li onclick='setVoice(this)'>${str}</li>`  
+            console.log(str);
+              if(str == "UK English Female" || str.includes("Karen"))
+                {
+                
+                  setVoice(str);
+                }
+              ulContainer.innerHTML += block;
+                                    
+                                
+        }
+    }                            
   });
-
  
 }
 
@@ -352,10 +370,10 @@ else{
 function SetSpeakingUI(){
 
 speaker.style.backgroundColor = "#1a95f4";
-speaker.style.boxShadow = "0px 6px 0px 0px #1a7ac5";
+speaker.style.boxShadow = "0px 5px 0px 0px #1a7ac5";
 if(currentPressed!=null){
 currentPressed.style.backgroundColor = "#1a95f4";
-currentPressed.style.boxShadow = "0px 10px 0px 0px #1a7ac5";
+currentPressed.style.boxShadow = "0px 8px 0px 0px #1a7ac5";
 }
 document.querySelector("#speakerIcon").style.display = "flex";
 document.querySelector("#speakingLoader").style.display = "none";
@@ -374,7 +392,7 @@ function CheckButtonNextAvailability(){
  } else{
 
           nextButton.style.backgroundColor = "#4dbd2f";
-           nextButton.style.boxShadow = "0px 3px #46a52d";         
+           nextButton.style.boxShadow = "0px 4px #46a52d";         
          nextButton.style.opacity = "1";
         nextButton.setAttribute("onclick", "Next()" );
  }
@@ -390,7 +408,7 @@ function CheckButtonPreviousAvailability(){
 }else{
  prevButton.style.backgroundColor = "#f53228";
       prevButton.style.opacity = "1";
-      prevButton.style.boxShadow = "0px 3px #cb2e26";  
+      prevButton.style.boxShadow = "0px 4px #cb2e26";  
       prevButton.setAttribute("onclick", "Previous()" );
 }
 }

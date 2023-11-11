@@ -29,7 +29,7 @@
   visibility: hidden;
   z-index: -1;
   opacity: 0;
-   overflow-y: scroll;
+
   transition: all 0.4s cubic-bezier(0.93, 0.88, 0.1, 0.8);
 }
 .dropdown__items::before {
@@ -56,7 +56,7 @@
   display: none;
 }
 .dropdown input:checked ~ .dropdown__items {
-  top: calc(100% + 10px);
+  top: calc(100% + 25px);
   visibility: visible;
   opacity: 1;
 }

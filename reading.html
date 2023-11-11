@@ -53,14 +53,15 @@ font-weight:bold;
      text-aligh:start;
 }
 
-        </style>
+        </style>.
+         <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
    </head>
    <!-- body -->
    <body class="main-layout inner_page">
   
-        <div onclick="window.location.href='index.html';" class="cancel mainCancel shake">
+        <div onclick="PlayClick(); window.location.href='index.html';" class="cancel mainCancel shake">
                 <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-            <svg width="800px" height="800px" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M56.87 25.981L50.27 21.031L47.27 18.781L35.57 10.001C34.4423 9.16327 33.0748 8.71094 31.67 8.71094C30.2652 8.71094 28.8977 9.16327 27.77 10.001L21.67 14.581V14.371C21.6684 13.8411 21.4572 13.3333 21.0825 12.9586C20.7077 12.5838 20.1999 12.3726 19.67 12.371H12.47C11.9396 12.371 11.4309 12.5817 11.0558 12.9568C10.6807 13.3319 10.47 13.8406 10.47 14.371V23.161L6.44002 26.291C6.23227 26.4524 6.05838 26.6531 5.92833 26.8817C5.79827 27.1103 5.71459 27.3624 5.68208 27.6234C5.64957 27.8844 5.66888 28.1493 5.73887 28.4028C5.80887 28.6564 5.92819 28.8936 6.09001 29.101C6.276 29.3427 6.51546 29.538 6.7896 29.6716C7.06373 29.8052 7.36505 29.8734 7.67 29.871C8.11211 29.8709 8.54152 29.7231 8.89 29.451L10.47 28.231V48.281C10.4716 50.0044 11.1569 51.6568 12.3756 52.8755C13.5942 54.0941 15.2466 54.7794 16.97 54.781H25.6C25.9594 54.7808 26.3121 54.6831 26.6203 54.4981C26.9285 54.3132 27.1807 54.0481 27.35 53.731C27.5142 53.4413 27.6003 53.114 27.6 52.781C27.6017 52.7109 27.5983 52.6407 27.59 52.571V46.851C27.5916 45.7703 28.0223 44.7345 28.7874 43.9713C29.5525 43.2081 30.5893 42.7799 31.67 42.781C32.7491 42.7821 33.7837 43.2112 34.5468 43.9742C35.3098 44.7373 35.7389 45.7719 35.74 46.851V52.781C35.7397 53.114 35.8259 53.4413 35.99 53.731C36.1624 54.0477 36.4167 54.3122 36.7263 54.4969C37.0359 54.6816 37.3895 54.7797 37.75 54.781H46.37C48.0929 54.7776 49.7442 54.0917 50.9624 52.8734C52.1807 51.6552 52.8666 50.0039 52.87 48.281V27.981L54.47 29.181C54.8129 29.4398 55.2305 29.5801 55.66 29.581C55.9718 29.5802 56.2792 29.5076 56.5584 29.3689C56.8376 29.2301 57.081 29.029 57.27 28.781C57.5883 28.3567 57.7249 27.8233 57.6499 27.2982C57.5749 26.7731 57.2944 26.2993 56.87 25.981Z" fill="#fff"/>
             </svg>
         </div>
@@ -77,14 +78,14 @@ font-weight:bold;
             </div>
             <div class="row">
                 
-               <div class="col-md-6 margi_bottom shake" onclick="populate('good')">
+               <div class="col-md-6 margi_bottom shake" onclick="PlayClick(); populate('good')">
                   <div class="class_box text_align_center" >            
                       <h1>Good at <br><br> <br>bad at</h1>
                      <p>7 Sentences</p>
                   </div>
                  
                </div>
-               <div class="col-md-6 margi_bottom shake" onclick="populate('too')">
+               <div class="col-md-6 margi_bottom shake" onclick="PlayClick(); populate('too')">
                   <div class="class_box blue text_align_center">
                      <h1>Too <br><br> <br>Either</h1>
                      <p>7 Sentences</p>          
@@ -92,7 +93,7 @@ font-weight:bold;
                 
                 
                </div>
-               <div class="col-md-6 margi_bottom shake" onclick="populate('school')">
+               <div class="col-md-6 margi_bottom shake" onclick="PlayClick(); populate('school')">
                   <div class="class_box text_align_center" >             
                        <h1>School <br><br> <br>Supplies</h1>
                      <p>12 Sentence Sentences</p>             
@@ -109,7 +110,7 @@ font-weight:bold;
         <div id="listPhonics" class="class" style="overflow-y:scroll;background:white; position:fixed; top:0; height:100%;width:100%;display:none; z-index: 600;">
 
             <div onclick="CloseReader('listPhonics')" class="cancel subCancel shake">
-            <svg width="800px" height="800px" viewBox="0 0 25 25"> 
+            <svg class="icon" viewBox="0 0 25 25"> 
                 <g id="Page-1" stroke="none" stroke-width="1" fill="#fff" fill-rule="evenodd" sketch:type="MSPage">
                     <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-469.000000, -1041.000000)" fill="#fff">
                         <path d="M487.148,1053.48 L492.813,1047.82 C494.376,1046.26 494.376,1043.72 492.813,1042.16 C491.248,1040.59 488.712,1040.59 487.148,1042.16 L481.484,1047.82 L475.82,1042.16 C474.257,1040.59 471.721,1040.59 470.156,1042.16 C468.593,1043.72 468.593,1046.26 470.156,1047.82 L475.82,1053.48 L470.156,1059.15 C468.593,1060.71 468.593,1063.25 470.156,1064.81 C471.721,1066.38 474.257,1066.38 475.82,1064.81 L481.484,1059.15 L487.148,1064.81 C488.712,1066.38 491.248,1066.38 492.813,1064.81 C494.376,1063.25 494.376,1060.71 492.813,1059.15 L487.148,1053.48" id="cross" sketch:type="MSShapeGroup"></path>
@@ -127,7 +128,7 @@ font-weight:bold;
              </div>
         </div>
 
-        <div id="reading" class="class" style="background:#f5f5f5; position:fixed; top:0; height:100%;width:100%;display:none; z-index: 601;">        
+        <div id="reading" class="class mainFrame" style="">        
 
 
 
@@ -137,7 +138,7 @@ font-weight:bold;
 
 
         <div onclick="CloseReader('reading')" class="cancel subCancel shake">
-            <svg width="800px" height="800px"viewBox="0 0 25 25"> 
+            <svg class="icon"viewBox="0 0 25 25"> 
                 <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
                     <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-469.000000, -1041.000000)" fill="#fff">
                         <path d="M487.148,1053.48 L492.813,1047.82 C494.376,1046.26 494.376,1043.72 492.813,1042.16 C491.248,1040.59 488.712,1040.59 487.148,1042.16 L481.484,1047.82 L475.82,1042.16 C474.257,1040.59 471.721,1040.59 470.156,1042.16 C468.593,1043.72 468.593,1046.26 470.156,1047.82 L475.82,1053.48 L470.156,1059.15 C468.593,1060.71 468.593,1063.25 470.156,1064.81 C471.721,1066.38 474.257,1066.38 475.82,1064.81 L481.484,1059.15 L487.148,1064.81 C488.712,1066.38 491.248,1066.38 492.813,1064.81 C494.376,1063.25 494.376,1060.71 492.813,1059.15 L487.148,1053.48" id="cross" sketch:type="MSShapeGroup"></path>
@@ -149,17 +150,18 @@ font-weight:bold;
 
 
        
-               <div class="container" style="position:absolute;bottom:0px"> 
+               <div class="container centerBottom" style="position:absolute;bottom:0px"> 
+                <div class="backgroundInteractive"></div>
                 <div class="interactiveContainer">                  
                      
-                     <div class="interactive shake" id="previous" onclick="Previous()" >
-                        <svg class="center" width="80px" height="80px"  viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+                     <div class="interactive shake" id="previous" onclick="PlayClick(); Previous()" >
+                        <svg class="icon" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12.4755 5.18341L7.49766 9.60815C6.56708 10.4353 6.10179 10.8489 5.93032 11.3373C5.77974 11.7662 5.77974 12.2335 5.93032 12.6624C6.10179 13.1508 6.56708 13.5644 7.49766 14.3916L12.4755 18.8163C12.8978 19.1917 13.1089 19.3794 13.2883 19.3861C13.4441 19.3919 13.5937 19.3247 13.6929 19.2044C13.807 19.0659 13.807 18.7834 13.807 18.2184V15.4284C16.2351 15.4284 18.7996 16.2083 20.6723 17.5926C21.6471 18.3133 22.1346 18.6737 22.3203 18.6595C22.5012 18.6456 22.6161 18.575 22.71 18.4196C22.8063 18.2603 22.7212 17.7624 22.5511 16.7666C21.4461 10.3004 16.9961 8.57129 13.807 8.57129V5.78134C13.807 5.21632 13.807 4.93381 13.6929 4.79531C13.5937 4.67498 13.4441 4.6078 13.2883 4.61363C13.1089 4.62034 12.8978 4.80803 12.4755 5.18341Z" />
                         </svg>
                      </div>
                   
-                   <div class=" interactive shake mainInteractive" id="speaker" onmouseup="StartSpeaking()" >
-                       <svg class="center" id="speakerIcon"width="80px" height="80px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#fff">
+                   <div class=" interactive  mainInteractive" id="speaker" onmouseup="StartSpeaking()" >
+                       <svg class="icon" id="speakerIcon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#fff">
                         <path d="M18.008 2.987C19.34 2.225 21 3.187 21 4.723v12.554c0 1.535-1.659 2.498-2.992 1.736L14 16.723V5.277l4.008-2.29zM12 6H7a5 5 0 0 0-1 9.9v3.6a2.5 2.5 0 0 0 5 0V16h1V6z" clip-rule="evenodd" />
                        </svg>   -
                       <div id="speakingLoader"class="boxContainer" style="display:none">
@@ -167,12 +169,12 @@ font-weight:bold;
                           <div class="box box2"></div>
                           <div class="box box3"></div>
                           <div class="box box4"></div>
-                          <div class="box box5"></div>
+                          
                         </div> 
                     </div>
                     <div class=" interactive  mainInteractive" id="microphone"   >
                        <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-                        <svg id="micIcon"width="80px" height="80px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg id="micIcon"class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 2C8.82436 2 6.25 4.57436 6.25 7.75V10.75C6.25 13.9256 8.82436 16.5 12 16.5C14.9214 16.5 17.334 14.3213 17.7015 11.5L13 11.5C12.5858 11.5 12.25 11.1642 12.25 10.75C12.25 10.3358 12.5858 10 13 10L17.75 10V8.5H13C12.5858 8.5 12.25 8.16421 12.25 7.75C12.25 7.33579 12.5858 7 13 7H17.7015C17.334 4.17873 14.9214 2 12 2Z" fill="#fff"/>
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M4 9C4.41421 9 4.75 9.33579 4.75 9.75V10.75C4.75 14.7541 7.99594 18 12 18C16.0041 18 19.25 14.7541 19.25 10.75V9.75C19.25 9.33579 19.5858 9 20 9C20.4142 9 20.75 9.33579 20.75 9.75V10.75C20.75 15.3298 17.2314 19.0879 12.75 19.4683V21.75C12.75 22.1642 12.4142 22.5 12 22.5C11.5858 22.5 11.25 22.1642 11.25 21.75V19.4683C6.7686 19.0879 3.25 15.3298 3.25 10.75V9.75C3.25 9.33579 3.58579 9 4 9Z" fill="#fff"/>
                         </svg>
@@ -181,11 +183,11 @@ font-weight:bold;
                           <div class="box box2"></div>
                           <div class="box box3"></div>
                           <div class="box box4"></div>
-                          <div class="box box5"></div>
+                          
                         </div> 
                     </div>
-                        <div class=" interactive shake" id="next"onclick="Next()"  >
-                       <svg  width="80px" height="80px"  viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+                        <div class=" interactive shake" id="next"onclick="PlayClick(); Next()"  >
+                       <svg class="icon"  viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12.3315 5.18341L17.3094 9.60815C18.2399 10.4353 18.7052 10.8489 18.8767 11.3373C19.0273 11.7662 19.0273 12.2335 18.8767 12.6624C18.7052 13.1508 18.2399 13.5644 17.3094 14.3916L12.3315 18.8163C11.9092 19.1917 11.6981 19.3794 11.5187 19.3861C11.3629 19.3919 11.2133 19.3247 11.1142 19.2044C11 19.0659 11 18.7834 11 18.2184V15.4284C8.57196 15.4284 6.00739 16.2083 4.13478 17.5926C3.15988 18.3133 2.67242 18.6737 2.48676 18.6595C2.30578 18.6456 2.19093 18.575 2.09703 18.4196C2.0007 18.2603 2.08578 17.7624 2.25595 16.7666C3.36093 10.3004 7.8109 8.57129 11 8.57129V5.78134C11 5.21632 11 4.93381 11.1142 4.79531C11.2133 4.67498 11.3629 4.6078 11.5187 4.61363C11.6981 4.62034 11.9092 4.80803 12.3315 5.18341Z" />
                         </svg>
                    </div>        
@@ -203,118 +205,38 @@ font-weight:bold;
    
   </ul>
 </div>
-
-
+<svg>
+  <filter id="goo">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+    <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+    <feBlend in="SourceGraphic" in2="goo" />
+  </filter>
+</svg>
 <div id="ResultWrapper">
     <div id="ResultContainer">
     <div class="row">
-         <div class ="col-md-12" style="background:#fff; padding-top:50px; padding-bottom:50px; ">
+         <div class ="col-md-12 emojiContainer ">       
+            <lottie-player id="GreatSvg" src="https://lottie.host/fa91ea0d-599e-4158-a753-799c0911499e/Qli3MgtYxb.json" speed="1" loop autoplay direction="1" mode="normal"></lottie-player>
+            <lottie-player id="HappySvg" src="https://lottie.host/eb8f8a72-4e31-4207-8518-cfba63212250/8z4P0LCKM4.json"   speed="1" loop  autoplay direction="1" mode="normal"></lottie-player>
+            <lottie-player id="badSvg" src="https://lottie.host/864eeee4-f869-4dd4-b132-5655ddf6e5b9/7lj38RVe7z.json"  speed="1" loop  autoplay direction="1" mode="normal"></lottie-player>
+        </div> 
 
-            <svg height="120px" width="120px" version="1.1" id="GreatSvg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-             viewBox="0 0 511.999 511.999" xml:space="preserve">
-            <circle style="fill:#FFDB6C;" cx="247.796" cy="255.997" r="247.796"/>
-            <path style="fill:#FCC56B;" d="M300.895,467.216c-136.853,0-247.794-110.941-247.794-247.794c0-73.116,31.673-138.825,82.04-184.181
-                C54.919,76.258,0,159.716,0,256.003c0,136.853,110.941,247.794,247.794,247.794c63.738,0,121.848-24.073,165.754-63.612
-                C379.75,457.466,341.462,467.216,300.895,467.216z"/>
-            <g>
-                <path style="fill:#F9A880;" d="M141.308,259.555c-18.402,0-33.321,14.918-33.321,33.32h66.641
-                    C174.628,274.473,159.71,259.555,141.308,259.555z"/>
-                <path style="fill:#F9A880;" d="M431.948,259.555c-18.402,0-33.321,14.918-33.321,33.32h66.641
-                    C465.269,274.473,450.349,259.555,431.948,259.555z"/>
-            </g>
-            <path style="fill:#56586F;" d="M105.165,121.895c64.702-14.849,117.079-9.739,175.098,3.782c8.604,2.004,17.692,4.239,27.29,4.532
-                c15.985,0.489,33.956-3.489,49.449-7.382c61.168-15.366,108.95-7.374,154.996,2.465l-3.402,27.211
-                c-7.188,0.159-9.449,3.511-11.503,10.054c-10.747,34.242-1.594,93.16-81.048,86.233c-52.27-4.558-67.239-18.879-92.152-81.847
-                c-2.12-5.356-3.497-14.207-15.602-13.88c-6.835,0.184-12.948,1.392-15.079,13.267c-3.973,22.126-34.188,82.245-95.535,82.179
-                c-54.185-0.058-74.855-28.184-77.323-90.159c-0.306-7.695-7.012-9.156-11.035-9.246L105.165,121.895L105.165,121.895z"/>
-            <g>
-                <path style="fill:#737891;" d="M199.128,113.331l-37.84,129.044c9.958,4.097,21.979,6.12,36.392,6.134
-                    c0.254,0,0.504-0.009,0.758-0.011l38.499-131.292C224.347,115.304,211.809,113.972,199.128,113.331z"/>
-                <path style="fill:#737891;" d="M434.438,114.376c-12.593-0.403-25.665,0-39.395,1.534l-33.781,115.202
-                    c9.238,7.758,20.144,12.263,34.543,15.016L434.438,114.376z"/>
-            </g>
-            <path style="fill:#7F184C;" d="M319.673,395.914c-16.785,0-33.382-5.73-46.784-16.718c-4.305-3.53-4.933-9.882-1.403-14.187
-                c3.53-4.306,9.882-4.933,14.188-1.403c15.016,12.314,35.551,15.539,53.597,8.423c17.582-6.937,30.535-23.491,33.802-43.202
-                c0.913-5.492,6.101-9.207,11.594-8.296c5.493,0.911,9.207,6.102,8.297,11.594c-4.422,26.66-22.161,49.137-46.296,58.657
-                C337.935,394.228,328.776,395.914,319.673,395.914z"/>
-            <ellipse transform="matrix(0.2723 -0.9622 0.9622 0.2723 141.702 343.89)" style="fill:#FCEB88;" cx="298.209" cy="78.261" rx="28.897" ry="51.747"/>
-        </svg>
-
-
-        <svg   height="120px" width="120px" version="1.1" id="HappySvg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-             viewBox="0 0 512.003 512.003" xml:space="preserve">
-                <circle style="fill:#FDDF6D;" cx="256.001" cy="256.001" r="256.001"/>
-                <path style="fill:#FCC56B;" d="M310.859,474.208c-141.385,0-256-114.615-256-256c0-75.537,32.722-143.422,84.757-190.281
-                    C56.738,70.303,0,156.525,0,256c0,141.385,114.615,256,256,256c65.849,0,125.883-24.87,171.243-65.718
-                    C392.325,464.135,352.77,474.208,310.859,474.208z"/>
-                <g>
-                    <path style="fill:#7F184C;" d="M245.899,187.173c-5.752,0-10.414-4.663-10.414-10.414c0-13.433-10.93-24.362-24.362-24.362
-                        s-24.362,10.93-24.362,24.362c0,5.752-4.663,10.414-10.414,10.414c-5.752,0-10.414-4.663-10.414-10.414
-                        c0-24.918,20.272-45.19,45.19-45.19s45.19,20.272,45.19,45.19C256.314,182.51,251.651,187.173,245.899,187.173z"/>
-                    <path style="fill:#7F184C;" d="M421.798,187.173c-5.752,0-10.414-4.663-10.414-10.414c0-13.433-10.93-24.362-24.362-24.362
-                        s-24.362,10.93-24.362,24.362c0,5.752-4.663,10.414-10.414,10.414s-10.414-4.663-10.414-10.414c0-24.918,20.272-45.19,45.19-45.19
-                        c24.918,0,45.19,20.272,45.19,45.19C432.213,182.51,427.55,187.173,421.798,187.173z"/>
-                    <path style="fill:#7F184C;" d="M302.132,403.377c-27.589,0-53.075-14.986-66.511-39.108c-2.799-5.025-0.994-11.368,4.03-14.166
-                        c5.024-2.799,11.367-0.994,14.166,4.03c9.763,17.528,28.276,28.415,48.315,28.415c19.528,0,38.252-10.998,48.865-28.702
-                        c2.958-4.932,9.355-6.535,14.287-3.577c4.934,2.958,6.535,9.354,3.577,14.287C354.506,388.503,328.936,403.377,302.132,403.377z"/>
-                </g>
-                <ellipse transform="matrix(0.2723 -0.9622 0.9622 0.2723 141.2787 350.4419)" style="fill:#FCEB88;" cx="302.329" cy="81.817" rx="29.854" ry="53.46"/>
-                <g>
-                    <path style="fill:#F9A880;" d="M145.987,240.152c-19.011,0-34.423,15.412-34.423,34.423h68.848
-                        C180.41,255.564,164.998,240.152,145.987,240.152z"/>
-                    <path style="fill:#F9A880;" d="M446.251,235.539c-19.011,0-34.425,15.412-34.425,34.423h68.848
-                        C480.676,250.951,465.264,235.539,446.251,235.539z"/>
-                </g>
-        </svg> 
-
-
-        <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-        <svg height="120px" width="120px" version="1.1" id="badSvg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-             viewBox="0 0 512.003 512.003" xml:space="preserve">
-        <circle style="fill:#FDDF6D;" cx="256.001" cy="256.001" r="256.001"/>
-        <path style="fill:#FCC56B;" d="M310.859,474.208c-141.385,0-256-114.615-256-256c0-75.537,32.722-143.422,84.757-190.281
-            C56.738,70.303,0,156.525,0,256c0,141.385,114.615,256,256,256c65.849,0,125.883-24.87,171.243-65.718
-            C392.325,464.135,352.77,474.208,310.859,474.208z"/>
-        <g>
-            <path style="fill:#3FA9F5;" d="M214.76,207.477c-25.664,1.047-39.146,21.868-40.262,23.658v267.611
-                C200.099,507.338,227.505,512,256,512c1.037,0,2.069-0.028,3.105-0.039c0-93.609,0-187.217,0-280.827
-                C249.526,215.822,232.573,206.749,214.76,207.477z"/>
-            <path style="fill:#3FA9F5;" d="M392.434,207.477c-25.664,1.047-39.146,21.868-40.262,23.658v262.168
-                c31.909-12.944,60.621-32.124,84.606-56.046c0-68.706,0-137.414,0-206.122C427.2,215.822,410.247,206.749,392.434,207.477z"/>
-        </g>
-        <g>
-            <path style="fill:#7F184C;" d="M450.563,250.716c-3.656,0-7.203-1.927-9.108-5.349c-9.456-16.976-27.387-27.519-46.793-27.519
-                c-18.913,0-37.051,10.655-47.333,27.807c-2.956,4.932-9.355,6.533-14.287,3.577c-4.934-2.958-6.535-9.354-3.577-14.287
-                c14.026-23.394,39.008-37.927,65.199-37.927c26.957,0,51.858,14.643,64.989,38.214c2.799,5.024,0.996,11.367-4.03,14.165
-                C454.016,250.293,452.277,250.716,450.563,250.716z"/>
-            <path style="fill:#7F184C;" d="M269.71,250.716c-3.656,0.001-7.203-1.927-9.108-5.349c-9.455-16.976-27.386-27.519-46.793-27.519
-                c-18.913,0-37.05,10.655-47.333,27.807c-2.958,4.932-9.355,6.533-14.287,3.577c-4.934-2.958-6.535-9.354-3.577-14.287
-                c14.026-23.394,39.008-37.927,65.199-37.927c26.957,0,51.86,14.643,64.989,38.214c2.799,5.024,0.994,11.367-4.03,14.165
-                C273.163,250.293,271.424,250.716,269.71,250.716z"/>
-            <circle style="fill:#7F184C;" cx="305.644" cy="375.962" r="46.533"/>
-        </g>
-        <ellipse transform="matrix(0.2723 -0.9622 0.9622 0.2723 149.2874 344.5109)" style="fill:#FCEB88;" cx="302.412" cy="73.556" rx="29.854" ry="53.46"/>
-        </svg> </div> <!-- SVGSSS -->
           <div class="col-md-12">
             <span id="score">81%</span>
         </div>
         <div class="col-md-12" id="comment" style="padding-top:10px; padding-bottom:50px">
             <span>Great Job !</span>
+
         </div>
-      
-
-
-    <div class="class_box"  id="ok">Continue</div></div>
-
-
+        
+        <div class="class_box"  id="ok">Continue</div>
+    </div>
+    </div>
 </div>
-     
+  <audio id="audioPlayer">
+    </audio>
   
 
       <script src="js/Reader.js"></script>
        <script src="js/listener.js"></script>
      <script src="js/navigation.js"></script>
-
-
- 
-</div>
