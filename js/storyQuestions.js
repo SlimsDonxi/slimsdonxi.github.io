@@ -103,7 +103,7 @@ function correctAnswer(){
 	selectedAnswer.style.color = '#e5fdd4';
 confirmButton.classList.remove('enabled');
 confirmButton.classList.remove('disabled');
-	audio.src = './audios/correct.wav';
+	audio.src = './audios/positive.wav';
     audio.play();
 	
 }

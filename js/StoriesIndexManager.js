@@ -46,6 +46,8 @@ function GenerateStory(element){
 setTimeout(StartGeneratin(element), 500);
 }
 
+
+
 function StartGeneratin(element){
 
 
@@ -56,30 +58,26 @@ function StartGeneratin(element){
     selectedStory = Array.from(divs).indexOf(element);
 
   currentStory = element.innerText;
-console.log(currentStory);
+
 
  listSentences = GetSentences(element);
-
-  currentPicture.src = `${root}/${listSentences[0]}/${currentPage}.jpg`;  
+GetStoryPictures();
+  currentPicture.src = listPictures[0];  
   PopulateSentence(currentSentence);
 }
 
-function GetStoryPictures(el){
- listPictures =[];
-var url = root+'/'+el;
-var exist;
-var counter=0;
-    do{
-        exists = url+`/${counter}.jpg`;
-        if(url+`/${counter}.jpg` != null || url+`/${counter}.jpg` != undefined){
-        listPictures.push(url+`/${counter}.jpg`);
-        counter++;
-        }
-        else{
-          return;
-        }
-    }
-    while(exists)
+function GetStoryPictures(){
+
+listPictures =[];
+  for(var i=0; i< listSentences.length; i++){
+    var img = new Image();
+    img.onload = loadHandler;
+    img.onerror= img.onabort = errorHandler;
+    img.crossOrigin ="";
+    img.src= root+'/'+listSentences[0]+'/'+i+'.jpg';
+    listPictures.push(img);
+  }
+ 
 
 }
 
@@ -314,8 +312,8 @@ function Next(){
   
   currentPage++;
 currentSentence = listSentences[currentPage];
-currentPicture.src = `${root}/${listSentences[0]}/${currentPage}.jpg`;  
-
+//currentPicture.src = `${root}/${listSentences[0]}/${currentPage}.jpg`;  
+currentPicture = listPictures[currentPage];
 
 
   CheckButtonNextAvailability();

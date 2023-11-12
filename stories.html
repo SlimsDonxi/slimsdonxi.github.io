@@ -97,7 +97,7 @@ color:#c5c5c5;
           </div>
            </div>
         </div>
-        <div onclick="CloseReader('Reader')" class="cancel subCancel shake">
+        <div onclick="CloseReader('Reader'); PlayClick();" class="cancel subCancel shake">
             <svg class="icon"viewBox="0 0 25 25"> 
                 <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
                     <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-469.000000, -1041.000000)" fill="#fff">
@@ -106,7 +106,7 @@ color:#c5c5c5;
                 </g>
             </svg>
         </div> 
-                <div class="interactive mainInteractive" id="questionPopper" onclick="document.querySelector('#confirmer').style.display='flex';" >       
+                <div class="interactive mainInteractive" id="questionPopper" onclick="document.querySelector('#confirmer').style.display='flex'; PlayClick();" >       
                     <svg class="icon" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
                      viewBox="0 0 511.989 511.989" xml:space="preserve">
                     <path style="fill:#EC87C0;" d="M489.333,255.088l-21.344-17.625l8-34.671l4-18.812l-30.656-42.141l6.656-22.53l-8-38.483
@@ -205,7 +205,7 @@ color:#c5c5c5;
         </div>
 
 <div id="backgroundQuestions" class="mainFrame" style="padding:20px;padding-top:50px;overflow:scroll; ">
-    <div onclick="CloseReader('backgroundQuestions')" class="cancel subCancel shake">
+    <div onclick="CloseReader('backgroundQuestions');PlayClick();" class="cancel subCancel shake">
             <svg class="icon"viewBox="0 0 25 25"> 
                 <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
                     <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-469.000000, -1041.000000)" fill="#fff">
@@ -222,7 +222,7 @@ color:#c5c5c5;
   <div class="progress">
     <div class="bar shadow food"></div>
   </div>
-  <div  class="class_box text_align_center disabled " id="confirm" onclick="confirmAnswer()">  Confirm</div>  
+  <div  class="class_box text_align_center disabled " id="confirm" onclick="confirmAnswer();PlayClick();" >  Confirm</div>  
 
 
 </div>
@@ -263,7 +263,7 @@ color:#c5c5c5;
         </div>
     
     </div>
-    <div id="ok"  class=" scoreOK"   onclick="fadeOutScore();">Continue</div> 
+    <div id="ok"  class=" scoreOK"   onclick="fadeOutScore();PlayClick();">Continue</div> 
 </div>
 
 </div>
@@ -287,7 +287,7 @@ color:#c5c5c5;
         <div class="col-md-12" id="comment" style="padding-top:10px; padding-bottom:50px">
             <span>Great Job !</span>
         </div>
-    <div class=" scoreOK"  id="ok" onclick="Continue()">Continue</div>
+    <div class=" scoreOK"  id="ok" onclick="Continue();PlayClick();">Continue</div>
     </div>
 </div>
 </div>
