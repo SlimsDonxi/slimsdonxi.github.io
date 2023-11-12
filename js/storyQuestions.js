@@ -10,34 +10,39 @@ var counterQuestions =0;
 const progressBars = document.querySelector('.bar');
 
 var factorProgress;
-
 var selectedAnswer;
+
 var confirmer = document.querySelector('#confirmer');
 var arrayQuestions =0;
 var currentProgress =0;
 const scorequestionContainer = document.querySelector('#scorequestionWrapper');
 
 
+function startStoryQuestions(){
+
+	background.style.display = 'block';
+
+	fileQuestions = FileHelper(`${root}/${listSentences[0]}/questions.json`);
+
+	GetQuestionsList();
+
+}
+
 
 function GetQuestionsList(){
 	ulQuestions.innerHTML='';
 confirmer.style.display='none';
+
  arrayQuestions = JSON.parse(fileQuestions);
 factorProgress = 1/arrayQuestions.length *100;
-console.log(factorProgress);
+
 GenerateQuestion();
 }
 
 
 function GenerateQuestion(){
-
-
 currentQuestion = arrayQuestions[counterQuestions];
-
 questionText.innerText = currentQuestion.question;
-
-
-
 currentQuestion.options.forEach(x=>{
 	ulQuestions.innerHTML+= 
 	`<div class="col-md-12 questionAnswer" onclick='lockAnswer(this)'>${x}</div>`;
@@ -69,6 +74,13 @@ selectedAnswer = el;
 confirmButton.classList.remove('disabled');
 confirmButton.classList.remove('enabled');
 
+anime({
+	targets : el,
+	scale : 1.1,
+	direction :'alternate',
+	duration:600,
+	ease: 'linear'
+})
 
 }
 
@@ -92,33 +104,51 @@ function correctAnswer(){
 	ulQuestions.innerHTML ='';
 	counterQuestions++;
 
-
-	 scorequestionContainer.style.display = 'block';
-    window.setTimeout(function(){
-     scorequestionContainer.style.opacity = 1;
-     scorequestionContainer.style.transform = 'scale(1)';
-    },0);
-	scorequestionContainer.style.display='block';
+	
 	selectedAnswer.style.background = '#6cd023';
 	selectedAnswer.style.color = '#e5fdd4';
+
 confirmButton.classList.remove('enabled');
 confirmButton.classList.remove('disabled');
+
+anime({
+	targets: '#scorequestionWrapper',
+	scale:1,
+	duration:600,
+	ease:'easeOutCubic'
+});
+
+if(counterQuestions == arrayQuestions.length){
+
 	audio.src = './audios/positive.wav';
-    audio.play();
-	
+document.querySelector('#basic').style.display ='none';
+document.querySelector('#trophy').style.display ='block';
+
+}
+else{
+
+	audio.src = './audios/correct.wav';
+}
+	    audio.play();
 }
 
 function fadeOutScore(){
-	scorequestionContainer.style.opacity = 0;
-  scorequestionContainer.style.transform = 'scale(0)';
-    window.setTimeout(function(){
-     scorequestionContainer.style.display='none';
-    },700);
+	
+	var animation = anime({targets: '#scorequestionWrapper',
+	scale:0,
+	duration:600,
+	ease:'easeOutCubic'
+});
+	GenerateQuestion();
+animation.finished.then(()=>{
 
-GenerateQuestion();
-updateSlider();
-    	audio.pause();
-audio.currentTime = 0;
+	 updateSlider();	
+	 audio.pause();audio.currentTime = 0;
+})
+
+
+    
+
 }
 
 function wrongAnswer(){
@@ -128,15 +158,7 @@ audio.src = './audios/fail.wav';
         audio.play();
 }
 
-function startStoryQuestions(){
 
-	background.style.display = 'block';
-
-	fileQuestions = FileHelper(`${root}/${listSentences[0]}/questions.json`);
-
-	GetQuestionsList();
-
-}
 
 
 function updateSlider(){
@@ -160,4 +182,16 @@ function Continue(){
 	
 	audio.pause();
 audio.currentTime = 0;
+}
+
+
+function DisplayConfirmer(){
+confirmer.style.left = "120%";
+confirmer.style.display = "flex";
+anime({
+	targets:'#confirmer',
+	translateX: ['0','-120%'],
+	duration:600,
+	easing:'easeOutElastic'
+});
 }

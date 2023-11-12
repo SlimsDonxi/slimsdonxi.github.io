@@ -1,7 +1,7 @@
 
 function PlayClick(){
-   document.querySelector("#audioPlayer").src = './audios/click.wav';
-document.querySelector("#audioPlayer").play();
+document.querySelector("#audioClick").src = './audios/click.wav';
+document.querySelector("#audioClick").play();
 }
 function CloseReader(el){
 
