@@ -11,7 +11,7 @@ var listSentences =[];
 var currentSentence;
 var currentPicture = document.querySelector('#currentPicture');
 
-
+var loader = document.querySelector('#laoder');
  var nextButton = document.getElementById("next");
 var prevButton = document.getElementById("previous");
 var displayedPhrase =  document.getElementById('displayedPhrase');
@@ -49,6 +49,7 @@ function FileHelper(url){
 function GenerateStory(element){
 
   document.querySelector('body').style.overflowY = "hidden";
+  loader.style.display='flex';
 setTimeout(StartGeneratin(element), 500);
 }
 
@@ -88,7 +89,7 @@ for(i = 0; i <= listSentences.length; i++) {
                
                image.addEventListener('load', function() {
                     resolve(true);
-                       listPictures.push(this);
+                    listPictures.push(this);
                       
 
                 });
@@ -101,6 +102,7 @@ for(i = 0; i <= listSentences.length; i++) {
     Promise.all(jarOfPromise).then( result => {
        console.log(listPictures[0].src);
       currentPicture.src = listPictures[0].src;  
+      loader.style.display = 'none';
     });
 
 }
