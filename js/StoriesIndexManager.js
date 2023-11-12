@@ -16,7 +16,7 @@ var currentPicture = document.querySelector('#currentPicture');
 var prevButton = document.getElementById("previous");
 var displayedPhrase =  document.getElementById('displayedPhrase');
 var currentPressed;
-
+var loader = document.querySelector('#loader');
 
 var jarOfPromise = [];
 
@@ -48,6 +48,7 @@ function FileHelper(url){
 
 function GenerateStory(element){
 
+loader.style.display='flex';
   document.querySelector('body').style.overflowY = "hidden";
 setTimeout(StartGeneratin(element), 500);
 }
@@ -99,8 +100,10 @@ for(i = 0; i <= listSentences.length; i++) {
 
 
     Promise.all(jarOfPromise).then( result => {
-       console.log(listPictures[0].src);
-      currentPicture.src = listPictures[0].src;  
+       listPictures.sort();
+      currentPicture.src = listPictures[0].src; 
+
+      loader.style.display='none';
     });
 
 }
@@ -345,7 +348,12 @@ currentSentence = listSentences[currentPage];
  
 currentPicture.src = listPictures[currentPage].src;
 
-
+ anime({
+      targets:nextButton,
+      scale:.85,
+      direction:'alternate',
+      duration:500
+     });
   CheckButtonNextAvailability();
   CheckButtonPreviousAvailability();
      
@@ -357,6 +365,12 @@ currentPicture.src = listPictures[currentPage].src;
 
 function Previous(){
    
+    anime({
+      targets:prevButton,
+      scale:.85,
+      direction:'alternate',
+      duration:500
+     });
   currentPage--;
 currentSentence = listSentences[currentPage];
 currentPicture.src = `${root}/${listSentences[0]}/${currentPage}.jpg`;  

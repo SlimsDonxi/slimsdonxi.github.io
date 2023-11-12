@@ -121,7 +121,7 @@ function correctAnswer(){
 
 	if(counterQuestions == arrayQuestions.length){
 
-		audio.src = './audios/good.mp3';
+		audio.src = './audios/win.mp3';
 	document.querySelector('#basic').style.display ='none';
 	document.querySelector('#trophy').style.display ='block';
 scorequestionContainer.style.display ="block";
@@ -146,7 +146,7 @@ currentProgress=0;
 	}
 	else{
 
-		audio.src = './audios/win.mp3';
+		audio.src = './audios/good.mp3';
 	}
 	audio.play();
 	updateSlider(true);

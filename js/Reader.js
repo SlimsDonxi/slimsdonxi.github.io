@@ -141,7 +141,12 @@ return arraySpliced;}
 function Next(){
   
   currentText +=  1;
-
+ anime({
+      targets:nextButton,
+      scale:.85,
+      direction:'alternate',
+      duration:500
+     });
   CheckButtonNextAvailability();
   CheckButtonPreviousAvailability();
      
@@ -157,6 +162,12 @@ function Previous(){
    
   currentText-=1;
      
+     anime({
+      targets:prevButton,
+      scale:.85,
+      direction:'alternate',
+      duration:500
+     });
   CheckButtonNextAvailability();
   CheckButtonPreviousAvailability();
        
