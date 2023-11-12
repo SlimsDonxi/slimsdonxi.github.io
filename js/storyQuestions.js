@@ -15,7 +15,7 @@ var selectedAnswer;
 var confirmer = document.querySelector('#confirmer');
 var arrayQuestions =0;
 var currentProgress =0;
-const scorequestionContainer = document.querySelector('#scorequestionWrapper');
+const scorequestionContainer = document.querySelector('#ResultWrapper');
 
 
 function startStoryQuestions(){
@@ -37,25 +37,29 @@ confirmer.style.display='none';
 factorProgress = 1/arrayQuestions.length *100;
 
 GenerateQuestion();
+
 }
 
 
 function GenerateQuestion(){
-currentQuestion = arrayQuestions[counterQuestions];
-questionText.innerText = currentQuestion.question;
-currentQuestion.options.forEach(x=>{
-	ulQuestions.innerHTML+= 
-	`<div class="col-md-12 questionAnswer" onclick='lockAnswer(this)'>${x}</div>`;
-});
- var correctAnswer =  document.createElement('div');
- correctAnswer.classList.add("col-md-12","questionAnswer");
- correctAnswer.onclick = function() {lockAnswer(this)};
-correctAnswer.innerText = currentQuestion.answers;
-var randomPosition = Math.floor(Math.random() * currentQuestion.options.length+1);
-ulQuestions.insertBefore(correctAnswer, ulQuestions.childNodes[randomPosition]);
 
+if(counterQuestions < arrayQuestions.length){
+	ulQuestions.innerHTML ='';
+	currentQuestion = arrayQuestions[counterQuestions];
+	questionText.innerText = currentQuestion.question;
+	currentQuestion.options.forEach(x=>{
+		ulQuestions.innerHTML+= 
+		`<div class="col-md-12 questionAnswer" onclick='lockAnswer(this)'>${x}</div>`;
+	});
+	 var correctAnswer =  document.createElement('div');
+	 correctAnswer.classList.add("col-md-12","questionAnswer");
+	 correctAnswer.onclick = function() {lockAnswer(this)};
+	correctAnswer.innerText = currentQuestion.answers;
+	var randomPosition = Math.floor(Math.random() * currentQuestion.options.length+1);
+	ulQuestions.insertBefore(correctAnswer, ulQuestions.childNodes[randomPosition]);
 
-speakOption(questionText);
+	speakOption(questionText);
+}
 }
 
 
@@ -74,76 +78,103 @@ selectedAnswer = el;
 confirmButton.classList.remove('disabled');
 confirmButton.classList.remove('enabled');
 
+//Animate options
 anime({
 	targets : el,
-	scale : 1.1,
+	scale : 1.025,
 	direction :'alternate',
-	duration:600,
-	ease: 'linear'
-})
+	duration:300,
+	ease: 'easeInOutQuart'})
 
 }
 
-function speakOption(el){
-synth.cancel();
-var speakObj = new SpeechSynthesisUtterance(el.innerText);
-speakObj.voice =selectedVoice;
 
-synth.speak(speakObj);
+
+function speakOption(el){
+	synth.cancel();
+	var speakObj = new SpeechSynthesisUtterance(el.innerText);
+	speakObj.voice =selectedVoice;
+
+	synth.speak(speakObj);
 }
 
 
 function confirmAnswer(){
-	
-if(currentQuestion.answers.includes(selectedAnswer.innerText))
-	correctAnswer();
-else wrongAnswer();
+
+	if(currentQuestion.answers.includes(selectedAnswer.innerText)) correctAnswer();
+	else wrongAnswer();
 }
 
-function correctAnswer(){
-	ulQuestions.innerHTML ='';
-	counterQuestions++;
 
+
+function correctAnswer(){
+	
+	counterQuestions++;
 	
 	selectedAnswer.style.background = '#6cd023';
 	selectedAnswer.style.color = '#e5fdd4';
 
-confirmButton.classList.remove('enabled');
-confirmButton.classList.remove('disabled');
+	confirmButton.classList.remove('enabled');
+	confirmButton.classList.add('disabled');
+/*
+*/ 
 
-anime({
-	targets: '#scorequestionWrapper',
-	scale:1,
-	duration:600,
-	ease:'easeOutCubic'
+	if(counterQuestions == arrayQuestions.length){
+
+		audio.src = './audios/correct.wav';
+	document.querySelector('#basic').style.display ='none';
+	document.querySelector('#trophy').style.display ='block';
+scorequestionContainer.style.display ="block";
+
+var animation = anime({
+  targets: scorequestionContainer,
+  opacity:1,
+  duration: 500,
+  easing: 'linear' 
 });
 
-if(counterQuestions == arrayQuestions.length){
+animation.finished.then(()=>{
+anime({
+  targets: '#ResultContainer',
+  scale:1,
+  duration: 750,
+  easing: 'easeInOutQuart' 
+});
+});
+counterQuestions =0;
+currentProgress=0;
+	}
+	else{
 
-	audio.src = './audios/positive.wav';
-document.querySelector('#basic').style.display ='none';
-document.querySelector('#trophy').style.display ='block';
+		audio.src = './audios/positive.wav';
+	}
+	audio.play();
+	updateSlider(true);
 
-}
-else{
+setTimeout(() =>{
 
-	audio.src = './audios/correct.wav';
+	GenerateQuestion()
+},1500);
 }
-	    audio.play();
-}
+
+
+
+
+
 
 function fadeOutScore(){
 	
-	var animation = anime({targets: '#scorequestionWrapper',
+	var animation = anime({targets: '#ResultContainer',
 	scale:0,
 	duration:600,
 	ease:'easeOutCubic'
 });
-	GenerateQuestion();
-animation.finished.then(()=>{
 
-	 updateSlider();	
+animation.finished.then(()=>{
+	
 	 audio.pause();audio.currentTime = 0;
+	 	 scorequestionContainer.style.opacity='0';
+	 scorequestionContainer.style.display='none';
 })
 
 
@@ -161,21 +192,19 @@ audio.src = './audios/fail.wav';
 
 
 
-function updateSlider(){
+function updateSlider(el = false){
 
-
+if(el)
 currentProgress += factorProgress;
-console.log(currentProgress);
 
-      progressBars.style.transitionDuration = `1s`;
-    progressBars.style.width = `${currentProgress}%`;
+progressBars.style.transitionDuration = `1s`;
+progressBars.style.width = `${currentProgress}%`;
  
-
 }
 
 function Continue(){
 	 document.querySelector('#ResultWrapper').style.opacity = 0;
-    document.querySelector('#ResultWrapper').style.transform = 'scale(0)';
+
     window.setTimeout(function(){
       document.querySelector('#ResultWrapper').style.display='none';
     },700);
@@ -189,8 +218,10 @@ function DisplayConfirmer(){
 confirmer.style.left = "120%";
 confirmer.style.display = "flex";
 anime({
+
 	targets:'#confirmer',
 	translateX: ['0','-120%'],
+	opacity:1,
 	duration:600,
 	easing:'easeOutElastic'
 });

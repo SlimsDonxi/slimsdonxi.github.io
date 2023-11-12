@@ -262,36 +262,36 @@ body{
 
 @keyframes quiet {
   25%{
-    transform: scaleY(.4);
+    transform: scaleY(.2);
   }
   50%{
-    transform: scaleY(.3);
+    transform: scaleY(.175);
   }
   75%{
-    transform: scaleY(.5);
+    transform: scaleY(.3);
   }
 }
 
 @keyframes normal {
   25%{
-    transform: scaleY(.7);
+    transform: scaleY(.45);
   }
   50%{
-    transform: scaleY(.3);
+    transform: scaleY(.175);
   }
   75%{
-    transform: scaleY(.45);
+    transform: scaleY(.25);
   }
 }
 @keyframes loud {
   25%{
-    transform: scaleY(.5);
-  }
-  50%{
     transform: scaleY(.3);
   }
+  50%{
+    transform: scaleY(.25);
+  }
   75%{
-    transform: scaleY(.9);
+    transform: scaleY(.405);
   }
 }
 
@@ -318,7 +318,7 @@ body{
   animation-duration: 1.2s;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
-  border-radius: 8px;
+  border-radius: 50px;
 }
 
 .box1{
@@ -612,7 +612,10 @@ margin-bottom: 10px;
 }
 
 
-
+.mainContainer{
+     position:relative;
+     overflow-x:hidden;
+}
 
 
 .boxContainer{
@@ -632,32 +635,40 @@ margin-bottom: 10px;
 #backgroundQuestions{
      position:fixed;
 }
-.scoreWrapper{
-    
-  position:fixed;
-  z-index: 5001;
-  height:100%;
-  width:100%;
-  background: rgba(0,0,0,.5);
-  left:0;
-  top:0;
-     display:none;
+
+
+
+
+#ResultWrapper{   
+    position:absolute;
+    height:100%;
+    width:100%;
+    top:0;
+    left:0; 
+    z-index: 5000;
+    style:;background:rgba(0,0,0,0.2);
+    opacity:1;
+    display:none;
 }
 
+
 .scoreContainer{
-      height:600px;
+position:absolute;
+     height:600px;
      width:350px;
-     position:fixed;
-     display:block;
-     border-radius:50px;
-    
-     left:50%;
      top:50%;
-     transform: translate(-50%,-50%);
+     margin-top:-300px;
+     left:50%;
+     margin-left:-125px;
+     display:block; 
+     border-radius:50px;
      box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
-     text-align:center;
+    justify-content: center;
+   text-align: center;
+  vertical-align: middle;
+  align-items: center;
     overflow:hidden;
-     justify-content: center;
+
 }
 
 #score{
@@ -742,4 +753,17 @@ top:100%;
 
 transform: translate(-50%, calc(-100% - 70px));
 border-radius: 25px;
+}
+
+#confirmer{
+     opacity:0;
+     position:absolute;
+     left:120%;
+     top:0;
+     z-index:5002;
+     height:100%;
+     width:100%;
+     background:#fff;
+     display:none;
+     flex-direction: column;
 }

@@ -1,0 +1,109 @@
+
+[
+  {
+"question": "What is the name of our story?",
+ "answers": ["Grow flower grow"],
+"options": ["Fran the naughty girl", "Fran and the flower pot","Hungry flower"]
+},
+
+  {
+  "question": "What did Fran find outside?",
+  "answers": ["A flower pot filled with soil"],
+  "options": ["A flower pot filled with water","A flower pot filled with milk", "A broken pot"]
+  },
+
+   {
+  "question": "What did Fran what to do with the flower?",
+  "answers": ["She wanted to grow the flower"],
+  "options": ["She wanted to smell the flower", "She wanted to throw the flower","She wanted to give the flower to her mom"]
+  },
+
+  {
+  "question": "Why did Fran think the flower is tiny?",
+  "answers": ["She thought the flower is hungry"],
+  "options": ["She thought the flower was thirsty", "She thought the flower is sick","She didn't care"]
+  },
+
+  {
+  "question": "From where did she bring her favorite food?",
+  "answers": ["FRom the fridge"],
+  "options": ["From the closet", "From her schoolbag", "From her bedroom"]
+  },
+
+  {
+  "question": "What was the first thing Fran gave to the flower?",
+  "answers": ["First thing was a slice of pizza"],
+  "options": ["First thing was a cheeseburger", "First thing was a scoop of ice-cream", "First thing was a juicy bone"]
+  },
+
+  {
+  "question": "Did the flower grow?",
+  "answers": ["The flower didn't grow"],
+  "options": [ "The flower grew so big","The flower ate the whole slice of pizza", "The flower grew a little bit"]
+  },
+
+  {
+  "question": "What was the second thing Fran gave to the flower?",
+  "answers": ["Second thing was a cheeseburger"],
+  "options": [ "Second thing was a strawberry ice-cream","Second thing was a juicy bone", "Second thing was some spaghetti"]
+  },
+    {
+  "question": "Did the flower grow?",
+  "answers": ["The flower didn't grow"],
+  "options": [ "The flower grew so big","The flower ate the whole cheeseburger", "The flower grew a little bit"]
+  },
+   {
+  "question": "What was the third thing Fran gave to the flower?",
+  "answers": ["Third thing was a spaghetti"],
+  "options": [ "Third thing was a cheeseburger","Third thing was a cookies", "Third thing was a bone"]
+  },
+  {
+  "question": "Did the flower grow?",
+  "answers": ["The flower didn't grow"],
+  "options": [ "The flower grew so big","The flower ate all of the spaghetti", "The flower grew a little bit"]
+  },
+   {
+  "question": "What was the fourth thing Fran gave to the flower?",
+  "answers": ["Fourth thing was 2 cookies"],
+  "options": [ "Third thing was a banana","Third thing was a apple", "Third thing was a bone"]
+  },
+
+   {
+  "question": "Did the flower grow?",
+  "answers": ["The flower didn't grow"],
+  "options": [ "The flower grew so big","The flower ate all of the cookies", "The flower grew a little bit"]
+  },
+
+   {
+  "question": "What was the last thing Fran gave to the flower?",
+  "answers": ["The last thing was a juicy bone"],
+  "options": [ "The last thing was a potato","The last thing was a slice of pizza", "The last thing was water"]
+  },
+    {
+  "question": "Did the flower grow?",
+  "answers": ["The flower didn't grow"],
+  "options": [ "The flower grew so big","The flower ate all of the spaghetti", "The flower grew a little bit"]
+  },
+    {
+  "question": "How did Fran feel about it?",
+  "answers": ["Fran was angry "],
+  "options": [ "Fran was excited","Fran was sad", "Fran didn't care"]
+  },
+   {
+  "question": "What did Fran do?",
+  "answers": ["She threw the flower outside "],
+  "options": [ "She gave it more food","She broke the pot", "She ate the flower"]
+  },
+
+    {
+  "question": "What happened to the flower?",
+  "answers": ["The rain fell on it and the son shone on it"],
+  "options": [ "Flower died","Someone else took the flower", "Cow ate the flower"]
+  },
+
+   {
+  "question": "Did the flower grow",
+  "answers": ["The flower grew and grew and gree"],
+  "options": [ "Flower didn't grow","Flower grew a little bit", "Flower died"]
+  }
+]

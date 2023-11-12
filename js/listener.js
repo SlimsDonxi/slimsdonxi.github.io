@@ -46,29 +46,17 @@ var arraySvg = [ resultWrapper.querySelector('#greatSvg'),resultWrapper.querySel
         recognition.stop();
       });
 
-      function CheckResult(){
-
-         resultWrapper.style.display = 'block';
-
+function CheckResult(){
        
-         if(document.querySelector('title').innerText=='Stories'){
-           score.innerText = similarity(listSentences[currentPage], result);
-          }
+  if(document.querySelector('title').innerText=='Stories')score.innerText = similarity(listSentences[currentPage], result);
+          
+  else if(clickable) score.innerText = similarity(currentArray[currentText], result);
 
-      else if(clickable){
+  else score.innerText = similarity(inputText.innerText, result);
          
-          score.innerText = similarity(currentArray[currentText], result);
-
-        } 
-
-        else 
-        {
-          score.innerText = similarity(inputText.innerText, result);
-        } 
-
-           setScoreWithColor(score.innerText);
-           score.innerText+='%';
-      }
+  setScoreWithColor(score.innerText);
+  score.innerText+='%';
+}
 
 
 function setScoreWithColor(el){
@@ -78,36 +66,59 @@ arraySvg.forEach((x)=> {
   x.style.display ='none';
 })
 
+resultWrapper.style.display ='flex';
+
+var animation = anime({
+  targets: resultWrapper,
+  opacity:1,
+  duration: 1000,
+  easing: 'linear' 
+});
+
+animation.finished.then(()=>{
+anime({
+  targets: resultContainer,
+  scale:1.1,
+  duration: 500,
+  direction:'alternate',
+  easing: 'easeInOutQuart' 
+});
+});
 
      resultContainer.classList.remove('success');
      resultContainer.classList.remove('fail');
      resultContainer.classList.remove('medium');
-  if(el>70) {
- audio.src = './audios/correct.wav';
-        audio.play();
-   resultContainer.classList.add('success');
+
+
+  if(el>70) 
+  {
+     audio.src = './audios/correct.wav';     
+     resultContainer.classList.add('success');
     comment.querySelector('span').innerText = "Great Job";
-  arraySvg[0].style.display = 'block';
+     arraySvg[0].style.display = 'block';
 
   }  
 
-  else if(el>40){
-     audio.src = './audios/good.wav';
-        audio.play();
-     resultContainer.classList.add('medium');
-        arraySvg[0].style.display = 'none';
-   arraySvg[1].style.display = 'block';
-    comment.querySelector('span').innerText = "Not bad";}
+  else if(el>40)
+  {
 
-   else{
-     audio.src = './audios/fail.wav';
-        audio.play();
+      audio.src = './audios/good.wav';     
+      resultContainer.classList.add('medium');
+      arraySvg[0].style.display = 'none';
+      arraySvg[1].style.display = 'block';
+      comment.querySelector('span').innerText = "Not bad";
+  }
+
+   else
+   {
+     audio.src = './audios/fail.wav';     
      resultContainer.classList.add('fail');
-          arraySvg[0].style.display = 'none';
+     arraySvg[0].style.display = 'none';
      arraySvg[2].style.display = 'block';
      comment.querySelector('span').innerText = "Try again"
   }
 
+  audio.play();
 }
 
 

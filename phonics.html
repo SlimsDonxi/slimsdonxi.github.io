@@ -15,7 +15,7 @@
       <link rel="stylesheet" href="css/style.css">
  <link rel="stylesheet" href="css/dropdown.css">
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
       <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -68,7 +68,7 @@ color:#ef3f58;
 </head>
    <!-- body -->
    <body class="main-layout inner_page" >
- 
+ <div class="mainContainer">
         <div onclick=" PlayClick(); window.location.href='index.html';" class="cancel mainCancel shake">
            
             <svg class= "icon"  viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -227,8 +227,11 @@ color:#ef3f58;
     <feBlend in="SourceGraphic" in2="goo" />
   </filter>
 </svg>
-<div class="scoreWrapper" id="ResultWrapper" >
-    <div  class="scoreContainer"id="ResultContainer">
+
+
+
+ <div id="ResultWrapper"  >
+    <div  class="scoreContainer" id="ResultContainer">
     <div class="row">
          <div class ="col-md-12 emojiContainer ">       
             <lottie-player id="GreatSvg" src="https://lottie.host/fa91ea0d-599e-4158-a753-799c0911499e/Qli3MgtYxb.json" speed="1" loop autoplay direction="1" mode="normal"></lottie-player>
@@ -248,9 +251,6 @@ color:#ef3f58;
     </div>
     </div>
 </div>
-
-
-
 </div>
 
 
@@ -258,14 +258,17 @@ color:#ef3f58;
     </audio>
 <audio id="audioClick"></audio>
 
-      <script src="js/Reader.js"></script>
+     
+
+
+
+
+</div>
+ <script src="js/Reader.js"></script>
 
        <script src="js/listener.js"></script>
         <script src="js/navigation.js"></script>
  
-      
 
+</body>
 
-
- 
-</div>

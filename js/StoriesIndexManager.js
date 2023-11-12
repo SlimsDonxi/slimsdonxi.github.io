@@ -4,7 +4,7 @@ var root ="stories/listStories";
 var currentStory;
 var currentPage =0;
 
-var listStories =["Alex's super medicine", "Grow flower GROW!", "The Bear and the Bee"];
+var listStories =["Alex's super medicine", "Grow flower GROW!"];//, "The Bear and the Bee"];
 var listPictures=[];
 var listSentences =[];
 
@@ -172,6 +172,12 @@ loadVoices();
 // Chrome loads voices asynchronously.
 synth.onvoiceschanged = function(e) {
   loadVoices();
+   var children = ulContainer.children;
+   
+  Array.from(children)[1].style.background = "#ffb400";
+  Array.from(children)[1].style.color = "#fff";
+   selectedVoice = synth.getVoices().filter(function(voice) { console.log(voice.name.includes(Array.from(children)[1].innerText)); return voice.name.includes(Array.from(children)[1].innerText) })[0];
+document.querySelector(".dropdown__text").innerText = selectedVoice.name;//Array.from(children)[1].innerText;
 };
 
 

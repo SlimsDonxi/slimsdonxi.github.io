@@ -99,12 +99,12 @@ color:#c5c5c5;
                              <h3>Grow flower GROW!</h3>                     
                           </div>                     
                     </div>
-                    <div class="col-md-4 col-sm-6 col-xs-6 margi_bottom shake" onmouseup ="PlayClick(); GenerateStory(this)">
+                  <!--  <div class="col-md-4 col-sm-6 col-xs-6 margi_bottom shake" onmouseup ="PlayClick(); GenerateStory(this)">
                           <div class="class_box text_align_center" >
                              <img class ="storyCover" src="stories/listStories/The Bear and the Bee/cover.jpg" style="box-shadow: 0px 10px 0px 0px #2c2a17;" alt="#"/>
                              <h3>The Bear and the bee</h3>                     
                           </div>                     
-                    </div>
+                    </div>-->
                      
                    </div>
                    
@@ -253,6 +253,24 @@ color:#c5c5c5;
             <div class="bar shadow food"></div>
           </div>
           <div  class="class_box text_align_center disabled " id="confirm" onclick="confirmAnswer();PlayClick();" >  Confirm</div>  
+
+    <!-------------------------------------- QUESTION RESULT -------------------->
+
+        <div id="ResultWrapper" >
+            <div id="ResultContainer" class="scoreContainer" style="position:absolute;left:50%; margin-left:-175px;background: rgb(255,214,0);background: radial-gradient(circle, rgba(255,214,0,1) 0%, rgba(255,192,0,1) 35%, rgba(255,145,0,1) 90%);">        
+            <div class="row" id="">
+                 <div class ="col-md-12 emojiContainer ">       
+                    <lottie-player id="basic" src="https://lottie.host/fa91ea0d-599e-4158-a753-799c0911499e/Qli3MgtYxb.json" speed="1" loop autoplay direction="1" mode="normal"></lottie-player>
+                     <lottie-player id="trophy" style="display:none" src="animations/AnimationTrophy.json" background="transparent" speed="1"  loop  autoplay direction="1" mode="normal"></lottie-player>
+                     
+                </div> 
+                <div class="col-md-12"  style="padding-top:10px; padding-bottom:50px">
+                    <span style="font-size: 35px; color:white"><b>You're awesome !</b></span>
+                </div>          
+            </div>
+            <div class="scoreOK" onclick="fadeOutScore();">Continue</div> 
+            </div>
+        </div>
     </div>
 
 
@@ -278,25 +296,6 @@ color:#c5c5c5;
 
 
 
-<!-------------------------------------- QUESTION RESULT -------------------->
-
-    <div id="scorequestionWrapper" class="scoreWrapper" style="background:rgba(0,0,0,0.2); display:block; transform:scale(0)">
-        <div id="scorequestionContainer" class="scoreContainer" style="height:500px;background: background: rgb(245,228,31);
-background: linear-gradient(3deg, rgba(245,228,31,1) 0%, rgba(253,220,29,1) 50%, rgba(252,176,69,1) 100%););">
-        <div class="row">
-             <div class ="col-md-12 emojiContainer ">       
-                <lottie-player id="basic" src="https://lottie.host/fa91ea0d-599e-4158-a753-799c0911499e/Qli3MgtYxb.json" speed="1" loop autoplay direction="1" mode="normal"></lottie-player>
-                 <lottie-player id="trophy" style="display:none" src="animations/AnimationTrophy.json" background="transparent" speed="1"  loop  autoplay direction="1" mode="normal"></lottie-player>
-                 
-            </div> 
-            <div class="col-md-12"  style="padding-top:10px; padding-bottom:50px">
-                <span style="font-size: 35px; color:white"><b>You're awesome !</b></span>
-            </div>
-        
-        </div>
-        <div id="ok"  class=" scoreOK"   onclick="fadeOutScore();">Continue</div> 
-        </div>
-    </div>
 
 <!-------------------------------------- STORY RESULT -------------------->
     <div id="ResultWrapper" class="scoreWrapper">
@@ -330,7 +329,7 @@ background: linear-gradient(3deg, rgba(245,228,31,1) 0%, rgba(253,220,29,1) 50%,
 
 <!---------------- CONFIRMER --------------------->
 
-    <div id="confirmer" style="position:fixed; width:100%; height:100%; top:0;left:120%; background:#fff; display:flex;z-index:5002; flex-direction: column" >
+    <div id="confirmer" style="" >
         <lottie-player src="https://lottie.host/3297d458-2f77-4219-a453-9aa75249141f/hleHtYSwfs.json" background="transparent" speed="1" style="width: 100%;x; height: auto; " loop  autoplay direction="1" mode="normal"></lottie-player>
         <div style="color:gray; font-weight:bold; padding:50px; font-size:30px; text-align:center; line-height:30px"> Are you ready for the test ?</div>
           <div id="ok"  class=" scoreOK"   onclick="startStoryQuestions();  PlayClick();">Continue</div> 

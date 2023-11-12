@@ -205,7 +205,7 @@ function loadVoices()
                                    
 
             var block = `<li onclick='setVoice(this)'>${str}</li>`  
-            console.log(str);
+           
               if(str == "UK English Female" || str.includes("Karen"))
                 {
                 
@@ -234,6 +234,9 @@ synth.onvoiceschanged = function(e) {
  document.querySelector(".dropdown__text").innerText = Array.from(children)[1].innerText;
   Array.from(children)[1].style.background = "#ffb400";
   Array.from(children)[1].style.color = "#fff";
+
+   selectedVoice = synth.getVoices().filter(function(voice) { console.log(voice.name.includes(Array.from(children)[1].innerText)); return voice.name.includes(Array.from(children)[1].innerText) })[0];
+
 };
 
 
