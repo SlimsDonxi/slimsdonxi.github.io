@@ -9,12 +9,14 @@ recognition.lang = "en-US";
       var result;
   	const microphone = document.querySelector('#microphone');
 
-  const resultWrapper= document.querySelector('#ResultWrapper');
-    const resultContainer = document.querySelector('#ResultContainer');
+  const scoreSpeechWrapper= document.querySelector('#scoreSpeech');
+
+
+    const resultContainer = document.querySelector('#scoreSpeechContainer');
   const score = document.querySelector('#score');
     const comment = document.querySelector('#comment');
    var audio = document.querySelector('#audioPlayer');
-var arraySvg = [ resultWrapper.querySelector('#greatSvg'),resultWrapper.querySelector('#happySvg'),resultWrapper.querySelector('#badSvg') ]
+var arraySvg = [ resultContainer.querySelector('#greatSvg'),resultContainer.querySelector('#happySvg'),resultContainer.querySelector('#badSvg') ]
 
 
       recognition.continuous = true;
@@ -61,15 +63,14 @@ function CheckResult(){
 
 function setScoreWithColor(el){
 
-
 arraySvg.forEach((x)=> {
   x.style.display ='none';
-})
+});
 
-resultWrapper.style.display ='flex';
+scoreSpeechWrapper.style.display ='flex';
 
 var animation = anime({
-  targets: resultWrapper,
+  targets: scoreSpeechWrapper,
   opacity:1,
   duration: 1000,
   easing: 'linear' 
@@ -92,7 +93,7 @@ anime({
 
   if(el>70) 
   {
-     audio.src = './audios/correct.wav';     
+     audio.src = './audios/good.mp3';     
      resultContainer.classList.add('success');
     comment.querySelector('span').innerText = "Great Job";
      arraySvg[0].style.display = 'block';
@@ -102,7 +103,7 @@ anime({
   else if(el>40)
   {
 
-      audio.src = './audios/good.wav';     
+      audio.src = './audios/middle.wav';     
       resultContainer.classList.add('medium');
       arraySvg[0].style.display = 'none';
       arraySvg[1].style.display = 'block';
@@ -125,19 +126,39 @@ anime({
 
 
       function ActivateButton(){
-      microphone.style.backgroundColor = "#f51d36";
-      microphone.style.boxShadow = "0px 0px 0px 0px #d11c31";
+
+         microphone.style.backgroundColor = "#f51d36";
+         microphone.style.boxShadow = "0px 0px 0px 0px #d11c31";
+
+        anime({
+          targets: microphone,
+          scale: 1.5,  
+          translateY: '-25px',     
+          duration:500,
+          ease:'easeInOutQuart'
+       
+        });
+     
       document.querySelector("#micIcon").style.display = "none"
       document.querySelector("#micLoader").style.display = "flex";
       }
 
       function ResetButton(){
-         microphone.style.backgroundColor = "#1a95f4";
+         anime({
+          targets: microphone,
+          scale: 1,
+          translateY: '-35px',
+          duration:500,
+          ease:'easeInOutQuart'
+       
+        });
 
-        microphone.style.boxShadow = "0px 5px 0px 0px #1a7ac5";
+
+         microphone.style.backgroundColor = "#1a95f4";
+         microphone.style.boxShadow = "0px 5px 0px 0px #1a7ac5";
        
         document.querySelector("#micIcon").style.display = "flex";
-      document.querySelector("#micLoader").style.display = "none";
+        document.querySelector("#micLoader").style.display = "none";
       }
 
 
@@ -184,6 +205,6 @@ function editDistance(s1, s2) {
 }
 
 document.querySelector("#ok").addEventListener('pointerup', function(){
-  document.querySelector('#resultWrapper').style.display ='none';
+  scoreSpeechWrapper.style.display ='none';
 })
 

@@ -472,7 +472,7 @@ gap:10px;
 }
 
 .interactive{
-
+transform-origin:center center;
 background:red;
   height:50px;
 width: 50px; 
@@ -484,6 +484,7 @@ transform:translateY(-20px);
 
 }
 .mainInteractive{
+     z-index: 6000;
 height:70px;
 width: 70px; 
 box-shadow:0px 5px 0px 0px #1a7ac5;
@@ -639,7 +640,7 @@ margin-bottom: 10px;
 
 
 
-#ResultWrapper{   
+.scoreWrapper{   
     position:absolute;
     height:100%;
     width:100%;
@@ -649,6 +650,8 @@ margin-bottom: 10px;
     style:;background:rgba(0,0,0,0.2);
     opacity:1;
     display:none;
+    overflow:hidden;
+
 }
 
 
@@ -657,16 +660,18 @@ position:absolute;
      height:600px;
      width:350px;
      top:50%;
-     margin-top:-300px;
+   
      left:50%;
-     margin-left:-125px;
+
+     margin-top: -300px;
+     margin-left:-175px;
      display:block; 
      border-radius:50px;
      box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
     justify-content: center;
-   text-align: center;
-  vertical-align: middle;
-  align-items: center;
+    text-align: center;
+    vertical-align: middle;
+    align-items: center;
     overflow:hidden;
 
 }
@@ -711,7 +716,9 @@ display:inline-block;
      height:50%;
 }
 
-
+#ResultContainer{
+     left:50%;position:absolute; margin-left:-175px
+}
 .success{
 background: rgb(86,157,46);
 background: -moz-linear-gradient(0deg, rgba(86,157,46,1) 0%, rgba(116,209,64,1) 9%);

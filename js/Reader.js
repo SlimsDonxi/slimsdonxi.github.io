@@ -372,11 +372,33 @@ else{
 
 function SetSpeakingUI(){
 
+
+
 speaker.style.backgroundColor = "#1a95f4";
 speaker.style.boxShadow = "0px 5px 0px 0px #1a7ac5";
 if(currentPressed!=null){
+  anime({
+          
+           targets: speaker,
+          scale: 1.5,
+          translateY: '-50px',
+          duration:500,
+          ease:'easeInOutQuart'
+       
+        });
+
 currentPressed.style.backgroundColor = "#1a95f4";
 currentPressed.style.boxShadow = "0px 8px 0px 0px #1a7ac5";
+}
+else{
+  anime({
+          targets: speaker,
+          scale: 1,
+          translateY: '-35px',
+          duration:500,
+          ease:'easeInOutQuart'
+       
+        });
 }
 document.querySelector("#speakerIcon").style.display = "flex";
 document.querySelector("#speakingLoader").style.display = "none";

@@ -39,7 +39,7 @@ color:#c5c5c5;
    <body class="main-layout inner_page" >
 
 
-<div style="position:relative; overflow-x:hidden">
+<div style="position:relative; height:100%; overflow:hidden">
 
 
 
@@ -256,8 +256,8 @@ color:#c5c5c5;
 
     <!-------------------------------------- QUESTION RESULT -------------------->
 
-        <div id="ResultWrapper" >
-            <div id="ResultContainer" class="scoreContainer" style="position:absolute;left:50%; margin-left:-175px;background: rgb(255,214,0);background: radial-gradient(circle, rgba(255,214,0,1) 0%, rgba(255,192,0,1) 35%, rgba(255,145,0,1) 90%);">        
+        <div id="ResultQuestionWrapper" >
+            <div id="ResultQuestionContainer" class="scoreContainer" style="position:absolute;left:50%; margin-left:-175px;background: rgb(255,214,0);background: radial-gradient(circle, rgba(255,214,0,1) 0%, rgba(255,192,0,1) 35%, rgba(255,145,0,1) 90%);">        
             <div class="row" id="">
                  <div class ="col-md-12 emojiContainer ">       
                     <lottie-player id="basic" src="https://lottie.host/fa91ea0d-599e-4158-a753-799c0911499e/Qli3MgtYxb.json" speed="1" loop autoplay direction="1" mode="normal"></lottie-player>
@@ -296,10 +296,13 @@ color:#c5c5c5;
 
 
 
+</div>
+
+
 
 <!-------------------------------------- STORY RESULT -------------------->
-    <div id="ResultWrapper" class="scoreWrapper">
-        <div id="ResultContainer" class="scoreContainer">
+    <div id="scoreSpeech" class="scoreWrapper">
+        <div id="scoreSpeechContainer" class="scoreContainer">
             <div class="row">
                  <div class ="col-md-12 emojiContainer ">       
                     <lottie-player id="GreatSvg" src="https://lottie.host/fa91ea0d-599e-4158-a753-799c0911499e/Qli3MgtYxb.json" speed="1" loop autoplay direction="1" mode="normal"></lottie-player>
@@ -307,10 +310,9 @@ color:#c5c5c5;
                     <lottie-player id="badSvg" src="https://lottie.host/864eeee4-f869-4dd4-b132-5655ddf6e5b9/7lj38RVe7z.json"  speed="1" loop  autoplay direction="1" mode="normal"></lottie-player>
                 </div> 
 
-                <div class="col-md-12">
+               <div class="col-md-12">
                     <span id="score">81%</span>
                 </div>
-
                 <div class="col-md-12" id="comment" style="padding-top:10px; padding-bottom:50px">
                     <span>Great Job !</span>
                 </div>
@@ -319,7 +321,8 @@ color:#c5c5c5;
             </div>
         </div>
     </div>
-</div>
+
+
 <audio id="audioPlayer"></audio>
 <audio id="audioClick"></audio>
 
