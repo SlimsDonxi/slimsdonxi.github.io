@@ -17,6 +17,12 @@ var prevButton = document.getElementById("previous");
 var displayedPhrase =  document.getElementById('displayedPhrase');
 var currentPressed;
 
+
+var jarOfPromise = [];
+
+
+
+
 function GetSentences(el){
 
 var file = FileHelper('stories/listStories/'+el.innerText+'/storyText.txt');
@@ -61,23 +67,41 @@ function StartGeneratin(element){
 
 
  listSentences = GetSentences(element);
+ count = listSentences.length;
 GetStoryPictures();
-  currentPicture.src = listPictures[0];  
+  
   PopulateSentence(currentSentence);
 }
 
 function GetStoryPictures(){
 
+
 listPictures =[];
-  for(var i=0; i< listSentences.length; i++){
-    var img = new Image();
-    img.onload = loadHandler;
-    img.onerror= img.onabort = errorHandler;
-    img.crossOrigin ="";
-    img.src= root+'/'+listSentences[0]+'/'+i+'.jpg';
-    listPictures.push(img);
-  }
- 
+
+for(i = 0; i <= listSentences.length; i++) {
+
+        jarOfPromise.push(
+            new Promise( (resolve, reject) => {
+                var name = listSentences[i];
+                var image = new Image();
+                image.src = 'stories/listStories/'+listSentences[0]+'/'+i+'.jpg';
+               
+               image.addEventListener('load', function() {
+                    resolve(true);
+                       listPictures.push(this);
+                      
+
+                });
+            })
+        )
+
+    }
+
+
+    Promise.all(jarOfPromise).then( result => {
+       console.log(listPictures[0].src);
+      currentPicture.src = listPictures[0].src;  
+    });
 
 }
 
@@ -312,8 +336,8 @@ function Next(){
   
   currentPage++;
 currentSentence = listSentences[currentPage];
-//currentPicture.src = `${root}/${listSentences[0]}/${currentPage}.jpg`;  
-currentPicture = listPictures[currentPage];
+ 
+currentPicture.src = listPictures[currentPage].src;
 
 
   CheckButtonNextAvailability();
