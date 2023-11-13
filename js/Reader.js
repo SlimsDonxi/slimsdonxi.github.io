@@ -144,7 +144,9 @@ function Next(){
  anime({
       targets:nextButton,
       scale:.85,
+
       direction:'alternate',
+      ease:'easeInOutQuart',
       duration:500
      });
   CheckButtonNextAvailability();
@@ -184,10 +186,9 @@ function Previous(){
 
 
 
-
-
-
 const synth = window.speechSynthesis;
+synth.defaultPrevented = true;
+
 
 
 var  selectedVoice;
@@ -196,81 +197,89 @@ var  selectedVoice;
 var ulContainer = document.querySelector(".dropdown__items");
 // Fetch the list of voices and populate the voice options.
 
+var voices =[];
 
-function loadVoices() 
-{
-  // Fetch the available voices.
-   var voices = speechSynthesis.getVoices();
-   var str;
-  // Loop through each of the voices.
-  voices.forEach(function(voice, i) 
-  {
-    if(voice.lang.includes("en"))
-    {
 
-         if(!voice.name.includes('Microsoft'))
-         {
-           if(voice.name.includes('Google')) 
-              str = voice.name.replace('Google', '');
-                                   
-                                   
 
-            var block = `<li onclick='setVoice(this)'>${str}</li>`  
-           
-              if(str == "UK English Female" || str.includes("Karen"))
-                {
-                
-                  setVoice(str);
-                }
-              ulContainer.innerHTML += block;
-                                    
-                                
-        }
-    }                            
-  });
- 
+var voiceIndex;
+
+function loadVoices() { 
+
+  speechSynthesis.getVoices().forEach(function(voice, i){
+
+        if(voice.lang.includes("en")){
+          if(!voice.name.includes('Google')){
+            voices.push(voice);
+
+
+            var li = document.createElement('li');
+            li.addEventListener('click',setVoice, false);
+            li.myParam = li;
+            li.innerText = replaceString("Microsoft", "", voice.name);
+            ulContainer.appendChild(li);
+
+            if(voice.name.includes("Zira"))    selectedVoice = voice;
+            if(voice.name.includes("Linda"))    selectedVoice = voice;
+
+            if(voice.name.includes("Karen"))    selectedVoice = voice;
+          
+          }
+          }
+      });
+
+  voiceIndex = voices.indexOf(selectedVoice);
+  console.log(voiceIndex);
+
 }
 
-// Execute loadVoices.
+
 loadVoices();
 
 
-  
-// Chrome loads voices asynchronously.
 synth.onvoiceschanged = function(e) {
-  loadVoices();
-  
-   var children = ulContainer.children;
 
- document.querySelector(".dropdown__text").innerText = Array.from(children)[1].innerText;
-  Array.from(children)[1].style.background = "#ffb400";
-  Array.from(children)[1].style.color = "#fff";
-
-   selectedVoice = synth.getVoices().filter(function(voice) { console.log(voice.name.includes(Array.from(children)[1].innerText)); return voice.name.includes(Array.from(children)[1].innerText) })[0];
-
-};
+ loadVoices();
+  var children = ulContainer.children;
 
 
+ 
 
 
-function setVoice(el){
+// var indexVoice =voices.indexOf(function(voice){return voice == selectedVoice});
 
+  Array.from(children)[voiceIndex].style.background = "#ffb400";
+  Array.from(children)[voiceIndex].style.color = "#fff";
+document.querySelector(".dropdown__text").innerText = replaceString("Microsoft", "",selectedVoice.name);
+}
+
+
+
+
+
+function setVoice(evt){
+
+li = evt.currentTarget.myParam;
 var children = ulContainer.children;
 
-Array.from(children).forEach((x)=>{
-  if(x!= el){
-    x.style.background = "none";
-    x.style.color = "#2f2f2f";
-  }
+    Array.from(children).forEach((x)=>
+    {
+        if(x!= li)
+        {
+          x.style.background = "none";
+          x.style.color = "#2f2f2f";
+        }
+      });
 
-});
+      li.style.background = "#ffb400";
+      li.style.color = "#fff";
 
-el.style.background = "#ffb400";
-el.style.color = "#fff";
- selectedVoice = speechSynthesis.getVoices().filter(function(voice) { return voice.name.includes(el.innerText) })[0];
-document.querySelector("input").checked = false;
-document.querySelector(".dropdown__text").innerText = el.innerText;
-}
+      document.querySelector("input").checked = false;
+      document.querySelector(".dropdown__text").innerText = li.innerText;
+      
+  selectedVoice = voices.filter(function(voice) { return voice.name.includes(li.innerText) })[0];                         
+} 
+
+
 
 
 
@@ -302,13 +311,13 @@ function SpeakIt(thisEl) {
   if(currentPressed!= null){
 
  currentPressed.style.background = "#1a95f4";
- currentPressed.style.boxShadow = "0px 10px 0px 0px #1a7ac5";
+ currentPressed.style.boxShadow = "0px 8px 0px 0px #1a7ac5";
   }
   currentPressed = thisEl;
  
 
  currentPressed.style.background = "#f5971d";
- currentPressed.style.boxShadow = "0px 10px 0px 0px #f5971d";
+ currentPressed.style.boxShadow = "0px 8px 0px 0px #f5971d";
  parseSentences();
   speak();
   
@@ -333,7 +342,7 @@ function speak(){
 
    if(currentPressed!=null){
     currentPressed.style.backgroundColor = "#1a95f4";
-    currentPressed.style.boxShadow = "0px 10px 0px 0px #1a7ac5";
+    currentPressed.style.boxShadow = "0px 8px 0px 0px #1a7ac5";
   }
    sound.addEventListener("ended", function(){
   
@@ -361,8 +370,23 @@ if(speakObj!=null)
  // speakObj.lang= getVoicesWithLangSubstring(speakObj.voice.lang);
   speakObj.rate = 0.8;
   synth.speak(speakObj);
-
+ anime({
+          targets: speaker,
+          scale: 1.1,
+          translateY: '-50px',
+          duration:500,
+          ease:'easeInOutQuart'
+       
+        });
   speakObj.addEventListener('end', function () {
+    anime({
+          targets: speaker,
+          scale: 1,
+          translateY: '-35px',
+          duration:500,
+          ease:'easeInOutQuart'
+       
+        });
   SetSpeakingUI();
   });
 }
@@ -388,28 +412,12 @@ function SetSpeakingUI(){
 speaker.style.backgroundColor = "#1a95f4";
 speaker.style.boxShadow = "0px 5px 0px 0px #1a7ac5";
 if(currentPressed!=null){
-  anime({
-          
-           targets: speaker,
-          scale: 1.5,
-          translateY: '-50px',
-          duration:500,
-          ease:'easeInOutQuart'
-       
-        });
-
+ 
 currentPressed.style.backgroundColor = "#1a95f4";
 currentPressed.style.boxShadow = "0px 8px 0px 0px #1a7ac5";
 }
 else{
-  anime({
-          targets: speaker,
-          scale: 1,
-          translateY: '-35px',
-          duration:500,
-          ease:'easeInOutQuart'
-       
-        });
+ 
 }
 document.querySelector("#speakerIcon").style.display = "flex";
 document.querySelector("#speakingLoader").style.display = "none";
@@ -470,36 +478,14 @@ function getVoicesWithLangSubstring (langSubstr) {
 
 
 
-
-
-
-
-
-/*
-//Speaking Area
-//Speaking variables
-
-
-let voices = [];
- 
-
-
-
-
-window.speechSynthesis.addEventListener("voiceschanged",()=>{
-
-voices = window.speechSynthesis.getVoices();
-
- selectedVoice = voices.find((voice)=> voice.name.includes("Google UK English Female") || voice.name.includes("Karen") );
-
-if(selectedVoice == undefined){
-selectedVoice = voices.find((voice)=> voice.name.includes("Microsoft Mark - English (United States)"));
+function replaceString(oldS, newS, fullS) {
+  for (let i = 0; i < fullS.length; ++i) {
+    if (fullS.substring(i, i + oldS.length) === oldS) {
+      fullS =
+        fullS.substring(0, i) +
+        newS +
+        fullS.substring(i + oldS.length, fullS.length);
+    }
+  }
+  return fullS;
 }
-
-
-});
-
- 
-
-
-*/

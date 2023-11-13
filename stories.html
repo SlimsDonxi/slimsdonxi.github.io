@@ -36,37 +36,13 @@ color:#c5c5c5;
    </head>
    <!-- body -->
  
-   <body class="main-layout inner_page" >
+   <body class="main-layout inner_page" style="overflow-x:hidden" >
 
 
-<div style="position:relative; height:100%; overflow:hidden">
+<div style="position:relative; height:100%; overflow-x:hidden">
 
 
 
-    <div id="loader" style="background:#f5f5f5;  display:none; flex-direction:column; justify-content:center; margin:0 auto;height:100%; width:100%; z-index:5005">
-       
-                <div aria-label="Orange and tan hamster running in a metal wheel" role="img" class="wheel-and-hamster" style="margin: 0 auto;">
-                        <div class="wheel"></div>
-                        <div class="hamster">
-                            <div class="hamster__body">
-                                <div class="hamster__head">
-                                    <div class="hamster__ear"></div>
-                                    <div class="hamster__eye"></div>
-                                    <div class="hamster__nose"></div>
-                                </div>
-                                <div class="hamster__limb hamster__limb--fr"></div>
-                                <div class="hamster__limb hamster__limb--fl"></div>
-                                <div class="hamster__limb hamster__limb--br"></div>
-                                <div class="hamster__limb hamster__limb--bl"></div>
-                                <div class="hamster__tail"></div>
-                            </div>
-                         </div>
-
-                        <div class="spoke"></div>
-                </div>
-                   <h1 style="text-align:center"><b> Loading</b></h1>
-        </div>
-          
             <div onclick="PlayClick(); window.location.href='index.html';" class="cancel mainCancel shake">
                     <?xml version="1.0" encoding="utf-8"?>
                 <svg class="icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -114,7 +90,7 @@ color:#c5c5c5;
 
             
 
-        <div id="Reader" class="mainFrame" style="padding-top:70px;"> 
+        <div id="Reader" class="mainFrame" style="padding-top:70px; display:none"> 
 
             <div class="container " >
              <div class="row">
@@ -189,7 +165,7 @@ color:#c5c5c5;
                     </div>  
 
              <div class="container centerBottom" style="position:absolute;bottom:0px"> 
-                    <div class="backgroundInteractive"></div>
+                 <!--   <div class="backgroundInteractive"></div>-->
                     <div class="interactiveContainer">                                   
                          <div class="interactive shake" id="previous" onclick="PlayClick(); Previous()" >
                             <svg class="icon" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
@@ -222,11 +198,18 @@ color:#c5c5c5;
                               <div class="box box4"></div>
                               
                             </div> 
+
+                          <div id="microTranscript" > 
+                                <div id="microText"></div>
+                                <svg id="microSvg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 50 50" shape-rendering="geometricPrecision" text-rendering="geometricPrecision"><path d="M0,50v-.00509C5.06218,49.72361,9.1347,38.63689,9.1347,25s-4.07252-24.72361-9.1347-24.99491L0,0h50c-5.14991,0-9.32473,11.19288-9.32473,25s4.17482,25,9.32473,25h-50Z" fill="#f51d36" stroke-width="0"/></svg>
+                            </div>
+
                         </div>
                             <div class=" interactive shake" id="next" onclick="PlayClick(); Next()"  >
                            <svg class="icon"  viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12.3315 5.18341L17.3094 9.60815C18.2399 10.4353 18.7052 10.8489 18.8767 11.3373C19.0273 11.7662 19.0273 12.2335 18.8767 12.6624C18.7052 13.1508 18.2399 13.5644 17.3094 14.3916L12.3315 18.8163C11.9092 19.1917 11.6981 19.3794 11.5187 19.3861C11.3629 19.3919 11.2133 19.3247 11.1142 19.2044C11 19.0659 11 18.7834 11 18.2184V15.4284C8.57196 15.4284 6.00739 16.2083 4.13478 17.5926C3.15988 18.3133 2.67242 18.6737 2.48676 18.6595C2.30578 18.6456 2.19093 18.575 2.09703 18.4196C2.0007 18.2603 2.08578 17.7624 2.25595 16.7666C3.36093 10.3004 7.8109 8.57129 11 8.57129V5.78134C11 5.21632 11 4.93381 11.1142 4.79531C11.2133 4.67498 11.3629 4.6078 11.5187 4.61363C11.6981 4.62034 11.9092 4.80803 12.3315 5.18341Z" />
                             </svg>
+
                        </div>        
                    </div>             
                </div>
@@ -234,6 +217,30 @@ color:#c5c5c5;
              
             </div>
            
+
+    <div id="loader" style="background:#f5f5f5; position:fixed; display:none; flex-direction:column; justify-content:center; top:0; margin:0 auto;height:100%; width:100%; z-index:50050">
+       
+                <div aria-label="Orange and tan hamster running in a metal wheel" role="img" class="wheel-and-hamster" style="margin: 0 auto;">
+                        <div class="wheel"></div>
+                        <div class="hamster">
+                            <div class="hamster__body">
+                                <div class="hamster__head">
+                                    <div class="hamster__ear"></div>
+                                    <div class="hamster__eye"></div>
+                                    <div class="hamster__nose"></div>
+                                </div>
+                                <div class="hamster__limb hamster__limb--fr"></div>
+                                <div class="hamster__limb hamster__limb--fl"></div>
+                                <div class="hamster__limb hamster__limb--br"></div>
+                                <div class="hamster__limb hamster__limb--bl"></div>
+                                <div class="hamster__tail"></div>
+                            </div>
+                         </div>
+
+                        <div class="spoke"></div>
+                </div>
+                   <h1 style="text-align:center"><b> Loading</b></h1>
+        </div>
     <div id="backgroundQuestions" class="mainFrame" style="padding:20px;padding-top:50px;overflow:scroll; ">
             <div onclick="CloseReader('backgroundQuestions');PlayClick();" class="cancel subCancel shake">
                     <svg class="icon"viewBox="0 0 25 25"> 
@@ -254,23 +261,6 @@ color:#c5c5c5;
           </div>
           <div  class="class_box text_align_center disabled " id="confirm" onclick="confirmAnswer();PlayClick();" >  Confirm</div>  
 
-    <!-------------------------------------- QUESTION RESULT -------------------->
-
-        <div id="ResultQuestionWrapper"  class="scoreWrapper">
-            <div id="ResultQuestionContainer" class="scoreContainer" style="position:absolute;left:50%; margin-left:-175px;background: rgb(255,214,0);background: radial-gradient(circle, rgba(255,214,0,1) 0%, rgba(255,192,0,1) 35%, rgba(255,145,0,1) 90%);">        
-            <div class="row" id="">
-                 <div class ="col-md-12 emojiContainer ">       
-                    <lottie-player id="basic" src="https://lottie.host/fa91ea0d-599e-4158-a753-799c0911499e/Qli3MgtYxb.json" speed="1" loop autoplay direction="1" mode="normal"></lottie-player>
-                     <lottie-player id="trophy" style="display:none" src="animations/AnimationTrophy.json" background="transparent" speed="1"  loop  autoplay direction="1" mode="normal"></lottie-player>
-                     
-                </div> 
-                <div class="col-md-12"  style="padding-top:10px; padding-bottom:50px">
-                    <span style="font-size: 35px; color:white"><b>You're awesome !</b></span>
-                </div>          
-            </div>
-            <div class="scoreOK" onclick="fadeOutScore();">Continue</div> 
-            </div>
-        </div>
     </div>
 
 
@@ -317,7 +307,7 @@ color:#c5c5c5;
                     <span>Great Job !</span>
                 </div>
 
-            <div class=" scoreOK"  id="ok" onclick="Continue();PlayClick();">Continue</div>
+            <div class=" scoreOK" style="position:absolute; left:50%; bottom:50px; transform: translate(-50%);"  id="ok" onclick="PlayClick();">Continue</div>
             </div>
         </div>
     </div>
@@ -332,12 +322,47 @@ color:#c5c5c5;
 
 <!---------------- CONFIRMER --------------------->
 
-    <div id="confirmer" style="" >
-        <lottie-player src="https://lottie.host/3297d458-2f77-4219-a453-9aa75249141f/hleHtYSwfs.json" background="transparent" speed="1" style="width: 100%;x; height: auto; " loop  autoplay direction="1" mode="normal"></lottie-player>
-        <div style="color:gray; font-weight:bold; padding:50px; font-size:30px; text-align:center; line-height:30px"> Are you ready for the test ?</div>
-          <div id="ok"  class=" scoreOK"   onclick="startStoryQuestions();  PlayClick();">Continue</div> 
+    <div id="confirmer">
+        <!-- <lottie-player id="trophy" src="animations/AnimationCompetition.json" style="width: 100%;top:0; height: auto;" background="transparent" speed="1"  loop  autoplay direction="1" mode="normal"></lottie-player>-->
+       <lottie-player src="https://lottie.host/3297d458-2f77-4219-a453-9aa75249141f/hleHtYSwfs.json" background="transparent" speed="1" style="width: 100%;top:0; height: auto; " loop  autoplay direction="1" mode="normal"></lottie-player>
+        <div style="color:gray; font-weight:bold; padding:50px; font-size:30px; text-align:center; line-height:40px"> Are you ready for the test ?</div>
+
+
+        <div  style="display:flex; flex-direction:column; align-content: center; line-height: 15px; align-items:center;height:auto;position:relative; transform-origin: bottom;top:10%">
+           
+           <div id="ok"  class="buttonCanvas"   onclick="startStoryQuestions();  PlayClick();">Continue</div> <br><br>          
+           <div id="back" class="buttonCanvas" style="background:#f22542; box-shadow: 0 8px 0 0 #d73249;"  onclick="document.querySelector('#confirmer').style.display='none';  PlayClick();">Back</div> 
+       
+        </div>
+          
     </div>
 
+
+
+    <!-------------------------------------- QUESTION RESULT -------------------->
+
+        <div id="ResultQuestionWrapper"  class="scoreWrapper">
+            <div id="ResultQuestionContainer" class="scoreContainer" style="position:absolute;left:50%; margin-left:-175px;background: rgb(255,214,0);background: radial-gradient(circle, rgba(255,214,0,1) 0%, rgba(255,192,0,1) 35%, rgba(255,145,0,1) 90%);">        
+            <div class="row" id="">
+                 <div class ="col-md-12 emojiContainer ">       
+                    <lottie-player id="basic" src="https://lottie.host/fa91ea0d-599e-4158-a753-799c0911499e/Qli3MgtYxb.json" speed="1" loop autoplay direction="1" mode="normal"></lottie-player>
+                     <lottie-player id="trophy" style="display:none" src="animations/AnimationTrophy.json" background="transparent" speed="1"  loop  autoplay direction="1" mode="normal"></lottie-player>              
+                </div> 
+                <div class="col-md-12"  style="padding-top:10px; padding-bottom:50px">
+                    <span style="font-size: 35px; color:white"><b>You're awesome !</b></span>
+                </div>
+                
+            </div>
+            <div  style="display:flex; flex-direction:column; align-content: center; line-height: 15px; align-items:center;height:auto;position:relative; transform-origin: bottom;top:10%">
+           
+           <div id="ok"  class="buttonCanvas"   onclick="fadeOutScore();  PlayClick();">Continue</div>        
+          
+       
+        </div>  
+            </div>
+        </div>
+
+          
 
  <script src="js/StoriesIndexManager.js"></script>
        <script src="js/listener.js"></script>

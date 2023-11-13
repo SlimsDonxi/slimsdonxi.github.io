@@ -63,6 +63,16 @@ letter-spacing: -5px;
 color:#ef3f58;
 
 }
+
+#microTranscript{
+    margin-top:-27px;
+    margin-left:-50px;
+}
+
+#micIcon{
+    margin-top:17px;
+}
+
 </style>
  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
@@ -167,7 +177,7 @@ color:#ef3f58;
             </svg></div>
        
         <div class="container centerBottom" style="position:absolute;bottom:0px; "> 
-              <div class="backgroundInteractive"></div>
+              <!--<div class="backgroundInteractive"></div>-->
                 <div class="interactiveContainer">                         
                      <div class="interactive " id="previous" onclick=" PlayClick(); Previous()" >
                         <svg class= "icon"  viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
@@ -199,8 +209,13 @@ color:#ef3f58;
                           <div class="box box4"></div>
                         
                         </div> 
+                        
+                          <div id="microTranscript" > 
+                                <div id="microText"></div>
+                                <svg id="microSvg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 50 50" shape-rendering="geometricPrecision" text-rendering="geometricPrecision"><path d="M0,50v-.00509C5.06218,49.72361,9.1347,38.63689,9.1347,25s-4.07252-24.72361-9.1347-24.99491L0,0h50c-5.14991,0-9.32473,11.19288-9.32473,25s4.17482,25,9.32473,25h-50Z" fill="#f51d36" stroke-width="0"/></svg>
+                            </div>
                     </div>
-                        <div class=" interactive " id="next"onclick=" PlayClick(); Next()"  >
+                        <div class=" interactive " id="next" onclick=" PlayClick(); Next()"  >
                        <svg class= "icon"  viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12.3315 5.18341L17.3094 9.60815C18.2399 10.4353 18.7052 10.8489 18.8767 11.3373C19.0273 11.7662 19.0273 12.2335 18.8767 12.6624C18.7052 13.1508 18.2399 13.5644 17.3094 14.3916L12.3315 18.8163C11.9092 19.1917 11.6981 19.3794 11.5187 19.3861C11.3629 19.3919 11.2133 19.3247 11.1142 19.2044C11 19.0659 11 18.7834 11 18.2184V15.4284C8.57196 15.4284 6.00739 16.2083 4.13478 17.5926C3.15988 18.3133 2.67242 18.6737 2.48676 18.6595C2.30578 18.6456 2.19093 18.575 2.09703 18.4196C2.0007 18.2603 2.08578 17.7624 2.25595 16.7666C3.36093 10.3004 7.8109 8.57129 11 8.57129V5.78134C11 5.21632 11 4.93381 11.1142 4.79531C11.2133 4.67498 11.3629 4.6078 11.5187 4.61363C11.6981 4.62034 11.9092 4.80803 12.3315 5.18341Z" />
                         </svg>
@@ -247,7 +262,7 @@ color:#ef3f58;
 
         </div>
         
-        <div class="class_box scoreOK"   id="ok">Continue</div>
+        <div class="class_box scoreOK" style="position:absolute; left:50%; bottom:20px; transform: translate(-50%);"  id="ok">Continue</div>
     </div>
     </div>
 </div>

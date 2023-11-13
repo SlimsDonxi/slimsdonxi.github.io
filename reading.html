@@ -50,8 +50,11 @@ font-weight:bold;
      padding: 30px 0;
      text-aligh:start;
 }
-
-        </style>.
+#microTranscript{
+    margin-top:-27px;
+    margin-left:-50px;
+}
+        </style>
          <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
    </head>
    <!-- body -->
@@ -149,7 +152,7 @@ font-weight:bold;
 
        
                <div class="container centerBottom" style="position:absolute;bottom:0px"> 
-                <div class="backgroundInteractive"></div>
+               <!-- <div class="backgroundInteractive"></div>-->
                 <div class="interactiveContainer">                  
                      
                      <div class="interactive " id="previous" onclick="PlayClick(); Previous()" >
@@ -172,7 +175,7 @@ font-weight:bold;
                     </div>
                     <div class=" interactive  mainInteractive" id="microphone"   >
                        <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-                        <svg id="micIcon"class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg id="micIcon"class="icon" viewBox="0 0 24 24" fill="none" style="margin-top:25%">
                         <path d="M12 2C8.82436 2 6.25 4.57436 6.25 7.75V10.75C6.25 13.9256 8.82436 16.5 12 16.5C14.9214 16.5 17.334 14.3213 17.7015 11.5L13 11.5C12.5858 11.5 12.25 11.1642 12.25 10.75C12.25 10.3358 12.5858 10 13 10L17.75 10V8.5H13C12.5858 8.5 12.25 8.16421 12.25 7.75C12.25 7.33579 12.5858 7 13 7H17.7015C17.334 4.17873 14.9214 2 12 2Z" fill="#fff"/>
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M4 9C4.41421 9 4.75 9.33579 4.75 9.75V10.75C4.75 14.7541 7.99594 18 12 18C16.0041 18 19.25 14.7541 19.25 10.75V9.75C19.25 9.33579 19.5858 9 20 9C20.4142 9 20.75 9.33579 20.75 9.75V10.75C20.75 15.3298 17.2314 19.0879 12.75 19.4683V21.75C12.75 22.1642 12.4142 22.5 12 22.5C11.5858 22.5 11.25 22.1642 11.25 21.75V19.4683C6.7686 19.0879 3.25 15.3298 3.25 10.75V9.75C3.25 9.33579 3.58579 9 4 9Z" fill="#fff"/>
                         </svg>
@@ -182,7 +185,12 @@ font-weight:bold;
                           <div class="box box3"></div>
                           <div class="box box4"></div>
                           
-                        </div> 
+                        </div>
+                        
+                          <div id="microTranscript" > 
+                                <div id="microText"></div>
+                                <svg id="microSvg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 50 50" shape-rendering="geometricPrecision" text-rendering="geometricPrecision"><path d="M0,50v-.00509C5.06218,49.72361,9.1347,38.63689,9.1347,25s-4.07252-24.72361-9.1347-24.99491L0,0h50c-5.14991,0-9.32473,11.19288-9.32473,25s4.17482,25,9.32473,25h-50Z" fill="#f51d36" stroke-width="0"/></svg>
+                            </div> 
                     </div>
                         <div class=" interactive " id="next"onclick="PlayClick(); Next()"  >
                        <svg class="icon"  viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
@@ -227,7 +235,7 @@ font-weight:bold;
 
         </div>
         
-        <div class="class_box scoreOK"  id="ok">Continue</div>
+        <div class="class_box scoreOK" style="position:absolute; left:50%; bottom:25px; transform: translate(-50%);"  id="ok">Continue</div>
     </div>
     </div>
 </div>

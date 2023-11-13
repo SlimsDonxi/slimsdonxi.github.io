@@ -10,8 +10,6 @@ var listSentences =[];
 
 var currentSentence;
 var currentPicture = document.querySelector('#currentPicture');
-
-
  var nextButton = document.getElementById("next");
 var prevButton = document.getElementById("previous");
 var displayedPhrase =  document.getElementById('displayedPhrase');
@@ -49,7 +47,7 @@ function FileHelper(url){
 function GenerateStory(element){
 
 loader.style.display='flex';
-  document.querySelector('body').style.overflowY = "hidden";
+
 setTimeout(StartGeneratin(element), 500);
 }
 
@@ -100,10 +98,19 @@ for(i = 0; i <= listSentences.length; i++) {
 
 
     Promise.all(jarOfPromise).then( result => {
-       listPictures.sort();
+       listPictures.sort(function(a,b){ 
+     
+     
+        return a.src.substring(a.src.lastIndexOf('/')+1,a.src.lastIndexOf('.')) -  b.src.substring(a.src.lastIndexOf('/')+1,a.src.lastIndexOf('.'))});
+      
+
       currentPicture.src = listPictures[0].src; 
 
-      loader.style.display='none';
+setTimeout(()=>{
+    loader.style.display='none';
+       document.querySelector('#Reader').style.display = "block";
+     },2000);
+    
     });
 
 }
@@ -121,16 +128,15 @@ function PopulateSentence(sentence){
 
 CheckButtonNextAvailability();
 CheckButtonPreviousAvailability();
- document.querySelector('#Reader').style.display = "block";
-  document.querySelector('body').style.overflowY = "scroll";
+
+
   }
 
 
 
-
-
-
 const synth = window.speechSynthesis;
+synth.defaultPrevented = true;
+
 
 
 var  selectedVoice;
@@ -138,75 +144,88 @@ var  selectedVoice;
 
 var ulContainer = document.querySelector(".dropdown__items");
 // Fetch the list of voices and populate the voice options.
-function loadVoices() {
-  // Fetch the available voices.
-  var voices = speechSynthesis.getVoices();
-   var str;
-  // Loop through each of the voices.
-  voices.forEach(function(voice, i) {
-     if(voice.lang.includes("en"))
-    {
 
-         if(!voice.name.includes('Microsoft'))
-         {
-           if(voice.name.includes('Google')) 
-              str = voice.name.replace('Google', '');
-                                   
-                                   
+var voices =[];
 
-            var block = `<li onclick='setVoice(this)'>${str}</li>`  
-            console.log(str);
-              if(str == "UK English Female" || str.includes("Karen"))
-                {
-                
-                  setVoice(str);
-                }
-              ulContainer.innerHTML += block;
-                                    
-                                
-        }
-    } 
-  });
+
+
+var voiceIndex;
+
+function loadVoices() { 
+
+  speechSynthesis.getVoices().forEach(function(voice, i){
+
+        if(voice.lang.includes("en")){
+          if(!voice.name.includes('Google')){
+            voices.push(voice);
+
+
+            var li = document.createElement('li');
+            li.addEventListener('click',setVoice, false);
+            li.myParam = li;
+            li.innerText = replaceString("Microsoft", "", voice.name);
+            ulContainer.appendChild(li);
+
+            if(voice.name.includes("Zira"))    selectedVoice = voice;
+            if(voice.name.includes("Linda"))    selectedVoice = voice;
+
+            if(voice.name.includes("Karen"))    selectedVoice = voice;
+          
+          }
+          }
+      });
+
+  voiceIndex = voices.indexOf(selectedVoice);
+  console.log(voiceIndex);
+
 }
 
-// Execute loadVoices.
+
 loadVoices();
 
-// Chrome loads voices asynchronously.
+
 synth.onvoiceschanged = function(e) {
-  loadVoices();
-   var children = ulContainer.children;
-   
-  Array.from(children)[1].style.background = "#ffb400";
-  Array.from(children)[1].style.color = "#fff";
-   selectedVoice = synth.getVoices().filter(function(voice) { console.log(voice.name.includes(Array.from(children)[1].innerText)); return voice.name.includes(Array.from(children)[1].innerText) })[0];
-document.querySelector(".dropdown__text").innerText = selectedVoice.name;//Array.from(children)[1].innerText;
-};
+
+ loadVoices();
+  var children = ulContainer.children;
 
 
+ 
 
 
-function setVoice(el){
+// var indexVoice =voices.indexOf(function(voice){return voice == selectedVoice});
 
-var children = ulContainer.children;
-
-Array.from(children).forEach((x)=>{
-  if(x!= el){
-    x.style.background = "none";
-    x.style.color = "#2f2f2f";
-  }
-
-});
-
-el.style.background = "#ffb400";
-el.style.color = "#fff";
- selectedVoice = speechSynthesis.getVoices().filter(function(voice) { return voice.name.includes(el.innerText) })[0];
-document.querySelector("input").checked = false;
-document.querySelector(".dropdown__text").innerText = el.innerText;
+  Array.from(children)[voiceIndex].style.background = "#ffb400";
+  Array.from(children)[voiceIndex].style.color = "#fff";
+document.querySelector(".dropdown__text").innerText = replaceString("Microsoft", "",selectedVoice.name);
 }
 
 
 
+
+
+function setVoice(evt){
+
+li = evt.currentTarget.myParam;
+var children = ulContainer.children;
+
+    Array.from(children).forEach((x)=>
+    {
+        if(x!= li)
+        {
+          x.style.background = "none";
+          x.style.color = "#2f2f2f";
+        }
+      });
+
+      li.style.background = "#ffb400";
+      li.style.color = "#fff";
+
+      document.querySelector("input").checked = false;
+      document.querySelector(".dropdown__text").innerText = li.innerText;
+      
+  selectedVoice = voices.filter(function(voice) { return voice.name.includes(li.innerText) })[0];                         
+} 
 
 
 
@@ -276,13 +295,12 @@ document.querySelector("#speakingLoader").style.display = "flex";
    
 }
 
-speakObj.voice =selectedVoice;
-
+speakObj.voice=selectedVoice;
 speakObj.rate = 0.8;
-synth.speak(speakObj);
 
-}else{
-  // Speech Synthesis Not Supported 😣
+synth.speak(speakObj);
+}
+else{
   alert("Sorry, your browser doesn't support text to speech!");
 }
 speakObj.addEventListener('end', function () {
@@ -382,3 +400,14 @@ PopulateSentence(currentSentence);
        
 
 } 
+function replaceString(oldS, newS, fullS) {
+  for (let i = 0; i < fullS.length; ++i) {
+    if (fullS.substring(i, i + oldS.length) === oldS) {
+      fullS =
+        fullS.substring(0, i) +
+        newS +
+        fullS.substring(i + oldS.length, fullS.length);
+    }
+  }
+  return fullS;
+}

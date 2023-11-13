@@ -1,63 +1,99 @@
 
 
-  const SpeechRecognition =
-        window.SpeechRecognition || window.webkitSpeechRecognition;
+        const SpeechRecognition =
+          window.SpeechRecognition || window.webkitSpeechRecognition;
       const recognition = new SpeechRecognition();
-recognition.lang = "en-US";
+      recognition.lang = "en-US";
       const inputText = document.querySelector("#displayedText");
-       const inputPhrase = document.querySelector("#displayedPhrase");
+      const inputPhrase = document.querySelector("#displayedPhrase");
       var result;
-  	const microphone = document.querySelector('#microphone');
-
-  const scoreSpeechWrapper= document.querySelector('#scoreSpeech');
+  	 const microphone = document.querySelector('#microphone');
+      const scoreSpeechWrapper= document.querySelector('#scoreSpeech');
 
 
     const resultContainer = document.querySelector('#scoreSpeechContainer');
-  const score = document.querySelector('#score');
+    const score = document.querySelector('#score');
     const comment = document.querySelector('#comment');
-   var audio = document.querySelector('#audioPlayer');
-var arraySvg = [ resultContainer.querySelector('#greatSvg'),resultContainer.querySelector('#happySvg'),resultContainer.querySelector('#badSvg') ]
+    var audio = document.querySelector('#audioPlayer');
+    var arraySvg = [ resultContainer.querySelector('#greatSvg'),resultContainer.querySelector('#happySvg'),resultContainer.querySelector('#badSvg') ]
 
+    var speechTextContainer = document.querySelector('#microTranscript');
+    var speechText = document.querySelector('#microText');
+    recognition.continuous = true;
 
-      recognition.continuous = true;
+    var recognizing = false;
 
       microphone.addEventListener("pointerdown", () => {
-     ActivateButton();
-        recognition.start();
         
+
+        if(!recognizing){
+        ActivateButton();
+
         audio.src = './audios/startRecord.wav';
         audio.play();
-      });
 
-      microphone.addEventListener("pointerup", () => {
-     ResetButton();
-        recognition.stop();
-        
-        audio.src = './audios/endRecord.mp3';
-        audio.play();
-      });
+      
+        recognition.start();
+       
+      recognition.addEventListener('start', ()=>){
+        recognizing = true;
+      }
+         recognition.addEventListener("result", (event) => {
 
-      recognition.addEventListener("result", (event) => {
+ 
         const transcript = Array.from(event.results)
           .map((result) => result[0].transcript)
           .join("");
+          
 
-       result = transcript;
-       CheckResult();
-      ResetButton();
-        recognition.stop();
+       result = transcript; 
+       
+     
+  
+        speechTextContainer.style.display = 'block';
+        
+ 
+       
+
+      speechText.innerText = result;
       });
+        }
+      });
+
+      microphone.addEventListener("pointerup", () => {
+  
+        recognition.stop();
+        recognizing = false;
+        audio.src = './audios/endRecord.mp3';
+        audio.play();
+         
+         setTimeout(()=>{
+           speechTextContainer.style.display = 'none';
+           CheckResult();
+           ResetButton();
+         },800)
+      });
+
+     
 
 function CheckResult(){
        
-  if(document.querySelector('title').innerText=='Stories')score.innerText = similarity(listSentences[currentPage], result);
+  if(document.querySelector('title').innerText=='Stories'){
+
+  
+      score.innerText = similarity(listSentences[currentPage], result);
+   
+    
+  }
           
   else if(clickable) score.innerText = similarity(currentArray[currentText], result);
 
   else score.innerText = similarity(inputText.innerText, result);
          
+         if(score.innerText != 'undefined'){
   setScoreWithColor(score.innerText);
   score.innerText+='%';
+}
 }
 
 
@@ -163,6 +199,12 @@ anime({
 
 
       function similarity(s1, s2) {
+
+        if(s2 === undefined || s2 ==''){
+          alert('Text is too short, please try again');
+          return;
+        }
+
   var longer = s1;
   var shorter = s2;
   if (s1.length < s2.length) {

@@ -15,7 +15,7 @@ var selectedAnswer;
 var confirmer = document.querySelector('#confirmer');
 var arrayQuestions =0;
 var currentProgress =0;
-const scorequestionContainer = document.querySelector('#ResultWrapper');
+const scorequestionContainer = document.querySelector('#ResultQuestionWrapper');
 
 
 function startStoryQuestions(){
@@ -42,22 +42,25 @@ GenerateQuestion();
 
 
 function GenerateQuestion(){
+	ulQuestions.innerHTML ='';
+
 
 if(counterQuestions < arrayQuestions.length){
-	ulQuestions.innerHTML ='';
+
 	currentQuestion = arrayQuestions[counterQuestions];
 	questionText.innerText = currentQuestion.question;
+
+
 	currentQuestion.options.forEach(x=>{
 		ulQuestions.innerHTML+= 
 		`<div class="col-md-12 questionAnswer" onclick='lockAnswer(this)'>${x}</div>`;
 	});
-	 var correctAnswer =  document.createElement('div');
+	var correctAnswer =  document.createElement('div');
 	 correctAnswer.classList.add("col-md-12","questionAnswer");
-	 correctAnswer.onclick = function() {lockAnswer(this)};
-	correctAnswer.innerText = currentQuestion.answers;
+	 correctAnswer.onclick = function() {lockAnswer(this)}; 
+	 correctAnswer.innerText = currentQuestion.answers;
 	var randomPosition = Math.floor(Math.random() * currentQuestion.options.length+1);
 	ulQuestions.insertBefore(correctAnswer, ulQuestions.childNodes[randomPosition]);
-
 	speakOption(questionText);
 }
 }
@@ -122,9 +125,9 @@ function correctAnswer(){
 	if(counterQuestions == arrayQuestions.length){
 
 		audio.src = './audios/win.mp3';
-	document.querySelector('#basic').style.display ='none';
-	document.querySelector('#trophy').style.display ='block';
-scorequestionContainer.style.display ="block";
+	 document.querySelector('#basic').style.display ='none';
+	 document.querySelector('#trophy').style.display ='block';
+  scorequestionContainer.style.display ="block";
 
 var animation = anime({
   targets: scorequestionContainer,
@@ -143,18 +146,21 @@ anime({
 });
 counterQuestions =0;
 currentProgress=0;
+
 	}
 	else{
 
 		audio.src = './audios/good.mp3';
-	}
-	audio.play();
-	updateSlider(true);
-
-setTimeout(() =>{
+		setTimeout(() =>{
 
 	GenerateQuestion()
 },1500);
+	}
+	updateSlider(true);
+	audio.play();
+
+
+
 }
 
 
@@ -175,6 +181,9 @@ animation.finished.then(()=>{
 	 audio.pause();audio.currentTime = 0;
 	 	 scorequestionContainer.style.opacity='0';
 	 scorequestionContainer.style.display='none';
+	 background.style.display='none';
+	 synth.cancel();
+	 synth.abort();
 })
 
 
@@ -197,7 +206,7 @@ function updateSlider(el = false){
 if(el)
 currentProgress += factorProgress;
 
-progressBars.style.transitionDuration = `1s`;
+progressBars.style.transitionDuration = `.3s`;
 progressBars.style.width = `${currentProgress}%`;
  
 }
@@ -223,6 +232,6 @@ anime({
 	translateX: ['0','-120%'],
 	opacity:1,
 	duration:600,
-	easing:'easeOutElastic'
+	easing:'easeOutQuart'
 });
 }
