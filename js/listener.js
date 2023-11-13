@@ -35,9 +35,9 @@
       
         recognition.start();
        
-      recognition.addEventListener('start', ()=>){
+      recognition.addEventListener('start', ()=>{
         recognizing = true;
-      }
+      });
          recognition.addEventListener("result", (event) => {
 
  
