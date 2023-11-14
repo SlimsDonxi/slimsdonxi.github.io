@@ -1,9 +1,14 @@
 
 
-        const SpeechRecognition =
-          window.SpeechRecognition || window.webkitSpeechRecognition;
-      const recognition = new SpeechRecognition();
+
+const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition)();
+
+       
+  
+      recognition.interimResults =true;
+      recognition.continuous = true;
       recognition.lang = "en-US";
+
       const inputText = document.querySelector("#displayedText");
       const inputPhrase = document.querySelector("#displayedPhrase");
       var result;
@@ -11,68 +16,66 @@
       const scoreSpeechWrapper= document.querySelector('#scoreSpeech');
 
 
-    const resultContainer = document.querySelector('#scoreSpeechContainer');
+    const scoreContainer = document.querySelector('#scoreSpeechContainer');
     const score = document.querySelector('#score');
     const comment = document.querySelector('#comment');
     var audio = document.querySelector('#audioPlayer');
-    var arraySvg = [ resultContainer.querySelector('#greatSvg'),resultContainer.querySelector('#happySvg'),resultContainer.querySelector('#badSvg') ]
+    var emojiContainer = document.querySelector('.emojiContainer');
+    var arraySvg = [ emojiContainer.querySelector('#greatSvg'),emojiContainer.querySelector('#happySvg'),emojiContainer.querySelector('#badSvg') ]
 
     var speechTextContainer = document.querySelector('#microTranscript');
     var speechText = document.querySelector('#microText');
-    recognition.continuous = true;
+
 
     var recognizing = false;
 
-      microphone.addEventListener("pointerdown", () => {
+      microphone.onpointerdown = () => {
         
 
         if(!recognizing){
-        ActivateButton();
+            ActivateButton();
 
-        audio.src = './audios/startRecord.wav';
-        audio.play();
+            audio.src = './audios/startRecord.wav';
+            audio.play();
 
-      
-        recognition.start();
-       
-      recognition.addEventListener('start', ()=>{
-        recognizing = true;
-      });
-         recognition.addEventListener("result", (event) => {
+            
+            recognition.start();
+            recognition.onstart = () =>{recognizing = true;};
+            recognition.onresult= (event) => {
 
- 
-        const transcript = Array.from(event.results)
-          .map((result) => result[0].transcript)
-          .join("");
-          
+            const transcript = Array.from(event.results)
+              .map((result) => result[0].transcript)
+              .join("");
+              
 
-       result = transcript; 
-       
-     
-  
-        speechTextContainer.style.display = 'block';
-        
- 
-       
-
-      speechText.innerText = result;
-      });
+            result = transcript; 
+            
+           speechTextContainer.style.display = 'block';
+              
+          speechText.innerText = result;
+          };
         }
-      });
 
-      microphone.addEventListener("pointerup", () => {
-  
-        recognition.stop();
-        recognizing = false;
-        audio.src = './audios/endRecord.mp3';
-        audio.play();
-         
-         setTimeout(()=>{
-           speechTextContainer.style.display = 'none';
-           CheckResult();
-           ResetButton();
-         },800)
-      });
+           
+      };
+
+
+       document.querySelector('html').addEventListener("pointerup", () => {
+          console.log("REcognizing is :" + recognizing);
+           if(recognizing){
+
+              recognition.stop();
+              recognizing = false;
+              audio.src = './audios/endRecord.mp3';
+              audio.play();
+
+                setTimeout(()=>{
+                 speechTextContainer.style.display = 'none';
+                 CheckResult();
+                 ResetButton();
+               },800);
+            }
+          });
 
      
 
@@ -99,10 +102,9 @@ function CheckResult(){
 
 function setScoreWithColor(el){
 
-arraySvg.forEach((x)=> {
-  x.style.display ='none';
-});
-
+arraySvg.forEach(x =>{
+  x.style.display='none';
+})
 scoreSpeechWrapper.style.display ='flex';
 
 var animation = anime({
@@ -114,7 +116,7 @@ var animation = anime({
 
 animation.finished.then(()=>{
 anime({
-  targets: resultContainer,
+  targets: scoreContainer,
   scale:1.1,
   duration: 500,
   direction:'alternate',
@@ -122,15 +124,15 @@ anime({
 });
 });
 
-     resultContainer.classList.remove('success');
-     resultContainer.classList.remove('fail');
-     resultContainer.classList.remove('medium');
+     scoreContainer.classList.remove('success');
+     scoreContainer.classList.remove('fail');
+     scoreContainer.classList.remove('medium');
 
 
   if(el>70) 
   {
      audio.src = './audios/good.mp3';     
-     resultContainer.classList.add('success');
+     scoreContainer.classList.add('success');
     comment.querySelector('span').innerText = "Great Job";
      arraySvg[0].style.display = 'block';
 
@@ -140,7 +142,7 @@ anime({
   {
 
       audio.src = './audios/middle.wav';     
-      resultContainer.classList.add('medium');
+      scoreContainer.classList.add('medium');
       arraySvg[0].style.display = 'none';
       arraySvg[1].style.display = 'block';
       comment.querySelector('span').innerText = "Not bad";
@@ -149,7 +151,7 @@ anime({
    else
    {
      audio.src = './audios/fail.wav';     
-     resultContainer.classList.add('fail');
+     scoreContainer.classList.add('fail');
      arraySvg[0].style.display = 'none';
      arraySvg[2].style.display = 'block';
      comment.querySelector('span').innerText = "Try again"
@@ -201,6 +203,8 @@ anime({
       function similarity(s1, s2) {
 
         if(s2 === undefined || s2 ==''){
+          console.log('too short');
+
           alert('Text is too short, please try again');
           return;
         }

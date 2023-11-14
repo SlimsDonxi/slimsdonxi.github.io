@@ -147,84 +147,93 @@ var ulContainer = document.querySelector(".dropdown__items");
 
 var voices =[];
 
+var arrayWanted = [
+ 
 
+  "Microsoft Clara Online (Natural) - English (Canada)",
+  "Microsoft Liam Online (Natural) - English (Canada)",
+  "Microsoft Aria Online (Natural) - English (United States)",
+  "Microsoft Ana Online (Natural) - English (United States)",
+  "Microsoft Christopher Online (Natural) - English (United States)",
+
+
+      ]
 
 var voiceIndex;
 
 function loadVoices() { 
 
+ ulContainer.innerHTML='';
   speechSynthesis.getVoices().forEach(function(voice, i){
 
         if(voice.lang.includes("en")){
-          if(!voice.name.includes('Google')){
-            voices.push(voice);
-
-
-            var li = document.createElement('li');
-            li.addEventListener('click',setVoice, false);
-            li.myParam = li;
-            li.innerText = replaceString("Microsoft", "", voice.name);
-            ulContainer.appendChild(li);
-
-            if(voice.name.includes("Zira"))    selectedVoice = voice;
-            if(voice.name.includes("Linda"))    selectedVoice = voice;
-
-            if(voice.name.includes("Karen"))    selectedVoice = voice;
+          if(!voice.name.includes('Google')){          
           
+            if(arrayWanted.includes(voice.name)) {
+              console.log(voice.name);
+              voices.push(voice);
+          
+
+            var name = replaceString("Microsoft", "", voice.name);
+            name = replaceString("Online (Natural) - English (United States)", "",name);
+            name = replaceString("Online (Natural) - English (Canada)", "",name);
+
+            var block = `<li onclick="setVoice(this)">${name}</li>`;
+          
+            ulContainer.innerHTML += block;
+
+              }
           }
           }
       });
 
+
+  selectedVoice = voices.filter(function(voice) { return voice.name.includes("Liam") })[0];    
   voiceIndex = voices.indexOf(selectedVoice);
   console.log(voiceIndex);
-
+ document.querySelector(".dropdown__text").innerText = "Liam";
 }
 
 
-loadVoices();
 
+loadVoices();
 
 synth.onvoiceschanged = function(e) {
 
  loadVoices();
   var children = ulContainer.children;
 
-
- 
-
-
-// var indexVoice =voices.indexOf(function(voice){return voice == selectedVoice});
-
   Array.from(children)[voiceIndex].style.background = "#ffb400";
   Array.from(children)[voiceIndex].style.color = "#fff";
-document.querySelector(".dropdown__text").innerText = replaceString("Microsoft", "",selectedVoice.name);
+
 }
-
-
-
-
 
 function setVoice(evt){
 
-li = evt.currentTarget.myParam;
+
 var children = ulContainer.children;
 
     Array.from(children).forEach((x)=>
     {
-        if(x!= li)
+        if(x!= evt)
         {
           x.style.background = "none";
           x.style.color = "#2f2f2f";
         }
       });
 
-      li.style.background = "#ffb400";
-      li.style.color = "#fff";
+      evt.style.background = "#ffb400";
+      evt.style.color = "#fff";
 
       document.querySelector("input").checked = false;
-      document.querySelector(".dropdown__text").innerText = li.innerText;
-      
-  selectedVoice = voices.filter(function(voice) { return voice.name.includes(li.innerText) })[0];                         
+
+      document.querySelector(".dropdown__text").innerText = evt.innerText;
+     
+  selectedVoice = voices.filter(function(voice) {
+    console.log(voice.name + "  "+ evt.innerText + "  "+voice.name.includes(evt.innerText) );
+   return voice.name.includes(evt.innerText) 
+
+ })[0];                         
 } 
 
 
@@ -280,15 +289,15 @@ function speak(){
 
   if ('speechSynthesis' in window) {
    synth.cancel();
-   var speakObj = new SpeechSynthesisUtterance(); 
+   var speakObj = new SpeechSynthesisUtterance();
+
    if(currentPressed ==  null){
 
     speakObj = new SpeechSynthesisUtterance(currentSentence);   
     document.querySelector("#speakerIcon").style.display = "none";
-document.querySelector("#speakingLoader").style.display = "flex";
+    document.querySelector("#speakingLoader").style.display = "flex";
 
- 
-}
+  }
  else{
   console.log("Supposed to speak the word now");
    speakObj = new SpeechSynthesisUtterance(currentPressed.innerText.toLowerCase());
@@ -297,8 +306,9 @@ document.querySelector("#speakingLoader").style.display = "flex";
 
 speakObj.voice=selectedVoice;
 speakObj.rate = 0.8;
-
+if(selectedVoice != 'undefined')
 synth.speak(speakObj);
+else alert("Can't get the Speech Voices loaded")
 }
 else{
   alert("Sorry, your browser doesn't support text to speech!");

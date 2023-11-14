@@ -183,7 +183,7 @@ animation.finished.then(()=>{
 	 scorequestionContainer.style.display='none';
 	 background.style.display='none';
 	 synth.cancel();
-	 synth.abort();
+	
 })
 
 
