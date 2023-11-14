@@ -240,10 +240,12 @@ function loadVoices() {
       });
 
 
-  selectedVoice = voices.filter(function(voice) { return voice.name.includes("Liam") })[0];    
+  selectedVoice = voices.filter(function(voice) { return voice.name.includes("Liam") })[0];  
+  if(selectVoice === undefined)  
+   selectedVoice = voices.filter(function(voice) { return voice.name.includes("Karen") })[0];  
   voiceIndex = voices.indexOf(selectedVoice);
-  console.log(voiceIndex);
- document.querySelector(".dropdown__text").innerText = "Liam";
+
+ document.querySelector(".dropdown__text").innerText = selectedVoice.name;
 }
 
 
