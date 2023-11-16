@@ -1,26 +1,25 @@
-const background =  document.querySelector('#backgroundQuestions');
-const ulQuestions = document.querySelector('#questionOptions')
-const questionText = document.querySelector('#questionText');
-const questionCounter = document.querySelector('#questionCounter');
+
+
+
 var fileQuestions;
-const confirmButton = document.querySelector('#confirm');
+
 var arrayQuestions;
 var currentQuestion;
 var counterQuestions =0;
-const progressBars = document.querySelector('.bar');
+
 
 var factorProgress;
 var selectedAnswer;
 
-var confirmer = document.querySelector('#confirmer');
+
 var arrayQuestions =0;
 var currentProgress =0;
-const scorequestionContainer = document.querySelector('#ResultQuestionWrapper');
+
 
 
 function startStoryQuestions(){
 
-	background.style.display = 'block';
+	document.querySelector('#backgroundQuestions').style.display = 'block';
 
 	fileQuestions = FileHelper(`${root}/${listSentences[0]}/questions.json`);
 
@@ -30,7 +29,8 @@ function startStoryQuestions(){
 
 
 function GetQuestionsList(){
-	ulQuestions.innerHTML='';
+
+	document.querySelector('#questionOptions').innerHTML='';
 confirmer.style.display='none';
 
  arrayQuestions = JSON.parse(fileQuestions);
@@ -42,13 +42,14 @@ GenerateQuestion();
 
 
 function GenerateQuestion(){
+var	ulQuestions = document.querySelector('#questionOptions')
 	ulQuestions.innerHTML ='';
 
 
 if(counterQuestions < arrayQuestions.length){
 
 	currentQuestion = arrayQuestions[counterQuestions];
-	questionText.innerText = currentQuestion.question;
+	document.querySelector('#questionText').innerText = currentQuestion.question;
 
 
 	currentQuestion.options.forEach(x=>{
@@ -61,7 +62,7 @@ if(counterQuestions < arrayQuestions.length){
 	 correctAnswer.innerText = currentQuestion.answers;
 	var randomPosition = Math.floor(Math.random() * currentQuestion.options.length+1);
 	ulQuestions.insertBefore(correctAnswer, ulQuestions.childNodes[randomPosition]);
-	speakOption(questionText);
+	speakOption(document.querySelector('#questionText'));
 }
 }
 
@@ -78,8 +79,8 @@ el.style.background = "#f4b305";
 el.style.color='#fff';
 
 selectedAnswer = el;
-confirmButton.classList.remove('disabled');
-confirmButton.classList.remove('enabled');
+document.querySelector('#confirm').classList.remove('disabled');
+document.querySelector('#confirm').classList.remove('enabled');
 
 //Animate options
 anime({
@@ -117,32 +118,25 @@ function correctAnswer(){
 	selectedAnswer.style.background = '#6cd023';
 	selectedAnswer.style.color = '#e5fdd4';
 
-	confirmButton.classList.remove('enabled');
-	confirmButton.classList.add('disabled');
+	document.querySelector('#confirm').classList.remove('enabled');
+	document.querySelector('#confirm').classList.add('disabled');
 /*
 */ 
 
 	if(counterQuestions == arrayQuestions.length){
 
 		audio.src = './audios/win.mp3';
-	 document.querySelector('#basic').style.display ='none';
+	 document.querySelector('#basicEmojis').style.display ='none';
+document.querySelector('#backgroundStartContainer').style.display = 'none';
+	 	 document.querySelector('#starsContainer').style.display = 'none';
 	 document.querySelector('#trophy').style.display ='block';
-  scorequestionContainer.style.display ="block";
+  document.querySelector('#scoreSpeech').style.display ="flex";
 
 var animation = anime({
-  targets: scorequestionContainer,
+  targets:  document.querySelector('#scoreSpeech'),
   opacity:1,
   duration: 500,
   easing: 'linear' 
-});
-
-animation.finished.then(()=>{
-anime({
-  targets: '#ResultContainer',
-  scale:1,
-  duration: 750,
-  easing: 'easeInOutQuart' 
-});
 });
 counterQuestions =0;
 currentProgress=0;
@@ -181,7 +175,7 @@ animation.finished.then(()=>{
 	 audio.pause();audio.currentTime = 0;
 	 	 scorequestionContainer.style.opacity='0';
 	 scorequestionContainer.style.display='none';
-	 background.style.display='none';
+	 document.querySelector('#backgroundQuestions').style.display='none';
 	 synth.cancel();
 	
 })
@@ -206,8 +200,8 @@ function updateSlider(el = false){
 if(el)
 currentProgress += factorProgress;
 
-progressBars.style.transitionDuration = `.3s`;
-progressBars.style.width = `${currentProgress}%`;
+document.querySelector('.bar').style.transitionDuration = `.3s`;
+document.querySelector('.bar').style.width = `${currentProgress}%`;
  
 }
 

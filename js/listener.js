@@ -12,23 +12,25 @@ const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognit
       const inputText = document.querySelector("#displayedText");
       const inputPhrase = document.querySelector("#displayedPhrase");
       var result;
+
   	 const microphone = document.querySelector('#microphone');
-      const scoreSpeechWrapper= document.querySelector('#scoreSpeech');
 
-
+    const scoreSpeechWrapper= document.querySelector('#scoreSpeech');
     const scoreContainer = document.querySelector('#scoreSpeechContainer');
-    const score = document.querySelector('#score');
+   const emojiBackground = document.querySelector('.emojiContainer');
+   const starsContainer = document.querySelector('#starsContainer');
     const comment = document.querySelector('#comment');
     var audio = document.querySelector('#audioPlayer');
     var emojiContainer = document.querySelector('.emojiContainer');
-    var arraySvg = [ emojiContainer.querySelector('#greatSvg'),emojiContainer.querySelector('#happySvg'),emojiContainer.querySelector('#badSvg') ]
+   
 
     var speechTextContainer = document.querySelector('#microTranscript');
     var speechText = document.querySelector('#microText');
-
+ 
+ 
 
     var recognizing = false;
-
+var score;
       microphone.onpointerdown = () => {
         
 
@@ -61,7 +63,7 @@ const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognit
 
 
        document.querySelector('html').addEventListener("pointerup", () => {
-          console.log("REcognizing is :" + recognizing);
+    
            if(recognizing){
 
               recognition.stop();
@@ -77,52 +79,53 @@ const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognit
             }
           });
 
-     
+
 
 function CheckResult(){
        
-  if(document.querySelector('title').innerText=='Stories'){
+ var str1  = listSentences[currentText].replace(/[.,\/#!$%\^&\*;":{}=\-_`~()]/g,"");
+str1 = str1.replace(/\s{2,}/g," ");
 
-  
-      score.innerText = similarity(listSentences[currentPage], result);
-   
+var str2 = result.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+str2 = str2.replace(/\s{2,}/g," ");
+
+console.log(str1 + "  "+ str2);
+
+   if(document.querySelector('.word')!= null) 
+    score = similarity(str1, str2);
+
+  else 
+    score = similarity(inputText.innerText, result);
+
     
-  }
-          
-  else if(clickable) score.innerText = similarity(currentArray[currentText], result);
+        
+  setScoreWithColor(score);
 
-  else score.innerText = similarity(inputText.innerText, result);
-         
-         if(score.innerText != 'undefined'){
-  setScoreWithColor(score.innerText);
-  score.innerText+='%';
-}
 }
 
 
 function setScoreWithColor(el){
 
+
+var arraySvg = document.querySelectorAll(".emojiContainer lottie-player");
 arraySvg.forEach(x =>{
   x.style.display='none';
 })
 scoreSpeechWrapper.style.display ='flex';
 
-var animation = anime({
-  targets: scoreSpeechWrapper,
-  opacity:1,
-  duration: 1000,
-  easing: 'linear' 
-});
+var arrStars = document.querySelectorAll("#starsContainer .star");
 
-animation.finished.then(()=>{
+
+
+
 anime({
   targets: scoreContainer,
-  scale:1.1,
+  scale:1,
   duration: 500,
-  direction:'alternate',
   easing: 'easeInOutQuart' 
 });
-});
+
+
 
      scoreContainer.classList.remove('success');
      scoreContainer.classList.remove('fail');
@@ -132,7 +135,7 @@ anime({
   if(el>70) 
   {
      audio.src = './audios/good.mp3';     
-     scoreContainer.classList.add('success');
+   scoreContainer.classList.add('success');
     comment.querySelector('span').innerText = "Great Job";
      arraySvg[0].style.display = 'block';
 
@@ -142,19 +145,22 @@ anime({
   {
 
       audio.src = './audios/middle.wav';     
-      scoreContainer.classList.add('medium');
+     scoreContainer.classList.add('middle');
       arraySvg[0].style.display = 'none';
       arraySvg[1].style.display = 'block';
       comment.querySelector('span').innerText = "Not bad";
+      arrStars[2].style.display='none';
   }
 
    else
    {
      audio.src = './audios/fail.wav';     
-     scoreContainer.classList.add('fail');
+ scoreContainer.classList.add('fail');
      arraySvg[0].style.display = 'none';
      arraySvg[2].style.display = 'block';
-     comment.querySelector('span').innerText = "Try again"
+     comment.querySelector('span').innerText = "Try again";
+      arrStars[2].style.display='none';
+       arrStars[1].style.display='none';
   }
 
   audio.play();
@@ -250,7 +256,5 @@ function editDistance(s1, s2) {
   return costs[s2.length];
 }
 
-document.querySelector("#ok").addEventListener('pointerup', function(){
-  scoreSpeechWrapper.style.display ='none';
-})
+
 

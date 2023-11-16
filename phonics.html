@@ -13,64 +13,39 @@
       <link rel="stylesheet" href="css/bootstrap.min.css">
       <!-- style css -->
       <link rel="stylesheet" href="css/style.css">
- <link rel="stylesheet" href="css/dropdown.css">
+
+   
+      <link rel="stylesheet" href="css/style.css">
+     <link rel="stylesheet" href="css/readingTemplate.css">
+       <link rel="stylesheet" href="css/score.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-      <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+  
         <style>
             
 
-
-
-
-.text_align_center h1{
-    line-height: 50px;
-}
-
-.text_align_center{
-    line-height: 200px;
-}
-.class_box{
-    background:#63b9a6;
-     box-shadow:0 10px 0 0 #489584;
-}
-
-.class_box span{
-     color: #fff;
-     font-size: 40px;
-     transition: ease-in all 0.5s;
-     font-weight: bold;
-     line-height: 40px;
-     padding: 30px 0;
-     text-aligh:start;
-}
-
 #displayedText{
- font-size:120px;
+
+position:absolute;
+ font-size:100px;
 text-align: center;
 font-weight:bold;
 letter-spacing: -5px;
+color:gray;
+top:35%;
+left:50%;
+transform: translate(-50%,-50%);
+
 
 }
 #displayedText span{
- font-size:120px;
+ font-size:100px;
 text-align: center;
 font-weight:bold;
 letter-spacing: -5px;
 color:#ef3f58;
 
-}
-
-#microTranscript{
-    margin-top:-27px;
-    margin-left:-50px;
-}
-
-#micIcon{
-    margin-top:17px;
 }
 
 </style>
@@ -79,12 +54,7 @@ color:#ef3f58;
    <!-- body -->
    <body class="main-layout inner_page" >
  <div class="mainContainer">
-        <div onclick=" PlayClick(); window.location.href='index.html';" class="cancel mainCancel shake">
-           
-            <svg class= "icon"  viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M56.87 25.981L50.27 21.031L47.27 18.781L35.57 10.001C34.4423 9.16327 33.0748 8.71094 31.67 8.71094C30.2652 8.71094 28.8977 9.16327 27.77 10.001L21.67 14.581V14.371C21.6684 13.8411 21.4572 13.3333 21.0825 12.9586C20.7077 12.5838 20.1999 12.3726 19.67 12.371H12.47C11.9396 12.371 11.4309 12.5817 11.0558 12.9568C10.6807 13.3319 10.47 13.8406 10.47 14.371V23.161L6.44002 26.291C6.23227 26.4524 6.05838 26.6531 5.92833 26.8817C5.79827 27.1103 5.71459 27.3624 5.68208 27.6234C5.64957 27.8844 5.66888 28.1493 5.73887 28.4028C5.80887 28.6564 5.92819 28.8936 6.09001 29.101C6.276 29.3427 6.51546 29.538 6.7896 29.6716C7.06373 29.8052 7.36505 29.8734 7.67 29.871C8.11211 29.8709 8.54152 29.7231 8.89 29.451L10.47 28.231V48.281C10.4716 50.0044 11.1569 51.6568 12.3756 52.8755C13.5942 54.0941 15.2466 54.7794 16.97 54.781H25.6C25.9594 54.7808 26.3121 54.6831 26.6203 54.4981C26.9285 54.3132 27.1807 54.0481 27.35 53.731C27.5142 53.4413 27.6003 53.114 27.6 52.781C27.6017 52.7109 27.5983 52.6407 27.59 52.571V46.851C27.5916 45.7703 28.0223 44.7345 28.7874 43.9713C29.5525 43.2081 30.5893 42.7799 31.67 42.781C32.7491 42.7821 33.7837 43.2112 34.5468 43.9742C35.3098 44.7373 35.7389 45.7719 35.74 46.851V52.781C35.7397 53.114 35.8259 53.4413 35.99 53.731C36.1624 54.0477 36.4167 54.3122 36.7263 54.4969C37.0359 54.6816 37.3895 54.7797 37.75 54.781H46.37C48.0929 54.7776 49.7442 54.0917 50.9624 52.8734C52.1807 51.6552 52.8666 50.0039 52.87 48.281V27.981L54.47 29.181C54.8129 29.4398 55.2305 29.5801 55.66 29.581C55.9718 29.5802 56.2792 29.5076 56.5584 29.3689C56.8376 29.2301 57.081 29.029 57.27 28.781C57.5883 28.3567 57.7249 27.8233 57.6499 27.2982C57.5749 26.7731 57.2944 26.2993 56.87 25.981Z" fill="#fff"/>
-            </svg>
-        </div>
+       
  
     <br><br>
       <div class="class">
@@ -98,7 +68,7 @@ color:#ef3f58;
             </div>
 
             <div class="row">
-                <div class="col-md-6 margi_bottom shake" onclick=" PlayClick(); populate('letters')">
+                <div class="col-md-6 margi_bottom shake" onclick=" PlayClick(); GetText('letters')">
                   <div class="class_box text_align_center" style="background:#ffb400; box-shadow:0 10px 0 0 #d89a07">            
                       <h1>A->Z <br>‎</h1>
                      <p>Practice each letter individually</p>
@@ -110,28 +80,28 @@ color:#ef3f58;
                      <p>Practice while watching</p>
                   </div>               
                </div>
-               <div class="col-md-4 margi_bottom shake" onclick=" PlayClick(); populate('at')">
+               <div class="col-md-4 margi_bottom shake" onclick=" PlayClick(); GetText('at')">
                   <div class="class_box text_align_center" style="background:#ef2a38; box-shadow:0 10px 0 0 #d22834">            
                       <h1>at</h1>
                      <p>Practice how to pronounce 'at' properly</p>
                   </div>
                  
                </div>
-               <div class="col-md-4 margi_bottom shake" onclick=" PlayClick(); populate('oo')">
+               <div class="col-md-4 margi_bottom shake" onclick=" PlayClick(); GetText('oo')">
                   <div class="class_box blue text_align_center" style="background:#ef2a38; box-shadow:0 10px 0 0 #d22834">
                      <h1>oo</h1>
                      <p>Practice how to pronounce 'oo' properly</p>              
                   </div>
                 
                </div>
-               <div class="col-md-4 margi_bottom shake" onclick=" PlayClick(); populate('ch')">
+               <div class="col-md-4 margi_bottom shake" onclick=" PlayClick(); GetText('ch')">
                   <div class="class_box text_align_center" style="background:#ef2a38; box-shadow:0 10px 0 0 #d22834">             
                      <h1>ch</h1>
                      <p>Practice how to pronounce 'ch' properly</p>                  
                   </div>
                  
                </div>
-                <div class="col-md-4 margi_bottom shake" onclick=" PlayClick(); populate('sh')">
+                <div class="col-md-4 margi_bottom shake" onclick=" PlayClick(); GetText('sh')">
                   <div class="class_box text_align_center" style="background:#ef2a38; box-shadow:0 10px 0 0 #d22834">
                      <h1>sh</h1>
                      <p>Practice how to pronounce 'sh' properly</p>     
@@ -143,130 +113,8 @@ color:#ef3f58;
          </div>
       </div>
 
-         <div id="listPhonics" class="class" style="overflow-y:scroll;background:white; position:fixed; top:0; height:100%;width:100%;display:none; ">
-            <div onclick="CloseReader('listPhonics')" class="cancel subCancel shake">
-            <svg class= "icon" viewBox="0 0 25 25"> 
-                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-                    <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-469.000000, -1041.000000)" fill="#fff">
-                        <path d="M487.148,1053.48 L492.813,1047.82 C494.376,1046.26 494.376,1043.72 492.813,1042.16 C491.248,1040.59 488.712,1040.59 487.148,1042.16 L481.484,1047.82 L475.82,1042.16 C474.257,1040.59 471.721,1040.59 470.156,1042.16 C468.593,1043.72 468.593,1046.26 470.156,1047.82 L475.82,1053.48 L470.156,1059.15 C468.593,1060.71 468.593,1063.25 470.156,1064.81 C471.721,1066.38 474.257,1066.38 475.82,1064.81 L481.484,1059.15 L487.148,1064.81 C488.712,1066.38 491.248,1066.38 492.813,1064.81 C494.376,1063.25 494.376,1060.71 492.813,1059.15 L487.148,1053.48" id="cross" sketch:type="MSShapeGroup"></path>
-                    </g>
-                </g>
-            </svg>
-        </div>
-        <br/><br/><br/>
-            <div class="class-box" style="top:25px; height:50px; width:50px;">
-            </div>
-             <div class="container">
-                <div class="row" id="rowContent">                           
-                </div>
-             </div>
-        </div>
-
-        <div id="reading" class="class" style="background:#f5f5f5; position:fixed; top:0; height:100%;width:100%;display:none;">        
-        <div id="displayedText"></div>
-        <div id="displayedPhrase"></div>
-
-
-        <div onclick="CloseReader('reading')" class="cancel subCancel shake">
-            <svg class= "icon"  viewBox="0 0 25 25"> 
-                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-                    <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-469.000000, -1041.000000)" fill="#fff">
-                        <path d="M487.148,1053.48 L492.813,1047.82 C494.376,1046.26 494.376,1043.72 492.813,1042.16 C491.248,1040.59 488.712,1040.59 487.148,1042.16 L481.484,1047.82 L475.82,1042.16 C474.257,1040.59 471.721,1040.59 470.156,1042.16 C468.593,1043.72 468.593,1046.26 470.156,1047.82 L475.82,1053.48 L470.156,1059.15 C468.593,1060.71 468.593,1063.25 470.156,1064.81 C471.721,1066.38 474.257,1066.38 475.82,1064.81 L481.484,1059.15 L487.148,1064.81 C488.712,1066.38 491.248,1066.38 492.813,1064.81 C494.376,1063.25 494.376,1060.71 492.813,1059.15 L487.148,1053.48" id="cross" sketch:type="MSShapeGroup"></path>
-                    </g>
-                </g>
-            </svg></div>
        
-        <div class="container centerBottom" style="position:absolute;bottom:0px; "> 
-              <!--<div class="backgroundInteractive"></div>-->
-                <div class="interactiveContainer">                         
-                     <div class="interactive " id="previous" onclick=" PlayClick(); Previous()" >
-                        <svg class= "icon"  viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12.4755 5.18341L7.49766 9.60815C6.56708 10.4353 6.10179 10.8489 5.93032 11.3373C5.77974 11.7662 5.77974 12.2335 5.93032 12.6624C6.10179 13.1508 6.56708 13.5644 7.49766 14.3916L12.4755 18.8163C12.8978 19.1917 13.1089 19.3794 13.2883 19.3861C13.4441 19.3919 13.5937 19.3247 13.6929 19.2044C13.807 19.0659 13.807 18.7834 13.807 18.2184V15.4284C16.2351 15.4284 18.7996 16.2083 20.6723 17.5926C21.6471 18.3133 22.1346 18.6737 22.3203 18.6595C22.5012 18.6456 22.6161 18.575 22.71 18.4196C22.8063 18.2603 22.7212 17.7624 22.5511 16.7666C21.4461 10.3004 16.9961 8.57129 13.807 8.57129V5.78134C13.807 5.21632 13.807 4.93381 13.6929 4.79531C13.5937 4.67498 13.4441 4.6078 13.2883 4.61363C13.1089 4.62034 12.8978 4.80803 12.4755 5.18341Z" />
-                        </svg></div>
-                  
-                   <div class=" interactive  mainInteractive" id="speaker" onmouseup=" PlayClick(); StartSpeaking()" >
-                       <svg class="icon" id="speakerIcon"viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#fff" >
-                            <path d="M18.008 2.987C19.34 2.225 21 3.187 21 4.723v12.554c0 1.535-1.659 2.498-2.992 1.736L14 16.723V5.277l4.008-2.29zM12 6H7a5 5 0 0 0-1 9.9v3.6a2.5 2.5 0 0 0 5 0V16h1V6z" clip-rule="evenodd" />
-                        </svg>
-                        <div id="speakingLoader"class="boxContainer" style="display:none">
-                          <div class="box box1"></div>
-                          <div class="box box2"></div>
-                          <div class="box box3"></div>
-                          <div class="box box4"></div>            
-                        </div> 
-                    </div>
-
-                    <div class=" interactive  mainInteractive" id="microphone"   >
-                      
-                        <svg id="micIcon" class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2C8.82436 2 6.25 4.57436 6.25 7.75V10.75C6.25 13.9256 8.82436 16.5 12 16.5C14.9214 16.5 17.334 14.3213 17.7015 11.5L13 11.5C12.5858 11.5 12.25 11.1642 12.25 10.75C12.25 10.3358 12.5858 10 13 10L17.75 10V8.5H13C12.5858 8.5 12.25 8.16421 12.25 7.75C12.25 7.33579 12.5858 7 13 7H17.7015C17.334 4.17873 14.9214 2 12 2Z" fill="#fff"/>
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M4 9C4.41421 9 4.75 9.33579 4.75 9.75V10.75C4.75 14.7541 7.99594 18 12 18C16.0041 18 19.25 14.7541 19.25 10.75V9.75C19.25 9.33579 19.5858 9 20 9C20.4142 9 20.75 9.33579 20.75 9.75V10.75C20.75 15.3298 17.2314 19.0879 12.75 19.4683V21.75C12.75 22.1642 12.4142 22.5 12 22.5C11.5858 22.5 11.25 22.1642 11.25 21.75V19.4683C6.7686 19.0879 3.25 15.3298 3.25 10.75V9.75C3.25 9.33579 3.58579 9 4 9Z" fill="#fff"/>
-                        </svg>
-                      <div id="micLoader"class="boxContainer" style="display:none">
-                          <div class="box box1"></div>
-                          <div class="box box2"></div>
-                          <div class="box box3"></div>
-                          <div class="box box4"></div>
-                        
-                        </div> 
-                        
-                          <div id="microTranscript" > 
-                                <div id="microText"></div>
-                                <svg id="microSvg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 50 50" shape-rendering="geometricPrecision" text-rendering="geometricPrecision"><path d="M0,50v-.00509C5.06218,49.72361,9.1347,38.63689,9.1347,25s-4.07252-24.72361-9.1347-24.99491L0,0h50c-5.14991,0-9.32473,11.19288-9.32473,25s4.17482,25,9.32473,25h-50Z" fill="#f51d36" stroke-width="0"/></svg>
-                            </div>
-                    </div>
-                        <div class=" interactive " id="next" onclick=" PlayClick(); Next()"  >
-                       <svg class= "icon"  viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12.3315 5.18341L17.3094 9.60815C18.2399 10.4353 18.7052 10.8489 18.8767 11.3373C19.0273 11.7662 19.0273 12.2335 18.8767 12.6624C18.7052 13.1508 18.2399 13.5644 17.3094 14.3916L12.3315 18.8163C11.9092 19.1917 11.6981 19.3794 11.5187 19.3861C11.3629 19.3919 11.2133 19.3247 11.1142 19.2044C11 19.0659 11 18.7834 11 18.2184V15.4284C8.57196 15.4284 6.00739 16.2083 4.13478 17.5926C3.15988 18.3133 2.67242 18.6737 2.48676 18.6595C2.30578 18.6456 2.19093 18.575 2.09703 18.4196C2.0007 18.2603 2.08578 17.7624 2.25595 16.7666C3.36093 10.3004 7.8109 8.57129 11 8.57129V5.78134C11 5.21632 11 4.93381 11.1142 4.79531C11.2133 4.67498 11.3629 4.6078 11.5187 4.61363C11.6981 4.62034 11.9092 4.80803 12.3315 5.18341Z" />
-                        </svg>
-                         </div>        
-               </div>             
-           </div>
-
-
-<div class="dropdown" >
-  <input type="checkbox" id="dropdown">
-  <label class="dropdown__face" for="dropdown">
-    <div class="dropdown__text">Voices</div>
-    <div class="dropdown__arrow"></div>
-  </label>
-
-  <ul class="dropdown__items">  
-  </ul>
-</div>
-
-<svg>
-  <filter id="goo">
-    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-    <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
-    <feBlend in="SourceGraphic" in2="goo" />
-  </filter>
-</svg>
-
-
-
- <div id="scoreSpeech" class="scoreWrapper" >
-    <div  class="scoreContainer" id="scoreSpeechContainer">
-    <div class="row">
-         <div class ="col-md-12 emojiContainer ">       
-            <lottie-player id="GreatSvg" src="https://lottie.host/fa91ea0d-599e-4158-a753-799c0911499e/Qli3MgtYxb.json" speed="1" loop autoplay direction="1" mode="normal"></lottie-player>
-            <lottie-player id="HappySvg" src="https://lottie.host/eb8f8a72-4e31-4207-8518-cfba63212250/8z4P0LCKM4.json"   speed="1" loop  autoplay direction="1" mode="normal"></lottie-player>
-            <lottie-player id="badSvg" src="https://lottie.host/864eeee4-f869-4dd4-b132-5655ddf6e5b9/7lj38RVe7z.json"  speed="1" loop  autoplay direction="1" mode="normal"></lottie-player>
-        </div> 
-
-          <div class="col-md-12">
-            <span id="score">81%</span>
-        </div>
-        <div class="col-md-12" id="comment" style="padding-top:10px; padding-bottom:50px">
-            <span>Great Job !</span>
-
-        </div>
-        
-        <div class="class_box scoreOK" style="position:absolute; left:50%; bottom:20px; transform: translate(-50%);"  id="ok">Continue</div>
-    </div>
-    </div>
-</div>
-</div>
+<div  class="holder" id="readingTemplateHolder"></div>    
 
 
      <audio id="audioPlayer">
@@ -275,13 +123,16 @@ color:#ef3f58;
 
      
 
-
+ <div onclick=" PlayClick(); window.location.href='index.html';" class="cancel mainCancel shake">
+           
+            <svg class= "icon"  viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M56.87 25.981L50.27 21.031L47.27 18.781L35.57 10.001C34.4423 9.16327 33.0748 8.71094 31.67 8.71094C30.2652 8.71094 28.8977 9.16327 27.77 10.001L21.67 14.581V14.371C21.6684 13.8411 21.4572 13.3333 21.0825 12.9586C20.7077 12.5838 20.1999 12.3726 19.67 12.371H12.47C11.9396 12.371 11.4309 12.5817 11.0558 12.9568C10.6807 13.3319 10.47 13.8406 10.47 14.371V23.161L6.44002 26.291C6.23227 26.4524 6.05838 26.6531 5.92833 26.8817C5.79827 27.1103 5.71459 27.3624 5.68208 27.6234C5.64957 27.8844 5.66888 28.1493 5.73887 28.4028C5.80887 28.6564 5.92819 28.8936 6.09001 29.101C6.276 29.3427 6.51546 29.538 6.7896 29.6716C7.06373 29.8052 7.36505 29.8734 7.67 29.871C8.11211 29.8709 8.54152 29.7231 8.89 29.451L10.47 28.231V48.281C10.4716 50.0044 11.1569 51.6568 12.3756 52.8755C13.5942 54.0941 15.2466 54.7794 16.97 54.781H25.6C25.9594 54.7808 26.3121 54.6831 26.6203 54.4981C26.9285 54.3132 27.1807 54.0481 27.35 53.731C27.5142 53.4413 27.6003 53.114 27.6 52.781C27.6017 52.7109 27.5983 52.6407 27.59 52.571V46.851C27.5916 45.7703 28.0223 44.7345 28.7874 43.9713C29.5525 43.2081 30.5893 42.7799 31.67 42.781C32.7491 42.7821 33.7837 43.2112 34.5468 43.9742C35.3098 44.7373 35.7389 45.7719 35.74 46.851V52.781C35.7397 53.114 35.8259 53.4413 35.99 53.731C36.1624 54.0477 36.4167 54.3122 36.7263 54.4969C37.0359 54.6816 37.3895 54.7797 37.75 54.781H46.37C48.0929 54.7776 49.7442 54.0917 50.9624 52.8734C52.1807 51.6552 52.8666 50.0039 52.87 48.281V27.981L54.47 29.181C54.8129 29.4398 55.2305 29.5801 55.66 29.581C55.9718 29.5802 56.2792 29.5076 56.5584 29.3689C56.8376 29.2301 57.081 29.029 57.27 28.781C57.5883 28.3567 57.7249 27.8233 57.6499 27.2982C57.5749 26.7731 57.2944 26.2993 56.87 25.981Z" fill="#fff"/>
+            </svg>
+        </div>
 
 
 </div>
- <script src="js/Reader.js"></script>
-
-       <script src="js/listener.js"></script>
+        <script src="js/phonicsManager.js"></script>
         <script src="js/navigation.js"></script>
  
 
