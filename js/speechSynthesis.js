@@ -5,12 +5,13 @@ const synth = window.speechSynthesis || window.webkitSpeechRecognition || window
 synth.defaultPrevented = true;
 synth.interimResults = true;
 synth.continuous = false;
-
+synth.localService = false;
 var  selectedVoice;
 var nextButton = document.querySelector('#next');
 var prevButton = document.querySelector('#previous');
 
 var voices =[];
+window.utterances  =[];
 var voiceIndex;
 var arrayWanted = [
   "Microsoft Clara Online (Natural) - English (Canada)",
@@ -192,6 +193,8 @@ function speak(){
    
 }
 
+
+
 if(speakObj!=null)
 {
   
@@ -208,8 +211,11 @@ if(speakObj!=null)
           ease:'easeInOutQuart'
        
         });
-  speakObj.addEventListener('end', function () {
-    anime({
+
+}
+  speakObj.addEventListener('end', ()=>{
+
+anime({
           targets: speaker,
           scale: 1,
           translateY: '-15px',
@@ -218,17 +224,24 @@ if(speakObj!=null)
        
         });
   SetSpeakingUI();
-  });
+
+  })
+
 }
+
+
 else{
   alert("Can't get the Speech Voices loaded");
 }
-}
+
 
 document.querySelector("#speakerIcon").style.display = "none";
 document.querySelector("#speakingLoader").style.display = "flex";
  
-return new Promise(resolve => { if(document.querySelector('.word')!=null)speakObj.onend = resolve; });
+return new Promise(resolve => { if(document.querySelector('.word')!=null){
+  speakObj.onend = resolve; 
+
+}});
 }
 else{
   // Speech Synthesis Not Supported 😣
