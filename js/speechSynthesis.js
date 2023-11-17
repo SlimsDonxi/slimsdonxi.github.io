@@ -212,7 +212,7 @@ if(speakObj!=null)
     anime({
           targets: speaker,
           scale: 1,
-          translateY: '-35px',
+          translateY: '-15px',
           duration:500,
           ease:'easeInOutQuart'
        

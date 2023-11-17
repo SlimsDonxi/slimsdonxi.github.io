@@ -13,7 +13,7 @@ const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognit
       const inputPhrase = document.querySelector("#displayedPhrase");
       var result;
 
-     const microphone = document.querySelector('#microphone');
+  	 const microphone = document.querySelector('#microphone');
 
     const scoreSpeechWrapper= document.querySelector('#scoreSpeech');
     const scoreContainer = document.querySelector('#scoreSpeechContainer');
@@ -86,8 +86,13 @@ function CheckResult(){
  var str1  = listSentences[currentText].replace(/[.,\/#!$%\^&\*;":{}=\-_`~()]/g,"");
 str1 = str1.replace(/\s{2,}/g," ");
 
-var str2 = result.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+var str2='';
+  console.log(result);
+if(result!==undefined){
+
+str2= result.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
 str2 = str2.replace(/\s{2,}/g," ");
+}
 
 console.log(str1 + "  "+ str2);
 
@@ -98,8 +103,15 @@ console.log(str1 + "  "+ str2);
     score = similarity(inputText.innerText, result);
 
     
-        
+if(result!==undefined){    
   setScoreWithColor(score);
+}
+else{
+  document.querySelector('#speechTooShort').style.display = 'block';
+  setTimeout(()=>{
+      document.querySelector('#speechTooShort').style.display = 'none';
+    },1500);
+}
 
 }
 
@@ -193,7 +205,7 @@ anime({
          anime({
           targets: microphone,
           scale: 1,
-          translateY: '-35px',
+          translateY: '-15px',
           duration:500,
           ease:'easeInOutQuart'
        
@@ -210,12 +222,7 @@ anime({
 
       function similarity(s1, s2) {
 
-        if(s2 === undefined || s2 ==''){
-          console.log('too short');
-
-          alert('Text is too short, please try again');
-          return;
-        }
+        
 
   var longer = s1;
   var shorter = s2;
