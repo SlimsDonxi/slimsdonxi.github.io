@@ -35,7 +35,7 @@ function loadVoices() {
               voices.push(voice);
           
              
-          /*  var name = replaceString("Microsoft", "", voice.name);
+           var name = replaceString("Microsoft", "", voice.name);
             name = replaceString("Online (Natural) - English (United States)", "",name);
             name = replaceString("Online (Natural) - English (Canada)", "",name);
 
@@ -43,36 +43,41 @@ function loadVoices() {
           
             ulContainer.innerHTML += block;
 
-              }*/
+              //}
           }
           }
       });
 
 
- setTimeout(()=>{
-  selectedVoice = voices.filter(function(voice) { return voice.name.includes("Liam") })[0];  
 
-  var name = replaceString("Microsoft", "", selectedVoice.name);
-            name = replaceString("Online (Natural) - English (United States)", "",name);
-            name = replaceString("Online (Natural) - English (Canada)", "",name);
-            console.log(name);
-  voiceIndex = voices.indexOf(selectedVoice);
 
-ulText.innerText = name;
-  var children = ulContainer.children;
-  Array.from(children)[voiceIndex].style.background = "#ffb400";
-  Array.from(children)[voiceIndex].style.color = "#fff";
- },500) 
 
 }
 
 
-loadVoices();
 
+ loadVoices();
 
 synth.onvoiceschanged = function(e) {
 
  loadVoices();
+
+
+
+
+  selectedVoice = voices.filter(function(voice) { return voices[0]; })[0];  
+console.log(selectedVoice);
+  var name = replaceString("Microsoft", "", selectedVoice.name);
+            name = replaceString("Online (Natural) - English (United States)", "",name);
+            name = replaceString("Online (Natural) - English (Canada)", "",name);
+
+           console.log(voices.filter(function(voice) { return voice.name == selectedVoice.name}));
+  voiceIndex = voices.indexOf(voices.filter(function(voice) { return voice == selectedVoice}));
+
+ulText.innerText = name;
+  var children = ulContainer.children;
+  Array.from(children)[0].style.background = "#ffb400";
+  Array.from(children)[0].style.color = "#fff";
 
 }
 

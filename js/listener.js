@@ -13,7 +13,7 @@ const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognit
       const inputPhrase = document.querySelector("#displayedPhrase");
       var result;
 
-  	 const microphone = document.querySelector('#microphone');
+     const microphone = document.querySelector('#microphone');
 
     const scoreSpeechWrapper= document.querySelector('#scoreSpeech');
     const scoreContainer = document.querySelector('#scoreSpeechContainer');
@@ -116,7 +116,9 @@ scoreSpeechWrapper.style.display ='flex';
 var arrStars = document.querySelectorAll("#starsContainer .star");
 
 
-
+arrStars.forEach(x =>{
+  x.style.display='block';
+})
 
 anime({
   targets: scoreContainer,
