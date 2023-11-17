@@ -42,7 +42,7 @@ body {
 .text_align_center {
      text-align: center;
 }
-
+.text_align_center
 h1,
 h2,
 h3,
@@ -57,6 +57,10 @@ h6 {
      line-height: normal;
      color: #111111;
      margin: 0
+}
+.text_align_center h3{
+     padding:10px;
+     padding-bottom:50px;
 }
 
 h1 {

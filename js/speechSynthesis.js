@@ -31,11 +31,11 @@ function loadVoices() {
         if(voice.lang.includes("en")){
           if(!voice.name.includes('Google')){          
           
-            if(arrayWanted.includes(voice.name)) {
+           // if(arrayWanted.includes(voice.name)) {
               voices.push(voice);
           
              
-            var name = replaceString("Microsoft", "", voice.name);
+          /*  var name = replaceString("Microsoft", "", voice.name);
             name = replaceString("Online (Natural) - English (United States)", "",name);
             name = replaceString("Online (Natural) - English (Canada)", "",name);
 
@@ -43,7 +43,7 @@ function loadVoices() {
           
             ulContainer.innerHTML += block;
 
-              }
+              }*/
           }
           }
       });
