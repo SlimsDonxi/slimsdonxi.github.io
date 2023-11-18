@@ -31,3 +31,17 @@ try{
 
  }
 }
+
+
+
+function AnimateHolderPage(holder, el){
+ 
+ var holder = document.querySelector(`#${holder}`);
+
+  anime({
+    targets:holder,
+    left:el+'%',
+    duration:800,
+    easing:'easeInOutQuint'
+  })
+}

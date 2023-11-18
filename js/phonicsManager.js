@@ -1,26 +1,52 @@
-var arrayLetters = ["a", "t", "i", "p", "n", "ck", "e", "h","r","m","d","g","o","u","l","f","b","ai","j","oa","ie","ee","or","z","w","ng","v","oo","oo1","y","x","ch","sh","th","th1","qu","ou","oi","ue","er","ar"];
-var arrayAt = ["bat", "cat", "fat", "hat", "lat", "mat","pat"];
-var arrayCh = ["chip", "chow", "chew", "chin", "chop","chess","chic", "chase","chalk", "china", "chirp", "chest", "catch","batch", "fetch", "watch", "match" ];
-var arrayOO = ["too", "zoo", "goo", "boo", "poo", "moo","goop","tool","fool", "pool", "root","loot","moon", "roof", "doom","boom", "groom", "vroom","goose",  "cookie","poor", "good", "look","took", "book",   "foot",
+
+var  arrayLetters;
+var  arrayAt;
+var  arrayCh;
+var  arrayOO;
+var arraySh;
+var listSentences;
+var  currentText;
+var arrayToHighlight;
+var listPhonics;
+var displayedText;
+var readingTempalte;
+
+function initPhonics(el){
+console.log('in');
+   arrayLetters = ["a", "t", "i", "p", "n", "ck", "e", "h","r","m","d","g","o","u","l","f","b","ai","j","oa","ie","ee","or","z","w","ng","v","oo","oo1","y","x","ch","sh","th","th1","qu","ou","oi","ue","er","ar"];
+   arrayAt = ["bat", "cat", "fat", "hat", "lat", "mat","pat"];
+   arrayCh = ["chip", "chow", "chew", "chin", "chop","chess","chic", "chase","chalk", "china", "chirp", "chest", "catch","batch", "fetch", "watch", "match" ];
+   arrayOO = ["too", "zoo", "goo", "boo", "poo", "moo","goop","tool","fool", "pool", "root","loot","moon", "roof", "doom","boom", "groom", "vroom","goose",  "cookie","poor", "good", "look","took", "book",   "foot",
      "hook" ];
-var arraySh = ["shake", "shade", "shape", "shack", "she","sheep","sheet", "shed","shy", "shine", "shell", "shin", "shoe", "shut","shop", "ship", "shot", "ash", "bash", "dash", "flash", "trash", "cash", "mesh", "flesh", "fish", "wash", "push" ];
+  arraySh = ["shake", "shade", "shape", "shack", "she","sheep","sheet", "shed","shy", "shine", "shell", "shin", "shoe", "shut","shop", "ship", "shot", "ash", "bash", "dash", "flash", "trash", "cash", "mesh", "flesh", "fish", "wash", "push" ];
 
-var listSentences = [];
+  listSentences = [];
 
-var currentText =0;
+  currentText =0;
 
-var arrayDesired = [ "ch","at", "oo", "sh"]
+  arrayToHighlight = [ "ch","at", "oo", "sh"]
 
-const listPhonics =  document.querySelector('#listPhonics');
+  listPhonics =  document.querySelector('#listPhonics');
 
-const readingTempalte = document.querySelector('#readingTemplateHolder');
+
+  readingTempalte = document.querySelector('#readingTemplateHolder');
+
 fetch('./readingTemplate.html')
 .then(res=>res.text())
 .then(data=>{
-
+  
   readingTempalte.innerHTML=data;
+  displayedtext = readingTemplate.querySelector('#displayedText');
+
+initReadingTemplate();
+
+  GetPhonicsText(el);
+
 
 });
+
+
+}
 
 
 
@@ -39,16 +65,11 @@ function initReadingTemplate(){
 
 }
 
-function InjectScript(url){
-   var script = document.createElement("script");
-  script.src = `js/${url}.js`;
-  document.head.appendChild(script);
-
-}
 
 
-var textClicked;
-function GetText(element) {
+
+
+function GetPhonicsText(element) {
  
 
 switch(element){
@@ -58,10 +79,8 @@ case `at`: listSentences = arrayAt;break;
 case `ch`: listSentences = arrayCh;break;
 case `sh`: listSentences = arraySh;break;
 case `oo`: listSentences = arrayOO;break;
-
 }
 
-initReadingTemplate();
 anime({
      targets:readingTempalte,
      left:'0%',
@@ -79,7 +98,7 @@ setTimeout(()=>{
 
 
 if(element.length <3)    
-document.querySelector('#microphone').style.display ='none';
+pageHolder.querySelector('#microphone').style.display ='none';
 
 
 highlight(listSentences[currentText]);
@@ -91,7 +110,7 @@ highlight(listSentences[currentText]);
 function highlight(el){
 
 
-var desired = arrayDesired.filter( function(x){return el.includes(x)});
+var desired = arrayToHighlight.filter( function(x){return el.includes(x)});
 
 if (el.length > 2){
 
@@ -100,12 +119,12 @@ var splitted = el.split(desired);
 splitted.forEach(x=>{console.log(x)});
  var output = el.substring(0, startPosition) + `<span>` +  el.substring(startPosition,startPosition+desired.length+1) +`</span>` + el.substring(startPosition+desired.length+1);
 
- document.querySelector('#displayedText').innerHTML = output;
+displayedText.innerHTML = output;
 
 
 }
 else{
-   document.querySelector('#displayedText').innerHTML = `<span style="font-size: 180px">${el}</span>`;
+document.querySelector('#displayedText').innerHTML = `<span style="font-size: 180px">${el}</span>`;
 }
 }
 

@@ -1,34 +1,47 @@
 
-
-var root ="stories/listStories";
+var root
 var currentStory;
 var currentPage =0;
 var currentText =0;
-var listStories =["Alex's super medicine", "Grow flower GROW!"];//, "The Bear and the Bee"];
-var listPictures=[];
-var listSentences =[];
-
+var listStories;
+var listPictures;
+var listSentences;
 var currentSentence;
-var currentPicture;
+var currentStoryPicture;
+var currentStoryPressed;
+
+var jarOfPromise;
+var readingTempalte 
 
 
-var currentPressed;
-var loader = document.querySelector('#loader');
 
 
-var jarOfPromise = [];
+function initStory(el){
 
+console.log(currentHolderPageTitle);
 
-const readingTempalte = document.querySelector('#readingTemplateHolder');
+this.root ="stories/listStories";
+this.currentPage =0;
+this.currentText =0;
+this.listStories =["Alex's super medicine", "Grow flower GROW!"];//, "The Bear and the Bee"];
+this.listPictures=[];
+this.listSentences =[];
+this.jarOfPromise = [];
+
+readingTempalte = document.querySelector('#readingTemplateHolder');
 fetch('./readingTemplate.html')
 .then(res=>res.text())
 .then(data=>{
 
-  readingTempalte.innerHTML=data;
-currentPicture = document.querySelector('#currentPicture');
+readingTempalte.innerHTML=data;
+this.currentPicture = document.querySelector('#currentPicture');
 document.querySelector('#confirmerDisplayer').style.display='flex';
 document.querySelector('#currentPicture').style.display='block';
+
+this.GenerateStory(el)
 });
+
+}
 
 
 function GetSentences(el){
@@ -65,13 +78,10 @@ function initReadingTemplate(){
   readingTempalte.style.display= 'block';
   InjectScript('speechSynthesis');
   InjectScript('listener');
+  InjectScript('storyQuestions')
 }
 
-function InjectScript(url){
-   var script = document.createElement("script");
-  script.src = `js/${url}.js`;
-  document.head.appendChild(script);
-}
+
 
 
 function StartGeneratin(element){
@@ -79,15 +89,15 @@ function StartGeneratin(element){
 
    initReadingTemplate();
 
-    currentPage=0;
+    this.currentPage=0;
 
    var divs = document.querySelectorAll(".class_box h3");
-    selectedStory = Array.from(divs).indexOf(element);
+    this.selectedStory = Array.from(divs).indexOf(element);
 
-  currentStory = element.innerText;
+  this.currentStory = element.innerText;
 
 
- listSentences = GetSentences(element);
+ this.listSentences = GetSentences(element);
  count = listSentences.length;
 
 setTimeout(()=>{
@@ -105,7 +115,7 @@ function PopulateSentence(element){
 
 var block;
     for(var i in element)
-      { console.log(i);
+      { 
         if(element[i] !='‎'){
          block = `<button class="word shake" onclick="SpeakIt(this)"><span>${element[i]}</span></button>`;
      }
@@ -122,15 +132,15 @@ CheckButtonPreviousAvailability();
 
 function GetStoryPictures(){
 
-listPictures =[];
+this.listPictures =[];
 
 for(i = 0; i <= listSentences.length; i++) {
 
         jarOfPromise.push(
             new Promise( (resolve, reject) => {
-                var name = listSentences[i];
+                var name = this.listSentences[i];
                 var image = new Image();
-                image.src = 'stories/listStories/'+listSentences[0]+'/'+i+'.jpg';
+                image.src = 'stories/listStories/'+this.listSentences[0]+'/'+i+'.jpg';
                
                image.addEventListener('load', function() {
                     resolve(true);
@@ -145,17 +155,17 @@ for(i = 0; i <= listSentences.length; i++) {
 
 
     Promise.all(jarOfPromise).then( result => {
-       listPictures.sort(function(a,b){ 
+       this.listPictures.sort(function(a,b){ 
      
      
         return a.src.substring(a.src.lastIndexOf('/')+1,a.src.lastIndexOf('.')) -  b.src.substring(a.src.lastIndexOf('/')+1,a.src.lastIndexOf('.'))});
       
 
-      currentPicture.src = listPictures[0].src; 
+      this.currentPicture.src = listPictures[0].src; 
 
 setTimeout(()=>{
     loader.style.display='none';
-
+console.log(listPictures.length);
     anime({
      targets:readingTempalte,
      left:'0%',

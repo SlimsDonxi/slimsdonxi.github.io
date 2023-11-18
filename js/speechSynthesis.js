@@ -1,6 +1,5 @@
 
-
-const synth = window.speechSynthesis || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition;
+var synth = window.speechSynthesis || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition;
 
 synth.defaultPrevented = true;
 synth.interimResults = true;
@@ -67,12 +66,12 @@ synth.onvoiceschanged = function(e) {
 
 
   selectedVoice = voices.filter(function(voice) { return voices[0]; })[0];  
-console.log(selectedVoice);
+
   var name = replaceString("Microsoft", "", selectedVoice.name);
             name = replaceString("Online (Natural) - English (United States)", "",name);
             name = replaceString("Online (Natural) - English (Canada)", "",name);
 
-           console.log(voices.filter(function(voice) { return voice.name == selectedVoice.name}));
+          
   voiceIndex = voices.indexOf(voices.filter(function(voice) { return voice == selectedVoice}));
 
 ulText.innerText = name;
@@ -297,6 +296,7 @@ function Next(){
 
 if(currentText < listSentences.length){
 
+
    if(document.querySelector('.word')!=null){
      PopulateSentence(GetWords(listSentences[currentText]));
    }
@@ -304,7 +304,7 @@ if(currentText < listSentences.length){
     highlight(listSentences[currentText]);
    }
 
-   if(document.querySelector('title').innerText == 'Stories'){
+   if(currentHolderPageTitle == 'stories'){
      
    
       currentPicture.src= listPictures[currentText].src;
@@ -317,7 +317,7 @@ if(currentText < listSentences.length){
      }
      else{
     
-       if(document.querySelector('title').innerText == 'Stories')
+       if(currentHolderPageTitle== 'stories')
     
     DisplayConfirmer();
 
@@ -346,7 +346,7 @@ function Previous(){
    highlight(listSentences[currentText]);
    }
 
-   if(document.querySelector('title').innerText == 'Stories'){
+   if(currentHolderPageTitle == 'stories'){
     currentPicture.src= listPictures[currentText].src;
  } 
 }
@@ -355,7 +355,7 @@ function Previous(){
 function CheckButtonNextAvailability(){
   if(currentText == listSentences.length-1){
 
-    if(document.querySelector('title').innerText!= 'Stories'){
+    if(currentHolderPageTitle!= 'stories'){
 
     nextButton.style.backgroundColor = "gray";
          nextButton.style.opacity = "0.2";

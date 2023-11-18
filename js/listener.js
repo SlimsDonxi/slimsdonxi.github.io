@@ -1,32 +1,33 @@
-const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition)();
+
+var recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition)();
 
 recognition.interimResults =true;
 recognition.continuous = true;
 recognition.lang = "en-US";
 
-const inputText = document.querySelector("#displayedText");
-const inputPhrase = document.querySelector("#displayedPhrase");
+var inputText = pageHolder.querySelector("#displayedText");
+var inputPhrase = pageHolder.querySelector("#displayedPhrase");
 var result;
 
-const microphone = document.querySelector('#microphone');
+var microphone = pageHolder.querySelector('#microphone');
 
-const scoreSpeechWrapper= document.querySelector('#scoreSpeech');
-const scoreContainer = document.querySelector('#scoreSpeechContainer');
-const emojiBackground = document.querySelector('.emojiContainer');
-const starsContainer = document.querySelector('#starsContainer');
-const comment = document.querySelector('#comment');
-var audio = document.querySelector('#audioPlayer');
-var emojiContainer = document.querySelector('.emojiContainer');
-var speechTranscript = document.querySelector('#microTranscript');
-var speechText = document.querySelector('#microText');
+var scoreSpeechWrapper= pageHolder.querySelector('#scoreSpeech');
+var scoreContainer = pageHolder.querySelector('#scoreSpeechContainer');
+var emojiBackground = pageHolder.querySelector('.emojiContainer');
+var starsContainer = pageHolder.querySelector('#starsContainer');
+var comment = pageHolder.querySelector('#comment');
+var audio = pageHolder.querySelector('#audioPlayer');
+var emojiContainer = pageHolder.querySelector('.emojiContainer');
+var speechTranscript = pageHolder.querySelector('#microTranscript');
+var speechText = pageHolder.querySelector('#microText');
 var recognizing = false;
 var score;
-var micIcon = document.querySelector("#micIcon");
-var micLoader = document.querySelector("#micLoader");
-var html =  document.querySelector('html');
-var arrStars = document.querySelectorAll("#starsContainer .star");
-var arraySvg = document.querySelectorAll(".emojiContainer lottie-player");
-var tooShort =  document.querySelector('#speechTooShort')
+var micIcon = pageHolder.querySelector("#micIcon");
+var micLoader = pageHolder.querySelector("#micLoader");
+var html =  pageHolder.querySelector('html');
+var arrStars = pageHolder.querySelectorAll("#starsContainer .star");
+var arraySvg = pageHolder.querySelectorAll(".emojiContainer lottie-player");
+var tooShort =  pageHolder.querySelector('#speechTooShort')
 var scoreDisplayed = false;
 
 
@@ -60,7 +61,7 @@ var scoreDisplayed = false;
       };
 
 
-    document.addEventListener("pointerup", () => {
+    pageHolder.addEventListener("pointerup", () => {
    stopListening();
           
    });
