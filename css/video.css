@@ -1,3 +1,14 @@
+#videoplayerHolder{
+	position:fixed;
+	height:100%;
+	 width:100%; 
+	 left:0;
+	  top:0;
+	 z-index:50; 
+	 display:none;
+
+}
+
 #divVideoPlayer{
 	position:fixed;
 	
@@ -7,7 +18,7 @@
 	   background:#f5f5f5;
 	   z-idnex:100;
 	    display:block;
-	    background:#333333;
+	    background:#000000;
 	    
 
 	}

@@ -15,10 +15,13 @@
       <!-- bootstrap css -->
       <link rel="stylesheet" href="../css/bootstrap.min.css">
       <!-- style css -->
+
       <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/video.css">
       <!-- Responsive-->
    
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <style>
 
 body{
@@ -92,21 +95,12 @@ width:100%;
         </div> 
       </div>
      
-    <div id="divVideoPlayer" style="position:fixed;top:0%; height:100%; width:100%; background:#f5f5f5;z-idnex:100; display:none">
-  <br><br><br>
-    <video class="video" width="100%"  controls="controls" preload="metadata" loop autoplay playsinline   type="video/mp4" src=""> </video>
-    <div onclick="CloseReader('divVideoPlayer')" class="cancel subCancel">
-            <svg class="icon"   viewBox="0 0 25 25"> 
-                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-                    <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-469.000000, -1041.000000)" fill="#fff">
-                        <path d="M487.148,1053.48 L492.813,1047.82 C494.376,1046.26 494.376,1043.72 492.813,1042.16 C491.248,1040.59 488.712,1040.59 487.148,1042.16 L481.484,1047.82 L475.82,1042.16 C474.257,1040.59 471.721,1040.59 470.156,1042.16 C468.593,1043.72 468.593,1046.26 470.156,1047.82 L475.82,1053.48 L470.156,1059.15 C468.593,1060.71 468.593,1063.25 470.156,1064.81 C471.721,1066.38 474.257,1066.38 475.82,1064.81 L481.484,1059.15 L487.148,1064.81 C488.712,1066.38 491.248,1066.38 492.813,1064.81 C494.376,1063.25 494.376,1060.71 492.813,1059.15 L487.148,1053.48" id="cross" sketch:type="MSShapeGroup"></path>
-                    </g>
-                </g>
-            </svg>
-        </div>
-  </div>
+   
      <audio id="audioPlayer"></audio>
    <audio id="audioClick"></audio>
+
+    <div  class="holder" id="videoplayerHolder" style=""></div>  
+
   <script src="../js/videoplayer.js"></script>
     <script src="../js/navigation.js"></script>
 

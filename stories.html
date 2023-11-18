@@ -114,16 +114,14 @@ line-height: 28px;
 
     <div id="confirmer">
        <div id="confirmerAnimation">
-            <lottie-player class="responsive" id="confirmerAnimation"src="https://lottie.host/3297d458-2f77-4219-a453-9aa75249141f/hleHtYSwfs.json" background="transparent"  speed="1 " loop  autoplay direction="1" mode="normal"></lottie-player>
+            <lottie-player class="responsive" id="confirmerAnimation"src="../animations/AnimationRocket.json" background="transparent"  speed="1" loop  autoplay direction="1" mode="normal"></lottie-player>
         </div>
         <div id="confirmerTitle"> Are you ready for the test ? <br><br>
-            <p id="confirmerInfos">
-            16 questions
-        </p>
+            
         </div>
 
 
-        <div  style="display:flex; flex-direction:column; align-content: center; line-height: 5px; align-items:center;">
+        <div  style="display:flex; gap:7px; flex-direction:column; align-content: center; line-height: 5px; align-items:center;">
            
            <div id="ok"  class="buttonCanvas"   onclick="startStoryQuestions();  PlayClick();">Continue</div> <br><br>          
            <div id="back" class="buttonCanvas" style="background:#f22542; box-shadow: 0 8px 0 0 #d73249;"  onclick="document.querySelector('#confirmer').style.display='none';document.querySelector('#confirmer').style.left='100%';  PlayClick();">Back</div> 

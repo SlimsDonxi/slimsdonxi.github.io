@@ -1,13 +1,14 @@
 
 var root ="videos/"+ document.querySelector('title').innerText+'/';
 var body = document.querySelector('body');
-const readingTempalte = document.querySelector('#videoplayerHolder');
+var readingTempalte;
 
 var videoPlayer;
 fetch('../videoplayer.html')
 .then(res=>res.text())
 .then(data=>{
 
+readingTempalte = document.querySelector('#videoplayerHolder');
   readingTempalte.innerHTML=data;
 
 });
@@ -20,8 +21,8 @@ videoPlayer = document.querySelector('video');
 anime({
      targets:document.querySelector('#divVideoPlayer'),
      left:'0%',
-     duration:2000,
-     ease:'linear'
+     duration:600,
+      easing:'easeOutQuint'
 });
 
 
