@@ -133,47 +133,31 @@
            
     </section>
 </div>
-
 <div id="scoreSpeech" >
-    <div  id="scoreSpeechContainer">
-    <div class="row">
-         <div class ="col-md-12 emojiContainer" id="basicEmojis">       
-            <lottie-player id="greatSvg" src="https://lottie.host/fa91ea0d-599e-4158-a753-799c0911499e/Qli3MgtYxb.json" speed="1" loop autoplay direction="1" mode="normal"></lottie-player>
-            <lottie-player id="happySvg" src="https://lottie.host/eb8f8a72-4e31-4207-8518-cfba63212250/8z4P0LCKM4.json"   speed="1" loop  autoplay direction="1" mode="normal"></lottie-player>
-            <lottie-player id="badSvg" src="https://lottie.host/864eeee4-f869-4dd4-b132-5655ddf6e5b9/7lj38RVe7z.json"  speed="1" loop  autoplay direction="1" mode="normal"></lottie-player>
-        </div> 
-        
-            <lottie-player src="animations/Animationtrophy.json"  id="trophy" style="display: none;"speed="1" loop autoplay direction="1" mode="normal"></lottie-player>      
-      
-
-
-       
-        <div id="backgroundStartContainer" class="starsContainer">
-          
-            <img class="star" src="animations/backgroundStar.png"  style="height:125px; width:125px; margin-top:50px"/>
-             <img class="star" src="animations/backgroundStar.png" />
-               <img class="star" src="animations/backgroundStar.png"  style="height:125px; width:125px; margin-top:50px" />
-         
+    <br><br>
+    <div class="row">      
+            <lottie-player src="animations/Animationtrophy.json"  id="trophy" style="display: none;"speed="1" loop autoplay direction="1" mode="normal"></lottie-player>            
+            <div id ="starsContainer" class="starsContainer">
+                <div class="backgroundStar">
+                   <lottie-player class="lottieStar"   src="animations/AnimationStar.json"speed="1" loop autoplay  ></lottie-player>        
+                </div>   
+                <div class="backgroundStar" style="margin-top:-50px;margin-lefT:7px; margin-right:7px; transform:scale(1.25)">
+                   <lottie-player  class="lottieStar" src="animations/AnimationStar.json"speed="1" loop autoplay  ></lottie-player>        
+                </div> 
+                 <div class="backgroundStar">
+                   <lottie-player class="lottieStar" src="animations/AnimationStar.json"speed="1" loop autoplay  ></lottie-player>             
+                </div>             
+            </div>
   
+          <div class="col-md-12">          
+            <span id="score" class="fail" >81</span>
         </div>
-         <div id ="starsContainer" class="starsContainer">
-            <lottie-player class="star" style="height:125px; width:125px; margin-top:50px" src="animations/star.json"speed="1" loop autoplay direction="1" mode="normal"></lottie-player> 
-            <lottie-player class="star" src="animations/star.json"  speed="1" loop autoplay direction="1" mode="normal"></lottie-player>    
-            <lottie-player class="star"style="height:125px; width:125px;margin-top:50px" src="animations/star.json"  speed="1" loop autoplay direction="1" mode="normal"></lottie-player>
-        </div>
-  
-          <!--<div class="col-md-12">          
-            <span id="score">81%</span>
-        </div>-->
-<br><br>
         <div class="col-md-12" id="comment" style="padding-top:30px; padding-bottom:50px">
-            <span>Great Job !</span>
+            <span>Great Job!</span>
         </div>
         
         <div class="scoreOK" onclick="document.querySelector('#scoreSpeech').style.display='none';scoreDisplayed = false; console.log('SHOULD BE FALSE == '+ scoreDisplayed);">Continue</div>
     </div>
-    </div>
-
   </div>
 
 <div id="backgroundQuestions" class="mainFrame"  >

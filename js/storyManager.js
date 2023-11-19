@@ -7,39 +7,54 @@ var listStories;
 var listPictures;
 var listSentences;
 var currentSentence;
-var currentStoryPicture;
+var currentPicture;
 var currentStoryPressed;
 
 var jarOfPromise;
 var readingTempalte 
 
+function initStoryPage(){
+console.log(loader);
 
-
-
-function initStory(el){
-
-console.log(currentHolderPageTitle);
 
 this.root ="stories/listStories";
 this.currentPage =0;
 this.currentText =0;
-this.listStories =["Alex's super medicine", "Grow flower GROW!"];//, "The Bear and the Bee"];
+this.listStories =["Alex's super medicine", "Grow flower GROW!"];//, "The Bear and the Bee"]; 
 this.listPictures=[];
 this.listSentences =[];
 this.jarOfPromise = [];
 
-readingTempalte = document.querySelector('#readingTemplateHolder');
+
+
+
 fetch('./readingTemplate.html')
 .then(res=>res.text())
 .then(data=>{
 
+
+readingTempalte = document.querySelector('#readingTemplateHolder');
 readingTempalte.innerHTML=data;
 this.currentPicture = document.querySelector('#currentPicture');
-document.querySelector('#confirmerDisplayer').style.display='flex';
-document.querySelector('#currentPicture').style.display='block';
+currentPicture.style.display='block';
 
-this.GenerateStory(el)
+document.querySelector('#confirmerDisplayer').style.display='flex';
+
+Array.from(document.querySelectorAll('.storyBlock')).forEach(x=>{
+    x.onpointerup=function(){
+        initStory(x);
+    }
+})
+
+
 });
+}
+
+
+function initStory(el){
+loader.style.display='flex';
+console.log(loader.style.display);
+this.GenerateStory(el)
 
 }
 
@@ -69,7 +84,7 @@ function FileHelper(url){
 
 function GenerateStory(element){
 
-loader.style.display='flex';
+
 
 setTimeout(StartGeneratin(element), 500);
 }

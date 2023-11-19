@@ -1,4 +1,5 @@
 
+
 const loader = document.querySelector('#loader');
 const pageHolder = document.querySelector('#pageHolder');
 var currentHolderPageTitle='';
@@ -43,6 +44,7 @@ function initPageScripts(el){
 	case'songs':initSongPage();break;
 	case'phonics':initPhonicsPage();break;
 	case'reading':initReadingPage();break;
+	case'stories':initStoryPage();break;
 	}
 },100)
 	

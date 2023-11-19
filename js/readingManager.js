@@ -72,6 +72,7 @@ for(var i=0; i< this.listSentences.length; i++)
   
 }
 
+
  this.listSentencesContainer.style.display ="block";
 }
 

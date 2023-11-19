@@ -24,14 +24,15 @@ var recognizing = false;
 var score;
 var micIcon = pageHolder.querySelector("#micIcon");
 var micLoader = pageHolder.querySelector("#micLoader");
-var html =  pageHolder.querySelector('html');
-var arrStars = pageHolder.querySelectorAll("#starsContainer .star");
-var arraySvg = pageHolder.querySelectorAll(".emojiContainer lottie-player");
+
+var arrStars = pageHolder.querySelectorAll(".lottieStar");
+
 var tooShort =  pageHolder.querySelector('#speechTooShort')
 var scoreDisplayed = false;
+var score =  pageHolder.querySelector('#score');
 
 
-
+console.log(score.innerText)
       microphone.onpointerdown = () => {
         if(!recognizing){
             
@@ -168,6 +169,13 @@ anime({
 
   removeAllScoreClasses();
 
+  arrStars.forEach((x)=>{
+    x.style.display ='none'
+  })
+
+ pageHolder.querySelector('#score').innerText='';
+  pageHolder.querySelector('#score').innerText = el;
+ 
   if(el>70) winResult();
 
   else if(el>40) mediumResult(); 
@@ -262,48 +270,50 @@ function editDistance(s1, s2) {
 }
 
 function removeAllScoreClasses(){
-   scoreContainer.classList.remove('success');
-     scoreContainer.classList.remove('fail');
-     scoreContainer.classList.remove('medium');
+   pageHolder.querySelector('#score').classList.remove('success');
+      pageHolder.querySelector('#score').classList.remove('fail');
+      pageHolder.querySelector('#score').classList.remove('medium');
 }
 
 function failResult(){
  
-
+arrStars[0].style.display = 'flex';
  
    audio.src = './audios/fail.wav';     
-    scoreContainer.classList.add('fail');
-     arraySvg[0].style.display = 'none';
-     arraySvg[2].style.display = 'block';
+     pageHolder.querySelector('#score').classList.add('fail');
+    
      comment.querySelector('span').innerText = "Try again";
-      arrStars[2].style.display='none';
-       arrStars[1].style.display='none';
+      
 }
 
 function mediumResult(){
  
+ arrStars.forEach((x)=>{
+    x.style.display ='flex'
+  });
+arrStars[2].style.display = 'none';
+
    audio.src = './audios/middle.wav';     
-     scoreContainer.classList.add('middle');
-      arraySvg[0].style.display = 'none';
-      arraySvg[1].style.display = 'block';
+    pageHolder.querySelector('#score').classList.add('middle');
+    
       comment.querySelector('span').innerText = "Not bad";
-      arrStars[2].style.display='none';
+     
 }
 
 function winResult(){
   
+  arrStars.forEach((x)=>{
+    x.style.display ='flex'
+  })
    audio.src = './audios/good.mp3';     
-   scoreContainer.classList.add('success');
+    pageHolder.querySelector('#score').classList.add('success');
     comment.querySelector('span').innerText = "Great Job";
-     arraySvg[0].style.display = 'block';
+     
 
 }
 
 function resetScoreSVGs(){
 
-arraySvg.forEach(x =>{
-  x.style.display='none';
-});
 
 arrStars.forEach(x =>{
   x.style.display='block';
@@ -318,3 +328,5 @@ function speechTooShort(){
      tooShort.style.display = 'none';
     },1500);
 }
+
+
