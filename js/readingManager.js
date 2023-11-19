@@ -8,30 +8,51 @@ var currentSentence;
 var listSentences = [];
 var currentText =0;
 
-function initReader(el){
-
+function initReadingPage(el){
+currentText =0;
 arrayGood = ["I am good at basketball", "I am very good at dancing", "You are extremely good at running", "He is great at swimming", "I am bad at drawing","She is really bad at climbing","We are horrible at singing"];
 arrayToo = ["I like apples and i like oranges too", "I cannot fly and I cannot swim either", "I do not like to dance and I do not like to play either", "If you are happy then I am happy too", "You are not my friend and I am not your friend either","I like to drink milk but I do not like to drink water","I like to eat vegetables but I do not like to eat fruits"];
 arraySchool = ["This is my pencil case", "I have a huge pencil case", "I can put an eraser in my pencil case", "Eraser is a school supply", "I can put a marker in my pencil case","Marker is a school supply too","I can put a glue stick in my pencil case","Glue is also a school supply","I cannot put an elephant in my pencil case","I have a lot of crayons","I put all of my school supplies in my schoolbag","Because the elephant is too big!"];
-listSentencesContainer =  document.querySelector('#listSentences');
+
 
 fetch('./readingTemplate.html')
 .then(res=>res.text())
 .then(data=>{
 
+  Array.from(document.querySelectorAll('.readingBlock')).forEach(x=>{
+
+x.onpointerup=function(){
+PlayClick();
+currentText =0;
+setTimeout(()=>{
+  listSentencesContainer =  document.querySelector('#listSentences');
  readingTempalte = document.querySelector('#readingTemplateHolder');
 readingTempalte.innerHTML=data;
-GetReadingText(el);
-});
+GetReadingText(x.getAttribute('alt'));
+},100);
 
+}
+});
+});
+}
+
+var sentenceClicked;
+
+
+function GetReadingText(element) {
+
+switch(element){
+
+
+case 'school': this.listSentences = arraySchool; break;
+case 'too': this.listSentences = arrayToo;break;
+case 'good': this.listSentences = arrayGood;break;
 }
 
 
 
-
-
 function populate(id){
-  
+currentText =0;
 switch(id){
 case 'school': this.listSentences = arraySchool; break;
 case 'too': this.listSentences = arrayToo;break;
@@ -75,17 +96,7 @@ function initReadingTemplate(){
 
 
 
-var sentenceClicked;
 
-function GetReadingText(element) {
-
-switch(element){
-
-
-case 'school': this.listSentences = arraySchool; break;
-case 'too': this.listSentences = arrayToo;break;
-case 'good': this.listSentences = arrayGood;break;
-}
 
 
 initReadingTemplate();

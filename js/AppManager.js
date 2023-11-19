@@ -28,9 +28,24 @@ currentHolderPageTitle = url;
 
 	 loader.style.display='none';
 	AnimateHolderPage(holder,0);
-
+	initPageScripts(url);
 	});
 
+
+
+}
+
+function initPageScripts(el){
+
+	setTimeout(()=>{
+		switch(el){
+	case'video': initVideoPage();break;
+	case'songs':initSongPage();break;
+	case'phonics':initPhonicsPage();break;
+	case'reading':initReadingPage();break;
+	}
+},100)
+	
 }
 
 

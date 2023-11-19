@@ -1,5 +1,0 @@
-G:\wordBrowserDownload\RecordingDemo\录音\bin\WebApplication1.dll
-G:\wordBrowserDownload\RecordingDemo\录音\bin\WebApplication1.pdb
-G:\wordBrowserDownload\RecordingDemo\录音\obj\Debug\ResolveAssemblyReference.cache
-G:\wordBrowserDownload\RecordingDemo\录音\obj\Debug\WebApplication1.dll
-G:\wordBrowserDownload\RecordingDemo\录音\obj\Debug\WebApplication1.pdb

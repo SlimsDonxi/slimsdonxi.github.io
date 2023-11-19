@@ -1,43 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-   <head>
-      <!-- basic -->
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <!-- mobile metas -->
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-      <!-- site metas -->
-      <title>Classroom</title>
-      <meta name="keywords" content="">
-      <meta name="description" content="">
-      <meta name="author" content="">
-      <!-- bootstrap css -->
-      <link rel="stylesheet" href="../css/bootstrap.min.css">
-      <!-- style css -->
-         <link rel="stylesheet" href="../css/style.css">
-      <link rel="stylesheet" href="../css/video.css">
-      <!-- Responsive-->
- 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<style>
 
-body{
-    background:#f5f5f5;
-}
-
-img{
-    border-radius:25px;
-width:100%;
-}
-
-
-</style>
-</head>
-
-<body class="main-layout inner_page">    
-   <div class="nav">    
-    </div>  
         <br><br> 
       <div class="class">
          <div class="container">
@@ -50,35 +11,35 @@ width:100%;
                </div>
             </div>
               <div class="row">
-               <div class="col-md-6" onclick="PlayClick();LoadPlayer('Nathan Evans  Wellerman Sea Shanty')">
+               <div class="col-md-6 videoLauncher">
                   <div class=" text_align_center" >
                    <img src="../songs/videos/Classroom/posters/SeaShanty.jpg" class="img-responsive">
-                     <h3>Nathan Evans  Wellerman Sea Shanty</h3>                   
+                     <h3>Nathan Evans Wellerman Sea Shanty</h3>                   
                   </div>             
                </div>
-               <div class="col-md-6"  onclick="PlayClick();LoadPlayer('Dumb Ways to Die')">
+               <div class="col-md-6 videoLauncher">
                   <div class=" text_align_center" >
                    <img src="../songs/videos/Classroom/posters/dumb.jpg" class="img-responsive">
                      <h3>Dumb ways to die</h3>                   
                   </div>             
                </div>
-               <div class="col-md-6" onclick="PlayClick();LoadPlayer('Narwhals')">
+               <div class="col-md-6 videoLauncher">
                   <div class=" text_align_center" >
                    <img src="../songs/videos/Classroom/posters/narwhal.jpg" class="img-responsive">
-                     <h3>Narwhals narwhals</h3>                   
+                     <h3>Narwhals</h3>                   
                   </div>             
                </div>
-               <div class="col-md-6" onclick="LoadPlayer('The Coconut Song')">
+               <div class="col-md-6 videoLauncher">
                   <div class=" text_align_center" >
                     <img src="../songs/videos/Classroom/posters/coconut.jpg" class="img-responsive">
-                     <h3>The coconut song</h3>                   
+                     <h3>The Coconut Song</h3>                   
                   </div>             
                </div>
            
                
             </div>
          </div>
-         <div onclick="PlayClick();window.location.href ='../songs.html'; " class="cancel subCancel shake">
+         <div onclick=" AnimateHolderPage('songsHolder',100); " class="cancel subCancel shake">
             <svg class="icon" viewBox="0 0 25 25"> 
                 <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
                     <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-469.000000, -1041.000000)" fill="#fff">
@@ -89,12 +50,4 @@ width:100%;
         </div> 
       </div>
        <div  class="holder" id="videoplayerHolder" style=""></div>
-    
-    <audio id="audioPlayer"></audio>
-    <audio id="audioClick"></audio>
-  <script src="../js/videoplayer.js"></script>
-    <script src="../js/navigation.js"></script>
-
-    
-   </body>
-</html>
+  

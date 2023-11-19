@@ -1,25 +1,49 @@
 
-var root ="videos/"+ document.querySelector('title').innerText+'/';
-var body = document.querySelector('body');
-var readingTempalte;
+
+
+var videoHolder;
 
 var videoPlayer;
+var content;
+
+function initVideoLoader(){
+  console.log('loaded')
+var content = document.querySelectorAll('.videoLauncher');
+ Array.from(content).forEach(x=>{
+  x.onpointerup=function(){
+  PlayClick();
+  initVideo(this.querySelector('h3').innerText);
+}
+})
+}
+
+
+
+function initVideo(el){
 fetch('../videoplayer.html')
 .then(res=>res.text())
 .then(data=>{
 
-readingTempalte = document.querySelector('#videoplayerHolder');
-  readingTempalte.innerHTML=data;
+videoHolder = document.querySelector('#videoplayerHolder');
+  videoHolder.innerHTML=data;
+videoPlayer = document.querySelector('#videoPlayer');
+
+LoadPlayer(el);
 
 });
+
+}
+
+
 
 
 function LoadPlayer(el){
 
-document.querySelector('#videoplayerHolder').style.display='block'
+
+
 videoPlayer = document.querySelector('video');
 anime({
-     targets:document.querySelector('#divVideoPlayer'),
+     targets:document.querySelector('#videoplayerHolder'),
      left:'0%',
      duration:600,
       easing:'easeOutQuint'
@@ -29,8 +53,10 @@ anime({
 var block = root + el+'.mp4';
 
 setTimeout(()=>{
-document.querySelector('#videoPlayer').src = block;
-document.querySelector('#videoPlayer').play();
+videoPlayer.src = block;
+//videoPlayer.requestFullscreen(), {once:true};
+//screen.orientation.lock('landscape');
+videoPlayer.play();
 },50);
 
 }
