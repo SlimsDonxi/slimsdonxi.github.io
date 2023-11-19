@@ -134,8 +134,10 @@
     </section>
 </div>
 <div id="scoreSpeech" >
-    <br><br>
-    <div class="row">      
+      <div id="bannerScore">
+    <div id="scoreWrapper">
+
+    <div class="row" >      
             <lottie-player src="animations/Animationtrophy.json"  id="trophy" style="display: none;"speed="1" loop autoplay direction="1" mode="normal"></lottie-player>            
             <div id ="starsContainer" class="starsContainer">
                 <div class="backgroundStar">
@@ -150,15 +152,17 @@
             </div>
   
           <div class="col-md-12">          
-            <span id="score" class="fail" >81</span>
+            <span id="score" >81</span>
         </div>
         <div class="col-md-12" id="comment" style="padding-top:30px; padding-bottom:50px">
             <span>Great Job!</span>
         </div>
         
-        <div class="scoreOK" onclick="document.querySelector('#scoreSpeech').style.display='none';scoreDisplayed = false; console.log('SHOULD BE FALSE == '+ scoreDisplayed);">Continue</div>
+        <div class="scoreOK" onclick="retractScore()">Continue</div>
     </div>
   </div>
+</div>
+    </div>
 
 <div id="backgroundQuestions" class="mainFrame"  >
             <div onclick="CloseReader('backgroundQuestions');PlayClick();" class="cancel subCancel shake">

@@ -30,32 +30,34 @@ var arrStars = pageHolder.querySelectorAll(".lottieStar");
 var tooShort =  pageHolder.querySelector('#speechTooShort')
 var scoreDisplayed = false;
 var score =  pageHolder.querySelector('#score');
+var bannerScore = pageHolder.querySelector('#bannerScore')
+ audio.src = './audios/startRecord.wav';
 
 
-console.log(score.innerText)
       microphone.onpointerdown = () => {
+
         if(!recognizing){
-            
-
-               
+                          
             recognition.start();
+
             recognition.onstart = () =>{
-            recognizing = true;
-            ActivateButton();
-            audio.src = './audios/startRecord.wav';
-            audio.play();
-            };
+              recognizing = true;
+              ActivateButton();
+              audio.play();
+              };
 
-            recognition.onresult= (event) => {
+              recognition.onresult= (event) => {
 
-            const transcript = Array.from(event.results)
-              .map((result) => result[0].transcript)
-              .join("");
-        
-            result = transcript; 
-            speechTranscript.style.display = 'block';
-            speechText.innerText = result;
+              const transcript = Array.from(event.results)
+                .map((result) => result[0].transcript)
+                .join("");
+          
+              result = transcript; 
+              speechTranscript.style.display = 'block';
+              speechText.innerText = result;
           };
+
+
         }
 
            
@@ -63,8 +65,7 @@ console.log(score.innerText)
 
 
     pageHolder.addEventListener("pointerup", () => {
-   stopListening();
-          
+   stopListening();          
    });
 
 
@@ -87,9 +88,12 @@ if(recognizing)
     return;          
   };  
  
+ setTimeout(()=>{
   if(speechText.innerText.length<=1)          
 speechTooShort();
 
+},100)
+  
 
 recognizing = false; 
 }
@@ -108,23 +112,19 @@ function onResult(){
   result = transcript; 
   speechTranscript.style.display = 'block';
   speechText.innerText = result;
-
- 
-       
-  
+         
   setTimeout(()=>{
 
      if(!scoreDisplayed){
       speechTranscript.style.display ='none';
-      scoreDisplayed = true;
-
       CheckResult();
-
       }
      },500);    
 }
 function CheckResult(){
     
+ scoreDisplayed = true;
+
  var str1  = listSentences[currentText].replace(/[.,\/#!$%\^&\*;":{}=\-_`~()]/g,"");
 str1 = str1.replace(/\s{2,}/g," ");
 
@@ -183,6 +183,12 @@ anime({
   else failResult();
   
   audio.play();
+
+   anime({
+         targets:document.querySelector('#bannerScore'),
+         width:'140%',
+         duration:2500
+      })
 }
 
 
@@ -270,9 +276,9 @@ function editDistance(s1, s2) {
 }
 
 function removeAllScoreClasses(){
-   pageHolder.querySelector('#score').classList.remove('success');
-      pageHolder.querySelector('#score').classList.remove('fail');
-      pageHolder.querySelector('#score').classList.remove('medium');
+   pageHolder.querySelector('#bannerScore').classList.remove('success');
+      pageHolder.querySelector('#bannerScore').classList.remove('fail');
+      pageHolder.querySelector('#bannerScore').classList.remove('medium');
 }
 
 function failResult(){
@@ -280,9 +286,9 @@ function failResult(){
 arrStars[0].style.display = 'flex';
  
    audio.src = './audios/fail.wav';     
-     pageHolder.querySelector('#score').classList.add('fail');
+     pageHolder.querySelector('#bannerScore').classList.add('fail');
     
-     comment.querySelector('span').innerText = "Try again";
+     comment.querySelector('span').innerText = "Oops, Jia you!";
       
 }
 
@@ -294,9 +300,9 @@ function mediumResult(){
 arrStars[2].style.display = 'none';
 
    audio.src = './audios/middle.wav';     
-    pageHolder.querySelector('#score').classList.add('middle');
+    pageHolder.querySelector('#bannerScore').classList.add('middle');
     
-      comment.querySelector('span').innerText = "Not bad";
+      comment.querySelector('span').innerText = "Pretty good";
      
 }
 
@@ -306,8 +312,8 @@ function winResult(){
     x.style.display ='flex'
   })
    audio.src = './audios/good.mp3';     
-    pageHolder.querySelector('#score').classList.add('success');
-    comment.querySelector('span').innerText = "Great Job";
+    pageHolder.querySelector('#bannerScore').classList.add('success');
+    comment.querySelector('span').innerText = "Amazing!";
      
 
 }
@@ -329,4 +335,11 @@ function speechTooShort(){
     },1500);
 }
 
+
+function retractScore(){
+ document.querySelector('#scoreSpeech').style.display='none';
+ document.querySelector('#bannerScore').style.width='0';
+ PlayClick();
+ scoreDisplayed=false;
+}
 

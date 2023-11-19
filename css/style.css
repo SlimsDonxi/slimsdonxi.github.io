@@ -430,13 +430,19 @@ box-shadow: 0px 5px 0px 0px #313130;
 
 
  #searchInput {
+     background-image:url('../animations/search.svg');
+background-repeat: no-repeat;
+background-position-x:15px ;
+background-position-y:10px ;
+background-size: 50px;
+
  margin-top:50px;
   font-size: 1.5rem; /* Increase font-size */
-  padding: 12px 20px 12px 40px; /* Add some padding */
+  padding: 12px 20px 12px 80px; /* Add some padding */
   border: 1px solid #ddd; /* Add a grey border */
   border-radius: 50px;
  width:100%;
- box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 
 }
 #displayedPhrase{   

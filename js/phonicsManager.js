@@ -33,7 +33,7 @@ fetch('./readingTemplate.html')
 
     x.onpointerup=function(){
       PlayClick();
-      console.log('clicked');
+   
        currentText=0;
      setTimeout(()=>{
        readingTemplate = document.querySelector('#readingTemplateHolder');
@@ -57,7 +57,7 @@ readingTemplate.innerHTML=data;
 
 function initPhonics(el){
    currentText=0;
-   console.log('currentText = '+ currentText);
+ 
    displayedtext = readingTemplate.querySelector('#displayedText');
 
    anime({
@@ -104,7 +104,7 @@ case `ch`: listSentences = arrayCh;break;
 case `sh`: listSentences = arraySh;break;
 case `oo`: listSentences = arrayOO;break;
 }
-console.log(listSentences.length)
+
 anime({
      targets:readingTemplate,
      left:'0%',
@@ -112,20 +112,20 @@ anime({
      ease:'easeOutQuint'
 });
 
-setTimeout(()=>{
-   CheckButtonNextAvailability();
-  CheckButtonPreviousAvailability();   
-},10)
 
 
 
 
-
-if(element.length <3)    
+console.log('element == '+ element);
+if(listSentences[0].length <3)    
 pageHolder.querySelector('#microphone').style.display ='none';
 
 
 highlight(listSentences[this.currentText]);
+setTimeout(()=>{
+   CheckButtonNextAvailability();
+  CheckButtonPreviousAvailability();   
+},50)
 
 
 }
@@ -139,7 +139,7 @@ if (el.length > 2){
 
 var startPosition =  el.indexOf(desired[0]);
 var splitted = el.split(desired);
-splitted.forEach(x=>{console.log(x)});
+
  var output = el.substring(0, startPosition) + `<span>` +  el.substring(startPosition,startPosition+desired.length+1) +`</span>` + el.substring(startPosition+desired.length+1);
 
 document.querySelector('#displayedText').innerHTML = output;
