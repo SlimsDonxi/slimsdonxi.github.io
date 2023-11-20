@@ -94,15 +94,13 @@ console.log('still recognizing');;
 
 function onResult() {
 
- 
-
   setTimeout(() => {
 
     if (!scoreDisplayed) {
     
       CheckResult();
     }
-  }, 500);
+  }, 800);
 
 
 }
