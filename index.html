@@ -63,8 +63,22 @@
      </style>
    </head>
    <!-- body -->
-   <body class="main-layout inner_page">
-   
+   <body class="main-layout inner_page" onload="pageLoaded()">
+   <div class="holder" id="mainLoader">
+      <div id="containerLoader">
+  <svg viewBox="0 0 100 100">
+    <defs>
+      <filter id="shadow">
+        <feDropShadow dx="0" dy="0" stdDeviation="1.5" 
+          flood-color="#fc6767"/>
+      </filter>
+    </defs>
+    <circle id="spinner" style="fill:transparent;stroke:#dd2476;stroke-width: 7px;stroke-linecap: round;filter:url(#shadow);" cx="50" cy="50" r="45"/>
+
+</svg>
+<h2>Loading</h2>
+</div>
+   </div>
       <div class="class">
          <div class="container" style=>
             <div class="row">

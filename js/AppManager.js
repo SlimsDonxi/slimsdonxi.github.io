@@ -4,6 +4,16 @@ const loader = document.querySelector('#loader');
 const pageHolder = document.querySelector('#pageHolder');
 var currentHolderPageTitle='';
 
+
+
+function pageLoaded(){
+	anime({
+		targets:document.querySelector('#mainLoader'),
+		top:'100%',
+		duration:2500
+	})
+	
+}
 function loadPage(holder,url){
 pageHolder.innerHTML='';
 pageHolder.innerText='';
