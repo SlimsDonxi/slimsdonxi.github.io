@@ -29,6 +29,9 @@ setTimeout(()=>{
  readingTempalte = document.querySelector('#readingTemplateHolder');
 readingTempalte.innerHTML=data;
 GetReadingText(x.getAttribute('alt'));
+ speaker.onpointerup=function(){
+        speakSentences();
+      }
 },100);
 
 }
@@ -125,7 +128,7 @@ displayedPhrase.innerHTML='';
 
     for(var i in element)
       { 
-        var block = `<button class="word shake" onclick="SpeakIt(this)"><span>${element[i]}</span></button>`;
+        var block = `<button class="word shake" onpointerup="speakWord(this)"><span>${element[i]}</span></button>`;
         displayedPhrase.innerHTML +=block;
       }}
 

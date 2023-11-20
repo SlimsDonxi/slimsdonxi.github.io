@@ -130,45 +130,11 @@ async function showReadingText(textPart) {
 var currentPressed;
 
 
-
-function StartSpeaking(){
-  speaker.style.backgroundColor = "#f5971d";
+function speakLetters(){
+speaker.style.backgroundColor = "#f5971d";
   speaker.style.boxShadow = "0px 5px 0px 0px #f5971d";
 
-  parseSentences();
-  speak();
-}
-
-function SpeakIt(thisEl) {
-
-  
-  if(currentPressed!= null){
-
- currentPressed.style.background = "#1a95f4";
- currentPressed.style.boxShadow = "0px 8px 0px 0px #1a7ac5";
-  }
-  currentPressed = thisEl;
- 
-
- currentPressed.style.background = "#f5971d";
- currentPressed.style.boxShadow = "0px 8px 0px 0px #f5971d";
- parseSentences();
-speak();
-  
-}
-
-
-function speak(){
-
-  if ('speechSynthesis' in window) {
-
-  synth.cancel();
-  var speakObj;
-
-  if(document.querySelector(".word")==null)  {
-    var sound = new Audio();
-    
-    sound.src = `audios/LetterSounds/${listSentences[currentText]}.mp3`;  //  preload
+   var sound = listLetterAudios[currentText];   
    sound.play();
 
    document.querySelector("#speakerIcon").style.display = "none";
@@ -181,28 +147,76 @@ function speak(){
    sound.addEventListener("ended", function(){
   
      sound.currentTime = 0;
-     SetSpeakingUI();
+     SetSpeakerOff();
 });
+}
 
- }
- else{ 
-  
-  if(currentPressed ==  null)speakObj = new SpeechSynthesisUtterance(listSentences[currentText].toLowerCase());   
-  else  speakObj = new SpeechSynthesisUtterance(currentPressed.innerText);
-   
+function speakSentences(){
+parseSentences();
+speak(listSentences[currentText].toLowerCase());
 }
 
 
 
-if(speakObj!=null)
-{
+function speakWord(thisEl) {
+
+currentPressed = thisEl;
+
+if(currentPressed!= null){
+ currentPressed.style.background = "#1a95f4";
+ currentPressed.style.boxShadow = "0px 8px 0px 0px #1a7ac5";
+  }
   
+ currentPressed.style.background = "#f5971d";
+ currentPressed.style.boxShadow = "0px 8px 0px 0px #f5971d";
+
+
+parseSentences();
+speak(currentPressed.innerText);
+
+  
+}
+
+
+
+function speak(speech){
+
+  if ('speechSynthesis' in window) {
+
+ synth.cancel();
+
+  var speakObj = new SpeechSynthesisUtterance(speech);
+   
   speakObj.voice = selectedVoice;
   speakObj.rate = 0.8;
 
   if(selectedVoice != 'undefined'){
   synth.speak(speakObj);
-  anime({
+  SetSpeakerOn();
+}
+  speakObj.addEventListener('end', ()=>{
+  SetSpeakerOff();
+
+  })
+
+return new Promise(resolve => { if(document.querySelector('.word')!=null){
+  speakObj.onend = resolve; 
+
+}});
+}
+else{
+  // Speech Synthesis Not Supported 😣
+  alert("Sorry, your browser doesn't support text to speech!");
+}
+
+}
+
+
+
+
+
+function SetSpeakerOn(){
+   anime({
           targets: speaker,
           scale: 1.1,
           translateY: '-50px',
@@ -211,8 +225,17 @@ if(speakObj!=null)
        
         });
 
+ speaker.style.backgroundColor = "#f5971d";
+  speaker.style.boxShadow = "0px 5px 0px 0px #f5971d";
+if(currentPressed!=null){
+ 
+currentPressed.style.backgroundColor = "#f5971d";
+currentPressed.style.boxShadow = "0px 8px 0px 0px #f5971d";
 }
-  speakObj.addEventListener('end', ()=>{
+
+}
+
+function SetSpeakerOff(){
 
 anime({
           targets: speaker,
@@ -222,51 +245,33 @@ anime({
           ease:'easeInOutQuart'
        
         });
-  SetSpeakingUI();
-
-  })
-
-}
-
-
-else{
-  alert("Can't get the Speech Voices loaded");
-}
-
-
-document.querySelector("#speakerIcon").style.display = "none";
-document.querySelector("#speakingLoader").style.display = "flex";
- 
-return new Promise(resolve => { if(document.querySelector('.word')!=null){
-  speakObj.onend = resolve; 
-
-}});
-}
-else{
-  // Speech Synthesis Not Supported 😣
-  alert("Sorry, your browser doesn't support text to speech!");
-}}
-
-
-
-function SetSpeakingUI(){
-
-
 
 speaker.style.backgroundColor = "#1a95f4";
 speaker.style.boxShadow = "0px 5px 0px 0px #1a7ac5";
+
 if(currentPressed!=null){
  
 currentPressed.style.backgroundColor = "#1a95f4";
 currentPressed.style.boxShadow = "0px 8px 0px 0px #1a7ac5";
 }
-else{
- 
-}
+
 document.querySelector("#speakerIcon").style.display = "flex";
 document.querySelector("#speakingLoader").style.display = "none";
  currentPressed = null;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function replaceString(oldS, newS, fullS) {
   for (let i = 0; i < fullS.length; ++i) {
@@ -279,7 +284,6 @@ function replaceString(oldS, newS, fullS) {
   }
   return fullS;
 }
-
 
 function Next(){
   

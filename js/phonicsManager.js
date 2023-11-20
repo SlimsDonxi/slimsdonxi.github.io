@@ -9,7 +9,9 @@ var arrayToHighlight;
 var listPhonics;
 var displayedText;
 var readingTemplate;
-var  listSentences = [];
+var  listSentences;
+var listLetterAudios = [];
+
 
 function initPhonicsPage(){
  arrayLetters = ["a", "t", "i", "p", "n", "ck", "e", "h","r","m","d","g","o","u","l","f","b","ai","j","oa","ie","ee","or","z","w","ng","v","oo","oo1","y","x","ch","sh","th","th1","qu","ou","oi","ue","er","ar"];
@@ -19,7 +21,7 @@ function initPhonicsPage(){
      "hook" ];
   arraySh = ["shake", "shade", "shape", "shack", "she","sheep","sheet", "shed","shy", "shine", "shell", "shin", "shoe", "shut","shop", "ship", "shot", "ash", "bash", "dash", "flash", "trash", "cash", "mesh", "flesh", "fish", "wash", "push" ];
 
-
+listLetterAudios = [];
   currentText = 0;
 
   arrayToHighlight = [ "ch","at", "oo", "sh"]
@@ -39,7 +41,10 @@ Array.from(document.querySelectorAll('.phonicsBlock')).forEach(x=>{
       readingTemplate = document.querySelector('#readingTemplateHolder');
       readingTemplate.innerHTML=data;
       initPhonics(x.querySelector('h1').innerText);
-     },100) ;
+
+   
+     
+     },100);
     }
   })
 DisplayLoader(false);
@@ -77,13 +82,6 @@ function initPhonics(el){
 
 
 
-function AppendForPhonics(el){
-return `<div class="col-md-4 margi_bottom" onmouseup="PlayClick();GetText(this)">
-      <div class="class_box text_align_center" style="background:#ef2a38; box-shadow:0 10px 0 0 #d22834">            
-        <h1> ${el}</h1>
-        </div>
-    </div>`    }
-
 
 function initReadingTemplate(){
   readingTemplate.style.display= 'block';
@@ -101,12 +99,19 @@ function GetPhonicsText(element) {
 
 switch(element){
 
-case 'A..Z':listSentences = arrayLetters; break;
+case 'A ~ Z':listSentences = arrayLetters;
+  loadAudios(); 
+ 
+  break;
 case `at`: listSentences = arrayAt;break;
 case `ch`: listSentences = arrayCh;break;
 case `sh`: listSentences = arraySh;break;
 case `oo`: listSentences = arrayOO;break;
 }
+
+
+if(element == "A ~ Z")  speaker.onpointerup=function upForLetter(){speakLetters();}
+else speaker.onpointerup=function upForWord(){speakSentences();}
 
 anime({
      targets:readingTemplate,
@@ -117,9 +122,6 @@ anime({
 
 
 
-
-
-console.log('element == '+ element);
 if(listSentences[0].length <3)    
 pageHolder.querySelector('#microphone').style.display ='none';
 
@@ -131,6 +133,15 @@ setTimeout(()=>{
 },50)
 
 
+}
+
+function loadAudios(){
+
+  DisplayLoader(true);
+  listSentences.forEach((x)=>{
+    listLetterAudios.push(new Audio(`audios/LetterSounds/${x}.mp3`));
+  })
+  DisplayLoader(false);
 }
 
 
