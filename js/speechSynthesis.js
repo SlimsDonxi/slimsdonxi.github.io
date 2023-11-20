@@ -22,7 +22,7 @@ var arrayWanted = [
 
 var ulContainer = document.querySelector('.dropdown__items');
 var ulText = document.querySelector('.dropdown__text');
-
+/*
 function loadVoices() { 
 
  //ulContainer.innerHTML='';
@@ -48,10 +48,6 @@ function loadVoices() {
           }
       });
 
-
-
-
-
 }
 
 
@@ -63,7 +59,47 @@ synth.onvoiceschanged = function(e) {
  loadVoices();
 
 
+}
+*/
+//Promise Voices List
+const allVoicesObtained = new Promise(function(resolve, reject) {
+   voices = synth.getVoices();
+  if (voices.length !== 0) {
+    resolve(voices);
+  } else {
+    synth.addEventListener("voiceschanged", function() {
+      voices = synth.getVoices();
+      resolve(voices);
+    });
+  }
+});
 
+allVoicesObtained.then(voices => voiceSettings());
+
+function voiceSettings(){
+
+voices.forEach(x=>{
+
+ if(voice.lang.includes("en")){
+          if(!voice.name.includes('Google')){          
+          
+           // if(arrayWanted.includes(voice.name)) {
+              voices.push(voice);
+          
+             
+           var name = replaceString("Microsoft", "", voice.name);
+            name = replaceString("Online (Natural) - English (United States)", "",name);
+            name = replaceString("Online (Natural) - English (Canada)", "",name);
+
+            var block = `<li onclick="setVoice(this)">${name}</li>`;
+          
+            ulContainer.innerHTML += block;
+
+              //}
+          }
+          }
+
+})
 
   selectedVoice = voices.filter(function(voice) { return voices[0]; })[0];  
 
@@ -77,12 +113,7 @@ synth.onvoiceschanged = function(e) {
 ulText.innerText = name;
   var children = ulContainer.children;
   Array.from(children)[0].style.background = "#ffb400";
-  Array.from(children)[0].style.color = "#fff";
-
 }
-
-
-
 
 
 function setVoice(evt){
@@ -112,8 +143,6 @@ var children = ulContainer.children;
 
  })[0];                         
 } 
-
-
 
 
 
