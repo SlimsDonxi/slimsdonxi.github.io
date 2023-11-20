@@ -1,143 +1,141 @@
-
 <html lang="en">
-   <head>
-      <!-- basic -->
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <!-- mobile metas -->
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-      <!-- site metas -->
-      <title>HomePage</title>
-     
-      <!-- bootstrap css -->
-      <link rel="stylesheet" href="css/bootstrap.min.css">
-      <!-- style css -->
-      <link rel="stylesheet" href="css/style.css">
-       <link rel="stylesheet" href="css/main.css">
- 
 
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>HomePage</title>
 
-      <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-      <script src='js/Search.js'></script>
-      <script src='js/videoplayer.js'></script>
-         
-     <style>
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- style css -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/main.css">
 
-      body{
-       
-      }
 
-      svg {
-         height:100px;
-         width:100px;
-      }
-.IconAnimation{
-   width:150px;
-   height: 150px;
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    margin: 0 auto;
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src='js/Search.js'></script>
+    <script src='js/videoplayer.js'></script>
 
-}
-      
-.class_box{
-   display:flex;
-   flex-direction: column;
-   margin: 0 auto;
-   align-content: center;
-   justify-content: center;
-   padding: 20;
-   margin-bottom:40px;
-}
+    <style>
+    body {}
 
-     h4{
-  
+    svg {
+      height: 100px;
+      width: 100px;
+    }
+
+    .IconAnimation {
+      width: 150px;
+      height: 150px;
+
+      margin: 0 auto;
+
+    }
+
+    .class_box {
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+      align-content: center;
+      justify-content: center;
+      padding: 20;
+      margin-bottom: 40px;
+    }
+
+    h4 {
+
       text-align: center;
-      color:white;
+      color: white;
       font-weight: bold;
-      font-size:2.5rem;
-      border-radius:15px;
-     } 
-     
-     </style>
-   </head>
-   <!-- body -->
-   <body class="main-layout inner_page" onload="pageLoaded()">
-   <div class="holder" id="mainLoader">
+      font-size: 2.5rem;
+      border-radius: 15px;
+    }
+
+    </style>
+  </head>
+  <!-- body -->
+
+  <body class="main-layout inner_page" onload="pageLoaded()">
+    <div class="holder" id="mainLoader">
       <div id="containerLoader">
-  <svg viewBox="0 0 100 100">
-    <defs>
-      <filter id="shadow">
-        <feDropShadow dx="0" dy="0" stdDeviation="1.5" 
-          flood-color="#fc6767"/>
-      </filter>
-    </defs>
-    <circle id="spinner" style="fill:transparent;stroke:#dd2476;stroke-width: 7px;stroke-linecap: round;filter:url(#shadow);" cx="50" cy="50" r="45"/>
+        <svg viewBox="0 0 100 100">
+          <defs>
+            <filter id="shadow">
+              <feDropShadow dx="0" dy="0" stdDeviation="1.5" flood-color="#fc6767" />
+            </filter>
+          </defs>
+          <circle id="spinner" style="fill:transparent;stroke:#dd2476;stroke-width: 7px;stroke-linecap: round;filter:url(#shadow);" cx="50" cy="50" r="45" />
 
-</svg>
-<h2>Loading</h2>
-</div>
-   </div>
-      <div class="class">
-         <div class="container" style=>
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="titlepage text_align_center">
-                     <h2>KC1 ~ KD1</h2>           
-                  </div>
-               </div>
+        </svg>
+        <h2>Loading</h2>
+      </div>
+    </div>
+    <div class="class">
+      <div class="container" style=>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="titlepage text_align_center">
+              <h2>KC1 ~ KD1</h2>
             </div>
-       
-            <div class="row">
+          </div>
+        </div>
+
+        <div class="row">
 
 
-               <div class="col-md-4   shake" onmouseup =" PlayClick(); loadPage('pageHolder','phonics');">
-                  <div class=" class_box" style="background:#ffb400; box-shadow:0 10px 0 0 #d89a07">     
-                      
-                     <lottie-player class="IconAnimation" src="animations/AnimationAlphabet.json" speed="1" loop autoplay direction="1" mode="normal"></lottie-player>          
-                     <h4 class="menuTitle">Letters</h4>
-                   
-                     </div>        
-                             
-               </div>
-              
-                 <div class="col-md-4 margi_bottom shake" onmouseup =" PlayClick(); loadPage('pageHolder','reading');">
-                  <div class="class_box "  style="background:#ed4e2e; box-shadow:0 10px 0 0 #d4462a">
-                  
-                     <lottie-player class="IconAnimation" src="animations/AnimationReading.json" speed="1" loop autoplay direction="1" mode="normal"></lottie-player>        
-                     <h4>Reading</h4>   
-                  </div>     
-               </div>
-     
+          <div class="col-md-4   shake" onmouseup=" PlayClick(); loadPage('pageHolder','phonics');">
+            <div class=" class_box" style="background:#ffb400; box-shadow:0 10px 0 0 #d89a07">
 
-               <div class="col-md-4 margi_bottom shake" onmouseup =" PlayClick(); loadPage('pageHolder','stories');;">
-                  <div class="class_box text_align_center" style="background:#69c8ec; box-shadow:0 10px 0 0 #48abcf">      
-                     <lottie-player class="IconAnimation" src="animations/AnimationStory.json" speed="1" loop autoplay direction="1" mode="normal"></lottie-player>     
-                     <h4>Stories</h4>   
-                  </div>     
-               </div>
+              <lottie-player class="IconAnimation" src="animations/AnimationAlphabet.json" speed="1" loop autoplay direction="1" mode="normal"></lottie-player>
+              <h4 class="menuTitle">Letters</h4>
 
-             
+            </div>
 
-                <div class="col-md-4 margi_bottom shake"  onmouseup =" PlayClick(); loadPage('pageHolder','songs');">  
-                  <div class="class_box text_align_center" style="background:#5568c9; box-shadow:0 10px 0 0 #4558b6">  
-                     <lottie-player class="IconAnimation" src="animations/AnimationMusic.json" speed="1" loop autoplay direction="1" mode="normal"></lottie-player>         
-                     <h4>Songs</h4>            
-                  </div>     
-               </div>
+          </div>
 
-               <div class="col-md-4 margi_bottom shake" onmouseup =" PlayClick();loadPage('pageHolder','video');">
-                  <div class="class_box text_align_center" style="background:#a958cf; box-shadow:0 10px 0 0 #8945a8">
-               
-                     <lottie-player class="IconAnimation" src="animations/AnimationVideo.json" speed="1" loop autoplay direction="1" mode="normal"></lottie-player>
-                   
-                     <h4>Videos</h4>
-                   
-                  </div>     
-               </div>
-             
-                  <!--<div class="col-md-4 margi_bottom shake" onmouseup =" PlayClick(); window.location.href='games.html';">
+          <div class="col-md-4 margi_bottom shake" onmouseup=" PlayClick(); loadPage('pageHolder','reading');">
+            <div class="class_box " style="background:#ed4e2e; box-shadow:0 10px 0 0 #d4462a">
+
+              <lottie-player class="IconAnimation" src="animations/AnimationReading.json" speed="1" loop autoplay direction="1" mode="normal"></lottie-player>
+              <h4>Reading</h4>
+            </div>
+          </div>
+
+
+          <div class="col-md-4 margi_bottom shake" onmouseup=" PlayClick(); loadPage('pageHolder','stories');;">
+            <div class="class_box text_align_center" style="background:#69c8ec; box-shadow:0 10px 0 0 #48abcf">
+              <lottie-player class="IconAnimation" src="animations/AnimationStory.json" speed="1" loop autoplay direction="1" mode="normal"></lottie-player>
+              <h4>Stories</h4>
+            </div>
+          </div>
+
+
+
+          <div class="col-md-4 margi_bottom shake" onmouseup=" PlayClick(); loadPage('pageHolder','songs');">
+            <div class="class_box text_align_center" style="background:#5568c9; box-shadow:0 10px 0 0 #4558b6">
+              <lottie-player class="IconAnimation" src="animations/AnimationMusic.json" speed="1" loop autoplay direction="1" mode="normal"></lottie-player>
+              <h4>Songs</h4>
+            </div>
+          </div>
+
+          <div class="col-md-4 margi_bottom shake" onmouseup=" PlayClick();loadPage('pageHolder','video');">
+            <div class="class_box text_align_center" style="background:#a958cf; box-shadow:0 10px 0 0 #8945a8">
+
+              <lottie-player class="IconAnimation" src="animations/AnimationVideo.json" speed="1" loop autoplay direction="1" mode="normal"></lottie-player>
+
+              <h4>Videos</h4>
+
+            </div>
+          </div>
+
+          <!--<div class="col-md-4 margi_bottom shake" onmouseup =" PlayClick(); window.location.href='games.html';">
                   <div class="class_box text_align_center" style="background:#fc71d3; box-shadow:0 10px 0 0 #d460b2">
                      <?xml version="1.0" encoding="utf-8"?>
                      <svg height="800px" width="800px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
@@ -160,31 +158,32 @@
                     
                   </div>     
                </div>-->
-            </div>
-         </div>
+        </div>
       </div>
-     
+    </div>
+
     <audio id="audioPlayer"></audio>
 
     <div class="holder" id="pageHolder">
-     
+
     </div>
     <div id="loader">
-       <div>
-         <lottie-player src="animations/loadingAnimation.json" speed="1" loop autoplay direction="1" mode="normal"></lottie-player>
-        <h2>Loading</h2> 
-       </div>
+      <div>
+        <lottie-player src="animations/loadingAnimation.json" speed="1" loop autoplay direction="1" mode="normal"></lottie-player>
+        <h2>Loading</h2>
+      </div>
     </div>
-  
 
-  <audio id="audioClick"></audio>
+
+    <audio id="audioClick"></audio>
 
 
     <script src="js/navigation.js"></script>
     <script src="js/AppManager.js"></script>
-   </body>
+  </body>
 
-   <script>
-     
-   </script>
+  <script>
+
+  </script>
+
 </html>

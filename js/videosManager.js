@@ -3,41 +3,48 @@ var root;
 
 
 
-function initVideoPage(){
+function initVideoPage()
+{
 
 
-Array.from(document.querySelectorAll('.videoBlock')).forEach(x=>{
-  x.onpointerup=function(){
-    var text= x.querySelector('b').innerText;
-    initVideos(text);
-  }
- })
+  Array.from(document.querySelectorAll('.videoBlock'))
+    .forEach(x =>
+    {
+      x.onpointerup = function()
+      {
+        var text = x.querySelector('b')
+          .innerText;
+        initVideos(text);
+      }
+    })
   DisplayLoader(false);
 }
 
 
-function initVideos(el){
-	loader.style.display ='block';
-	root =`videos/videos/${el}/`;
+function initVideos(el)
+{
+  loader.style.display = 'block';
+  root = `videos/videos/${el}/`;
   DisplayLoader(true);
-fetch(`videos/${el}.html`)
-.then(res=>res.text())
-.then(data=>{
+  fetch(`videos/${el}.html`)
+    .then(res => res.text())
+    .then(data =>
+    {
 
-  videoHolder = document.querySelector('#videoHolder');
+      videoHolder = document.querySelector('#videoHolder');
 
-  videoHolder.innerHTML=data;
-  	loader.style.display ='none';
-  	anime({
-  		targets:videoHolder,
-  		 left:'0%',
-     duration:800,
-     ease:'easeOutQuint'
-  	})
-    
-initVideoLoader();
+      videoHolder.innerHTML = data;
+      loader.style.display = 'none';
+      anime(
+      {
+        targets: videoHolder
+        , left: '0%'
+        , duration: 800
+        , ease: 'easeOutQuint'
+      })
 
-  DisplayLoader(false);
-});
+      initVideoLoader();
+
+      DisplayLoader(false);
+    });
 }
-
