@@ -12,14 +12,14 @@ Array.from(document.querySelectorAll('.videoBlock')).forEach(x=>{
     initVideos(text);
   }
  })
-
+  DisplayLoader(false);
 }
 
 
 function initVideos(el){
 	loader.style.display ='block';
 	root =`videos/videos/${el}/`;
-
+  DisplayLoader(true);
 fetch(`videos/${el}.html`)
 .then(res=>res.text())
 .then(data=>{
@@ -37,6 +37,7 @@ fetch(`videos/${el}.html`)
     
 initVideoLoader();
 
+  DisplayLoader(false);
 });
 }
 

@@ -184,6 +184,7 @@ anime({
   
   audio.play();
 
+
    anime({
          targets:document.querySelector('#bannerScore'),
          width:'140%',

@@ -2,16 +2,18 @@ var songsHolder;
 var root;
 
 function initSongPage(){
+
 Array.from(document.querySelectorAll('.songBlock')).forEach(x=>{
   x.onpointerup=function(){
     var text= x.querySelector('b').innerText;
     initSongs(text);
   }
  })
+  DisplayLoader(false);
 }
 
 function initSongs(el){
-	loader.style.display ='block';
+	DisplayLoader(true);
 	root =`songs/videos/${el}/`;
 
 fetch(`songs/${el}.html`)

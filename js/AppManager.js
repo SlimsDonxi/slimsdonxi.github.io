@@ -47,7 +47,7 @@ function initPageScripts(el){
 	case'reading':initReadingPage();break;
 	case'stories':initStoryPage();break;
 	}
-},100)
+},800)
 	
 }
 

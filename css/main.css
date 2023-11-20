@@ -3,9 +3,29 @@
   font-family: 'GROBOLD';
   src: url(../fonts/GROBOLD.ttf);
 }
-*{
-  user-select: none;
+* {
+     box-sizing: border-box !important;
+     user-select: none;
+     padding:0;
+     margin:0;
 }
+
+.container {
+     max-width: 1170px;
+}
+
+html {
+     scroll-behavior: smooth;
+}
+
+body {
+     color: #666666;
+     font-size: 1rem;
+     font-family: 'Poppins', sans-serif;
+     line-height: 1.80857;
+     font-weight: normal;
+}
+
 .holder{
   position:fixed;
   left:100%;
@@ -414,7 +434,7 @@ display:none;
  
 #bannerScore{
  position:absolute;
- overflow-x:hidden;
+
   width:0vw;
   height:550px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px; 
@@ -424,6 +444,17 @@ margin-left:-20%;
   transform: rotate(-10deg);
 
  
+}
+
+.bannerScoreTransition{
+
+  -webkit-transition: 3s;
+  -moz-transition: 3s;
+  -ms-transition: 3s;
+  -o-transition: 3s;
+  transition: 3s;
+  width: 140% ;
+
 }
 
 /* Extra small devices (phones, 600px and down) */
