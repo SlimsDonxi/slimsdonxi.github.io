@@ -1,44 +1,165 @@
- <div id="readingTemplate"> 
-    <nav>
-        <div class="dropdown">
-          <input type="checkbox" id="dropdown">
-          <label class="dropdown__face" for="dropdown">
-            <div class="dropdown__text">Voices</div>
-            <div class="dropdown__arrow"></div>
-          </label>
+<div id="readingTemplate">
 
-          <ul class="dropdown__items">
-           
-          </ul>
+  <section>
+    <img src="" id="currentPicture" style="display:none">
+
+    <div id="displayedText"> </div>
+    <div id="displayedPhrase"> </div>
+
+    <div id="interactivesHolder">
+      <div class="interactive " id="previous" onclick="PlayClick(); Previous()">
+        <svg class="icon" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12.4755 5.18341L7.49766 9.60815C6.56708 10.4353 6.10179 10.8489 5.93032 11.3373C5.77974 11.7662 5.77974 12.2335 5.93032 12.6624C6.10179 13.1508 6.56708 13.5644 7.49766 14.3916L12.4755 18.8163C12.8978 19.1917 13.1089 19.3794 13.2883 19.3861C13.4441 19.3919 13.5937 19.3247 13.6929 19.2044C13.807 19.0659 13.807 18.7834 13.807 18.2184V15.4284C16.2351 15.4284 18.7996 16.2083 20.6723 17.5926C21.6471 18.3133 22.1346 18.6737 22.3203 18.6595C22.5012 18.6456 22.6161 18.575 22.71 18.4196C22.8063 18.2603 22.7212 17.7624 22.5511 16.7666C21.4461 10.3004 16.9961 8.57129 13.807 8.57129V5.78134C13.807 5.21632 13.807 4.93381 13.6929 4.79531C13.5937 4.67498 13.4441 4.6078 13.2883 4.61363C13.1089 4.62034 12.8978 4.80803 12.4755 5.18341Z" />
+        </svg>
+      </div>
+
+      <div class=" interactive  mainInteractive" id="speaker">
+        <svg class="icon" id="speakerIcon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#fff">
+          <path d="M18.008 2.987C19.34 2.225 21 3.187 21 4.723v12.554c0 1.535-1.659 2.498-2.992 1.736L14 16.723V5.277l4.008-2.29zM12 6H7a5 5 0 0 0-1 9.9v3.6a2.5 2.5 0 0 0 5 0V16h1V6z" clip-rule="evenodd" />
+        </svg>
+        <div id="speakingLoader" class="boxContainer" style="display:none">
+          <div class="box box1"></div>
+          <div class="box box2"></div>
+          <div class="box box3"></div>
+          <div class="box box4"></div>
+
         </div>
-        <svg>
-          <filter id="goo">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-            <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
-            <feBlend in="SourceGraphic" in2="goo" />
-          </filter>
-        </svg> 
-         <div onclick="AnimateHolderPage('readingTemplateHolder',100);" class="cancel subCancel shake">
-                <svg class="icon"viewBox="0 0 25 25"> 
-                    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-                    <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-469.000000, -1041.000000)" fill="#fff">
-                    <path d="M487.148,1053.48 L492.813,1047.82 C494.376,1046.26 494.376,1043.72 492.813,1042.16 C491.248,1040.59 488.712,1040.59 487.148,1042.16 L481.484,1047.82 L475.82,1042.16 C474.257,1040.59 471.721,1040.59 470.156,1042.16 C468.593,1043.72 468.593,1046.26 470.156,1047.82 L475.82,1053.48 L470.156,1059.15 C468.593,1060.71 468.593,1063.25 470.156,1064.81 C471.721,1066.38 474.257,1066.38 475.82,1064.81 L481.484,1059.15 L487.148,1064.81 C488.712,1066.38 491.248,1066.38 492.813,1064.81 C494.376,1063.25 494.376,1060.71 492.813,1059.15 L487.148,1053.48" id="cross" sketch:type="MSShapeGroup"></path>
-                    </g>
-                     </g>
-                </svg>
-            </div>
-        <div onclick=" DisplayConfirmer()" class="cancel  shake" id="confirmerDisplayer" >
-                
-                <svg class="icon" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-                     viewBox="0 0 511.989 511.989" xml:space="preserve">
-                <path style="fill:#EC87C0;" d="M489.333,255.088l-21.344-17.625l8-34.671l4-18.812l-30.656-42.141l6.656-22.53l-8-38.483
+      </div>
+      <div class=" interactive  mainInteractive" id="microphone">
+        <?xml version="1.0" encoding="utf-8"?>
+        <svg id="micIcon" class="icon" viewBox="0 0 24 24" fill="none" style="">
+          <path d="M12 2C8.82436 2 6.25 4.57436 6.25 7.75V10.75C6.25 13.9256 8.82436 16.5 12 16.5C14.9214 16.5 17.334 14.3213 17.7015 11.5L13 11.5C12.5858 11.5 12.25 11.1642 12.25 10.75C12.25 10.3358 12.5858 10 13 10L17.75 10V8.5H13C12.5858 8.5 12.25 8.16421 12.25 7.75C12.25 7.33579 12.5858 7 13 7H17.7015C17.334 4.17873 14.9214 2 12 2Z" fill="#fff" />
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M4 9C4.41421 9 4.75 9.33579 4.75 9.75V10.75C4.75 14.7541 7.99594 18 12 18C16.0041 18 19.25 14.7541 19.25 10.75V9.75C19.25 9.33579 19.5858 9 20 9C20.4142 9 20.75 9.33579 20.75 9.75V10.75C20.75 15.3298 17.2314 19.0879 12.75 19.4683V21.75C12.75 22.1642 12.4142 22.5 12 22.5C11.5858 22.5 11.25 22.1642 11.25 21.75V19.4683C6.7686 19.0879 3.25 15.3298 3.25 10.75V9.75C3.25 9.33579 3.58579 9 4 9Z" fill="#fff" />
+        </svg>
+        <div id="micLoader" class="boxContainer" style="display:none">
+          <div class="box box1"></div>
+          <div class="box box2"></div>
+          <div class="box box3"></div>
+          <div class="box box4"></div>
+
+        </div>
+
+        <div id="microTranscript">
+          <div id="microText"> </div>
+
+        </div>
+      </div>
+      <div class=" interactive " id="next" onclick="Next(); PlayClick(); ">
+        <svg class="icon" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12.3315 5.18341L17.3094 9.60815C18.2399 10.4353 18.7052 10.8489 18.8767 11.3373C19.0273 11.7662 19.0273 12.2335 18.8767 12.6624C18.7052 13.1508 18.2399 13.5644 17.3094 14.3916L12.3315 18.8163C11.9092 19.1917 11.6981 19.3794 11.5187 19.3861C11.3629 19.3919 11.2133 19.3247 11.1142 19.2044C11 19.0659 11 18.7834 11 18.2184V15.4284C8.57196 15.4284 6.00739 16.2083 4.13478 17.5926C3.15988 18.3133 2.67242 18.6737 2.48676 18.6595C2.30578 18.6456 2.19093 18.575 2.09703 18.4196C2.0007 18.2603 2.08578 17.7624 2.25595 16.7666C3.36093 10.3004 7.8109 8.57129 11 8.57129V5.78134C11 5.21632 11 4.93381 11.1142 4.79531C11.2133 4.67498 11.3629 4.6078 11.5187 4.61363C11.6981 4.62034 11.9092 4.80803 12.3315 5.18341Z" />
+        </svg>
+      </div>
+    </div>
+
+  </section>
+
+
+<!------------------- SCORE --------------->
+<div id="scoreSpeech">
+  <div id="bannerScore">
+    <div id="scoreWrapper">
+
+      <div class="row">
+        <lottie-player src="animations/Animationtrophy.json" id="trophy" style="display: none;" speed="1" loop autoplay direction="1" mode="normal"></lottie-player>
+        <div id="starsContainer" class="starsContainer">
+          <div class="backgroundStar">
+            <lottie-player class="lottieStar" src="animations/AnimationStar.json" speed="1" loop autoplay></lottie-player>
+          </div>
+          <div class="backgroundStar" style="margin-top:-50px;margin-lefT:7px; margin-right:7px; transform:scale(1.25)">
+            <lottie-player class="lottieStar" src="animations/AnimationStar.json" speed="1" loop autoplay></lottie-player>
+          </div>
+          <div class="backgroundStar">
+            <lottie-player class="lottieStar" src="animations/AnimationStar.json" speed="1" loop autoplay></lottie-player>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <span id="score">81</span>
+        </div>
+        <div class="col-md-12" id="comment" style="padding-top:30px; padding-bottom:50px">
+          <span>Great Job!</span>
+        </div>
+
+        <div class="scoreOK" onclick="retractScore()">Continue</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!----------------- STORY QUESTIONS ------------------>
+<div id="backgroundQuestions" class="mainFrame">
+  <div onclick="CloseReader('backgroundQuestions');PlayClick();" class="cancel subCancel shake">
+    <svg class="icon" viewBox="0 0 25 25">
+      <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-469.000000, -1041.000000)" fill="#fff">
+          <path d="M487.148,1053.48 L492.813,1047.82 C494.376,1046.26 494.376,1043.72 492.813,1042.16 C491.248,1040.59 488.712,1040.59 487.148,1042.16 L481.484,1047.82 L475.82,1042.16 C474.257,1040.59 471.721,1040.59 470.156,1042.16 C468.593,1043.72 468.593,1046.26 470.156,1047.82 L475.82,1053.48 L470.156,1059.15 C468.593,1060.71 468.593,1063.25 470.156,1064.81 C471.721,1066.38 474.257,1066.38 475.82,1064.81 L481.484,1059.15 L487.148,1064.81 C488.712,1066.38 491.248,1066.38 492.813,1064.81 C494.376,1063.25 494.376,1060.71 492.813,1059.15 L487.148,1053.48" id="cross" sketch:type="MSShapeGroup"></path>
+        </g>
+      </g>
+    </svg>
+  </div>
+
+  <div id="questionText" onclick="speakOption(this)">Question 1</div>
+  <hr>
+  <div id="questionOptions">
+    <div class="col-md-12 questionAnswer" onclick='lockAnswer(this)'>${x}</div>
+    <div class="col-md-12 questionAnswer" onclick='lockAnswer(this)'>${x}</div>
+    <div class="col-md-12 questionAnswer" onclick='lockAnswer(this)'>${x}</div>
+    <div class="col-md-12 questionAnswer" onclick='lockAnswer(this)'>${x}</div>
+    <div class="col-md-12 questionAnswer" onclick='lockAnswer(this)'>${x}</div>
+  </div>
+
+  <div class="progress">
+    <div class="bar shadow food"></div>
+  </div>
+  <div class="class_box text_align_center disabled " id="confirm" onclick="confirmAnswer();PlayClick();"> Confirm</div>
+</div>
+
+
+
+  <div id="speechTooShort">
+    Recording was too short, please try again!
+  </div>
+
+  <nav>
+    <div class="dropdown">
+      <input type="checkbox" id="dropdown">
+      <label class="dropdown__face" for="dropdown">
+        <div class="dropdown__text">Voices</div>
+        <div class="dropdown__arrow"></div>
+      </label>
+
+      <ul class="dropdown__items">
+
+      </ul>
+    </div>
+    <svg>
+      <filter id="goo">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+        <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+        <feBlend in="SourceGraphic" in2="goo" />
+      </filter>
+    </svg>
+    <div onclick="AnimateHolderPage('readingTemplateHolder',100);" class="cancel subCancel shake">
+      <svg class="icon" viewBox="0 0 25 25">
+        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+          <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-469.000000, -1041.000000)" fill="#fff">
+            <path d="M487.148,1053.48 L492.813,1047.82 C494.376,1046.26 494.376,1043.72 492.813,1042.16 C491.248,1040.59 488.712,1040.59 487.148,1042.16 L481.484,1047.82 L475.82,1042.16 C474.257,1040.59 471.721,1040.59 470.156,1042.16 C468.593,1043.72 468.593,1046.26 470.156,1047.82 L475.82,1053.48 L470.156,1059.15 C468.593,1060.71 468.593,1063.25 470.156,1064.81 C471.721,1066.38 474.257,1066.38 475.82,1064.81 L481.484,1059.15 L487.148,1064.81 C488.712,1066.38 491.248,1066.38 492.813,1064.81 C494.376,1063.25 494.376,1060.71 492.813,1059.15 L487.148,1053.48" id="cross" sketch:type="MSShapeGroup"></path>
+          </g>
+        </g>
+      </svg>
+    </div>
+    <div onclick=" DisplayConfirmer()" class="cancel  shake" id="confirmerDisplayer">
+
+      <svg class="icon" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 511.989 511.989" xml:space="preserve">
+        <path style="fill:#EC87C0;" d="M489.333,255.088l-21.344-17.625l8-34.671l4-18.812l-30.656-42.141l6.656-22.53l-8-38.483
                     l-30.655-30.077h-39.999c0,0-22.655,12.312-16,0c6.672-12.328-33.326-36.577-33.326-36.577h-17.328l-40.663,15.483l-9.602,7.828
                     l-31.062-23.702h-30.672l-23.999,0.391l-20.929,23.312L150.41,50.75h-22.383l-23.998,10.654L66.694,73.295l-6.664,29.358
                     l-5.336,42.577l-19.999,22.891v26.516l12.397,37.623l-12.397,16.547l-18.664,22.672v41.326l18.664,29.984v36.67l23.999,55.999
                     c0,0,35.999,18.672,41.335,21.327c5.328,2.672,14.664,0,14.664,0l29.327,32l27.999,9.328h21.336l42.663-18.656l24.397-18.672
                     l10.664,24l42.257,13.328h21.344l31.998-6.656l21.719-38.671l11.609,3.999l38.67-7.999l28-28.327l10.656-46.327v-31.343
-                    l17.718-20.156l10.281-35.171L489.333,255.088z"/>
-                <path style="fill:#D770AD;" d="M511.973,294.009c0-24.546-12.891-46.093-32.28-58.218c7.984-11.203,12.672-24.905,12.672-39.701
+                    l17.718-20.156l10.281-35.171L489.333,255.088z" />
+        <path style="fill:#D770AD;" d="M511.973,294.009c0-24.546-12.891-46.093-32.28-58.218c7.984-11.203,12.672-24.905,12.672-39.701
                     c0-22.203-10.562-41.938-26.938-54.453c2.625-7.655,4.078-15.858,4.078-24.42c0-41.281-33.484-74.749-74.764-74.749
                     c-8.344,0-16.375,1.375-23.875,3.906C363.21,19.594,338.554,0,309.321,0c-22.266,0-41.858,11.359-53.327,28.608
                     C244.525,11.359,224.925,0,202.667,0c-29.233,0-53.889,19.594-61.537,46.374c-7.5-2.531-15.531-3.906-23.89-3.906
@@ -76,128 +197,9 @@
                     c29.468,0,53.436,23.969,53.436,53.422c0,29.467-23.999,53.436-53.467,53.436c-5.891,0-10.719,4.766-10.719,10.656
                     c0,5.89,4.875,10.672,10.75,10.672c24.937,0,47.029-12.219,60.592-30.984c9.625,8.641,15.703,21.172,15.703,35.094
                     c0,9.874-3.016,19.327-8.719,27.326l-6.609,9.297c-1.219,1.719-1.938,3.844-1.938,6.109c0,3.734,1.922,7.016,4.812,8.922
-                    l9.797,6.125c13.938,8.734,22.266,23.733,22.266,40.14C490.645,306.32,485.911,317.539,478.177,325.961z"/>
-                </svg>
-            </div>
-    </nav>
-    <section>
-     <img src="" id="currentPicture" style="display:none">     
-
-    <div id="displayedText"> </div>
-    <div id="displayedPhrase"> </div>
- 
-        <div id="interactivesHolder">
-             <div class="interactive " id="previous" onclick="PlayClick(); Previous()" >
-                        <svg class="icon" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12.4755 5.18341L7.49766 9.60815C6.56708 10.4353 6.10179 10.8489 5.93032 11.3373C5.77974 11.7662 5.77974 12.2335 5.93032 12.6624C6.10179 13.1508 6.56708 13.5644 7.49766 14.3916L12.4755 18.8163C12.8978 19.1917 13.1089 19.3794 13.2883 19.3861C13.4441 19.3919 13.5937 19.3247 13.6929 19.2044C13.807 19.0659 13.807 18.7834 13.807 18.2184V15.4284C16.2351 15.4284 18.7996 16.2083 20.6723 17.5926C21.6471 18.3133 22.1346 18.6737 22.3203 18.6595C22.5012 18.6456 22.6161 18.575 22.71 18.4196C22.8063 18.2603 22.7212 17.7624 22.5511 16.7666C21.4461 10.3004 16.9961 8.57129 13.807 8.57129V5.78134C13.807 5.21632 13.807 4.93381 13.6929 4.79531C13.5937 4.67498 13.4441 4.6078 13.2883 4.61363C13.1089 4.62034 12.8978 4.80803 12.4755 5.18341Z" />
-                        </svg>
-                     </div>
-                  
-                   <div class=" interactive  mainInteractive" id="speaker" >
-                       <svg class="icon" id="speakerIcon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#fff">
-                        <path d="M18.008 2.987C19.34 2.225 21 3.187 21 4.723v12.554c0 1.535-1.659 2.498-2.992 1.736L14 16.723V5.277l4.008-2.29zM12 6H7a5 5 0 0 0-1 9.9v3.6a2.5 2.5 0 0 0 5 0V16h1V6z" clip-rule="evenodd" />
-                       </svg> 
-                      <div id="speakingLoader"class="boxContainer" style="display:none">
-                          <div class="box box1"></div>
-                          <div class="box box2"></div>
-                          <div class="box box3"></div>
-                          <div class="box box4"></div>
-                          
-                        </div> 
-                    </div>
-                    <div class=" interactive  mainInteractive" id="microphone">
-                       <?xml version="1.0" encoding="utf-8"?>
-                        <svg id="micIcon"class="icon" viewBox="0 0 24 24" fill="none" style="">
-                        <path d="M12 2C8.82436 2 6.25 4.57436 6.25 7.75V10.75C6.25 13.9256 8.82436 16.5 12 16.5C14.9214 16.5 17.334 14.3213 17.7015 11.5L13 11.5C12.5858 11.5 12.25 11.1642 12.25 10.75C12.25 10.3358 12.5858 10 13 10L17.75 10V8.5H13C12.5858 8.5 12.25 8.16421 12.25 7.75C12.25 7.33579 12.5858 7 13 7H17.7015C17.334 4.17873 14.9214 2 12 2Z" fill="#fff"/>
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M4 9C4.41421 9 4.75 9.33579 4.75 9.75V10.75C4.75 14.7541 7.99594 18 12 18C16.0041 18 19.25 14.7541 19.25 10.75V9.75C19.25 9.33579 19.5858 9 20 9C20.4142 9 20.75 9.33579 20.75 9.75V10.75C20.75 15.3298 17.2314 19.0879 12.75 19.4683V21.75C12.75 22.1642 12.4142 22.5 12 22.5C11.5858 22.5 11.25 22.1642 11.25 21.75V19.4683C6.7686 19.0879 3.25 15.3298 3.25 10.75V9.75C3.25 9.33579 3.58579 9 4 9Z" fill="#fff"/>
-                        </svg>
-                      <div id="micLoader"class="boxContainer" style="display:none">
-                          <div class="box box1"></div>
-                          <div class="box box2"></div>
-                          <div class="box box3"></div>
-                          <div class="box box4"></div>
-                          
-                        </div>
-                        
-                          <div id="microTranscript" > 
-                                <div id="microText"> </div>
-                               
-                            </div> 
-                    </div>
-                        <div class=" interactive " id="next"onclick="Next(); PlayClick(); "  >
-                       <svg class="icon"  viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12.3315 5.18341L17.3094 9.60815C18.2399 10.4353 18.7052 10.8489 18.8767 11.3373C19.0273 11.7662 19.0273 12.2335 18.8767 12.6624C18.7052 13.1508 18.2399 13.5644 17.3094 14.3916L12.3315 18.8163C11.9092 19.1917 11.6981 19.3794 11.5187 19.3861C11.3629 19.3919 11.2133 19.3247 11.1142 19.2044C11 19.0659 11 18.7834 11 18.2184V15.4284C8.57196 15.4284 6.00739 16.2083 4.13478 17.5926C3.15988 18.3133 2.67242 18.6737 2.48676 18.6595C2.30578 18.6456 2.19093 18.575 2.09703 18.4196C2.0007 18.2603 2.08578 17.7624 2.25595 16.7666C3.36093 10.3004 7.8109 8.57129 11 8.57129V5.78134C11 5.21632 11 4.93381 11.1142 4.79531C11.2133 4.67498 11.3629 4.6078 11.5187 4.61363C11.6981 4.62034 11.9092 4.80803 12.3315 5.18341Z" />
-                        </svg>
-                   </div>        
-            </div>             
-           
-    </section>
-</div>
-
-<!------------------- SCORE --------------->
-<div id="scoreSpeech" >
-    <div id="bannerScore">
-    <div id="scoreWrapper">
-
-    <div class="row" >      
-            <lottie-player src="animations/Animationtrophy.json"  id="trophy" style="display: none;"speed="1" loop autoplay direction="1" mode="normal"></lottie-player>            
-            <div id ="starsContainer" class="starsContainer">
-                <div class="backgroundStar">
-                   <lottie-player class="lottieStar"   src="animations/AnimationStar.json"speed="1" loop autoplay  ></lottie-player>        
-                </div>   
-                <div class="backgroundStar" style="margin-top:-50px;margin-lefT:7px; margin-right:7px; transform:scale(1.25)">
-                   <lottie-player  class="lottieStar" src="animations/AnimationStar.json"speed="1" loop autoplay  ></lottie-player>        
-                </div> 
-                 <div class="backgroundStar">
-                   <lottie-player class="lottieStar" src="animations/AnimationStar.json"speed="1" loop autoplay  ></lottie-player>             
-                </div>             
-            </div>
-  
-          <div class="col-md-12">          
-            <span id="score" >81</span>
-        </div>
-        <div class="col-md-12" id="comment" style="padding-top:30px; padding-bottom:50px">
-            <span>Great Job!</span>
-        </div>
-        
-        <div class="scoreOK" onclick="retractScore()">Continue</div>
+                    l9.797,6.125c13.938,8.734,22.266,23.733,22.266,40.14C490.645,306.32,485.911,317.539,478.177,325.961z" />
+      </svg>
     </div>
-  </div>
-  </div>
-</div>
-
-
-<!----------------- STORY QUESTIONS ------------------>
-<div id="backgroundQuestions" class="mainFrame">
-            <div onclick="CloseReader('backgroundQuestions');PlayClick();" class="cancel subCancel shake">
-                    <svg class="icon"viewBox="0 0 25 25"> 
-                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-                            <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-469.000000, -1041.000000)" fill="#fff">
-                                <path d="M487.148,1053.48 L492.813,1047.82 C494.376,1046.26 494.376,1043.72 492.813,1042.16 C491.248,1040.59 488.712,1040.59 487.148,1042.16 L481.484,1047.82 L475.82,1042.16 C474.257,1040.59 471.721,1040.59 470.156,1042.16 C468.593,1043.72 468.593,1046.26 470.156,1047.82 L475.82,1053.48 L470.156,1059.15 C468.593,1060.71 468.593,1063.25 470.156,1064.81 C471.721,1066.38 474.257,1066.38 475.82,1064.81 L481.484,1059.15 L487.148,1064.81 C488.712,1066.38 491.248,1066.38 492.813,1064.81 C494.376,1063.25 494.376,1060.71 492.813,1059.15 L487.148,1053.48" id="cross" sketch:type="MSShapeGroup"></path>
-                            </g>
-                        </g>
-                    </svg>
-                </div>
-           
-            <div id="questionText" onclick="speakOption(this)">Question 1</div> 
-            <hr>             
-            <div id="questionOptions">
-            <div class="col-md-12 questionAnswer" onclick='lockAnswer(this)'>${x}</div>
-        <div class="col-md-12 questionAnswer" onclick='lockAnswer(this)'>${x}</div>
-    <div class="col-md-12 questionAnswer" onclick='lockAnswer(this)'>${x}</div>
-<div class="col-md-12 questionAnswer" onclick='lockAnswer(this)'>${x}</div>
-<div class="col-md-12 questionAnswer" onclick='lockAnswer(this)'>${x}</div></div>     
-
-          <div class="progress">
-            <div class="bar shadow food"></div>
-          </div>
-          <div  class="class_box text_align_center disabled " id="confirm" onclick="confirmAnswer();PlayClick();" >  Confirm</div>  
-
-<div>
+</nav>
 
 </div>
-  
-    <div id="speechTooShort">
-        Recording was too short, please try again!
-    </div>
-
