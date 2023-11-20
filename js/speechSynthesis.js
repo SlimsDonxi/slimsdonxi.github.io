@@ -83,7 +83,7 @@ allVoicesObtained.then(voices => voiceSettings());
 function voiceSettings()
 {
 
-  voices.forEach(x =>
+  voices.forEach((voice) =>
   {
 
     if (voice.lang.includes("en"))
