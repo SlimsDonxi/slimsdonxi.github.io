@@ -7,7 +7,7 @@ var videoPlayer;
 var content;
 
 function initVideoLoader(){
-  console.log('loaded')
+  
 var content = document.querySelectorAll('.videoLauncher');
  Array.from(content).forEach(x=>{
   x.onpointerup=function(){

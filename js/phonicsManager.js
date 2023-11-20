@@ -28,7 +28,7 @@ function initPhonicsPage(){
 fetch('./readingTemplate.html')
 .then(res=>res.text())
 .then(data=>{
-loader.style.display='flex';
+
 setTimeout(()=>{
 Array.from(document.querySelectorAll('.phonicsBlock')).forEach(x=>{
 
@@ -42,7 +42,7 @@ Array.from(document.querySelectorAll('.phonicsBlock')).forEach(x=>{
      },100) ;
     }
   })
-
+DisplayLoader(false);
 },200)
   
 
@@ -58,7 +58,7 @@ Array.from(document.querySelectorAll('.phonicsBlock')).forEach(x=>{
 
 
 function initPhonics(el){
-  loader.style.display='none';
+  
    currentText=0;
  
    displayedtext = readingTemplate.querySelector('#displayedText');

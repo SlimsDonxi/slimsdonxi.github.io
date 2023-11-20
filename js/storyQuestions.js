@@ -18,7 +18,7 @@ var currentProgress =0;
 
 
 function startStoryQuestions(){
-
+DisplayLoader(true);
 	document.querySelector('#backgroundQuestions').style.display = 'block';
 
 	fileQuestions = FileHelper(`${root}/${listSentences[0]}/questions.json`);
@@ -29,6 +29,7 @@ function startStoryQuestions(){
 
 
 function GetQuestionsList(){
+
 
 	document.querySelector('#questionOptions').innerHTML='';
 confirmer.style.display='none';
@@ -56,6 +57,8 @@ if(counterQuestions < arrayQuestions.length){
 		ulQuestions.innerHTML+= 
 		`<div class="col-md-12 questionAnswer" onclick='lockAnswer(this)'>${x}</div>`;
 	});
+
+	DisplayLoader(false);
 	var correctAnswer =  document.createElement('div');
 	 correctAnswer.classList.add("col-md-12","questionAnswer");
 	 correctAnswer.onclick = function() {lockAnswer(this)}; 

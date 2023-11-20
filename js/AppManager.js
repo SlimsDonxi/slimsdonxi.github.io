@@ -38,8 +38,9 @@ currentHolderPageTitle = url;
 
 function initPageScripts(el){
 
+	DisplayLoader(true);
 	setTimeout(()=>{
-		switch(el){
+	switch(el){
 	case'video': initVideoPage();break;
 	case'songs':initSongPage();break;
 	case'phonics':initPhonicsPage();break;
@@ -76,10 +77,10 @@ function InjectScript(url){
 
 }
 
+function DisplayLoader(bool){
 
-function RemoveScript(id){
-	/*var script = document.querySelector(`#${id}`);
-	script.unload();
+if(bool)
+	loader.style.display='flex';
 
-script.remove();*/
+else loader.style.display='none';
 }

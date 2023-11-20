@@ -33,6 +33,7 @@ GetReadingText(x.getAttribute('alt'));
 
 }
 });
+  DisplayLoader(false);
 });
 }
 

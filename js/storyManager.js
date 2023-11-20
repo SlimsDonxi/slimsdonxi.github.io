@@ -45,15 +45,14 @@ Array.from(document.querySelectorAll('.storyBlock')).forEach(x=>{
         initStory(x);
     }
 })
-
+DisplayLoader(false);
 
 });
 }
 
 
 function initStory(el){
-loader.style.display='flex';
-console.log(loader.style.display);
+DisplayLoader(true);
 this.GenerateStory(el)
 
 }
@@ -179,7 +178,7 @@ for(i = 0; i <= listSentences.length; i++) {
       this.currentPicture.src = listPictures[0].src; 
 
 setTimeout(()=>{
-    loader.style.display='none';
+    DisplayLoader(false);
 console.log(listPictures.length);
     anime({
      targets:readingTempalte,

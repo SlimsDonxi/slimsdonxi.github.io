@@ -31,5 +31,6 @@ fetch(`songs/${el}.html`)
 
 
 initVideoLoader();
+DisplayLoader(false);
 });
 }
