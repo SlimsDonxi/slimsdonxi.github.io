@@ -7,7 +7,7 @@ var currentHolderPageTitle='';
 function loadPage(holder,url){
 pageHolder.innerHTML='';
 pageHolder.innerText='';
-	loader.style.display='flex';
+document.querySelector('#loader').style.display='flex';
 		
 currentHolderPageTitle = url;
 	fetch(`./${url}.html`)
@@ -27,7 +27,7 @@ currentHolderPageTitle = url;
 	InjectScript(scriptText);
 
 
-	 loader.style.display='none';
+	
 	AnimateHolderPage(holder,0);
 	initPageScripts(url);
 	});

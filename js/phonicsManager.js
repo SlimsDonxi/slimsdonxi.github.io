@@ -28,21 +28,23 @@ function initPhonicsPage(){
 fetch('./readingTemplate.html')
 .then(res=>res.text())
 .then(data=>{
-
-  Array.from(document.querySelectorAll('.phonicsBlock')).forEach(x=>{
+loader.style.display='flex';
+setTimeout(()=>{
+Array.from(document.querySelectorAll('.phonicsBlock')).forEach(x=>{
 
     x.onpointerup=function(){
-      PlayClick();
-   
-       currentText=0;
-     setTimeout(()=>{
-       readingTemplate = document.querySelector('#readingTemplateHolder');
-    
-readingTemplate.innerHTML=data;
+      PlayClick();  
+      currentText=0;
+      setTimeout(()=>{
+      readingTemplate = document.querySelector('#readingTemplateHolder');
+      readingTemplate.innerHTML=data;
       initPhonics(x.querySelector('h1').innerText);
      },100) ;
     }
   })
+
+},200)
+  
 
 
 
@@ -56,6 +58,7 @@ readingTemplate.innerHTML=data;
 
 
 function initPhonics(el){
+  loader.style.display='none';
    currentText=0;
  
    displayedtext = readingTemplate.querySelector('#displayedText');

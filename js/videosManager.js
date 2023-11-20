@@ -5,7 +5,7 @@ var root;
 
 function initVideoPage(){
 
-console.log('loaded');
+
 Array.from(document.querySelectorAll('.videoBlock')).forEach(x=>{
   x.onpointerup=function(){
     var text= x.querySelector('b').innerText;
