@@ -27,9 +27,8 @@ h1{
 </style>
 
 </head>
-    
-      
-         <div class="container">
+         
+      <div class="container">
             <div class="row">
                <div class="col-md-12">
                   <div class="titlepage text_align_center">
@@ -45,7 +44,7 @@ h1{
                      <p>Practice each letter individually</p>
                   </div>               
                </div>
-               <div class="col-md-6 margi_bottom shake phonicsBlock" onclick=" PlayClick(); window.location.href='Reading Videos/readingVideos.html'">
+               <div class="col-md-6 margi_bottom shake" id="readingVideoBlock" onclick="LoadReadingVideos()">
                   <div class="class_box text_align_center" style="background:#1e88cb; box-shadow:0 10px 0 0 #2c76a6">            
                       <h1 >Letter Videos</h1>
                      <p>Practice while watching</p>
@@ -83,8 +82,8 @@ h1{
             </div>
 
        
-     <div  class="holder" id="readingTemplateHolder"></div> 
-
+     <div class="holder" id="readingTemplateHolder"></div> 
+     <div class="holder" id="videoHolder" style="left:60%"></div>
        
 
 

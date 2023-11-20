@@ -25,7 +25,7 @@ fetch('../videoplayer.html')
 .then(data=>{
 
 videoHolder = document.querySelector('#videoplayerHolder');
-  videoHolder.innerHTML=data;
+videoHolder.innerHTML=data;
 videoPlayer = document.querySelector('#videoPlayer');
 
 LoadPlayer(el);
@@ -38,9 +38,6 @@ LoadPlayer(el);
 
 
 function LoadPlayer(el){
-
-
-
 videoPlayer = document.querySelector('video');
 anime({
      targets:document.querySelector('#videoplayerHolder'),
@@ -51,6 +48,7 @@ anime({
 
 
 var block = root + el+'.mp4';
+console.log('href = '+ block);
 
 setTimeout(()=>{
 videoPlayer.src = block;

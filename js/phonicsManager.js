@@ -50,12 +50,6 @@ Array.from(document.querySelectorAll('.phonicsBlock')).forEach(x=>{
 DisplayLoader(false);
 },200)
   
-
-
-
- 
-
-
 });
 
 }
@@ -80,13 +74,40 @@ function initPhonics(el){
 
 }
 
-
-
-
 function initReadingTemplate(){
   readingTemplate.style.display= 'block';
   InjectScript('speechSynthesis');
   InjectScript('listener');
+
+}
+
+
+function LoadReadingVideos(){
+DisplayLoader(true);
+fetch('../readingvideos/readingVideos.html')
+.then(res=>res.text())
+.then(data=>{
+
+setTimeout(()=>{
+      PlayClick();  
+      videoTemplate = document.querySelector('#videoHolder');
+      videoTemplate.innerHTML=data;
+      anime({
+        targets:videoTemplate,
+        left:0,
+        duration:500,
+        easing:'easeInOutQuint'
+  })  
+   root ="readingvideos/videos/";
+    Array.from(document.querySelectorAll(".containerVideo")).forEach((x)=>{
+      x.onpointerup= function(){
+        initVideo(x.getAttribute('alt'));
+       
+      }
+    });
+  });
+DisplayLoader(false);
+},200)
 
 }
 
@@ -96,7 +117,6 @@ function initReadingTemplate(){
 
 function GetPhonicsText(element) {
  
-
 switch(element){
 
 case 'A ~ Z':listSentences = arrayLetters;
