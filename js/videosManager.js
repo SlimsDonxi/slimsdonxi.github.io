@@ -24,9 +24,10 @@ function initVideoPage()
 function initVideos(el)
 {
   loader.style.display = 'block';
-  root = `../videos/videos/${el}/`;
+  el= el.replace(/ /g,'%20');
+  root = `https://slimsdonxi.github.io/videos/videos/${el}/`;
   DisplayLoader(true);
-  fetch(`videos/${el}.html`)
+  fetch(`https://slimsdonxi.github.io//videos/${el}.html`)
     .then(res => res.text())
     .then(data =>
     {

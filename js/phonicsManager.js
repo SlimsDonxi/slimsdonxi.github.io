@@ -11,7 +11,7 @@ var readingTemplate;
 var listSentences;
 var listLetterAudios = [];
 
-console.log('eh zebi');
+
 function initPhonicsPage()
 {
   arrayLetters = ["a", "t", "i", "p", "n", "ck", "e", "h", "r", "m", "d", "g", "o", "u", "l", "f", "b", "ai", "j", "oa", "ie", "ee", "or", "z", "w", "ng", "v", "oo", "oo1", "y", "x", "ch", "sh", "th", "th1", "qu", "ou", "oi", "ue", "er", "ar"];
@@ -27,7 +27,7 @@ function initPhonicsPage()
 
   arrayToHighlight = ["ch", "at", "oo", "sh"]
 
-DisplayLoader(true);
+
 console.log("Loader true");
 
   fetch('./readingTemplate.html')

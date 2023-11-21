@@ -52,7 +52,7 @@ function LoadPlayer(el)
      });
 
      var link = el.replace(/ /g,'%20');
-     var block = 'https://slimsdonxi.github.io/'+root + link + '.mp4';
+     var block = root + link + '.mp4';
      console.log('href = ' + block);
 
      setTimeout(() =>

@@ -53,7 +53,7 @@ function loadPage(holder, url)
 function initPageScripts(el)
 {
 
-	
+	DisplayLoader(true);
 	setTimeout(() =>
 	{
 		switch (el)
