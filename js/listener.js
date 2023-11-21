@@ -68,7 +68,10 @@ recognition.onstart =  () => {
 
 
 pageHolder.onpointerup = () => {
+
+  if(!recognizing) return;
   stopListening();
+    console.log('YEPP ITS MEE');
 };
 
 

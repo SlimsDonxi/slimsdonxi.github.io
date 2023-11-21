@@ -707,3 +707,88 @@ text-align: center;
   animation-iteration-count: infinite;
 }
 
+#voicesHolder{
+  display: block;
+  position:fixed;
+  height:100%;
+  width:100%;
+  left:-10px;
+  top:100%;
+  background:#fff;
+  border-radius:50px 50px 0px 0px ;
+
+  padding:40px;
+  margin:10px;
+ 
+  overflow:scroll;
+  z-index:7;
+  transform-origin: center;
+
+}
+
+
+
+#confirmVoice{
+  text-align: center;
+  background:#f3520b;
+  box-shadow: 0px 5px 0px #c73d00;
+
+}
+
+#voicesHolder .row{
+  gap:20px;
+}
+
+
+
+.voiceContainer{
+  display:flex;
+  background:#3191e2;
+  box-shadow: 0px 5px 0px #2e7ec1;
+  border-radius:50px;
+  width:auto;
+  margin:1;
+  padding:5;
+  transition:all .2s;
+
+}
+
+.voiceSelected{
+   background:#74d444;
+  box-shadow: 0px 5px 0px #5aae30;
+  transform: scala(.9);
+}
+
+
+.voiceinfoContainer{
+font-weight:bold;
+font-size:20px;
+color:white;
+text-align: center;
+padding-left:15px;
+
+
+padding-top:15px;
+}
+
+.voiceAvatarContainer{
+  border-radius: 50%;
+  background:#fff;
+  height:70px;
+  width:70px;
+  display: flex;
+  justify-content: center;
+
+
+}
+
+.avatar{
+     height:80%;
+     maring:0 auto;
+     margin-top:10px;
+     
+}
+
+.laoderOff{
+  top:100%;
+}

@@ -3,10 +3,13 @@ var synth = window.speechSynthesis || window.webkitSpeechRecognition || window.m
 synth.defaultPrevented = true;
 synth.interimResults = true;
 synth.continuous = false;
-synth.localService = false;
+
 var selectedVoice;
 var nextButton = document.querySelector('#next');
 var prevButton = document.querySelector('#previous');
+var listAvatarsMales=[];
+var listAvatarsFemales=[];
+var listAvatars=[];
 
 var voices = [];
 window.utterances = [];
@@ -19,49 +22,13 @@ var arrayWanted = [
   , "Microsoft Christopher Online (Natural) - English (United States)"
 , ]
 
-var ulContainer = document.querySelector('.dropdown__items');
-var ulText = document.querySelector('.dropdown__text');
-/*
-function loadVoices() { 
-
- //ulContainer.innerHTML='';
-  speechSynthesis.getVoices().forEach(function(voice, i){
-
-        if(voice.lang.includes("en")){
-          if(!voice.name.includes('Google')){          
-          
-           // if(arrayWanted.includes(voice.name)) {
-              voices.push(voice);
-          
-             
-           var name = replaceString("Microsoft", "", voice.name);
-            name = replaceString("Online (Natural) - English (United States)", "",name);
-            name = replaceString("Online (Natural) - English (Canada)", "",name);
-
-            var block = `<li onclick="setVoice(this)">${name}</li>`;
-          
-            ulContainer.innerHTML += block;
-
-              //}
-          }
-          }
-      });
-
-}
+var ulContainer = document.querySelector('#voicesHolder .row');
 
 
 
- loadVoices();
 
-synth.onvoiceschanged = function(e) {
-
- loadVoices();
-
-
-}
-*/
-//Promise Voices List
-const allVoicesObtained = new Promise(function(resolve, reject)
+if(allVoicesObtained == null)
+var allVoicesObtained = new Promise(function(resolve, reject)
 {
   voices = synth.getVoices();
   if (voices.length !== 0)
@@ -78,89 +45,138 @@ const allVoicesObtained = new Promise(function(resolve, reject)
   }
 });
 
-allVoicesObtained.then(voices => voiceSettings());
+allVoicesObtained.then(voices => LoadVoicesAvatar());
+
+
+
+document.querySelector('#voicesMenuLauncher').addEventListener('pointerup',function(){
+ PlayClick();
+ ToggleVoices('10px')
+});
+
+
+
+
+function ToggleVoices(value){
+
+anime({
+  targets:  document.querySelector('#voicesHolder'),
+  top:value,
+  duration:1000,
+  easing:'easeInOutQuint'
+})
+
+}
+
+
+function LoadVoicesAvatar(){
+
+    fetch(`./animations/avatars/avatars.html`)
+        .then(res => res.text())
+        .then(data =>
+        { 
+           var parser = new DOMParser();
+            var doc = parser.parseFromString(data, "text/html");
+     
+          listAvatars = Array.prototype.slice.call(doc.querySelectorAll("svg"));
+          
+         
+             voiceSettings();
+        });
+}
+
 
 function voiceSettings()
 {
-
+var counter=0;
   voices.forEach((voice) =>
   {
-
-    if (voice.lang.includes("en"))
-    {
-      if (!voice.name.includes('Google'))
-      {
-
+   
+    if (voice.lang.includes("en-GB") || voice.lang.includes("en-US") || voice.lang.includes("en-CA"))
+    {    
         // if(arrayWanted.includes(voice.name)) {
         voices.push(voice);
-
-
-        var name = replaceString("Microsoft", "", voice.name);
-        name = replaceString("Online (Natural) - English (United States)", "", name);
-        name = replaceString("Online (Natural) - English (Canada)", "", name);
-
-        var block = `<li onclick="setVoice(this)">${name}</li>`;
-
-        ulContainer.innerHTML += block;
-
-        //}
-      }
+     
+        insertNewVoice(voice,counter);
+          counter++; 
     }
 
   })
 
+   
   selectedVoice = voices.filter(function(voice)
   {
     return voices[0];
   })[0];
 
-  var name = replaceString("Microsoft", "", selectedVoice.name);
-  name = replaceString("Online (Natural) - English (United States)", "", name);
-  name = replaceString("Online (Natural) - English (Canada)", "", name);
-
-
+ 
   voiceIndex = voices.indexOf(voices.filter(function(voice)
   {
     return voice == selectedVoice
   }));
 
-  ulText.innerText = name;
-  var children = ulContainer.children;
-  Array.from(children)[0].style.background = "#ffb400";
+
+}
+
+function insertNewVoice(voice, index){
+
+        var avatar = listAvatars[index];
+      
+        var block = 
+          `<div class="col-12 col-md-5 col-lg-3 voiceContainer shake" onclick="setVoice(this)" >
+            <div class="voiceAvatarContainer"></div>
+            <div class="voiceInfoContainer">${setVoiceText(voice)}</div>
+          </div>`
+
+          ulContainer.innerHTML += block;
+          
+          var voiceAvatarContainerlist = ulContainer.querySelectorAll('.voiceAvatarContainer');
+        
+          var voiceAvatarContainer = voiceAvatarContainerlist[voiceAvatarContainerlist.length-1];
+
+          if(avatar!=undefined)
+          voiceAvatarContainer.appendChild(listAvatars[index]);
+
+        else{
+          var randomPosition = Math.floor(Math.random() * listAvatars.length);
+         
+    voiceAvatarContainer.appendChild(listAvatars[randomPosition]);
+      }
+
+ ulContainer.querySelectorAll('.voiceContainer')[0].classList.add('voiceSelected');
+}
+
+function setVoiceText(voice){
+    var name = replaceString("Microsoft", "", voice.name);
+           name = replaceString("Online (Natural)", "", name);
+            name = replaceString("United Kingdom", "UK", name);
+            name = replaceString("-", "", name);
+           name = replaceString("English", "", name);
+           name = replaceString("United States", "US", name);
+           return name;
 }
 
 
 function setVoice(evt)
 {
-
+  PlayClick();
 
   var children = ulContainer.children;
 
-  Array.from(children)
-    .forEach((x) =>
-    {
-      if (x != evt)
-      {
-        x.style.background = "none";
-        x.style.color = "#2f2f2f";
-      }
-    });
 
-  evt.style.background = "#ffb400";
-  evt.style.color = "#fff";
+  ulContainer.querySelector('.voiceSelected').classList.remove('voiceSelected');
 
-  document.querySelector("input")
-    .checked = false;
+  evt.classList.add('voiceSelected');
 
-  document.querySelector(".dropdown__text")
-    .innerText = evt.innerText;
-
+  console.log('Selected= '+ evt.innerText);
   selectedVoice = voices.filter(function(voice)
   {
-    console.log(voice.name + "  " + evt.innerText + "  " + voice.name.includes(evt.innerText));
-    return voice.name.includes(evt.innerText)
+ 
+    return voice.name.includes(evt.innerText.split(' ')[0]);
 
   })[0];
+
+  console.log(selectedVoice.name);
 }
 
 
@@ -283,7 +299,6 @@ function speak(speech)
 
 
 
-
 function SetSpeakerOn()
 {
   anime(
@@ -292,7 +307,7 @@ function SetSpeakerOn()
     , scale: 1.1
     , translateY: '-50px'
     , duration: 500
-    , ease: 'easeInOutQuart'
+    
 
   });
 
@@ -316,7 +331,7 @@ function SetSpeakerOff()
     , scale: 1
     , translateY: '-15px'
     , duration: 500
-    , ease: 'easeInOutQuart'
+    
 
   });
 
