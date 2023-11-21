@@ -24,7 +24,7 @@ function initVideoPage()
 function initVideos(el)
 {
   loader.style.display = 'block';
-  root = `videos/videos/${el}/`;
+  root = `../videos/videos/${el}/`;
   DisplayLoader(true);
   fetch(`videos/${el}.html`)
     .then(res => res.text())

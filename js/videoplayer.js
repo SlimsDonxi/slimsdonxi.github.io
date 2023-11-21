@@ -52,7 +52,7 @@ function LoadPlayer(el)
      });
 
 
-     var block = root + el + '.mp4';
+     var block = '../'+root + el + '.mp4';
      console.log('href = ' + block);
 
      setTimeout(() =>
