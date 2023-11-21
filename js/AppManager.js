@@ -53,7 +53,7 @@ function loadPage(holder, url)
 function initPageScripts(el)
 {
 
-	DisplayLoader(true);
+	
 	setTimeout(() =>
 	{
 		switch (el)
@@ -65,7 +65,7 @@ function initPageScripts(el)
 				initSongPage();
 				break;
 			case 'phonics':
-				initPhonicsPage();
+				initPhonicsPage(); console.log('initiingPage');
 				break;
 			case 'reading':
 				initReadingPage();
@@ -74,7 +74,7 @@ function initPageScripts(el)
 				initStoryPage();
 				break;
 		}
-	}, 800)
+	}, 500)
 
 }
 
