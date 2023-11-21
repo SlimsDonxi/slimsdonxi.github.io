@@ -3,6 +3,7 @@ var recognition = new(window.SpeechRecognition || window.webkitSpeechRecognition
 recognition.interimResults = true;
 recognition.continuous = true;
 recognition.lang = "en-US";
+recognition.localService = false;
 
 var inputText = pageHolder.querySelector("#displayedText");
 var inputPhrase = pageHolder.querySelector("#displayedPhrase");
@@ -35,25 +36,33 @@ var bannerScore = pageHolder.querySelector('#bannerScore')
 microphone.onpointerdown = () => {
   if (!recognizing) {
      ActivateButton();
+
     recognition.start();
+    console.log(recognition);
   }
 };
 
-recognition.onstart = () => {
+recognition.onstart =  () => {
+
+  
   recognizing = true;
   audio.src = './audios/startRecord.wav';
   audio.play();
 };
 
-recognition.onresult = (event) => {
+  recognition.onresult =   (event) => {
+ 
   const transcript = Array.from(event.results)
     .map((result) => result[0].transcript)
     .join("");
 
   result = transcript;
+ 
   speechTranscript.style.display = 'block';
   speechText.innerText = result;
-};
+}
+
+
 
 
 
@@ -65,12 +74,13 @@ pageHolder.onpointerup = () => {
 
 
 
+
 function stopListening() {
 console.log('recognition Stopped');
   recognition.stop();
 
   if (recognizing) {
-console.log('still recognizing');;
+
     audio.src = './audios/endRecord.mp3';
     audio.play();
     ResetButton();
