@@ -49,9 +49,11 @@ function initStoryPage()
                         initStory(x);
                     }
                 })
-            DisplayLoader(false);
-
+           
+      
         });
+
+
 }
 
 
@@ -147,7 +149,7 @@ function PopulateSentence(element)
     {
         if (element[i] != '‎')
         {
-            block = `<button class="word shake" onclick="SpeakIt(this)"><span>${element[i]}</span></button>`;
+            block = `<button class="word shake" onclick="speakWord(this)"><span>${element[i]}</span></button>`;
         }
         else
         {
@@ -158,8 +160,6 @@ function PopulateSentence(element)
 
     }
 
-    CheckButtonNextAvailability();
-    CheckButtonPreviousAvailability();
 }
 
 function GetStoryPictures()
@@ -203,10 +203,12 @@ function GetStoryPictures()
 
             this.currentPicture.src = listPictures[0].src;
 
-            setTimeout(() =>
-            {
+
+            
                 DisplayLoader(false);
-                console.log(listPictures.length);
+                 speaker.onpointerup=function(){
+                speakSentences();
+               }
                 anime(
                 {
                     targets: readingTempalte
@@ -214,7 +216,7 @@ function GetStoryPictures()
                     , duration: 800
                     , easing: 'easeOutQuint'
                 });
-            }, 800);
+          
 
         });
 }

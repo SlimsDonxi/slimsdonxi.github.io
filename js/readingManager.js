@@ -38,7 +38,7 @@ function initReadingPage(el)
               {
                 speakSentences();
               }
-            }, 100);
+            }, 1000);
 
           }
         });

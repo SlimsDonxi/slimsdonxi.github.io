@@ -34,9 +34,8 @@ console.log("Loader true");
     .then(res => res.text())
     .then(data =>
     {
-               DisplayLoader(false);
-               console.log('Loader false;');
-  
+      DisplayLoader(false);
+                
       setTimeout(() =>
       {
         Array.from(document.querySelectorAll('.phonicsBlock'))
@@ -198,12 +197,12 @@ function GetPhonicsText(element)
 function loadAudios()
 {
 
-  DisplayLoader(true);
+ 
   listSentences.forEach((x) =>
   {
     listLetterAudios.push(new Audio(`audios/LetterSounds/${x}.mp3`));
   })
-  DisplayLoader(false);
+
 }
 
 
