@@ -51,8 +51,8 @@ function LoadPlayer(el)
           , easing: 'easeOutQuint'
      });
 
-
-     var block = 'https://slimsdonxi.github.io/'+root + el + '.mp4';
+     var link = el.replace(/ /g,'%20');
+     var block = root + link + '.mp4';
      console.log('href = ' + block);
 
      setTimeout(() =>
