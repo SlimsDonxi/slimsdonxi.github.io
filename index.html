@@ -15,12 +15,12 @@
     <!-- style css -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/main.css">
-
+ 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-
+ 
+<script type="module" src="https://unpkg.com/@dotlottie/player-component@1.0.0/dist/dotlottie-player.js"></script>
     <script src='js/videoplayer.js'></script>
 
     <style>
@@ -65,6 +65,7 @@
   <body class="main-layout inner_page"onload="pageLoaded()">
 
 
+
     <div class="holder" id="mainLoader">
       <div id="containerLoader">
         <svg viewBox="0 0 100 100">    
@@ -90,7 +91,7 @@
           <div class="col-md-4   shake" onmouseup=" PlayClick(); loadPage('pageHolder','phonics');">
             <div class=" class_box" style="background:#ffb400; box-shadow:0 10px 0 0 #d89a07">
 
-              <lottie-player class="IconAnimation" src="animations/AnimationAlphabet.json" speed="1" loop autoplay direction="1" mode="normal"></lottie-player>
+              <dotlottie-player class="IconAnimation" src="animations/AnimationAlphabet.lottie" style="transform: scale(1.2);" speed="1" loop autoplay direction="1" mode="normal"></dotlottie-player>
               <h4 class="menuTitle">Letters</h4>
 
             </div>
@@ -100,7 +101,7 @@
           <div class="col-md-4 margi_bottom shake" onmouseup=" PlayClick(); loadPage('pageHolder','reading');">
             <div class="class_box " style="background:#ed4e2e; box-shadow:0 10px 0 0 #d4462a">
 
-              <lottie-player class="IconAnimation" src="animations/AnimationReading.json" speed="1" loop autoplay direction="1" mode="normal"></lottie-player>
+              <dotlottie-player class="IconAnimation" src="animations/AnimationReading.lottie" style="transform: scale(.85);" speed="1" loop autoplay direction="1" mode="normal"></dotlottie-player>
               <h4>Reading</h4>
             </div>
           </div>
@@ -108,7 +109,7 @@
 
           <div class="col-md-4 margi_bottom shake" onmouseup=" PlayClick(); loadPage('pageHolder','stories');;">
             <div class="class_box text_align_center" style="background:#69c8ec; box-shadow:0 10px 0 0 #48abcf">
-              <lottie-player class="IconAnimation" src="animations/AnimationStory.json" speed="1" loop autoplay direction="1" mode="normal"></lottie-player>
+              <dotlottie-player class="IconAnimation" src="animations/AnimationStory.lottie" style="transform: scale(1.2);" speed="1" loop autoplay direction="1" mode="normal"></dotlottie-player>
               <h4>Stories</h4>
             </div>
           </div>
@@ -117,21 +118,39 @@
 
           <div class="col-md-4 margi_bottom shake" onmouseup=" PlayClick(); loadPage('pageHolder','songs');">
             <div class="class_box text_align_center" style="background:#5568c9; box-shadow:0 10px 0 0 #4558b6">
-              <lottie-player class="IconAnimation" src="animations/AnimationMusic.json" speed="1" loop autoplay direction="1" mode="normal"></lottie-player>
+              <dotlottie-player class="IconAnimation" src="animations/AnimationSongs.lottie" speed="1" loop autoplay direction="1" mode="normal"></dotlottie-player>
               <h4>Songs</h4>
             </div>
           </div>
 
           <div class="col-md-4 margi_bottom shake" style="overflow:hidden" onmouseup=" PlayClick();loadPage('pageHolder','video');">
             <div class="class_box text_align_center" style="background:#a958cf; box-shadow:0 10px 0 0 #8945a8">
-              <lottie-player class="IconAnimation" src="animations/AnimationPanda.json" style="transform: scale(3);"speed="1" loop autoplay direction="1" mode="normal"></lottie-player>
+              <dotlottie-player class="IconAnimation" src="animations/AnimationPanda.lottie" style="transform: scale(3);"speed="1" loop autoplay direction="1" mode="normal"></dotlottie-player>
 
               <h4>Videos</h4>
 
             </div>
           </div>
 
-          <!--<div class="col-md-4 margi_bottom shake" onmouseup =" PlayClick(); window.location.href='games.html';">
+
+
+  <div id="speechTooShort">
+    Recording was too short, please try again!
+  </div>
+
+
+ <div id="voicesHolder">
+        <div class="row" style="margin-top: 20px;">
+          <button id="confirmVoice" onclick="ToggleVoices('100%'); PlayClick();" class="col-12 scoreOk"  >OK</button>
+        </div>
+        <div class="row">  
+        </div>
+  </div>
+
+</div>
+
+
+       <!--<div class="col-md-4 margi_bottom shake" onmouseup =" PlayClick(); window.location.href='games.html';">
                   <div class="class_box text_align_center" style="background:#fc71d3; box-shadow:0 10px 0 0 #d460b2">
                      <?xml version="1.0" encoding="utf-8"?>
                      <svg height="800px" width="800px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
@@ -164,11 +183,31 @@
 
     </div>
     <div id="loader">
-      <div>
-        <lottie-player src="animations/loadingAnimation.json" speed="1" loop autoplay direction="1" mode="normal"></lottie-player>
+    <div>
+        <dotlottie-player src="animations/AnimationLoader.lottie"speed="1" loop autoplay direction="1" mode="normal" ></dotlottie-player>
         <h2>Loading</h2>
-      </div>
+   </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

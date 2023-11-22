@@ -59,11 +59,13 @@ allVoicesObtained.then(voices => LoadVoicesAvatar());
 }
 
 
-document.querySelector('#voicesMenuLauncher').addEventListener('pointerup',function(){
+document.querySelectorAll('.voicesLauncher').forEach(x=>{
+  x.addEventListener('pointerup',function(){
  PlayClick();
  ToggleVoices('10px')
 });
 
+});
 
 
 
@@ -72,8 +74,8 @@ function ToggleVoices(value){
 anime({
   targets:  document.querySelector('#voicesHolder'),
   top:value,
-  duration:1000,
-  easing:'easeInOutQuint'
+  duration:800,
+  easing:'easeOutQuint'
 })
 
 }

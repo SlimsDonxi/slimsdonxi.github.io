@@ -22,14 +22,14 @@ var recognizing = false;
 var score;
 var micIcon = pageHolder.querySelector("#micIcon");
 var micLoader = pageHolder.querySelector("#micLoader");
-var arrStars = pageHolder.querySelectorAll(".lottieStar");
+var lottieList = pageHolder.querySelectorAll(".animationScore");
 var tooShort = pageHolder.querySelector('#speechTooShort')
 var scoreDisplayed = false;
 var score = pageHolder.querySelector('#score');
 var bannerScore = pageHolder.querySelector('#bannerScore')
 
 
-
+console.log('listLotties = '+ lottieList.length)
 
 
 microphone.onpointerdown = () => {
@@ -169,14 +169,14 @@ function setScoreWithColor(el) {
 
 
 
-  arrStars.forEach((x) => {
+  lottieList.forEach((x) => {
     x.style.display = 'none'
   })
 
-  pageHolder.querySelector('#score')
+  /*pageHolder.querySelector('#score')
     .innerText = '';
   pageHolder.querySelector('#score')
-    .innerText = el;
+    .innerText = el;*/
 
 
   removeAllScoreClasses();
@@ -289,43 +289,40 @@ function removeAllScoreClasses() {
 
 function failResult() {
 
-  arrStars[0].style.display = 'flex';
+  lottieList[3].style.display = 'flex';
 
   audio.src = './audios/fail.wav';
   pageHolder.querySelector('#bannerScore')
     .classList.add('fail');
 
   comment.querySelector('span')
-    .innerText = "Oops, Jia you!";
+    .innerText = "Don't give up just yet! Jia you!";
 
 }
 
 function mediumResult() {
 
-  arrStars.forEach((x) => {
-    x.style.display = 'flex'
-  });
-  arrStars[2].style.display = 'none';
+  
+  lottieList[2].style.display = 'flex';
 
   audio.src = './audios/middle.wav';
   pageHolder.querySelector('#bannerScore')
     .classList.add('middle');
 
   comment.querySelector('span')
-    .innerText = "Pretty good";
+    .innerText = "Pretty good! Give it another try";
 
 }
 
 function winResult() {
 
-  arrStars.forEach((x) => {
-    x.style.display = 'flex'
-  })
+  lottieList[1].style.display='flex';
+
   audio.src = './audios/good.mp3';
   pageHolder.querySelector('#bannerScore')
     .classList.add('success');
   comment.querySelector('span')
-    .innerText = "Amazing!";
+    .innerText = "Fantastic work! Keep it up";
 
 
 }
@@ -333,7 +330,7 @@ function winResult() {
 function resetScoreSVGs() {
 
 
-  arrStars.forEach(x => {
+  lottieList.forEach(x => {
     x.style.display = 'block';
   })
 

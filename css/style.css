@@ -339,10 +339,11 @@ width:50px;
 border-radius: 50px;
 }
 
-.voices{
+.voicesLauncher{
 background: #f5c51d;
 box-shadow: 0px 5px 0px 0px #daaf1b;
 right:70px;
+
 }
 
 .subCancel{

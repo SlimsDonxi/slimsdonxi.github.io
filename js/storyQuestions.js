@@ -145,10 +145,7 @@ function correctAnswer()
 	{
 
 		audio.src = './audios/win.mp3';
-		document.querySelector('#basicEmojis')
-			.style.display = 'none';
-		document.querySelector('#backgroundStartContainer')
-			.style.display = 'none';
+		
 		document.querySelector('#starsContainer')
 			.style.display = 'none';
 		document.querySelector('#trophy')
@@ -156,16 +153,22 @@ function correctAnswer()
 		document.querySelector('#scoreSpeech')
 			.style.display = "flex";
 
-		var animation = anime(
-		{
-			targets: document.querySelector('#scoreSpeech')
-			, opacity: 1
-			, duration: 500
-			, easing: 'linear'
-		});
+		 anime({
+    targets: document.querySelector('#bannerScore')
+    , width: '140%'
+    , duration: 1000
+  })
+	var arrayLottie = 	 Array.from(pageHolder.querySelectorAll('.animationScore')).forEach(x=>{
+		 	x.style.display='none';
+		 })
+
+		arrayLottie[0].style.display='flex';
+		 document.querySelector('#recordingAudio').style.display='none';
+		  
+		 document.querySelector('#bannerScore').classList.add('trophySuccess')
 		counterQuestions = 0;
 		currentProgress = 0;
-
+		updateSlider(true);
 	}
 	else
 	{
@@ -234,13 +237,10 @@ function updateSlider(el = false)
 
 	if (el)
 		currentProgress += factorProgress;
-
-	document.querySelector('.bar')
-		.style.transitionDuration = `.3s`;
-	document.querySelector('.bar')
-		.style.width = `${currentProgress}%`;
-
+	document.querySelector('#lionContainer').style.transitionDuration = `.3s`;
+	document.querySelector('#lionContainer').style.width = `${currentProgress}%`;
 }
+
 
 function Continue()
 {
@@ -271,4 +271,10 @@ function DisplayConfirmer()
 		, duration: 600
 		, easing: 'easeOutQuart'
 	});
+}
+
+
+function ResetScoreQuestions(){
+	document.querySelector('#recordingAudio').style.display='block';
+	 document.querySelector('#bannerScore').classList.remove('trophySuccess')
 }
