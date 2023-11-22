@@ -11,6 +11,16 @@ var listAvatarsMales=[];
 var listAvatarsFemales=[];
 var listAvatars=[];
 
+
+
+
+
+
+
+
+
+
+
 var voices = [];
 window.utterances = [];
 var voiceIndex;

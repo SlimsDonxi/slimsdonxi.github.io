@@ -32,9 +32,9 @@ var bannerScore = pageHolder.querySelector('#bannerScore')
 
 
 
-
 microphone.onpointerdown = () => {
   if (!recognizing) {
+     startRecording();
      ActivateButton();
 
     recognition.start();
@@ -70,7 +70,10 @@ recognition.onstart =  () => {
 pageHolder.onpointerup = () => {
 
   if(!recognizing) return;
+
+  stopRecording();
   stopListening();
+  stopRecording;
     console.log('YEPP ITS MEE');
 };
 
@@ -87,7 +90,7 @@ console.log('recognition Stopped');
     audio.src = './audios/endRecord.mp3';
     audio.play();
     ResetButton();
- onResult();
+    onResult();
    
 
     setTimeout(() => {
@@ -354,3 +357,29 @@ function retractScore() {
   PlayClick();
   scoreDisplayed = false;
 }
+
+
+
+ var recorder;
+
+        var audioRecording = document.querySelector('#recordingAudio');
+
+        function startRecording() {
+            HZRecorder.get(function (rec) {
+                recorder = rec;
+                recorder.start();
+            });
+        }
+
+        function stopRecording() {
+            recorder.stop();
+             recorder.play(audioRecording);
+        }
+
+        function playRecording() {
+           
+
+        }
+
+
+
