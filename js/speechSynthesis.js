@@ -461,18 +461,15 @@ function CheckButtonNextAvailability()
     if (currentHolderPageTitle != 'stories')
     {
 
-      nextButton.style.backgroundColor = "gray";
-      nextButton.style.opacity = "0.2";
-      nextButton.style.boxShadow = "0px 0px #cb2e26";
+       nextButton.classList.add('interactiveDisabled'); 
+ 
       nextButton.removeAttribute('onclick');
     }
   }
   else
   {
 
-    nextButton.style.backgroundColor = "#4dbd2f";
-    nextButton.style.boxShadow = "0px 4px #46a52d";
-    nextButton.style.opacity = "1";
+   nextButton.classList.remove('interactiveDisabled'); 
     nextButton.setAttribute("onclick", "Next()");
   }
 }
@@ -481,17 +478,12 @@ function CheckButtonPreviousAvailability()
 {
   if (currentText == 0)
   {
-
-    prevButton.style.backgroundColor = "gray";
-    prevButton.style.opacity = "0.2";
-    prevButton.style.boxShadow = "0px 0px #cb2e26";
+    prevButton.classList.add('interactiveDisabled'); 
     prevButton.removeAttribute('onclick');
   }
   else
   {
-    prevButton.style.backgroundColor = "#f53228";
-    prevButton.style.opacity = "1";
-    prevButton.style.boxShadow = "0px 4px #cb2e26";
+    prevButton.classList.remove('interactiveDisabled');
     prevButton.setAttribute("onclick", "Previous()");
   }
 }

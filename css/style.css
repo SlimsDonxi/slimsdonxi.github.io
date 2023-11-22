@@ -184,29 +184,29 @@ body{
 }
 
 @keyframes shake {
-     0% { transform:translate(0,0px); transform:scale(1) }     
-     50% {  transform:translate(0,6px);transform:scale(0.8)}  
-     100% {   transform:translate(0,0); transform:scale(1)}
+     0% { transform:scale(1) }     
+     50% { transform:scale(0.8)}  
+     100% { transform:scale(1)}
 }
 @-o-keyframes shake {
-     0% { transform:translate(0,0px); transform:scale(1)}     
-     50% {  transform:translate(0,6px);transform:scale(0.8)}  
-     100% {   transform:translate(0,0); transform:scale(1)}
+     0% {  transform:scale(1)}     
+     50% { transform:scale(0.8)}  
+     100% {   transform:scale(1)}
 }
 
 
 @-moz-keyframes shake {
-     0% { transform:translate(0,0px);  transform:scale(1)}     
-     50% {  transform:translate(0,6px);transform:scale(0.8)}  
-     100% {   transform:translate(0,0);transform:scale(1)}
+     0% {   transform:scale(1)}     
+     50% {  transform:scale(0.8)}  
+     100% {   transform:scale(1)}
 }
 
 
 
 @-webkit-keyframes shake {
-     0% { -webkit-transform:translate(0,0px); transform:scale(1)}     
-     50% {  -webkit-transform:translate(0,6px); transform:scale(0.8)}  
-     100% {   -webkit-transform:translate(0,0); transform:scale(1)}  
+     0% {  transform:scale(1)}     
+     50% {   transform:scale(0.8)}  
+     100% {    transform:scale(1)}  
 }
 
 

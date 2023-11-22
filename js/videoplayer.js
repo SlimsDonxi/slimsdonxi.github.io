@@ -22,7 +22,7 @@ function initVideoLoader()
 
 function initVideo(el)
 {
-     fetch('../videoplayer.html')
+     fetch('../videoPlayer.html')
           .then(res => res.text())
           .then(data =>
           {
