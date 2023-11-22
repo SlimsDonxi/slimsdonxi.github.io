@@ -26,24 +26,28 @@ function initReadingPage(el)
 
           x.onpointerup = function()
           {
+            DisplayLoader(true);
             PlayClick();
             currentText = 0;
-            setTimeout(() =>
-            {
+           
               listSentencesContainer = document.querySelector('#listSentences');
               readingTempalte = document.querySelector('#readingTemplateHolder');
               readingTempalte.innerHTML = data;
+
               GetReadingText(x.getAttribute('alt'));
+
               speaker.onpointerup = function()
               {
                 speakSentences();
               }
-            }, 1000);
-
+       
+ 
           }
         });
-      DisplayLoader(false);
+   
     });
+    console.log('Done');
+    
 }
 
 var sentenceClicked;
@@ -51,7 +55,7 @@ var sentenceClicked;
 
 function GetReadingText(element)
 {
-
+    DisplayLoader(false);
   switch (element)
   {
 
@@ -104,6 +108,7 @@ function GetReadingText(element)
 
 
     this.listSentencesContainer.style.display = "block";
+
   }
 
 

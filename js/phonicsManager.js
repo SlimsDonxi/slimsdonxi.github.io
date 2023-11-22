@@ -43,7 +43,7 @@ console.log("Loader true");
           {
 
             x.onpointerup = function()
-            {
+            {DisplayLoader(true);
               PlayClick();
               currentText = 0;
               setTimeout(() =>
@@ -82,7 +82,7 @@ function initPhonics(el)
   })
   initReadingTemplate();
   GetPhonicsText(el);
-
+DisplayLoader(false);
 
 }
 

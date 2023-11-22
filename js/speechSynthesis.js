@@ -25,10 +25,10 @@ var arrayWanted = [
 var ulContainer = document.querySelector('#voicesHolder .row');
 
 
-
-
+PromiseVoices();
+function PromiseVoices(){
 if(allVoicesObtained == null)
-var allVoicesObtained = new Promise(function(resolve, reject)
+var allVoicesObtained = new Promise(function resolveVoices(resolve, reject)
 {
   voices = synth.getVoices();
   if (voices.length !== 0)
@@ -46,7 +46,7 @@ var allVoicesObtained = new Promise(function(resolve, reject)
 });
 
 allVoicesObtained.then(voices => LoadVoicesAvatar());
-
+}
 
 
 document.querySelector('#voicesMenuLauncher').addEventListener('pointerup',function(){
@@ -168,6 +168,7 @@ function setVoice(evt)
 
   evt.classList.add('voiceSelected');
 
+
   console.log('Selected= '+ evt.innerText);
   selectedVoice = voices.filter(function(voice)
   {
@@ -176,7 +177,10 @@ function setVoice(evt)
 
   })[0];
 
-  console.log(selectedVoice.name);
+  synth.cancel();
+  var dummyUtterance = new SpeechSynthesisUtterance(`Hey there!My name is ${evt.innerText.split(' ')[0]}`);
+  dummyUtterance.voice = selectedVoice;
+  synth.speak(dummyUtterance);
 }
 
 
@@ -261,7 +265,11 @@ function speak(speech)
 
   if ('speechSynthesis' in window)
   {
-
+    if(voices == undefined || voices.length==0){
+      alert("没有找到声音，我们正在尝试加载");
+       PromiseVoices();
+       return;
+    }
     synth.cancel();
 
     var speakObj = new SpeechSynthesisUtterance(speech);
