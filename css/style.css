@@ -44,6 +44,7 @@ body {
 .text_align_center {
      text-align: center;
 }
+
 .text_align_center
 h1,
 h2,
@@ -382,7 +383,7 @@ bordeR:solid 2px #ffba00;
 
   border-radius: 50px;
  width:100%;
-box-shadow: rgba(50, 50, 93, 0.25) 0px 20px 10px -12px inset, rgba(0, 0, 0, 0.1) 0px 18px 36px -28px inset;*/
+box-shadow: rgba(50, 50, 93, 0.25) 5px 5px 0px 1px inset, rgba(0, 0, 0, 0.1) 0px 18px 36px -28px inset;*/
 color:#888888;
 }
 ::placeholder{

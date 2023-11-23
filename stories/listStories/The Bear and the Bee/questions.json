@@ -1,0 +1,116 @@
+
+[
+  {
+"question": "What is the name of our story?",
+ "answers": ["The bear and the bee"],
+"options": ["The angry bees", "Funny Honey","The bear and the honey"]
+},
+
+  {
+  "question": "What do bears love?",
+  "answers": ["Bears love honey"],
+  "options": ["Bears love watermelons","Bears love cheese", "Bears love bones"]
+  },
+
+   {
+  "question": "What was the bear looking for?",
+  "answers": ["Looking for honey"],
+  "options": ["Looking for his shoes", "Looking for his glasses","Looking for milk"]
+  },
+
+  {
+  "question": "Did he find any honey?",
+  "answers": ["He didn't find any honey"],
+  "options": ["He found a little bit", "He found a jar full of honey","he found a can of honey"]
+  },
+
+  {
+  "question": "Where did he go to find honey?",
+  "answers": ["He went into the forest"],
+  "options": ["He went to the market", "He went to a shop", "He went to the countryside"]
+  },
+
+  {
+  "question": "What did he see in the forest?",
+  "answers": ["He saw a beehive"],
+  "options": ["he saw a lake", "He saw a mountain", "He saw a pumpkin"]
+  },
+
+  {
+  "question": "What did he stick in the beehive?",
+  "answers": ["He stuck his paw"],
+  "options": [ "He stuck his nose","he stuck his tongue", "He stuck his eye"]
+  },
+
+  {
+  "question": "What came out of the beehive?",
+  "answers": ["A bee came out"],
+  "options": [ "A squirrel came out","Nothing came out", "A cat came out"]
+  },
+   {
+  "question": "How did the bear feel about the bee?",
+  "answers": ["He felt annoyed"],
+  "options": ["He felt happy", "He felt bored", "He felt great"]
+  }
+  ,
+   {
+  "question": "What did the the bear say to the bee?",
+  "answers": ["I'm bigger and i am stronger than you"],
+  "options": ["I like to eat your honey please", "Let's play a game", "I'm happy to see you"]
+  },
+  {
+  "question": "What did the bear do after that?",
+  "answers": ["He stuck his paw again"],
+  "options": ["He apologized","He went back home", "He cried"]
+  },
+   {
+  "question": "What was Alex's fourth idea?",
+  "answers": ["Hide the medicine in a bird's nest"],
+  "options": ["Hide it in an owl's nest","Hide it in the dog house", "Hide it in his bedroom"]
+  },
+   {
+  "question": "What did the bee do?",
+  "answers": ["The bee stung him"],
+  "options": ["The bee flew away", "The bee cried","The bee laughed"]
+  },
+  {
+  "question": "Where did the bee sting the bear?",
+  "answers": ["It stung him on his nose"],
+  "options": ["It stung him on his butt", "It stung him on his tongue", "It stung him on his bellybutton"]
+  },
+  {
+  "question": "What did the bear do after that?",
+  "answers": ["He grabbed a stick and tried to hit the bee"],
+  "options": ["He cried in pain","He said 'sorry'", "He didn't do anything"]
+  },
+  {
+  "question": "What did the bee do?",
+  "answers": ["The bee flew back to the beehive"],
+  "options": ["The bee cried", "The bee grabbed a stick and hit him", "The bee fell asleep"]
+  },
+    {
+  "question": "What did the bee do?",
+  "answers": ["The bee flew back to the beehive"],
+  "options": ["The bee cried", "The bee grabbed a stick and hit him", "The bee fell asleep"]
+  },
+    {
+  "question": "How many bees flew out of the beehive?",
+  "answers": ["Thousands of bees"],
+  "options": ["Tens of bees", "A dozen of bees", "Hundreds of bees"]
+  },
+   {
+  "question": "What did the bees do?",
+  "answers": ["Stung the bear all over his body"],
+  "options": ["Screamed at the bear", "Apologized to the bear", "Gave the bear a lot of honey"]
+  },
+   {
+  "question": "What did the bear do?",
+  "answers": ["He ran back home"],
+  "options": ["He fought the bees", "He played hide and seek", "He apologized"]
+  },
+   {
+  "question": "What did the bBear give to the bear?",
+  "answers": ["Bee sting medicine"],
+  "options": ["A hot cup of coffee", "A honey sandwich", "A hug"]
+  }
+]

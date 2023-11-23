@@ -13,7 +13,7 @@ var readingTempalte
 
 function initStoryPage()
 {
-    console.log(loader);
+   
 
 
     this.root = "stories/listStories";
@@ -36,7 +36,10 @@ function initStoryPage()
             readingTempalte = document.querySelector('#readingTemplateHolder');
             readingTempalte.innerHTML = data;
             this.currentPicture = document.querySelector('#currentPicture');
-            currentPicture.style.display = 'block';
+            document.querySelector('.PictureStoryContainer').style.display='block';
+            this.currentPicture.onpointerup= function(){
+                    initStoryVideo();
+            }
 
             document.querySelector('#confirmerDisplayer')
                 .style.display = 'flex';
@@ -56,11 +59,53 @@ function initStoryPage()
 
 }
 
+function initStoryVideo()
+{
+     fetch('../videoPlayer.html')
+          .then(res => res.text())
+          .then(data =>
+          {
+
+               videoHolder = document.querySelector('#videoplayerHolder');
+               videoHolder.innerHTML = data;
+               videoPlayer = document.querySelector('#videoPlayer');
+                videoHolder.querySelector('#videoTitle').innerText = currentStory;
+                videoHolder.querySelector('.videoMore').style.display="none";
+                
+               LoadPlayerStory();
+             
+          });
+
+}
+
+
+function LoadPlayerStory()
+{
+     videoPlayer = document.querySelector('video');
+     anime(
+     {
+          targets: document.querySelector('#videoplayerHolder')
+          , left: '0%'
+          , duration: 600
+          , easing: 'easeOutQuint'
+     });
+
+    
+     var block = `${root}/${currentStory}/video.mp4`;
+     setTimeout(() =>
+     {
+          videoPlayer.src = block;
+          //videoPlayer.requestFullscreen(), {once:true};
+          //screen.orientation.lock('landscape');
+          videoPlayer.play();
+     }, 50);
+
+}
 
 function initStory(el)
 {
     DisplayLoader(true);
-    this.GenerateStory(el)
+    this.StartGeneratin(el)
 
 }
 
@@ -68,7 +113,7 @@ function initStory(el)
 function GetSentences(el)
 {
 
-    var file = FileHelper('stories/listStories/' + el.innerText + '/storyText.txt');
+    var file = FileHelper('stories/listStories/' + el.getAttribute('alt') + '/storyText.txt');
     listSentences = file.split(/\r?\n/);
     currentSentence = listSentences[0];
 
@@ -90,15 +135,6 @@ function FileHelper(url)
 
 
 
-
-function GenerateStory(element)
-{
-
-
-
-    setTimeout(StartGeneratin(element), 500);
-}
-
 function initReadingTemplate()
 {
     readingTempalte.style.display = 'block';
@@ -118,22 +154,15 @@ function StartGeneratin(element)
 
     this.currentPage = 0;
 
-    var divs = document.querySelectorAll(".class_box h3");
-    this.selectedStory = Array.from(divs)
-        .indexOf(element);
-
-    this.currentStory = element.innerText;
-
+    this.currentStory = element.getAttribute('alt');
 
     this.listSentences = GetSentences(element);
     count = listSentences.length;
 
-    setTimeout(() =>
-    {
-
+  
         PopulateSentence(GetWords(listSentences[currentText]));
         GetStoryPictures();
-    }, 500);
+ 
 
 }
 
@@ -166,6 +195,8 @@ function GetStoryPictures()
 {
 
     this.listPictures = [];
+    var counter;
+
 
     for (i = 0; i <= listSentences.length; i++)
     {
@@ -234,6 +265,6 @@ function DisplayConfirmer()
     {
         targets: document.querySelector('#Confirmer')
         , left: '0%'
-        , duration: 800
+        , duration: 200
     });
 }

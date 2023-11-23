@@ -1,6 +1,5 @@
-<head></head>
-<div id="divVideoPlayer">
-    <video class="video" width="100%"src="../videos/default.mp4"  controls="controls" preload="metadata"  loop autoplay playsinline  type="video/mp4" id="videoPlayer" > </video>
+<div id="divVideoPlayer" style="background:#fff; overflow:hidden;">
+   
     <div class="cancel subCancel" onclick="AnimateHolderPage('videoplayerHolder',100); document.querySelector('video').pause();document.querySelector('video').currentTime=0; " >
             <svg class="icon" viewBox="0 0 25 25"> 
                 <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
@@ -10,4 +9,24 @@
                 </g>
             </svg>
         </div>
-  </div>
+        
+          <div class="row" style="margin-top:80px; margin-bottom:30px;">
+            <div class="col-md-12" >
+               <video  width="100%"  controls="controls" preload="metadata"  loop autoplay playsinline  type="video/mp4" id="videoPlayer" > </video>
+               <h3 id="videoTitle" style="padding:20px; padding-bottom:0; font-weight: bold;">Sea shanty wellerman</h3>
+            </div>
+             <hr>
+          </div>
+         
+       
+          <div class="videoMore">
+                 <h2>More related videos</h2>
+               <br>
+              
+ 
+            <div  id="rowVideos">
+              
+           
+            </div>
+          </div>
+</div>

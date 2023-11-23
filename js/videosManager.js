@@ -12,13 +12,15 @@ function initVideoPage()
     {
       x.onpointerup = function()
       {
-        var text = x.querySelector('b')
-          .innerText;
+        var text = x.querySelector('b').innerText;
+
+   
         initVideos(text);
       }
     })
   DisplayLoader(false);
 }
+
 
 
 function initVideos(el)
@@ -35,7 +37,8 @@ function initVideos(el)
       videoHolder = document.querySelector('#videoHolder');
 
       videoHolder.innerHTML = data;
-      loader.style.display = 'none';
+     
+
       anime(
       {
         targets: videoHolder

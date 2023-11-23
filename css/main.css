@@ -159,98 +159,16 @@ nav{
   z-index:7;
 }
 
-.dropdown {
 
-  filter: url(#goo);
-
-width:75%;
-max-width: 500px;
-z-index: 7;
-
-}
-
-
-.dropdown__face, .dropdown__items {
-  background-color: #fff;
-  padding: 0px;
-box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
-  border-radius: 25px;
- 
-}
-.dropdown__face {
-  display: block;
-  position: relative;
-}
-.dropdown__items {
-  margin: 0;
-  position: absolute;
-  right: 0;
-
-  overflow:scroll;
-  top: 50%;
-  width: 100%;
-  list-style: none;
-  list-style-type: none;
-box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
-  visibility: hidden;
-  z-index: 8;
-  opacity: 0;
-
-  transition: all 0.4s cubic-bezier(0.93, 0.88, 0.1, 0.8);
-}
-#goo{
-  box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
-}
-.dropdown__items::before {
-  content: "";
-  background-color: #fff;
-  position: absolute;
-  bottom: 100%;
-  right: 20%;
-  height: 40px;
-  width: 20px;
-}
-.dropdown__arrow {
-  border-bottom: 2px solid #000;
-  border-right: 2px solid #000;
-  position: absolute;
-  top: 50%;
-  right: 30px;
-  width: 10px;
-  height: 10px;
-  transform: rotate(45deg) translateY(-50%);
-  transform-origin: right;
-}
-.dropdown input {
-  display: none;
-}
-.dropdown input:checked ~ .dropdown__items {
-  top: calc(100% + 25px);
-  visibility: visible;
-  opacity: 1;
-}
-.dropdown__text{
-  padding:10px;
-
-}
-
-
-li{
-  border-radius: 25px;
-  padding:20px;
-  padding-left:20px;
-  padding-right:20px;
-  color:#2f2f2f;
-  transition: all 0.2s;
-
-}
 
 #currentPicture{
-border-radius:20px;
+
 box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
 display:block; 
-width:400px;
+
 margin:0 auto;
+border-radius:20px;
+width:400px;
 max-width: 95%;
 
 }
@@ -286,7 +204,7 @@ pointer-events: none;
 display: none;
 transform-origin: bottom center;
 position:absolute;
-
+opacity:0;
 margin-left:-75px ;
 width: 200px;
 height:auto;
@@ -322,7 +240,7 @@ margin-left: 75px;
      height:100%;
      width:100%;
     /* max-width: 700px;*/
-     background: radial-gradient(circle at 52.1% -29.6%, rgb(144, 17, 105) 0%, rgb(51, 0, 131) 100.2%);
+     background: #844a9b;
      overflow:hidden;
      display:flex;
      flex-direction: column;
@@ -368,12 +286,13 @@ margin-left: 75px;
      border-radius: 10px;
 
      padding:20px;
-     padding-bottom:10px;
+   
      font-size: 1.5rem;
      color:white;
-     vertical-align: center;
-     align-content: center;
-     text-align:center;
+    justify-content: center;
+    text-align: center;
+     display:flex;
+     flex-direction: column;
      font-weight: bold;
      background:#4ba6ec;
     box-shadow: 0px 8px 0px 0px #348acc;
@@ -396,11 +315,16 @@ margin-left: 75px;
 
 #confirmerDisplayer{
 display:none;
-background: #fbd8e7;
-box-shadow: 0px 5px 0px 0px #e1b2c6;
+background: #a04cc1;
+box-shadow: 0px 5px 0px 0px #893ca7;
 right: 130px;
 }
 
+.storyBlock{
+  margin-bottom:20px;
+  display:flex;
+
+}
 
 #speechTooShort{
   position:fixed;
@@ -483,11 +407,11 @@ margin-bottom:10px;
 #bannerScore{
  position:absolute;
 
-  width:0vw;
+  width:140%;
   height:550px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px; 
 
-
+left:-140%;
 margin-left:-20%;
   transform: rotate(-7deg);
 
@@ -676,15 +600,6 @@ background: linear-gradient(-225deg, #65379B 0%, #886AEA 53%, #6457C6 100%);
       background:#000000;
       
   }
-.video{
-  position:absolute;
-  top:40%;
-  left:0;
-  transform: translateY(-50%);
-}
-
-
-
 .containerVideo{
    padding:20px;
 }
@@ -837,3 +752,90 @@ padding-top:15px;
 .laoderOff{
   top:100%;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.storyRow hr{
+
+  margin:5;
+}
+
+
+.storyTitle{
+  line-height:clamp(20px, 2vw, 22px);
+font-size: clamp(20px, 2vw, 22px);
+font-weight: bold;
+}
+.storySpanInfo{
+  line-height:clamp(19px, 2vw, 22px);
+font-size: clamp(16px, 2vw, 18px);
+ padding-bottom: 50px;
+
+}
+
+.PictureStoryContainer{
+  text-align: center;
+  
+
+}
+
+.PictureStoryContainer span{
+  margin:0 auto;
+
+margin-left:50%;
+ transform: translate(-50%);
+  color:white;
+   border-bottom-left-radius:20px;
+    border-bottom-right-radius:20px;
+width:400px;
+padding-left:20px;
+max-width: 95%;
+   margin-top:-25px;
+   background:#ef3248;
+   display:inline-flex; 
+
+  text-align: center;
+}
+
+
+
+
+#videoplayerHolder{
+  z-index:20;
+}
+
+.videoMore{
+  padding:20px; 
+  text-align:center;
+  overflow:scroll;
+   background:#f2f2f2;
+   border-radius: 25px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -18,7 +18,7 @@ function search()
   for (i = 0; i < listVideos.length; i++)
   {
     data = listVideos[i].getAttribute("data");
-    console.log(data);
+ 
     var str = data.toUpperCase();
     console.log(str);
     if (str.indexOf(filter) > -1)

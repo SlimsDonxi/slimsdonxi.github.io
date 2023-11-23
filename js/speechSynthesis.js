@@ -25,7 +25,10 @@ var ulContainer = document.querySelector('#voicesHolder .row');
 
 
 PromiseVoices();
+
+
 function PromiseVoices(){
+
 if(allVoicesObtained == null)
 var allVoicesObtained = new Promise(function resolveVoices(resolve, reject)
 {
@@ -71,6 +74,14 @@ anime({
 
 
 function LoadVoicesAvatar(){
+
+
+if(voices.length ==0) {
+  speaker.classList.add('disabled');
+  return;
+} else{
+   speaker.classList.remove('disabled');
+}
 
     fetch(`./animations/avatars/avatars.html`)
         .then(res => res.text())

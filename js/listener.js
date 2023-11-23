@@ -43,8 +43,6 @@ microphone.onpointerdown = () => {
 };
 
 recognition.onstart =  () => {
-
-  
   recognizing = true;
   audio.src = './audios/startRecord.wav';
   audio.play();
@@ -59,7 +57,15 @@ recognition.onstart =  () => {
   result = transcript;
  
   speechTranscript.style.display = 'block';
-  speechText.innerText = result;
+  anime({
+    targets:speechTranscript,
+    opacity:'1',
+    duration:800
+  })
+  speechText.innerText = result.toLowerCase();
+
+
+
 }
 
 
@@ -73,8 +79,7 @@ pageHolder.onpointerup = () => {
 
   stopRecording();
   stopListening();
-  stopRecording;
-    console.log('YEPP ITS MEE');
+
 };
 
 
@@ -82,7 +87,7 @@ pageHolder.onpointerup = () => {
 
 
 function stopListening() {
-console.log('recognition Stopped');
+
   recognition.stop();
 
   if (recognizing) {
@@ -90,14 +95,16 @@ console.log('recognition Stopped');
     audio.src = './audios/endRecord.mp3';
     audio.play();
     ResetButton();
-    onResult();
    
+
+     onResult();
+  
 
     setTimeout(() => {
       if (speechText.innerText.length <= 1)
         speechTooShort();
 
-    }, 100)
+    }, 200)
 
 
     recognizing = false;
@@ -116,7 +123,7 @@ function onResult() {
     
       CheckResult();
     }
-  }, 800);
+  }, 2000);
 
 
 }
@@ -192,8 +199,10 @@ function setScoreWithColor(el) {
 
   anime({
     targets: document.querySelector('#bannerScore')
-    , width: '140%'
-    , duration: 1000
+    , left: '0%'
+    , duration: 300
+    , easing:'easeOutQuint'
+
   })
 }
 
@@ -220,7 +229,9 @@ function ActivateButton() {
 
 
 function ResetButton() {
-  speechTranscript.style.display = 'none';
+
+
+
   anime({
     targets: microphone
     , scale: 1
@@ -229,7 +240,6 @@ function ResetButton() {
     , ease: 'easeInOutQuart'
 
   });
-  speechTranscript.style.display = 'none';
 
 
   microphone.style.backgroundColor = "#1a95f4";
@@ -329,7 +339,6 @@ function winResult() {
 
 function resetScoreSVGs() {
 
-
   lottieList.forEach(x => {
     x.style.display = 'block';
   })
@@ -346,9 +355,21 @@ function speechTooShort() {
 
 
 function retractScore() {
-      speechTranscript.style.display = 'none';
+   
+  
+    var transcriptAnim =    anime({
+    targets:speechTranscript,
+    opacity:'0',
+    duration:800
+  });
+    
+  transcriptAnim.finished=function(){
+     speechTranscript.style.display = 'none';
+  }
+  
+
   document.querySelector('#scoreSpeech').style.display = 'none';
-  document.querySelector('#bannerScore').style.width = '0';
+  document.querySelector('#bannerScore').style.left = '-140%';
   PlayClick();
   scoreDisplayed = false;
   if(document.querySelector("#backgroundQuestions")!=null){
