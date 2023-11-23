@@ -6,15 +6,14 @@ var factorProgress;
 var selectedAnswer;
 var arrayQuestions = 0;
 var currentProgress = 0;
-
+var lottieList = pageHolder.querySelectorAll(".animationScore");
 
 
 function startStoryQuestions()
 {
 	DisplayLoader(true);
-	document.querySelector('#backgroundQuestions')
-		.style.display = 'block';
-
+	AnimateHolderPage('backgroundQuestions',0);
+	document.querySelector('#lionContainer').style.width = `0%`;
 	fileQuestions = FileHelper(`${root}/${listSentences[0]}/questions.json`);
 
 	GetQuestionsList();
@@ -32,7 +31,8 @@ function GetQuestionsList()
 
 	arrayQuestions = JSON.parse(fileQuestions);
 	factorProgress = 1 / arrayQuestions.length * 100;
-
+	document.querySelector('#questionNumbers').innerText = `0/${arrayQuestions.length}`;
+	document.querySelector('.meat').style.display='block';
 	GenerateQuestion();
 
 }
@@ -59,6 +59,7 @@ function GenerateQuestion()
 		});
 
 		DisplayLoader(false);
+		AnimateHolderPage('backgroundQuestions',0);
 		var correctAnswer = document.createElement('div');
 		correctAnswer.classList.add("col-md-12", "questionAnswer");
 		correctAnswer.onclick = function()
@@ -146,29 +147,35 @@ function correctAnswer()
 
 		audio.src = './audios/win.mp3';
 		
-		document.querySelector('#starsContainer')
-			.style.display = 'none';
-		document.querySelector('#trophy')
-			.style.display = 'block';
+	
+		  	lottieList.forEach((x) => {
+		    x.style.display = 'none'
+		  });
+		  
+
+		lottieList[0].style.display = 'flex';
 		document.querySelector('#scoreSpeech')
 			.style.display = "flex";
 
 		 anime({
-    targets: document.querySelector('#bannerScore')
-    , width: '140%'
-    , duration: 1000
-  })
-	var arrayLottie = 	 Array.from(pageHolder.querySelectorAll('.animationScore')).forEach(x=>{
-		 	x.style.display='none';
-		 })
-
-		arrayLottie[0].style.display='flex';
+		    targets: document.querySelector('#bannerScore')
+		    , width: '140%'
+		    , duration: 1000
+		  })
+	
+		
 		 document.querySelector('#recordingAudio').style.display='none';
 		  
-		 document.querySelector('#bannerScore').classList.add('trophySuccess')
+		 document.querySelector('#bannerScore').classList.add('trophySuccess');
+		 updateSlider(true);
+
+		 setTimeout(()=>{
+		 	document.querySelector('.meat').style.display='none';
+		 },1000);
+
 		counterQuestions = 0;
 		currentProgress = 0;
-		updateSlider(true);
+	
 	}
 	else
 	{
@@ -179,8 +186,10 @@ function correctAnswer()
 
 			GenerateQuestion()
 		}, 1500);
+		updateSlider(true);
 	}
-	updateSlider(true);
+	document.querySelector('#questionNumbers').innerText = `${counterQuestions}/${arrayQuestions.length}`
+
 	audio.play();
 
 

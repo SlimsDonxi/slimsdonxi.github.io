@@ -1,7 +1,7 @@
 const loader = document.querySelector('#loader');
 const pageHolder = document.querySelector('#pageHolder');
 var currentHolderPageTitle = '';
-
+var selectedVoice;
 
 
 function pageLoaded() {

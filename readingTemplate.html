@@ -134,7 +134,7 @@
 
 
 <div id="scoreSpeech">
-  <div id="bannerScore" class="success" style="width:140%">
+  <div id="bannerScore" class="success">
     <div id="scoreWrapper">
 
       <div class="row">
@@ -168,8 +168,7 @@
 
 
 <!----------------- STORY QUESTIONS ------------------>
-
-<div id="backgroundQuestions" class="mainFrame">
+<div id="backgroundQuestions"style="display:block;">
 
   <div onclick="AnimateHolderPage('backgroundQuestions',100);ResetScoreQuestions();PlayClick()" class="cancel subCancel shake">
     <svg class="icon" viewBox="0 0 25 25">
@@ -204,19 +203,23 @@
     <div class="col-md-12 questionAnswer" onclick='lockAnswer(this)'>${x}</div>
 
   </div>
-
+<div class="footer">
   <div class="progress">
+    <span id="questionNumbers">0/20</span>
     <div id="lionContainer">
       <div class="lionMask">
       <dotlottie-player src="animations/AnimationLion.lottie"speed="1" loop autoplay direction="1" mode="normal" ></dotlottie-player>
     </div>
    </div>
+  
    <div class="meat"></div>
+
   </div>
+
   <div class="class_box text_align_center disabled " id="confirm" onclick="confirmAnswer();PlayClick();"> Confirm</div>
+
 </div>
-
-
+</div>
 
 
   <div id="speechTooShort">

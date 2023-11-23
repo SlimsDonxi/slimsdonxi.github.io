@@ -35,6 +35,11 @@ transition:all .2 ease-out;
   gap:10px;
 }
 
+#backgroundQuestions{
+    left:100%;
+    
+       position:fixed;
+}
 
 #backgroundQuestions .questionAnswer{
   padding:20px;
@@ -77,20 +82,26 @@ line-height: 40px;
 padding:0;
 }
 
+.footer{
+ position: absolute;
 
+  height: auto;
+  width:100%;
+bottom:25px;
+}
 
 .progress {
-    display:flex;
-    width: 90%;
+   
+    width: 85%;
     height: 1px;
    margin:15px;
    margin-top:70px;
-   margin-left:15px;
+   margin-left:0px;
     border-radius: 20px;
     background: #f2f2f2;
-    justify-content: left;
-    place-items:start;
+
     overflow:visible;
+
 
 
 }
@@ -107,6 +118,7 @@ padding:0;
   place-items:end;
   transform-origin: right;
   pointer-events: none;
+   transform: translate(-20px);
 
 }
 .lionMask{
@@ -127,13 +139,19 @@ margin-left:-35px;
 margin-top:-21px;
 }
 
+#questionNumbers{
 
+  font-family: 'GROBOLD';
+
+  position: relative;
+  margin-left:10px;
+}
 .meat{
  
   height:30px;
   width:30px;
   position:absolute;
-  right:10px;
+  right:45px;
   background:url('../animations/meat.svg');
   background-repeat: no-repeat;
   background-position: center;

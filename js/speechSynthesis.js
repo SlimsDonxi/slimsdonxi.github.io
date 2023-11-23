@@ -4,22 +4,11 @@ synth.defaultPrevented = true;
 synth.interimResults = true;
 synth.continuous = false;
 
-var selectedVoice;
 var nextButton = document.querySelector('#next');
 var prevButton = document.querySelector('#previous');
 var listAvatarsMales=[];
 var listAvatarsFemales=[];
 var listAvatars=[];
-
-
-
-
-
-
-
-
-
-
 
 var voices = [];
 window.utterances = [];

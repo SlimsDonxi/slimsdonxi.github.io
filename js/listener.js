@@ -347,12 +347,13 @@ function speechTooShort() {
 
 function retractScore() {
       speechTranscript.style.display = 'none';
-  document.querySelector('#scoreSpeech')
-    .style.display = 'none';
-  document.querySelector('#bannerScore')
-    .style.width = '0';
+  document.querySelector('#scoreSpeech').style.display = 'none';
+  document.querySelector('#bannerScore').style.width = '0';
   PlayClick();
   scoreDisplayed = false;
+  if(document.querySelector("#backgroundQuestions")!=null){
+      AnimateHolderPage('backgroundQuestions',100);
+  }
 }
 
 

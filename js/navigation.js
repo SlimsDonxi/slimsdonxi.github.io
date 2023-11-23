@@ -23,12 +23,15 @@ function AnimateHolderPage(holder, el)
     document.querySelector('#videoPlayer')
       .currentTime = 0;
   }
-  else
-  {
-    console.log('No Video player');
-  }
+
 
   var holder = document.querySelector(`#${holder}`);
+
+
+  
+  if(el =="100") holder.style.display = "block";
+  else setTimeout(()=>{ holder.style.display ='none'},900)
+  
 
   anime(
   {
@@ -37,6 +40,7 @@ function AnimateHolderPage(holder, el)
     , duration: 800
     , easing: 'easeInOutQuint'
   })
+
 
 
   try
