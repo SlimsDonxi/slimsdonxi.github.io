@@ -159,17 +159,6 @@ function CheckResult() {
 
 function setScoreWithColor(el) {
 
-  if(!portrait){
-
-
-    
-
-
-
-
-
-    
-  }
 
   resetScoreSVGs();
 
