@@ -55,8 +55,8 @@ function LoadPlayer(el)
      setTimeout(() =>
      {
           videoPlayer.src = block;
-          videoPlayer.requestFullscreen(), {once:true};
-          screen.orientation.lock('landscape');
+         // videoPlayer.requestFullscreen(), {once:true};
+          //screen.orientation.lock('landscape');
           videoPlayer.play();
      }, 50);
 

@@ -200,7 +200,6 @@ border:0;
 
 #microTranscript{
 pointer-events: none; 
-
 display: none;
 transform-origin: bottom center;
 position:absolute;
@@ -208,12 +207,7 @@ opacity:0;
 margin-left:-75px ;
 width: 200px;
 height:auto;
-
 margin-bottom:100px;
-
-
-
-
 }
 
 #microSvg{
@@ -397,8 +391,18 @@ height: 400px;
 
 @media only screen and (min-width: 350px){
 
+
+.bannerScore .animationScore:nth-child(1){
+  margin-top: -250px;
+  margin-left: 60px;
+  transform:scale(.6);
+  margin-bottom:-100px;
+
+}
+
 .bannerScore .animationScore:nth-child(2){
   margin-top: -250px;
+  margin-left: 60px;
   transform:scale(.8);
   margin-bottom:-100px;
 
@@ -408,6 +412,7 @@ height: 400px;
   margin-top: -250px;
   transform:scale(.7);
   margin-bottom:-90px;
+    margin-left: 50px;
 
 }
 
@@ -415,6 +420,7 @@ height: 400px;
 transform: scale(.7);
  margin-top: -220px;
 margin-bottom:-120px;
+  margin-left: 50px;
 }
 .comment{
     
@@ -434,6 +440,15 @@ margin-bottom:-120px;
 }
 
 @media only screen and (min-width: 765px){
+
+
+.bannerScore .animationScore:nth-child(1){
+  margin-top: -150px;
+  margin-left: 170px;
+  transform:scale(.8);
+  margin-bottom:-150px;
+
+}
 
 .bannerScore .animationScore:nth-child(2){
   transform:scale(1.5);

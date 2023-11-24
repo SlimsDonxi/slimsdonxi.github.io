@@ -120,6 +120,7 @@ function onResult() {
     if (!scoreDisplayed) {
     
       CheckResult();
+      console.log(result);
     }
   }, 2000);
 
@@ -304,7 +305,7 @@ function failResult() {
     .classList.add('fail');
 
   comment.querySelector('span')
-    .innerText = "Don't give up just yet! Jia you!";
+    .innerText = "Don't give! Jia you!";
 
 }
 
@@ -318,7 +319,7 @@ function mediumResult() {
     .classList.add('middle');
 
   comment.querySelector('span')
-    .innerText = "Pretty good! Give it another try";
+    .innerText = "Not bad at all";
 
 }
 
@@ -330,7 +331,7 @@ function winResult() {
   pageHolder.querySelector('.bannerScore')
     .classList.add('success');
   comment.querySelector('span')
-    .innerText = "Fantastic work! Keep it up";
+    .innerText = "Fantastic work!";
 
 
 }
