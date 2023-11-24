@@ -30,7 +30,7 @@ var bannerScore = pageHolder.querySelector('.bannerScore')
 
 
 
-microphone.addEventListener('pointerdown',function() {
+microphone.onpointerdown = function() {
   if (!recognizing) {
      startRecording();
      ActivateButton();
@@ -38,15 +38,15 @@ microphone.addEventListener('pointerdown',function() {
     recognition.start();
     console.log(recognition);
   }
-});
+};
 
-recognition.addEventListener('start', function(){
+recognition.onstart = function(){
   recognizing = true;
   audio.src = './audios/startRecord.wav';
   audio.play();
-});
+};
 
-  recognition.addEventListener('result', function(event) {
+  recognition.onresult=function(event) {
  
   const transcript = Array.from(event.results)
     .map((result) => result[0].transcript)
@@ -64,21 +64,21 @@ recognition.addEventListener('start', function(){
 
 
 
-});
+};
 
 
 
 
 
 
-pageHolder.addEventListener('pointerup', function() {
+pageHolder.onpointerup = function() {
 
   if(!recognizing) return;
 
   stopRecording();
   stopListening();
 
-});
+};
 
 
 

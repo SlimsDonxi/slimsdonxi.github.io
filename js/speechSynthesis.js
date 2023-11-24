@@ -41,11 +41,11 @@ var allVoicesObtained = new Promise(function resolveVoices(resolve, reject)
   }
   else
   {
-    synth.addEventListener('voiceschanged', function()
+    synth.onvoiceschanged = function()
     {
       voices = synth.getVoices();
       resolve(voices);
-    });
+    };
   }
 });
 
@@ -54,10 +54,10 @@ allVoicesObtained.then(voices => LoadVoicesAvatar());
 
 
 document.querySelectorAll('.voicesLauncher').forEach(x=>{
-  x.addEventListener('pointerup',function(){
+  x.onpointerup=,function(){
  PlayClick();
  ToggleVoices('10px');
-});
+};
 
 });
 
@@ -230,12 +230,12 @@ function speakLetters()
   document.querySelector("#speakingLoader")
     .style.display = "flex";
 
-  sound.addEventListener("ended", function()
+  sound.onend= function()
   {
 
     sound.currentTime = 0;
     SetSpeakerOff();
-  });
+  };
 }
 
 function speakSentences()
@@ -287,14 +287,14 @@ function speak(speech)
       SetSpeakerOn();
     }
    
-    utterance.addEventListener('end', () => {
+    utterance.onend =() => {
     if(currentPressed!=null){
     currentPressed.classList.remove('wordActive');
     currentPressed = null;
    
   }
      SetSpeakerOff();  
-  });
+  };
 
     return new Promise(resolve =>
     {
