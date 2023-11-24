@@ -79,14 +79,15 @@ function lockAnswer(el)
 
 	speakOption(el);
 	var options = document.querySelectorAll('.questionAnswer');
+	console.log('options:'+ options.length);
 	Array.from(options)
 		.forEach(x =>
 		{
-			x.style.background = "#fff";
-			x.style.color = '#3d3d3d';
+			x.classList.remove('optionLocked');
+			x.classList.remove('optionCorrect');
+			x.classList.remove('optionWring');
 		})
-	el.style.background = "#f4b305";
-	el.style.color = '#fff';
+	el.classList.add('optionLocked');
 
 	selectedAnswer = el;
 	document.querySelector('#confirm')
@@ -94,15 +95,7 @@ function lockAnswer(el)
 	document.querySelector('#confirm')
 		.classList.remove('enabled');
 
-	//Animate options
-	anime(
-	{
-		targets: el
-		, scale: 1.025
-		, direction: 'alternate'
-		, duration: 300
-		, ease: 'easeInOutQuart'
-	})
+	
 
 }
 
@@ -132,8 +125,8 @@ function correctAnswer()
 
 	counterQuestions++;
 
-	selectedAnswer.style.background = '#6cd023';
-	selectedAnswer.style.color = '#e5fdd4';
+	selectedAnswer.classList.add('optionCorrect');
+	
 
 	document.querySelector('#confirm')
 		.classList.remove('enabled');
@@ -156,11 +149,13 @@ function correctAnswer()
 		lottieList[0].style.display = 'flex';
 		document.querySelector('#scoreSpeech')
 			.style.display = "flex";
-
+		
 		 anime({
 		    targets: document.querySelector('#bannerScore')
-		    , width: '140%'
-		    , duration: 1000
+		    , left: '0%'
+		    , duration: 300
+		    , easing:'easeOutQuint'
+
 		  })
 	
 		
@@ -232,8 +227,9 @@ function fadeOutScore()
 
 function wrongAnswer()
 {
-	selectedAnswer.style.background = '#f72f42';
-	selectedAnswer.style.color = '#fdd4d8';
+
+	selectedAnswer.classList.add('optionWrong');
+	
 	audio.src = './audios/fail.wav';
 	audio.play();
 }

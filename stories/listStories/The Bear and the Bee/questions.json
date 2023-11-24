@@ -55,18 +55,13 @@
   ,
    {
   "question": "What did the the bear say to the bee?",
-  "answers": ["I'm bigger and i am stronger than you"],
+  "answers": ["I am bigger and I am stronger than you"],
   "options": ["I like to eat your honey please", "Let's play a game", "I'm happy to see you"]
   },
   {
   "question": "What did the bear do after that?",
   "answers": ["He stuck his paw again"],
   "options": ["He apologized","He went back home", "He cried"]
-  },
-   {
-  "question": "What was Alex's fourth idea?",
-  "answers": ["Hide the medicine in a bird's nest"],
-  "options": ["Hide it in an owl's nest","Hide it in the dog house", "Hide it in his bedroom"]
   },
    {
   "question": "What did the bee do?",
@@ -109,7 +104,7 @@
   "options": ["He fought the bees", "He played hide and seek", "He apologized"]
   },
    {
-  "question": "What did the bBear give to the bear?",
+  "question": "What did the bear give to the bear?",
   "answers": ["Bee sting medicine"],
   "options": ["A hot cup of coffee", "A honey sandwich", "A hug"]
   }

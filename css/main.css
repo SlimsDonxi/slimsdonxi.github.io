@@ -240,7 +240,7 @@ margin-left: 75px;
      height:100%;
      width:100%;
     /* max-width: 700px;*/
-     background: #844a9b;
+     background: #935ca9;
      overflow:hidden;
      display:flex;
      flex-direction: column;
@@ -603,10 +603,20 @@ background: linear-gradient(-225deg, #65379B 0%, #886AEA 53%, #6457C6 100%);
 .containerVideo{
    padding:20px;
 }
+.containerVideo svg{
+  height:200px;
+  width:200px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+       border-radius:10px;
+
+}
 
 
 .containerVideo img{
-   border-radius:10px;box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+   border-radius:10px;
+   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
 .posterImage{
