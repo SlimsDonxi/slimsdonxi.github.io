@@ -54,7 +54,7 @@ allVoicesObtained.then(voices => LoadVoicesAvatar());
 
 
 document.querySelectorAll('.voicesLauncher').forEach(x=>{
-  x.onpointerup=,function(){
+  x.onpointerup=function(){
  PlayClick();
  ToggleVoices('10px');
 };
