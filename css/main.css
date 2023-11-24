@@ -117,6 +117,12 @@ box-shadow: 0 5px 0 0 #cb2c3b;
 
 .interactive div{
   pointer-events: none;
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .interactive{
@@ -139,7 +145,7 @@ pointer-events: auto;
     display: flex;
     align-items: center;
     justify-content: center;
-user-select: none;
+
 z-index: 3;
 pointer-events: auto;
 height:60px;
@@ -153,6 +159,12 @@ transform:translateY(-15px);
 user-select: none;
 pointer-events: none;
 margin:0 auto;  
+-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 nav{
@@ -200,6 +212,12 @@ border:0;
 
 #microTranscript{
 pointer-events: none; 
+-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 display: none;
 transform-origin: bottom center;
 position:absolute;
@@ -212,6 +230,12 @@ margin-bottom:100px;
 
 #microSvg{
 pointer-events: none;
+-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 height:20px;
 width:20px;
 margin-left: 75px;
@@ -385,7 +409,9 @@ height: 400px;
 
 
 
-
+#sketchpad{
+  touch-action: none;
+}
 
 
 

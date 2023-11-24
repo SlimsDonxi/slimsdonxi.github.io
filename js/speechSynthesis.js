@@ -271,6 +271,12 @@ function speak(speech)
     if(voices == undefined || voices.length==0){
       alert("没有找到声音，我们正在尝试加载");
        PromiseVoices();
+       var isAndroid = navigator.userAgent.indexOf('Android')>-1 || navigator.userAgent.indexOf('Adr')>-1 //android
+       if(isAndroid){
+        responsiveVoice.cancel();
+        responsiveVoice.speak();
+
+       }
        return;
     }
     synth.cancel();
