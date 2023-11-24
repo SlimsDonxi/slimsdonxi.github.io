@@ -2,7 +2,7 @@ const loader = document.querySelector('#loader');
 const pageHolder = document.querySelector('#pageHolder');
 var currentHolderPageTitle = '';
 var selectedVoice;
-
+const isPortrait = window.matchMedia('(orientation: portrait)').matches;
 
 function pageLoaded() {
   anime({

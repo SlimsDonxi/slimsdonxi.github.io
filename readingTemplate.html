@@ -48,7 +48,7 @@
   </div>
 
     <div id="displayedText"> </div>
-    <div id="displayedPhrase"> </div>
+    <div class="displayedPhrase"> </div>
 
     <div id="interactivesHolder">
       <div class="interactive interactiveDisabled" id="previous" onclick="PlayClick(); Previous()">
@@ -100,39 +100,44 @@
 
 
 
+<div id="scoreSpeech" style="display:flex">
+  <div class="bannerScore  fail row" style="left:0; ">
 
-<div id="scoreSpeech">
-  <div id="bannerScore" class="success">
-    <div id="scoreWrapper">
+   
+      <div class="col-md-6">
+            <dotlottie-player src="animations/AnimationTrophy.lottie" class="animationScore" id="trophy" speed="1" loop autoplay direction="1" mode="normal">     
+            </dotlottie-player>
+            <dotlottie-player  src="animations/AnimationFirst.lottie"  class="animationScore"  speed="1" loop autoplay direction="1" mode="normal">     
+            </dotlottie-player>
 
-      <div class="row">
-        <dotlottie-player src="animations/AnimationTrophy.lottie" class="animationScore" id="trophy" speed="1" loop autoplay direction="1" mode="normal">     
-        </dotlottie-player>
-        <dotlottie-player  src="animations/AnimationFirst.lottie" class="animationScore"  speed="1" loop autoplay direction="1" mode="normal">     
-        </dotlottie-player>
+             <dotlottie-player src="animations/AnimationSecond.lottie"  class="animationScore" speed="1" loop autoplay direction="1" mode="normal">     
+            </dotlottie-player>
 
-         <dotlottie-player src="animations/AnimationSecond.lottie" class="animationScore" speed="1" loop autoplay direction="1" mode="normal">     
-        </dotlottie-player>
+            <dotlottie-player   src="animations/AnimationThird.lottie" style="display:block" class="animationScore"  speed="1" loop autoplay direction="1" mode="normal">     
+            </dotlottie-player>
+             <div class= "comment">
+           <span>You are Awesome!</span>
+        </div>
+      </div>
+       
 
-        <dotlottie-player   src="animations/AnimationThird.lottie" class="animationScore"  speed="1" loop autoplay direction="1" mode="normal">     
-        </dotlottie-player>
-        <div class="col-md-12" style="margin-top: -40px;">
+      <div class="col-md-6">
+       <!-- <div class="col-md-12" style="margin-top: -40px;">
           <span id="score" style="display: none;"></span>
+        </div>-->
+       <div class="containerAudio row">
+        <div class="col-md-12" style="padding:80px;">
+          <audio id="recordingAudio" controls  style="position:absolute; left:50%; transform:translate(-50%);"></audio>  
         </div>
-        <div class="col-md-12" id="comment" style="padding-top:0px; padding-bottom:20px">
-          <span style="line-height: 60px; padding-bottom:50px;">You are<br> Awesome!</span>
+          <div class="col-md-12">
+          <div class="scoreOK" onclick="retractScore()">Continue</div>
         </div>
-        <div  class="col-md-12" style="padding-bottom: 120px;">
-        
-        <audio id="recordingAudio" controls  style="position:absolute; left:50%; transform:translate(-50%);"></audio>
-     
+        </div>
       </div>
 
-        <div class="scoreOK" onclick="retractScore()">Continue</div>
-      </div>
-    </div>
   </div>
 </div>
+
 
 
 <!----------------- STORY QUESTIONS ------------------>
@@ -171,22 +176,22 @@
     <div class="col-md-12 questionAnswer" onclick='lockAnswer(this)'>${x}</div>
 
   </div>
-<div class="footer">
-  <div class="progress">
-    <span id="questionNumbers">0/20</span>
-    <div id="lionContainer">
-      <div class="lionMask">
-      <dotlottie-player src="animations/AnimationLion.lottie"speed="1" loop autoplay direction="1" mode="normal" ></dotlottie-player>
+  <div class="footer">
+    <div class="progress">
+      <span id="questionNumbers">0/20</span>
+      <div id="lionContainer">
+        <div class="lionMask">
+        <dotlottie-player src="animations/AnimationLion.lottie"speed="1" loop autoplay direction="1" mode="normal" ></dotlottie-player>
+      </div>
+     </div>
+    
+     <div class="meat"></div>
+
     </div>
-   </div>
-  
-   <div class="meat"></div>
+
+    <div class="class_box text_align_center disabled " id="confirm" onclick="confirmAnswer();PlayClick();"> Confirm</div>
 
   </div>
-
-  <div class="class_box text_align_center disabled " id="confirm" onclick="confirmAnswer();PlayClick();"> Confirm</div>
-
-</div>
 </div>
 
 

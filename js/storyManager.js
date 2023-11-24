@@ -170,7 +170,7 @@ function StartGeneratin(element)
 
 function PopulateSentence(element)
 {
-    document.querySelector('#displayedPhrase')
+    document.querySelector('.displayedPhrase')
         .innerHTML = '';
 
     var block;
@@ -178,13 +178,13 @@ function PopulateSentence(element)
     {
         if (element[i] != '‎')
         {
-            block = `<button class="word shake" onclick="speakWord(this)"><span>${element[i]}</span></button>`;
+            block = `<button class="word" onclick="speakWord(this)"><span>${element[i]}</span></button>`;
         }
         else
         {
             block = `<button class="word" style="display:none"></button>`;
         }
-        document.querySelector('#displayedPhrase')
+        document.querySelector('.displayedPhrase')
             .innerHTML += block;
 
     }

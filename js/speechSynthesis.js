@@ -27,6 +27,7 @@ var ulContainer = document.querySelector('#voicesHolder .row');
 PromiseVoices();
 
 
+
 function PromiseVoices(){
 
 if(allVoicesObtained == null)
@@ -36,10 +37,11 @@ var allVoicesObtained = new Promise(function resolveVoices(resolve, reject)
   if (voices.length !== 0)
   {
     resolve(voices);
+
   }
   else
   {
-    synth.addEventListener("voiceschanged", function()
+    synth.addEventListener('voiceschanged', function()
     {
       voices = synth.getVoices();
       resolve(voices);
@@ -54,7 +56,7 @@ allVoicesObtained.then(voices => LoadVoicesAvatar());
 document.querySelectorAll('.voicesLauncher').forEach(x=>{
   x.addEventListener('pointerup',function(){
  PlayClick();
- ToggleVoices('10px')
+ ToggleVoices('10px');
 });
 
 });
@@ -228,11 +230,6 @@ function speakLetters()
   document.querySelector("#speakingLoader")
     .style.display = "flex";
 
-  if (currentPressed != null)
-  {
-    currentPressed.style.backgroundColor = "#1a95f4";
-    currentPressed.style.boxShadow = "0px 8px 0px 0px #1a7ac5";
-  }
   sound.addEventListener("ended", function()
   {
 
@@ -253,19 +250,13 @@ function speakWord(thisEl)
 {
 
   currentPressed = thisEl;
-
-  if (currentPressed != null)
-  {
-    currentPressed.style.background = "#1a95f4";
-    currentPressed.style.boxShadow = "0px 8px 0px 0px #1a7ac5";
-  }
-
-  currentPressed.style.background = "#f5971d";
-  currentPressed.style.boxShadow = "0px 8px 0px 0px #f5971d";
-
-
+  pageHolder.querySelectorAll('.wordActive').forEach(x=>{
+    x.classList.remove('wordActive');
+  })
+  thisEl.classList.add('wordActive');
+  
   parseSentences();
-  speak(currentPressed.innerText);
+  speak(thisEl.innerText);
 
 
 }
@@ -284,29 +275,32 @@ function speak(speech)
     }
     synth.cancel();
 
-    var speakObj = new SpeechSynthesisUtterance(speech);
+    var utterance = new SpeechSynthesisUtterance(speech);
 
-    speakObj.voice = selectedVoice;
-    speakObj.rate = 0.8;
+    utterance.voice = selectedVoice;
+    utterance.rate = 0.8;
 
     if (selectedVoice != 'undefined')
     {
-      synth.speak(speakObj);
+      synth.speak(utterance);
+      console.log(speech.innerText);
       SetSpeakerOn();
     }
-    speakObj.addEventListener('end', () =>
-    {
-      SetSpeakerOff();
-
-    })
+   
+    utterance.addEventListener('end', () => {
+    if(currentPressed!=null){
+    currentPressed.classList.remove('wordActive');
+    currentPressed = null;
+   
+  }
+     SetSpeakerOff();  
+  });
 
     return new Promise(resolve =>
     {
-      if (document.querySelector('.word') != null)
-      {
-        speakObj.onend = resolve;
-
-      }
+     
+        utterance.addEventListener('end', () => { resolve;});       
+      
     });
   }
   else
@@ -333,12 +327,11 @@ function SetSpeakerOn()
 
   speaker.style.backgroundColor = "#f5971d";
   speaker.style.boxShadow = "0px 5px 0px 0px #f5971d";
-  if (currentPressed != null)
-  {
 
-    currentPressed.style.backgroundColor = "#f5971d";
-    currentPressed.style.boxShadow = "0px 8px 0px 0px #f5971d";
-  }
+   document.querySelector("#speakerIcon")
+    .style.display = "none";
+  document.querySelector("#speakingLoader")
+    .style.display = "flex";
 
 }
 
@@ -348,28 +341,20 @@ function SetSpeakerOff()
   anime(
   {
     targets: speaker
-    , scale: 1
     , translateY: '-15px'
     , duration: 500
-    
-
   });
 
   speaker.style.backgroundColor = "#1a95f4";
   speaker.style.boxShadow = "0px 5px 0px 0px #1a7ac5";
 
-  if (currentPressed != null)
-  {
 
-    currentPressed.style.backgroundColor = "#1a95f4";
-    currentPressed.style.boxShadow = "0px 8px 0px 0px #1a7ac5";
-  }
 
   document.querySelector("#speakerIcon")
     .style.display = "flex";
   document.querySelector("#speakingLoader")
     .style.display = "none";
-  currentPressed = null;
+
 }
 
 

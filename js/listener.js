@@ -6,14 +6,14 @@ recognition.lang = "en-US";
 recognition.localService = false;
 
 var inputText = pageHolder.querySelector("#displayedText");
-var inputPhrase = pageHolder.querySelector("#displayedPhrase");
+var inputPhrase = pageHolder.querySelector(".displayedPhrase");
 var result;
 var microphone = pageHolder.querySelector('#microphone');
 var scoreSpeechWrapper = pageHolder.querySelector('#scoreSpeech');
 var scoreContainer = pageHolder.querySelector('#scoreSpeechContainer');
 var emojiBackground = pageHolder.querySelector('.emojiContainer');
 var starsContainer = pageHolder.querySelector('#starsContainer');
-var comment = pageHolder.querySelector('#comment');
+var comment = pageHolder.querySelector('.comment');
 var audio = pageHolder.querySelector('#audioPlayer');
 var emojiContainer = pageHolder.querySelector('.emojiContainer');
 var speechTranscript = pageHolder.querySelector('#microTranscript');
@@ -26,13 +26,11 @@ var lottieList = pageHolder.querySelectorAll(".animationScore");
 var tooShort = pageHolder.querySelector('#speechTooShort')
 var scoreDisplayed = false;
 var score = pageHolder.querySelector('#score');
-var bannerScore = pageHolder.querySelector('#bannerScore')
+var bannerScore = pageHolder.querySelector('.bannerScore')
 
 
-console.log('listLotties = '+ lottieList.length)
 
-
-microphone.onpointerdown = () => {
+microphone.addEventListener('pointerdown',function() {
   if (!recognizing) {
      startRecording();
      ActivateButton();
@@ -40,15 +38,15 @@ microphone.onpointerdown = () => {
     recognition.start();
     console.log(recognition);
   }
-};
+});
 
-recognition.onstart =  () => {
+recognition.addEventListener('start', function(){
   recognizing = true;
   audio.src = './audios/startRecord.wav';
   audio.play();
-};
+});
 
-  recognition.onresult =   (event) => {
+  recognition.addEventListener('result', function(event) {
  
   const transcript = Array.from(event.results)
     .map((result) => result[0].transcript)
@@ -66,21 +64,21 @@ recognition.onstart =  () => {
 
 
 
-}
+});
 
 
 
 
 
 
-pageHolder.onpointerup = () => {
+pageHolder.addEventListener('pointerup', function() {
 
   if(!recognizing) return;
 
   stopRecording();
   stopListening();
 
-};
+});
 
 
 
@@ -161,6 +159,17 @@ function CheckResult() {
 
 function setScoreWithColor(el) {
 
+  if(!portrait){
+
+
+    
+
+
+
+
+
+    
+  }
 
   resetScoreSVGs();
 
@@ -198,7 +207,7 @@ function setScoreWithColor(el) {
 
 
   anime({
-    targets: document.querySelector('#bannerScore')
+    targets: document.querySelector('.bannerScore')
     , left: '0%'
     , duration: 300
     , easing:'easeOutQuint'
@@ -292,9 +301,9 @@ function editDistance(s1, s2) {
 }
 
 function removeAllScoreClasses() {
-  pageHolder.querySelector('#bannerScore').classList.remove('success');
-  pageHolder.querySelector('#bannerScore').classList.remove('fail');
-  pageHolder.querySelector('#bannerScore').classList.remove('middle');
+  pageHolder.querySelector('.bannerScore').classList.remove('success');
+  pageHolder.querySelector('.bannerScore').classList.remove('fail');
+  pageHolder.querySelector('.bannerScore').classList.remove('middle');
 }
 
 function failResult() {
@@ -302,7 +311,7 @@ function failResult() {
   lottieList[3].style.display = 'flex';
 
   audio.src = './audios/fail.wav';
-  pageHolder.querySelector('#bannerScore')
+  pageHolder.querySelector('.bannerScore')
     .classList.add('fail');
 
   comment.querySelector('span')
@@ -316,7 +325,7 @@ function mediumResult() {
   lottieList[2].style.display = 'flex';
 
   audio.src = './audios/middle.wav';
-  pageHolder.querySelector('#bannerScore')
+  pageHolder.querySelector('.bannerScore')
     .classList.add('middle');
 
   comment.querySelector('span')
@@ -329,7 +338,7 @@ function winResult() {
   lottieList[1].style.display='flex';
 
   audio.src = './audios/good.mp3';
-  pageHolder.querySelector('#bannerScore')
+  pageHolder.querySelector('.bannerScore')
     .classList.add('success');
   comment.querySelector('span')
     .innerText = "Fantastic work! Keep it up";
@@ -369,7 +378,7 @@ function retractScore() {
   
 
   document.querySelector('#scoreSpeech').style.display = 'none';
-  document.querySelector('#bannerScore').style.left = '-140%';
+  document.querySelector('.bannerScore').style.left = '-140%';
   PlayClick();
   scoreDisplayed = false;
   if(document.querySelector("#backgroundQuestions")!=null){

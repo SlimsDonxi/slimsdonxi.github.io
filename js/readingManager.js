@@ -157,12 +157,12 @@ function GetReadingText(element)
 
 function PopulateSentence(element)
 {
-  displayedPhrase = document.querySelector('#displayedPhrase');
+  displayedPhrase = document.querySelector('.displayedPhrase');
   displayedPhrase.innerHTML = '';
 
   for (var i in element)
   {
-    var block = `<button class="word shake" onpointerup="speakWord(this)"><span>${element[i]}</span></button>`;
+    var block = `<button class="word" onpointerup="speakWord(this)"><span>${element[i]}</span></button>`;
     displayedPhrase.innerHTML += block;
   }
 }
