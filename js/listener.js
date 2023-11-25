@@ -30,21 +30,22 @@ var bannerScore = pageHolder.querySelector('.bannerScore')
 
 
 
-microphone.addEventListener('pointerdown', function() {
+microphone.onpointerdown = () =>{
   if (!recognizing) {
      startRecording();
      ActivateButton();
 
     recognition.start();
     console.log(recognition);
-  }
-});
 
-recognition.onstart = function(){
-  recognizing = true;
-  audio.src = './audios/startRecord.wav';
-  audio.play();
-};
+
+    recognition.onstart = function(){
+      recognizing = true;
+      audio.src = './audios/startRecord.wav';
+      audio.play();
+    };
+
+    
 
   recognition.onresult=function(event) {
  
@@ -66,6 +67,9 @@ recognition.onstart = function(){
 
 };
 
+
+  }
+};
 
 
 
