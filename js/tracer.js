@@ -43,7 +43,7 @@ pageHolder.querySelector('#displayedText').style.display="none";
     // Keep track of the mouse button being pressed and draw a dot at current location
     function sketchpad_mouseDown() {
         mouseDown=1;
-        drawDot(ctx,mouseX,mouseY,30);
+        drawDot(ctx,mouseX,mouseY,20);
     }
 
     // Keep track of the mouse button being released
@@ -57,18 +57,19 @@ pageHolder.querySelector('#displayedText').style.display="none";
         getMousePos(e);
       
         // Draw a dot if the mouse button is currently being pressed
-        drawDot(ctx,mouseX,mouseY,30);
+        drawDot(ctx,mouseX,mouseY,20);
       
     }
 
     // Get the current mouse position relative to the top-left of the canvas
     function getMousePos(e) {
+          var rect = canvas.getBoundingClientRect();
         if (!e)
             var e = event;
 
         if (e.offsetX) {
-            mouseX = e.offsetX;
-            mouseY = e.offsetY;
+            mouseX = (e.clientX - rect.left) / (rect.right - rect.left) * canvas.width;
+            mouseY = (e.clientY - rect.top) / (rect.bottom - rect.top) * canvas.height;
         }
         else if (e.layerX) {
             mouseX = e.layerX;
@@ -82,6 +83,10 @@ pageHolder.querySelector('#displayedText').style.display="none";
       
         // Get the specific canvas element from the HTML document
        canvas = pageHolder.querySelector('#sketchpad');
+
+      
+        canvas.height = canvas.width;
+
         traceHolder = pageHolder.querySelector('.traceHolder');
         // If the browser supports the canvas tag, get the 2d drawing context for this canvas
         if (canvas.getContext)

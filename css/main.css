@@ -117,12 +117,7 @@ box-shadow: 0 5px 0 0 #cb2c3b;
 
 .interactive div{
   pointer-events: none;
-  -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  
 }
 
 .interactive{
@@ -156,15 +151,10 @@ transform:translateY(-15px);
 }
 
 .interactive svg{
-user-select: none;
+
 pointer-events: none;
 margin:0 auto;  
--webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+
 }
 
 nav{
@@ -212,12 +202,7 @@ border:0;
 
 #microTranscript{
 pointer-events: none; 
--webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+
 display: none;
 transform-origin: bottom center;
 position:absolute;
@@ -230,12 +215,7 @@ margin-bottom:100px;
 
 #microSvg{
 pointer-events: none;
--webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+
 height:20px;
 width:20px;
 margin-left: 75px;
@@ -413,9 +393,7 @@ height: 400px;
   flex-direction: column;
 
 }
-
-#displayedText{
-  font-size: 20wv;
+.user-selectNone{
    -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -424,44 +402,66 @@ height: 400px;
     user-select: none;
     pointer-events: none;
 }
-#sketchpad{
 
-  touch-action: none;
-  margin:0 auto;
+
+
+#displayedText{
+   position: absolute;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: -5px;
+
+  color: gray;
+  top: 35%;
+  left: 50%;
+
+
+  transform: translate(-50%, -50%);
+
   font-family: 'Poppins';
 
-  visibility: hidden;
-
-   
-
+  font-size: 115px;
+  padding:50px;
 }
+
+#displayedText span{
+   color: #ef3f58;
+}
+
+
+
+
+
+
 
 .traceHolder{
   position:relative;
   margin-left:50%;
   transform: translate(-50%);
-display:none;
-     width:100%;
+  display:none;
+  width:100%;
+  
 }
-.traceHolder canvas{
+#sketchpad{
 
-   touch-action: none;
- 
+  touch-action: none;
+  font-family: 'Poppins';
+  visibility: hidden;
+  position:absolute;
+  left:50%;
+  top:0;
+  width:100%;
+  max-width: 500px;
+  transform: translate(-50%);
 }
-.traceHolder img{
 
-   -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    pointer-events: none;
-    z-index:9999;
-    position:absolute;
-    left:50%;
-    top:0;
-    transform: translate(-50%);
+.maskTrace{  
+  pointer-events: none;
+  z-index:9999;
+  position:absolute;
+  left:50%;
+  top:0;
+  transform: translate(-50%);
 }
 
 

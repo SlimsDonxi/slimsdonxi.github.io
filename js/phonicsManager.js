@@ -227,7 +227,7 @@ function highlight(el)
   else
   {
     document.querySelector('#displayedText')
-      .innerHTML = `<span style="font-size: 180px">${el}</span>`;
+      .innerHTML = `<span>${el}</span>`;
   }
 }
 
