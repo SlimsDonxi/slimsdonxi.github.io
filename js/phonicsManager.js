@@ -91,6 +91,7 @@ function initReadingTemplate()
   readingTemplate.style.display = 'block';
   InjectScript('speechSynthesis');
   InjectScript('listener');
+  InjectScript('tracer');
 
 }
 
@@ -136,12 +137,13 @@ function LoadReadingVideos()
 
 function GetPhonicsText(element)
 {
-
+document.querySelector('.traceme').style.display="none";
   switch (element)
   {
-
+    
     case 'A ~ Z':
       listSentences = arrayLetters;
+      document.querySelector('.traceme').style.display="block";
       loadAudios();
 
       break;

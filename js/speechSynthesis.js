@@ -225,12 +225,9 @@ function speakLetters()
   var sound = listLetterAudios[currentText];
   sound.play();
 
-  document.querySelector("#speakerIcon")
-    .style.display = "none";
-  document.querySelector("#speakingLoader")
-    .style.display = "flex";
+SetSpeakerOn();
 
-  sound.onend= function()
+  sound.onended= function()
   {
 
     sound.currentTime = 0;
@@ -383,21 +380,15 @@ function replaceString(oldS, newS, fullS)
 
 function Next()
 {
-
+  
+console.log('clicked');
   currentText += 1;
 
-  anime(
-  {
-    targets: nextButton
-    , scale: .85,
-
-    direction: 'alternate'
-    , ease: 'easeInOutQuart'
-    , duration: 500
-  });
+ 
 
   if (currentText < listSentences.length)
   {
+     
 
 
     if (document.querySelector('.word') != null)
@@ -407,6 +398,9 @@ function Next()
     else
     {
       highlight(listSentences[currentText]);
+    
+      if(tracing)
+      initTracerText();
     }
 
     if (currentHolderPageTitle == 'stories')
@@ -417,6 +411,9 @@ function Next()
 
 
     }
+
+    
+    
 
     CheckButtonNextAvailability();
     CheckButtonPreviousAvailability();
@@ -436,13 +433,7 @@ function Previous()
 
   currentText -= 1;
 
-  anime(
-  {
-    targets: prevButton
-    , scale: .85
-    , direction: 'alternate'
-    , duration: 500
-  });
+ 
   CheckButtonNextAvailability();
   CheckButtonPreviousAvailability();
 
@@ -455,6 +446,8 @@ function Previous()
   else
   {
     highlight(listSentences[currentText]);
+     if(tracing)
+      initTracerText();
   }
 
   if (currentHolderPageTitle == 'stories')
