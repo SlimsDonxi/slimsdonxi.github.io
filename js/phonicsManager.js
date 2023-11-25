@@ -140,7 +140,7 @@ function GetPhonicsText(element)
 document.querySelector('.traceme').style.display="none";
   switch (element)
   {
-    
+
     case 'A ~ Z':
       listSentences = arrayLetters;
       document.querySelector('.traceme').style.display="block";
@@ -187,11 +187,6 @@ document.querySelector('.traceme').style.display="none";
 
 
   highlight(listSentences[this.currentText]);
-  setTimeout(() =>
-  {
-    CheckButtonNextAvailability();
-    CheckButtonPreviousAvailability();
-  }, 50)
 
 
 }
