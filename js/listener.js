@@ -30,7 +30,7 @@ var bannerScore = pageHolder.querySelector('.bannerScore')
 
 
 
- pageHolder.querySelector('#microphone').onpointerdown = function() {
+microphone.addEventListener('pointerdown', function() {
   if (!recognizing) {
      startRecording();
      ActivateButton();
@@ -38,7 +38,7 @@ var bannerScore = pageHolder.querySelector('.bannerScore')
     recognition.start();
     console.log(recognition);
   }
-};
+});
 
 recognition.onstart = function(){
   recognizing = true;

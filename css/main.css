@@ -83,7 +83,7 @@ font-weight:bold;
  #readingTemplateHolder{
    position:fixed;
     
-     height:100vh;
+     height:100%;
      width:100%;
      top:0; 
    background:#f8f8f8;
