@@ -6,7 +6,12 @@ var factorProgress;
 var selectedAnswer;
 var arrayQuestions = 0;
 var currentProgress = 0;
+
 var lottieList = pageHolder.querySelectorAll(".animationScore");
+
+var questionButton =   pageHolder.querySelector(".questionText");
+
+var speakingQuestion = false;
 
 
 function startStoryQuestions()
@@ -23,8 +28,6 @@ function startStoryQuestions()
 
 function GetQuestionsList()
 {
-
-
 	document.querySelector('#questionOptions')
 		.innerHTML = '';
 	confirmer.style.display = 'none';
@@ -38,6 +41,7 @@ function GetQuestionsList()
 }
 
 
+
 function GenerateQuestion()
 {
 	var ulQuestions = document.querySelector('#questionOptions')
@@ -48,8 +52,7 @@ function GenerateQuestion()
 	{
 
 		currentQuestion = arrayQuestions[counterQuestions];
-		document.querySelector('#questionText')
-			.innerText = currentQuestion.question;
+		questionButton.querySelector('span').innerText = currentQuestion.question;
 
 
 		currentQuestion.options.forEach(x =>
@@ -69,15 +72,17 @@ function GenerateQuestion()
 		correctAnswer.innerText = currentQuestion.answers;
 		var randomPosition = Math.floor(Math.random() * currentQuestion.options.length + 1);
 		ulQuestions.insertBefore(correctAnswer, ulQuestions.childNodes[randomPosition]);
-		speakOption(document.querySelector('#questionText'));
+		speakQuestionOption(questionButton.querySelector('span').innerText,true);
 	}
 }
 
 
 function lockAnswer(el)
 {
+	console.log("HEDIRABEK");
+	 questionButton.classList.remove('questionTextActive');
+	speakQuestionOption(el.innerText,false);
 
-	speakOption(el);
 	var options = document.querySelectorAll('.questionAnswer');
 	console.log('options:'+ options.length);
 	Array.from(options)
@@ -94,40 +99,29 @@ function lockAnswer(el)
 		.classList.remove('disabled');
 	document.querySelector('#confirm')
 		.classList.remove('enabled');
-
 	
-
 }
 
 
-
-function speakOption(el)
+function speakQuestionOption(el, bool)
 {
-	synth.cancel();
-	var speakObj = new SpeechSynthesisUtterance(el.innerText);
-	speakObj.voice = selectedVoice;
-
-	synth.speak(speakObj);
+	 speakingQuestion = bool? true:false;
+	 speak(el)
 }
-
 
 function confirmAnswer()
 {
-
 	if (currentQuestion.answers.includes(selectedAnswer.innerText)) correctAnswer();
 	else wrongAnswer();
 }
 
 
-
 function correctAnswer()
 {
-
 	counterQuestions++;
 
 	selectedAnswer.classList.add('optionCorrect');
 	
-
 	document.querySelector('#confirm')
 		.classList.remove('enabled');
 	document.querySelector('#confirm')
@@ -161,7 +155,7 @@ function correctAnswer()
 		
 		 document.querySelector('#recordingAudio').style.display='none';
 		  
-		 document.querySelector('#bannerScore').classList.add('trophySuccess');
+		 document.querySelector('.bannerScore').classList.add('trophySuccess');
 		 updateSlider(true);
 
 		 setTimeout(()=>{
@@ -216,7 +210,7 @@ function fadeOutScore()
 		scorequestionContainer.style.display = 'none';
 		document.querySelector('#backgroundQuestions')
 			.style.display = 'none';
-		synth.cancel();
+		responsiveVoice.cancel();
 
 	})
 
@@ -281,5 +275,5 @@ function DisplayConfirmer()
 
 function ResetScoreQuestions(){
 	document.querySelector('#recordingAudio').style.display='block';
-	 document.querySelector('#bannerScore').classList.remove('trophySuccess')
+	 document.querySelector('.bannerScore').classList.remove('trophySuccess')
 }

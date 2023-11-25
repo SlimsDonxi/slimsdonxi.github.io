@@ -178,7 +178,7 @@
                         switch (error.code || error.name) {
                             case 'PERMISSION_DENIED':
                             case 'PermissionDeniedError':
-                                HZRecorder.throwError('用户拒绝提供信息。');
+                               // HZRecorder.throwError('用户拒绝提供信息。');
                                 break;
                             case 'NOT_SUPPORTED_ERROR':
                             case 'NotSupportedError':
@@ -194,7 +194,8 @@
                         }
                     });
             } else {
-                HZRecorder.throwErr('当前浏览器不支持录音功能。'); return;
+               // HZRecorder.throwErr('当前浏览器不支持录音功能。');
+                 return;
             }
         }
     }

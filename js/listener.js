@@ -30,7 +30,10 @@ var bannerScore = pageHolder.querySelector('.bannerScore')
 
 
 
-microphone.onpointerdown = () =>{
+microphone.addEventListener('mousedown', function(){
+
+  console.log('MicroPhoneDow');
+
   if (!recognizing) {
      startRecording();
      ActivateButton();
@@ -40,6 +43,7 @@ microphone.onpointerdown = () =>{
 
 
     recognition.onstart = function(){
+        console.log('recognition Started');
       recognizing = true;
       audio.src = './audios/startRecord.wav';
       audio.play();
@@ -49,6 +53,7 @@ microphone.onpointerdown = () =>{
 
   recognition.onresult=function(event) {
  
+       console.log('Got Result');
   const transcript = Array.from(event.results)
     .map((result) => result[0].transcript)
     .join("");
@@ -69,7 +74,7 @@ microphone.onpointerdown = () =>{
 
 
   }
-};
+});
 
 
 
@@ -79,6 +84,7 @@ pageHolder.onpointerup = function() {
 
   if(!recognizing) return;
 
+ console.log('stopping listening');
   stopRecording();
   stopListening();
 

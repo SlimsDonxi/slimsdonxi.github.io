@@ -1,17 +1,37 @@
 
-#questionText{
+.questionText{
   margin-top: 20px;
     padding:20px;
-transition:all .2 ease-out;
-  background:#fff;
-   border-radius:25px;
-     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-     font-size: 15px;
-     font-weight:bold;
+    transition:all .2 ease-out;
+   
+   border-radius:15px;
+     box-shadow: 0px 8px 0px 0px #2076b7;
+    
      background:#2396ee;
-     color:white;
+  display:flex;
+  gap:10px;
      maring-right:40px;
+      transition: all .2s
 }
+.questionText svg{
+  height:30px;
+  width:30px;
+;
+}
+.questionText span{
+   font-size: 15px;
+     font-weight:bold;
+      color:white;
+}
+
+.questionTextActive{
+   box-shadow: 0px 0px 0px 0px transparent;
+   transform:translateY(8px);
+   background: #fdb10e;
+
+}
+
+
 #questionCounter{
    margin-top: 100px;
     padding:20px;
@@ -62,7 +82,8 @@ color:#fff;
   }
 .optionCorrect{
   color:#fff;
-  background:#4fb22d;
+ 
+ background: #6cd023;
       box-shadow: 0px 0px 0px #d1a110;
    transform: translateY(7px);
 }

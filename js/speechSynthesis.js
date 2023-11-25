@@ -37,7 +37,7 @@ var allVoicesObtained = new Promise(function resolveVoices(resolve, reject)
   }
   else
   {
-    synth.onvoiceschanged = function()
+    responsiveVoice.onvoiceschanged = function()
     {
       voices = responsiveVoice.getVoices();
       resolve(voices);
@@ -173,7 +173,6 @@ function setVoice(evt)
   evt.classList.add('voiceSelected');
 
 
-  console.log('Selected= '+ evt.innerText);
   selectedVoice = voices.filter(function(voice)
   {
  
@@ -236,6 +235,7 @@ function speakWord(thisEl)
 
 function speak(speech)
 {
+  console.log(speech);
   if(responsiveVoice.voiceSupport()) {
 
   responsiveVoice.cancel();
@@ -254,14 +254,21 @@ function speak(speech)
 
 function voiceStartCallback(){
   SetSpeakerOn();
+  if(questionButton !=null)
+    if(speakingQuestion)
+  questionButton.classList.add('questionTextActive');
 }
 
 function voiceEndCallback(){
+
   SetSpeakerOff(); 
   if(currentPressed!=null){
     currentPressed.classList.remove('wordActive');
     currentPressed = null;
   }
+  console.log('sdfsdfsdfsd');
+if(speakingQuestion)
+  questionButton.classList.remove('questionTextActive');
 
    
 }

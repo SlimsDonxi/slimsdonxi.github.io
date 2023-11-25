@@ -163,9 +163,9 @@
       </g>
     </svg>
   </div>
-   <div  class="cancel voicesLauncher shake">
+   <!--<div  class="cancel voicesLauncher shake">
     <svg class="icon user-selectNone" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+   
 
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="ic_fluent_person_voice_24_filled" fill="#fff" fill-rule="nonzero">
@@ -176,9 +176,14 @@
       </svg>
      
     </div>
+-->
 
-
-  <div id="questionText" onclick="speakOption(this)">Question 1</div>
+  <div class="questionText" onclick="speakQuestionOption(this.querySelector('span').innerText, true)">
+    <svg height="100px" width="100px"  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#fff">
+          <path d="M18.008 2.987C19.34 2.225 21 3.187 21 4.723v12.554c0 1.535-1.659 2.498-2.992 1.736L14 16.723V5.277l4.008-2.29zM12 6H7a5 5 0 0 0-1 9.9v3.6a2.5 2.5 0 0 0 5 0V16h1V6z" clip-rule="evenodd" />
+    </svg>
+    <span></span>
+  </div>
   <hr>
   <div id="questionOptions">
     <div class="col-md-12 questionAnswer" onclick='lockAnswer(this)'>${x}</div>
@@ -190,7 +195,7 @@
   <div class="footer">
     <div class="progress user-selectNone">
       <span id="questionNumbers">0/20</span>
-      <div id="lionContainer user-selectNone">
+      <div id="lionContainer" class="user-selectNone">
         <div class="lionMask user-selectNone">
         <dotlottie-player src="animations/AnimationLion.lottie"speed="1" loop autoplay direction="1" mode="normal" ></dotlottie-player>
       </div>
@@ -210,14 +215,14 @@
     Recording was too short, please try again!
   </div>
 
-
+<!--
  <div id="voicesHolder">
         <div class="row" style="margin-top: 20px;">
           <button id="confirmVoice" onclick="ToggleVoices('100%'); PlayClick();" class="col-12 scoreOk"  >OK</button>
         </div>
         <div class="row">  
         </div>
-  </div>
+  </div>-->
 
 </div>
 

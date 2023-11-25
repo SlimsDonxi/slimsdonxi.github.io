@@ -28,7 +28,6 @@ function initPhonicsPage()
   arrayToHighlight = ["ch", "at", "oo", "sh"]
 
 
-console.log("Loader true");
 
   fetch('./readingTemplate.html')
     .then(res => res.text())
@@ -72,7 +71,7 @@ function initPhonics(el)
   currentText = 0;
 
   displayedtext = readingTemplate.querySelector('#displayedText');
-
+  pageHolder.querySelector('.navButtonTracer').style.display='block';
   anime(
   {
     targets: readingTemplate
