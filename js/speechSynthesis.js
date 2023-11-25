@@ -1,8 +1,3 @@
-var synth = window.speechSynthesis || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition;
-
-synth.defaultPrevented = true;
-synth.interimResults = true;
-synth.continuous = false;
 
 var nextButton = document.querySelector('#next');
 var prevButton = document.querySelector('#previous');
@@ -26,14 +21,15 @@ var ulContainer = document.querySelector('#voicesHolder .row');
 
 PromiseVoices();
 
-
+responsiveVoice.setDefaultVoice("US English Female");
+responsiveVoice.setDefaultRate(0.8);
 
 function PromiseVoices(){
 
 if(allVoicesObtained == null)
 var allVoicesObtained = new Promise(function resolveVoices(resolve, reject)
 {
-  voices = synth.getVoices();
+  voices = responsiveVoice.getVoices();
   if (voices.length !== 0)
   {
     resolve(voices);
@@ -43,7 +39,7 @@ var allVoicesObtained = new Promise(function resolveVoices(resolve, reject)
   {
     synth.onvoiceschanged = function()
     {
-      voices = synth.getVoices();
+      voices = responsiveVoice.getVoices();
       resolve(voices);
     };
   }
@@ -105,23 +101,17 @@ function voiceSettings()
 var counter=0;
   voices.forEach((voice) =>
   {
-   
-    if (voice.lang.includes("en-GB") || voice.lang.includes("en-US") || voice.lang.includes("en-CA"))
-    {    
-        // if(arrayWanted.includes(voice.name)) {
+       
+        if(voice.name.includes('English')){
         voices.push(voice);
      
         insertNewVoice(voice,counter);
-          counter++; 
-    }
-
+        counter++;  
+      }
   })
 
    
-  selectedVoice = voices.filter(function(voice)
-  {
-    return voices[0];
-  })[0];
+  selectedVoice = voices[0].name;
 
  
   voiceIndex = voices.indexOf(voices.filter(function(voice)
@@ -187,32 +177,16 @@ function setVoice(evt)
   selectedVoice = voices.filter(function(voice)
   {
  
-    return voice.name.includes(evt.innerText.split(' ')[0]);
+    return voice.name.includes(evt.innerText.split(' ')[0].name);
 
   })[0];
 
-  synth.cancel();
-  var dummyUtterance = new SpeechSynthesisUtterance(`Hey there!My name is ${evt.innerText.split(' ')[0]}`);
-  dummyUtterance.voice = selectedVoice;
-  synth.speak(dummyUtterance);
+  responsiveVoice.cancel();
+  responsiveVoice.speak(`Hey there!My name is ${evt.innerText.split(' ')[0]}`,selectedVoice);
+ 
 }
 
 
-
-async function parseSentences()
-{
-
-  await showReadingText();
-}
-
-async function showReadingText(textPart)
-{
-
-  return new Promise(resolve =>
-  {
-    resolve();
-  });
-}
 
 var currentPressed;
 
@@ -225,7 +199,7 @@ function speakLetters()
   var sound = listLetterAudios[currentText];
   sound.play();
 
-SetSpeakerOn();
+ SetSpeakerOn();
 
   sound.onended= function()
   {
@@ -237,7 +211,7 @@ SetSpeakerOn();
 
 function speakSentences()
 {
-  parseSentences();
+ 
   speak(listSentences[currentText].toLowerCase());
 }
 
@@ -252,7 +226,7 @@ function speakWord(thisEl)
   })
   thisEl.classList.add('wordActive');
   
-  parseSentences();
+
   speak(thisEl.innerText);
 
 
@@ -262,58 +236,40 @@ function speakWord(thisEl)
 
 function speak(speech)
 {
+  if(responsiveVoice.voiceSupport()) {
 
-  if ('speechSynthesis' in window)
-  {
-    if(voices == undefined || voices.length==0){
-      alert("没有找到声音，我们正在尝试加载");
-       PromiseVoices();
-       var isAndroid = navigator.userAgent.indexOf('Android')>-1 || navigator.userAgent.indexOf('Adr')>-1 //android
-       if(isAndroid){
-        responsiveVoice.cancel();
-        responsiveVoice.speak();
+  responsiveVoice.cancel();
+  responsiveVoice.speak(speech, selectedVoice,parameters )
 
-       }
-       return;
-    }
-    synth.cancel();
 
-    var utterance = new SpeechSynthesisUtterance(speech);
-
-    utterance.voice = selectedVoice;
-    utterance.rate = 0.8;
-
-    if (selectedVoice != 'undefined')
-    {
-      synth.speak(utterance);
-      console.log(speech.innerText);
-      SetSpeakerOn();
-    }
-   
-    utterance.onend =() => {
-    if(currentPressed!=null){
-    currentPressed.classList.remove('wordActive');
-    currentPressed = null;
-   
-  }
-     SetSpeakerOff();  
-  };
-
-    return new Promise(resolve =>
-    {
-     
-        utterance.addEventListener('end', () => { resolve;});       
-      
-    });
-  }
-  else
+}
+ else
   {
     // Speech Synthesis Not Supported 😣
     alert("Sorry, your browser doesn't support text to speech!");
   }
 
+
 }
 
+function voiceStartCallback(){
+  SetSpeakerOn();
+}
+
+function voiceEndCallback(){
+  SetSpeakerOff(); 
+  if(currentPressed!=null){
+    currentPressed.classList.remove('wordActive');
+    currentPressed = null;
+  }
+
+   
+}
+
+var parameters ={
+  onstart: voiceStartCallback,
+    onend: voiceEndCallback
+}
 
 
 function SetSpeakerOn()
@@ -324,8 +280,6 @@ function SetSpeakerOn()
     , scale: 1.1
     , translateY: '-50px'
     , duration: 500
-    
-
   });
 
   speaker.style.backgroundColor = "#f5971d";
@@ -350,8 +304,6 @@ function SetSpeakerOff()
 
   speaker.style.backgroundColor = "#1a95f4";
   speaker.style.boxShadow = "0px 5px 0px 0px #1a7ac5";
-
-
 
   document.querySelector("#speakerIcon")
     .style.display = "flex";
