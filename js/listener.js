@@ -78,7 +78,7 @@ stopListening();
 };
 
 recognition.onerror=(event)=>{
-  document.write(event.error);
+  pageHolder.write(event.error);
 }
 
 
