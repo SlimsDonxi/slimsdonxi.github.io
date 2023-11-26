@@ -40,7 +40,7 @@ microphone.onpointerdown = function(){
     recognition.start();
 
     console.log(recognition);
-   // startRecording();
+    startRecording();
   }
 };
 
