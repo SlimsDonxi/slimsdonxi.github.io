@@ -29,7 +29,7 @@ var recognizing = false;
 var result;
 
 
-microphone.onpointerdown = function(){
+microphone.onclick = function(){
 
   console.log('MicroPhoneDow');
 
