@@ -254,10 +254,12 @@ function speak(speech)
 
 function voiceStartCallback(){
   SetSpeakerOn();
-  if(questionButton !=null)
-    if(speakingQuestion)
-  questionButton.classList.add('questionTextActive');
-}
+
+    if(speakingQuestion!= null && speakingQuestion)
+  
+       questionButton.classList.add('questionTextActive');
+      }
+
 
 function voiceEndCallback(){
 
@@ -266,8 +268,9 @@ function voiceEndCallback(){
     currentPressed.classList.remove('wordActive');
     currentPressed = null;
   }
-  console.log('sdfsdfsdfsd');
-if(speakingQuestion)
+  
+
+if(speakingQuestion!= null && speakingQuestion)
   questionButton.classList.remove('questionTextActive');
 
    

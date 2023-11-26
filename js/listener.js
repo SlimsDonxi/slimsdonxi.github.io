@@ -73,6 +73,7 @@ recognition.onresult =  function(event) {
 
 pageHolder.onpointerup = function() {
 console.log('stopping listening');
+if(recorder!=null)
 stopRecording();
 stopListening();
 };
@@ -81,7 +82,7 @@ stopListening();
 function stopListening() {
 
 console.log('isRecognizing  '+ recognizing);
-  recognition.stop();
+recognition.stop();
 
   if (recognizing) {
 
@@ -89,21 +90,15 @@ console.log('isRecognizing  '+ recognizing);
     audio.play();
     ResetButton();
    
-
      onResult();
   
-
     setTimeout(() => {
       if (speechText.innerText.length <= 1)
         speechTooShort();
 
     }, 200)
-
-
     recognizing = false;
   }
-
-
 
 }
 
@@ -118,9 +113,9 @@ function onResult() {
       console.log(result);
     }
   }, 2000);
-
-
 }
+
+
 
 function CheckResult() {
 
@@ -385,6 +380,7 @@ function retractScore() {
         }
 
         function stopRecording() {
+          if(recorder!=null)
             recorder.stop();
              recorder.play(audioRecording);
         }
