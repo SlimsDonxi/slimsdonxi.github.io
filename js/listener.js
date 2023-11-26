@@ -34,7 +34,7 @@ microphone.onpointerdown = function(){
   console.log('MicroPhoneDow');
 
   if (!recognizing) {
-    // startRecording();
+     startRecording();
      ActivateButton();
 
     recognition.start();
@@ -73,7 +73,7 @@ recognition.onresult =  function(event) {
 
 pageHolder.onpointerup = function() {
 console.log('stopping listening');
-//stopRecording();
+stopRecording();
 stopListening();
 };
 
@@ -373,7 +373,7 @@ function retractScore() {
 
 
 
-/* var recorder;
+ var recorder;
 
         var audioRecording = document.querySelector('#recordingAudio');
 
@@ -392,7 +392,7 @@ function retractScore() {
         function playRecording() {
            
 
-        }*/
+        }
 
 
 
