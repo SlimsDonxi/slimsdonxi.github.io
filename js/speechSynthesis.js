@@ -239,7 +239,7 @@ function speak(speech, params)
   if(responsiveVoice.voiceSupport()) {
 
   responsiveVoice.cancel();
-  responsiveVoice.speak(speech, selectedVoice,params )
+  responsiveVoice.speak(speech, selectedVoice,params)
 
 
 }

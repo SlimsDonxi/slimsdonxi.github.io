@@ -34,14 +34,13 @@ microphone.onpointerdown = function(){
   console.log('MicroPhoneDow');
 
   if (!recognizing) {
-     startRecording();
+   
      ActivateButton();
 
     recognition.start();
 
-  
     console.log(recognition);
-
+   // startRecording();
   }
 };
 
@@ -77,6 +76,10 @@ if(recorder!=null)
 stopRecording();
 stopListening();
 };
+
+recognition.onerror=(event)=>{
+  document.write(event.error);
+}
 
 
 function stopListening() {
@@ -369,26 +372,22 @@ function retractScore() {
 
 
  var recorder;
+ var audioRecording = document.querySelector('#recordingAudio');
 
-        var audioRecording = document.querySelector('#recordingAudio');
+  function startRecording() {
+    HZRecorder.get(function (rec) {
+    recorder = rec;
+    recorder.start();
+    });
+    }
 
-        function startRecording() {
-            HZRecorder.get(function (rec) {
-                recorder = rec;
-                recorder.start();
-            });
+  function stopRecording() {
+     if(recorder!=null)
+         recorder.stop();
+          recorder.play(audioRecording);
         }
 
-        function stopRecording() {
-          if(recorder!=null)
-            recorder.stop();
-             recorder.play(audioRecording);
-        }
-
-        function playRecording() {
-           
-
-        }
+     
 
 
 
