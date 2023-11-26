@@ -79,7 +79,7 @@ function GenerateQuestion()
 
 function lockAnswer(el)
 {
-	console.log("HEDIRABEK");
+
 	 questionButton.classList.remove('questionTextActive');
 	speakQuestionOption(el.innerText,false);
 
@@ -106,7 +106,8 @@ function lockAnswer(el)
 function speakQuestionOption(el, bool)
 {
 	 speakingQuestion = bool? true:false;
-	 speak(el)
+
+	 speak(el,parametersQuestion)
 }
 
 function confirmAnswer()
@@ -126,8 +127,7 @@ function correctAnswer()
 		.classList.remove('enabled');
 	document.querySelector('#confirm')
 		.classList.add('disabled');
-	/*
-	 */
+	
 
 	if (counterQuestions == arrayQuestions.length)
 	{
@@ -183,6 +183,28 @@ function correctAnswer()
 
 
 
+}
+
+
+var parametersQuestion ={
+  onstart: voiceStartCallbackQuestions,
+    onend: voiceEndCallbackQuestions
+}
+
+
+
+function voiceStartCallbackQuestions(){
+
+console.log('QUESTIOSN STARTED');
+    if(speakingQuestion)
+     questionButton.classList.add('questionTextActive');
+  }
+
+
+function voiceEndCallbackQuestions(){
+
+console.log('QUESTIOSN ENDED');
+   questionButton.classList.remove('questionTextActive');   
 }
 
 

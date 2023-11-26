@@ -211,7 +211,7 @@ function speakLetters()
 function speakSentences()
 {
  
-  speak(listSentences[currentText].toLowerCase());
+  speak(listSentences[currentText].toLowerCase(),parameters);
 }
 
 
@@ -226,20 +226,20 @@ function speakWord(thisEl)
   thisEl.classList.add('wordActive');
   
 
-  speak(thisEl.innerText);
+  speak(thisEl.innerText, parameters);
 
 
 }
 
 
 
-function speak(speech)
+function speak(speech, params)
 {
-  console.log(speech);
+
   if(responsiveVoice.voiceSupport()) {
 
   responsiveVoice.cancel();
-  responsiveVoice.speak(speech, selectedVoice,parameters )
+  responsiveVoice.speak(speech, selectedVoice,params )
 
 
 }
@@ -253,28 +253,28 @@ function speak(speech)
 }
 
 function voiceStartCallback(){
+    console.log('VOICE STARTED BASIC');
   SetSpeakerOn();
-
-    if(speakingQuestion!= null && speakingQuestion)
+ if(currentPressed!=null){
+    currentPressed.classList.add('wordActive');
   
-       questionButton.classList.add('questionTextActive');
+  }
       }
+
 
 
 function voiceEndCallback(){
 
   SetSpeakerOff(); 
+  console.log('VOICE ENDED BASIC');
   if(currentPressed!=null){
     currentPressed.classList.remove('wordActive');
     currentPressed = null;
   }
-  
-
-if(speakingQuestion!= null && speakingQuestion)
-  questionButton.classList.remove('questionTextActive');
-
-   
+    
 }
+
+
 
 var parameters ={
   onstart: voiceStartCallback,
@@ -343,7 +343,7 @@ function replaceString(oldS, newS, fullS)
 function Next()
 {
   
-console.log('clicked');
+
   currentText += 1;
 
  
