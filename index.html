@@ -1,4 +1,4 @@
-<html lang="en-US">
+<html lang="en-US" allow="microphone">
 
   <head>
     <!-- basic -->
@@ -218,8 +218,6 @@
 
 
     <audio id="audioClick"></audio>
-
-
     <script src="js/navigation.js"></script>
     <script src="js/AppManager.js"></script>
     <script src='js/Search.js'></script>
@@ -228,7 +226,10 @@
   </body>
 
   <script>
+   navigator.mediaDevices.getUserMedia({
+  audio: true,
 
+});
   </script>
 
 </html>

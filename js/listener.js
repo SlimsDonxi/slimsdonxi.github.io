@@ -1,24 +1,21 @@
-var recognition = new(window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition)();
+var recognition  = new webkitSpeechRecognition() || new SpeechRecognition();
 
 recognition.interimResults = true;
-recognition.continuous = true;
+recognition.continuous = false;
 recognition.lang = "en-US";
 recognition.localService = false;
 
 var inputText = pageHolder.querySelector("#displayedText");
 var inputPhrase = pageHolder.querySelector(".displayedPhrase");
-var result;
-var microphone = pageHolder.querySelector('#microphone');
+
+
 var scoreSpeechWrapper = pageHolder.querySelector('#scoreSpeech');
 var scoreContainer = pageHolder.querySelector('#scoreSpeechContainer');
-var emojiBackground = pageHolder.querySelector('.emojiContainer');
-var starsContainer = pageHolder.querySelector('#starsContainer');
 var comment = pageHolder.querySelector('.comment');
 var audio = pageHolder.querySelector('#audioPlayer');
-var emojiContainer = pageHolder.querySelector('.emojiContainer');
 var speechTranscript = pageHolder.querySelector('#microTranscript');
 var speechText = pageHolder.querySelector('#microText');
-var recognizing = false;
+
 var score;
 var micIcon = pageHolder.querySelector("#micIcon");
 var micLoader = pageHolder.querySelector("#micLoader");
@@ -27,31 +24,36 @@ var tooShort = pageHolder.querySelector('#speechTooShort')
 var scoreDisplayed = false;
 var score = pageHolder.querySelector('#score');
 var bannerScore = pageHolder.querySelector('.bannerScore')
+var microphone = pageHolder.querySelector('#microphone');
+var recognizing = false;
+var result;
 
 
-
-microphone.addEventListener('mousedown', function(){
+microphone.onpointerdown = function(){
 
   console.log('MicroPhoneDow');
 
   if (!recognizing) {
-     startRecording();
+    // startRecording();
      ActivateButton();
 
     recognition.start();
+
+  
     console.log(recognition);
 
+  }
+};
 
-    recognition.onstart = function(){
-        console.log('recognition Started');
+
+recognition.onstart= function(){
       recognizing = true;
+      console.log('recognition Started');
       audio.src = './audios/startRecord.wav';
       audio.play();
-    };
+};
 
-    
-
-  recognition.onresult=function(event) {
+recognition.onresult =  function(event) {
  
        console.log('Got Result');
   const transcript = Array.from(event.results)
@@ -67,35 +69,18 @@ microphone.addEventListener('mousedown', function(){
     duration:800
   })
   speechText.innerText = result.toLowerCase();
-
-
-
 };
-
-
-  }
-});
-
-
-
-
 
 pageHolder.onpointerup = function() {
-
-  if(!recognizing) return;
-
- console.log('stopping listening');
-  stopRecording();
-  stopListening();
-
+console.log('stopping listening');
+//stopRecording();
+stopListening();
 };
-
-
-
 
 
 function stopListening() {
 
+console.log('isRecognizing  '+ recognizing);
   recognition.stop();
 
   if (recognizing) {
@@ -388,7 +373,7 @@ function retractScore() {
 
 
 
- var recorder;
+/* var recorder;
 
         var audioRecording = document.querySelector('#recordingAudio');
 
@@ -407,7 +392,7 @@ function retractScore() {
         function playRecording() {
            
 
-        }
+        }*/
 
 
 
