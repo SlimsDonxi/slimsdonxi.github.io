@@ -31,15 +31,10 @@ var result;
 
 microphone.onpointerdown = function(){
 
-
-
   if (!recognizing) {
-   
-     ActivateButton();
-
-    recognition.start();
-
-    startRecording();
+      recognition.start();
+      ActivateButton();
+      startRecording();
   }
 };
 
@@ -78,6 +73,7 @@ stopListening();
 
 recognition.onerror=(event)=>{
  console.log('eventError: '+ event.error);
+ document.querySelector('.log').innerText+= event.error;
 }
 
 
