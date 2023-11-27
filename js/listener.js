@@ -31,7 +31,7 @@ var result;
 
 microphone.onpointerdown = function(){
 
-  console.log('MicroPhoneDow');
+
 
   if (!recognizing) {
    
@@ -39,7 +39,6 @@ microphone.onpointerdown = function(){
 
     recognition.start();
 
-    console.log(recognition);
     startRecording();
   }
 };
