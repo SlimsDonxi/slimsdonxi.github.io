@@ -73,7 +73,7 @@ stopListening();
 
 recognition.onerror=(event)=>{
  console.log('eventError: '+ event.error);
- document.querySelector('.log').innerText+= event.error;
+ alert(event.error);
 }
 
 
