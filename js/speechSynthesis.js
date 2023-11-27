@@ -1,4 +1,4 @@
-/*
+
 var nextButton = document.querySelector('#next');
 var prevButton = document.querySelector('#previous');
 var listAvatarsMales=[];
@@ -453,4 +453,3 @@ function CheckButtonPreviousAvailability()
     prevButton.setAttribute("onclick", "Previous()");
   }
 }
-*/
