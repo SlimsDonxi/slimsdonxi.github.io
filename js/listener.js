@@ -110,6 +110,8 @@ function onResult() {
     
       CheckResult();
       console.log(result);
+    }else{
+       recognizing = false;
     }
   }, 2000);
 }
