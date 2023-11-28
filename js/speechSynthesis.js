@@ -8,6 +8,11 @@ var listAvatars=[];
 var voices = [];
 window.utterances = [];
 var voiceIndex;
+
+
+
+
+/*
 var arrayWanted = [
   "Microsoft Clara Online (Natural) - English (Canada)"
   , "Microsoft Liam Online (Natural) - English (Canada)"
@@ -97,7 +102,7 @@ if(voices.length ==0) {
 
 
 function voiceSettings()
-{/*
+{
 var counter=0;
   voices.forEach((voice) =>
   {
@@ -118,10 +123,10 @@ var counter=0;
   {
     return voice == selectedVoice
   }));
-*/
+
 
 }
-/*
+
 function insertNewVoice(voice, index){
 
         var avatar = listAvatars[index];
@@ -134,7 +139,7 @@ function insertNewVoice(voice, index){
 
          // ulContainer.innerHTML += block;
           
-       /*   var voiceAvatarContainerlist = ulContainer.querySelectorAll('.voiceAvatarContainer');
+          var voiceAvatarContainerlist = ulContainer.querySelectorAll('.voiceAvatarContainer');
         
           var voiceAvatarContainer = voiceAvatarContainerlist[voiceAvatarContainerlist.length-1];
 
@@ -147,8 +152,8 @@ function insertNewVoice(voice, index){
     voiceAvatarContainer.appendChild(listAvatars[randomPosition]);
       }
 
- ulContainer.querySelectorAll('.voiceContainer')[0].classList.add('voiceSelected');*/
-/*}*/
+ ulContainer.querySelectorAll('.voiceContainer')[0].classList.add('voiceSelected');
+}
 
 function setVoiceText(voice){
     var name = replaceString("Microsoft", "", voice.name);
@@ -185,7 +190,7 @@ function setVoice(evt)
  
 }
 
-
+*/
 
 var currentPressed;
 
@@ -208,13 +213,6 @@ function speakLetters()
   };
 }
 
-function speakSentences()
-{
- 
-  speak(listSentences[currentText].toLowerCase(),parameters);
-}
-
-
 
 function speakWord(thisEl)
 {
@@ -232,24 +230,117 @@ function speakWord(thisEl)
 }
 
 
+function speakSentences()
+{
+ 
+  speak(listSentences[currentText].toLowerCase(),parameters);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var synth = window.speechSynthesis || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition;
+
+synth.defaultPrevented = true;
+synth.interimResults = true;
+synth.continuous = false;
+synth.localService = false;
+
+var voices;
+
+window.speechSynthesis.onvoiceschanged = function () {
+   voices = window.speechSynthesis.getVoices()
+  voices // Array of voices or empty if none are installed
+}
+
+let timeout = 0
+const maxTimeout = 2000
+const interval = 250
+
+const loadVoices = (cb) => {
+   voices = window.speechSynthesis.getVoices()
+
+  if (voices.length > 0) {
+    return cb(undefined, voices)
+  }
+
+  if (timeout >= maxTimeout) {
+    return cb(new Error('loadVoices max timeout exceeded'))
+  }
+
+  timeout += interval
+  setTimeout(() => loadVoices(cb), interval)
+}
+
+loadVoices((err, voices) => {
+  if (err) return console.error(err)
+
+    voices.forEach(x=>{console.log(x)});
+console.log(voices.length);
+
+})
+
+ const getVoicebyLang = lang => voices.filter(voice => voice.name.startsWith(lang));
+
+
+
+const german = getVoicebyLang('de')
+
+
 
 function speak(speech, params)
 {
 
-  if(responsiveVoice.voiceSupport()) {
 
-  responsiveVoice.cancel();
-  responsiveVoice.speak(speech, selectedVoice,params)
+const utterance = new SpeechSynthesisUtterance(speech)
 
-
+if (utterance.text !== speech) {
+  // I found no browser yet that does not support text
+  // as constructor arg but who knows!?
+  utterance.text = speech
 }
- else
-  {
-    // Speech Synthesis Not Supported 😣
-    alert("Sorry, your browser doesn't support text to speech!");
-  }
 
+utterance.voice = german.name // ios required
+utterance.lang = german.lang // // Android Chrome required
+utterance.voiceURI = german.voiceURI // Who knows if required?
 
+utterance.pitch = 1
+utterance.volume = 1
+
+// API allows up to 10 but values > 2 break on all Chrome
+utterance.rate = 1
+
+speechSynthesis.speak(utterance)
 }
 
 function voiceStartCallback(){
