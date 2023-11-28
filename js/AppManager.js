@@ -3,7 +3,7 @@ const pageHolder = document.querySelector('#pageHolder');
 var currentHolderPageTitle = '';
 var selectedVoice = 'UK English Male';
 
-
+/*
 function Check(){
   return location.protocol === 'https:'
 }
@@ -12,7 +12,7 @@ if ( !Check()){
   var _newLink = _location.replace('http:', 'https:');
   location = _newLink ;
 }
-
+*/
 function pageLoaded() {
   anime({
     targets: document.querySelector('#mainLoader')
