@@ -88,7 +88,7 @@
         <div class="row">
 
 
-          <div class="col-md-4 shake" onmouseup=" PlayClick(); loadPage('pageHolder','phonics');">
+          <div class="col-md-4 col-lg-4 shake" onmouseup=" PlayClick(); loadPage('pageHolder','phonics');">
             <div class=" class_box" style="background:#ffb400; box-shadow:0 10px 0 0 #d89a07">
 
               <dotlottie-player class="IconAnimation" src="animations/AnimationAlphabet.lottie" style="transform: scale(1.2);" speed="1" loop autoplay direction="1" mode="normal"></dotlottie-player>
@@ -98,7 +98,7 @@
 
           </div>
 
-          <div class="col-md-4 margi_bottom shake" onmouseup=" PlayClick(); loadPage('pageHolder','reading');">
+          <div class="col-md-4 col-lg-4 margi_bottom shake" onmouseup=" PlayClick(); loadPage('pageHolder','reading');">
             <div class="class_box " style="background:#ed4e2e; box-shadow:0 10px 0 0 #d4462a">
 
               <dotlottie-player class="IconAnimation" src="animations/AnimationReading.lottie" style="transform: scale(.85);" speed="1" loop autoplay direction="1" mode="normal"></dotlottie-player>
@@ -107,7 +107,7 @@
           </div>
 
 
-          <div class="col-md-4 margi_bottom shake" onmouseup=" PlayClick(); loadPage('pageHolder','stories');;">
+          <div class="col-md-4 col-lg-4 margi_bottom shake" onmouseup=" PlayClick(); loadPage('pageHolder','stories');;">
             <div class="class_box text_align_center" style="background:#69c8ec; box-shadow:0 10px 0 0 #48abcf">
               <dotlottie-player class="IconAnimation" src="animations/AnimationStory.lottie" style="transform: scale(1.2);" speed="1" loop autoplay direction="1" mode="normal"></dotlottie-player>
               <h4>Stories</h4>
@@ -116,14 +116,14 @@
 
 
 
-          <div class="col-md-4 margi_bottom shake" onmouseup=" PlayClick(); loadPage('pageHolder','songs');">
+          <div class="col-md-4 col-lg-4 margi_bottom shake" onmouseup=" PlayClick(); loadPage('pageHolder','songs');">
             <div class="class_box text_align_center" style="background:#5568c9; box-shadow:0 10px 0 0 #4558b6">
               <dotlottie-player class="IconAnimation" src="animations/AnimationSongs.lottie" speed="1" loop autoplay direction="1" mode="normal"></dotlottie-player>
               <h4>Songs</h4>
             </div>
           </div>
 
-          <div class="col-md-4 margi_bottom shake" style="overflow:hidden" onmouseup=" PlayClick();loadPage('pageHolder','video');">
+          <div class="col-md-4 col-lg-4  margi_bottom shake" style="overflow:hidden" onmouseup=" PlayClick();loadPage('pageHolder','video');">
             <div class="class_box text_align_center" style="background:#a958cf; box-shadow:0 10px 0 0 #8945a8">
               <dotlottie-player class="IconAnimation" src="animations/AnimationPanda.lottie" style="transform: scale(3);"speed="1" loop autoplay direction="1" mode="normal"></dotlottie-player>
 
@@ -134,21 +134,9 @@
 
 
 
-  <div id="speechTooShort">
-    Recording was too short, please try again!
-  </div>
-
-
- <div id="voicesHolder">
-        <div class="row" style="margin-top: 20px;">
-          <button id="confirmVoice shake" onclick="ToggleVoices('100%'); PlayClick();" class="col-12 scoreOk"  >OK</button>
-        </div>
-        <div class="row">  
-        </div>
-  </div>
-
 </div>
  
+
 
 
 
@@ -178,10 +166,12 @@
                      <h3>Games</h3>
                     
                   </div>     
-               </div>-->
+               </div>
         </div>
       </div>
-    </div>
+    </div>-->
+
+    
 
     <audio id="audioPlayer"></audio>
 
@@ -189,19 +179,27 @@
 
     </div>
     <div id="loader">
-    <div>
-        <dotlottie-player src="animations/AnimationLoader.lottie"speed="1" loop autoplay direction="1" mode="normal" ></dotlottie-player>
-        <h2>Loading</h2>
-   </div>
+      <div>
+          <dotlottie-player src="animations/AnimationLoader.lottie"speed="1" loop autoplay direction="1" mode="normal" ></dotlottie-player>
+          <h2>Loading</h2>
+     </div>
     </div>
+
+
 
     <audio id="audioClick"></audio>
     <script src="js/navigation.js"></script>
     <script src="js/AppManager.js"></script>
     <script src='js/Search.js'></script>
+     <script src='js/audioPlayer.js'></script>
      <script type="text/javascript" src="js/HZRecorder.js"></script>
      <script src="https://code.responsivevoice.org/responsivevoice.js?key=uvbqlqDY"></script>
   </body>
 
+  <script>
+   navigator.mediaDevices.getUserMedia({
+  audio: true
+});
+  </script>
 
 </html>

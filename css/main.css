@@ -383,11 +383,7 @@ display:none;
 
 }
 
-.animationScore{
-display: none;
-height: 400px;
 
-}
 
 .traceContainer{
   margin:0 auto;
@@ -467,30 +463,36 @@ height: 400px;
 }
 
 
+.animationScore{
+height: 400px;
+margin:0 auto;
+display:none;
+flex-direction: column;
+justify-content: center;
+margin-top:-200px;
+}
 @media only screen and (min-width: 350px){
 
 
 .bannerScore .animationScore:nth-child(1){
-  margin-top: -250px;
-  margin-left: 60px;
+  margin-top:-220px;
   transform:scale(.6);
   margin-bottom:-100px;
 
 }
 
 .bannerScore .animationScore:nth-child(2){
-  margin-top: -250px;
-  margin-left: 60px;
+  margin-top:-240px;
   transform:scale(.8);
-  margin-bottom:-100px;
+  margin-bottom:-80px;
 
 }
 
 .bannerScore .animationScore:nth-child(3){
-  margin-top: -250px;
+   margin-top:-240px;
+  margin-bottom:-80px;
   transform:scale(.7);
-  margin-bottom:-90px;
-    margin-left: 50px;
+
 
 }
 
@@ -498,26 +500,27 @@ height: 400px;
 transform: scale(.7);
  margin-top: -220px;
 margin-bottom:-120px;
-  margin-left: 50px;
+
 }
 .comment{
-    
-      margin-top:20px;
+    margin:0 auto;
+   margin-bottom:-50px;
+   
     
 }
 
 .comment span{
   font-size: 25px;
-  line-height: 30px;
+  line-height: 35px;
+
+
+
 }
 
-.containerAudio{
- 
- margin-top:-80px;
-}
+
 }
 
-@media only screen and (min-width: 765px){
+@media only screen and (min-width: 768px){
 
 
 .bannerScore .animationScore:nth-child(1){
@@ -549,7 +552,7 @@ margin-bottom:-120px;
 
 .comment{
     margin-lefT:200px;
-      margin-top:80px;
+      margin-top:120px;
 
 }
 
@@ -558,11 +561,18 @@ margin-bottom:-120px;
   line-height: 30px;
 }
 .containerAudio{
- 
-  padding:100px;
-  margin-left:-200px;
+  display:flex;
+
+  flex-direction: column;
+  justify-content: left;
+
+  margin-lefT:-150px;
+
 
 }
+
+
+
 }
 
 .comment{
@@ -607,8 +617,7 @@ margin-bottom:-120px;
     font-size: 22px;
     font-weight: bold;
     border-radius: 15px;
-    margin-left:50%;
-    transform: translate(-50%);
+    margin:0 auto;
     height:auto;
     }
 
@@ -629,7 +638,7 @@ margin-bottom:-120px;
 
 .bannerScore{
 
-  height: 300px;
+  height: 350px;
 
 }
 
@@ -667,24 +676,6 @@ margin-bottom:-120px;
 
 
 
-#scoreSpeechContainer{
-    overflow:hidden;
-    margin:0 auto;
-     height:450px;
-     width:300px;
-     border-radius:50px;
-     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px; 
-    background:#fff;
-
-}
-.emojiContainer{
-padding-top:10px; 
-    height:125px;
-    background:transparent;
-display:flex;
-align-items: center;
-justify-content: center;
-}
 
 
 .success{
@@ -949,16 +940,111 @@ max-width: 95%;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+    .player{
+      background-color: #5ccab4;
+      width: 250px;
+      height: 190px;
+      border-radius: 15px;
+      box-shadow: 0 8px 0 0 #46a794 ;
+      margin:0 auto;
+      display: block;
+      transform: scale(.5);
+    }
+    .record{
+      height: 175px;
+      width: 175px;
+      background-color: #181312;
+      border-radius: 50%;
+      position: absolute;
+      top:10px;
+      left: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .record:before{
+      content: "";
+      position: absolute;
+      height: 135px;
+      width: 135px;
+      border:5px solid transparent;
+      border-top:5px solid #2C2424;
+      border-bottom:5px solid #2C2424;
+      border-radius: 50%;
+    }
+    .record:after{
+      content: "";
+      position: absolute;
+      height: 95px;
+      width: 95px;
+      border:5px solid transparent;
+      border-top:5px solid #2C2424;
+      border-bottom:5px solid #2C2424;
+      border-radius: 50%;
+    }
+    .label{
+      background-color: #181312;
+      height: 15px;
+      width: 15px;
+      border:20px solid #FF8E00;
+      border-radius: 50%;
+    }
+    .screw{
+      background-color: #181312;
+      height: 17px;
+      width: 17px;
+      border:10px solid #2c2c2c;
+      border-radius: 50%;
+      position: absolute;
+      top:-16px;
+      left: -16px;
+    }
+    .stick{
+      height: 90px;
+      width: 6px;
+      background-color: #ffffff;
+      position: absolute;
+      top:25px;
+      right: 25px;
+      transition: 1s;
+      transform-origin: top; 
+    }
+    .play{
+      transform:rotate(30deg);
+      transform-origin: top; 
+      transition: 1s;
+    }
+    .stick:before{
+      content: "";
+      height: 40px;
+      width: 6px;
+      background-color: #ffffff;
+      position: absolute;
+      transform: rotate(30deg);
+      bottom:-36px;
+      right: 10px;
+    }
+    .stick:after{
+      content: "";
+      position: absolute;
+      height: 0;
+      width: 10px;
+      border-top: 18px solid #B2AEA6;
+      border-left:2px solid transparent;
+      border-right:2px solid transparent;
+      transform: rotate(30deg);
+      top:108px;
+      right: 12.5px;
+    }
+   
+    .on{
+      animation: rotate 3s 1s linear infinite;
+    }
+    @keyframes rotate{
+      100%{
+        transform: rotate(360deg);
+      }
+    }
+   
+ 
 

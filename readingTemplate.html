@@ -113,43 +113,53 @@
 
 
 
+
 <div id="scoreSpeech">
   <div class="bannerScore  fail row" style="left:0; ">
 
    
       <div class="col-md-6">
-            <dotlottie-player src="animations/AnimationTrophy.lottie" class="animationScore user-selectNone" id="trophy" speed="1" loop autoplay direction="1" mode="normal">     
+            <dotlottie-player src="animations/AnimationTrophy.lottie"  class="animationScore user-selectNone" id="trophy" speed="1" loop autoplay direction="1" mode="normal">     
             </dotlottie-player>
             <dotlottie-player  src="animations/AnimationFirst.lottie"  class="animationScore user-selectNone"  speed="1" loop autoplay direction="1" mode="normal">     
             </dotlottie-player>
 
-             <dotlottie-player src="animations/AnimationSecond.lottie"  class="animationScore user-selectNone" speed="1" loop autoplay direction="1" mode="normal">     
+             <dotlottie-player src="animations/AnimationSecond.lottie"   class="animationScore user-selectNone" speed="1" loop autoplay direction="1" mode="normal">     
             </dotlottie-player>
 
-            <dotlottie-player   src="animations/AnimationThird.lottie" style="display:block" class="animationScore user-selectNone"  speed="1" loop autoplay direction="1" mode="normal">     
+            <dotlottie-player   src="animations/AnimationThird.lottie" style="display:flex"  class="animationScore user-selectNone"  speed="1" loop autoplay direction="1" mode="normal">     
             </dotlottie-player>
-             <div class= "comment user-selectNone">
+             <div class= "comment user-selectNone" >
            <span class="user-selectNone">You are Awesome!</span>
         </div>
       </div>
        
 
-      <div class="col-md-6">
+      <div class="col-md-6 containerAudio">
        <!-- <div class="col-md-12" style="margin-top: -40px;">
           <span id="score" style="display: none;"></span>
         </div>-->
-       <div class="containerAudio row">
-        <div class="col-md-12" style="padding:80px;">
-          <audio id="recordingAudio" controls  style="position:absolute; left:50%; transform:translate(-50%);"></audio>  
-        </div>
-          <div class="col-md-12">
-          <div class="scoreOK" onclick="retractScore()">Continue</div>
-        </div>
+    
+            <div class="player">
+                <div class="record">
+                  <div class="label"></div>
+                </div>
+                <div class="stick">
+                  <div class="screw"></div>
+                </div>
+               
+            </div>
+           <audio  id="recordingAudio" src="https://static.muzlo.cc/download/9293/Riverdale-Cast-feat-KJ-Apa-Camila-Mendes-Lili-Reinhart_-_Mad-World.mp3" style="display:none;" ></audio>
+        
+         
+
+        
+          <div class="scoreOK" style="margin-top:-20px"onclick="retractScore()">Continue</div>
+   
         </div>
       </div>
 
   </div>
-</div>
 
 
 

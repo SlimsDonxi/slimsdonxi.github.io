@@ -132,9 +132,9 @@ function insertNewVoice(voice, index){
             <div class="voiceInfoContainer">${setVoiceText(voice)}</div>
           </div>`
 
-          ulContainer.innerHTML += block;
+         // ulContainer.innerHTML += block;
           
-          var voiceAvatarContainerlist = ulContainer.querySelectorAll('.voiceAvatarContainer');
+          /*var voiceAvatarContainerlist = ulContainer.querySelectorAll('.voiceAvatarContainer');
         
           var voiceAvatarContainer = voiceAvatarContainerlist[voiceAvatarContainerlist.length-1];
 
@@ -147,7 +147,7 @@ function insertNewVoice(voice, index){
     voiceAvatarContainer.appendChild(listAvatars[randomPosition]);
       }
 
- ulContainer.querySelectorAll('.voiceContainer')[0].classList.add('voiceSelected');
+ ulContainer.querySelectorAll('.voiceContainer')[0].classList.add('voiceSelected');*/
 }
 
 function setVoiceText(voice){
