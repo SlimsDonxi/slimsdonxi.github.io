@@ -13,7 +13,6 @@ if ( !Check()){
   location = _newLink ;
 }
 
-
 function pageLoaded() {
   anime({
     targets: document.querySelector('#mainLoader')

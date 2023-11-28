@@ -906,15 +906,11 @@ font-size: clamp(16px, 2vw, 18px);
 
 .PictureStoryContainer span{
   margin:0 auto;
-
-margin-left:50%;
- transform: translate(-50%);
   color:white;
    border-bottom-left-radius:20px;
     border-bottom-right-radius:20px;
-width:400px;
-padding-left:20px;
-max-width: 95%;
+    width:400px;
+
    margin-top:-25px;
    background:#ef3248;
    display:inline-flex; 
