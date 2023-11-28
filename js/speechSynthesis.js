@@ -191,7 +191,30 @@ function setVoice(evt)
 }
 
 */
+let timeout = 0
+const maxTimeout = 2000
+const interval = 250
 
+const loadVoices = (cb) => {
+  const voices = speechSynthesis.getVoices()
+
+  if (voices.length > 0) {
+    return cb(undefined, voices)
+  }
+
+  if (timeout >= maxTimeout) {
+    return cb(new Error('loadVoices max timeout exceeded'))
+  }
+
+  timeout += interval
+  setTimeout(() => loadVoices(cb), interval)
+}
+
+loadVoices((err, voices) => {
+  if (err) return console.error(err)
+
+  voices // voices loaded and available
+})
 var currentPressed;
 
 
@@ -213,6 +236,13 @@ function speakLetters()
   };
 }
 
+function speakSentences()
+{
+ 
+  speak(listSentences[currentText].toLowerCase(),parameters);
+}
+
+
 
 function speakWord(thisEl)
 {
@@ -230,117 +260,24 @@ function speakWord(thisEl)
 }
 
 
-function speakSentences()
-{
- 
-  speak(listSentences[currentText].toLowerCase(),parameters);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var synth = window.speechSynthesis || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition;
-
-synth.defaultPrevented = true;
-synth.interimResults = true;
-synth.continuous = false;
-synth.localService = false;
-
-var voices;
-
-window.speechSynthesis.onvoiceschanged = function () {
-   voices = window.speechSynthesis.getVoices()
-  voices // Array of voices or empty if none are installed
-}
-
-let timeout = 0
-const maxTimeout = 2000
-const interval = 250
-
-const loadVoices = (cb) => {
-   voices = window.speechSynthesis.getVoices()
-
-  if (voices.length > 0) {
-    return cb(undefined, voices)
-  }
-
-  if (timeout >= maxTimeout) {
-    return cb(new Error('loadVoices max timeout exceeded'))
-  }
-
-  timeout += interval
-  setTimeout(() => loadVoices(cb), interval)
-}
-
-loadVoices((err, voices) => {
-  if (err) return console.error(err)
-
-    voices.forEach(x=>{console.log(x)});
-console.log(voices.length);
-
-})
-
- const getVoicebyLang = lang => voices.filter(voice => voice.name.startsWith(lang));
-
-
-
-const german = getVoicebyLang('de')
-
-
 
 function speak(speech, params)
 {
 
+  if(responsiveVoice.voiceSupport()) {
 
-const utterance = new SpeechSynthesisUtterance(speech)
+  responsiveVoice.cancel();
+  responsiveVoice.speak(speech, selectedVoice,params)
 
-if (utterance.text !== speech) {
-  // I found no browser yet that does not support text
-  // as constructor arg but who knows!?
-  utterance.text = speech
+
 }
+ else
+  {
+    // Speech Synthesis Not Supported 😣
+    alert("Sorry, your browser doesn't support text to speech!");
+  }
 
-utterance.voice = german.name // ios required
-utterance.lang = german.lang // // Android Chrome required
-utterance.voiceURI = german.voiceURI // Who knows if required?
 
-utterance.pitch = 1
-utterance.volume = 1
-
-// API allows up to 10 but values > 2 break on all Chrome
-utterance.rate = 1
-
-speechSynthesis.speak(utterance)
 }
 
 function voiceStartCallback(){
