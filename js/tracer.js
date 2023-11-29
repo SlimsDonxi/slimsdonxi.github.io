@@ -12,7 +12,7 @@ function initTracerText(){
  pageHolder.querySelector('canvas').getContext('2d').clearRect(0, 0,  pageHolder.querySelector('canvas').width,  pageHolder.querySelector('canvas').height);
  var url = replaceString('1','',listSentences[currentText]);
 
- pageHolder.querySelector('.maskTrace').src=`../letters/${url}.svg`;
+ pageHolder.querySelector('.maskTrace').style.backgroundImage=`url('../letters/${url}.svg')`;
 if(pageHolder.querySelector('#displayedText').style.display!='none')
 pageHolder.querySelector('#displayedText').style.display="none";
 
