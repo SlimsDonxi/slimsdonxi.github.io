@@ -1,8 +1,24 @@
 import EasySpeech from './EasySpeech.js'
 
+
+
+function Check(){
+  return location.protocol === 'https:'
+}
+if ( !Check()){
+  var _location = location.toString();
+  var _newLink = _location.replace('http:', 'https:');
+  location = _newLink ;
+}
+
+
+
+
+
+
 document.body.onload = async () => {
- 
- 
+  createLog()
+  appendFeatures(EasySpeech.detect())
   const initialized = await init()
   await populateVoices(initialized)
   initInputs(initialized)
@@ -15,13 +31,16 @@ let filteredVoices
 
 const values = {
   voice: undefined,
-  
+  rate: undefined,
+  pitch: undefined,
+  volume: undefined,
   text: undefined
 }
 
 const inputs = {
-
- 
+  volume: undefined,
+  rate: undefined,
+  pitch: undefined,
   text: undefined,
   language: undefined,
   voice: undefined
@@ -30,7 +49,32 @@ const inputs = {
 function initInputs (initialized) {
   if (!initialized) return
 
-  
+  const volumeValue = document.querySelector('.volume-value')
+  inputs.volume = document.querySelector('#volume-input')
+  inputs.volume.disabled = false
+  inputs.volume.addEventListener('change', e => {
+    values.volume = Number(e.target.value)
+    volumeValue.removeChild(volumeValue.firstChild)
+    volumeValue.appendChild(document.createTextNode(values.volume))
+  })
+
+  const rateValue = document.querySelector('.rate-value')
+  inputs.rate = document.querySelector('#rate-input')
+  inputs.rate.disabled = false
+  inputs.rate.addEventListener('change', e => {
+    values.rate = Number(e.target.value) / 10
+    rateValue.removeChild(rateValue.firstChild)
+    rateValue.appendChild(document.createTextNode(values.rate))
+  })
+
+  const pitchValue = document.querySelector('.pitch-value')
+  inputs.pitch = document.querySelector('#pitch-input')
+  inputs.pitch.disabled = false
+  inputs.pitch.addEventListener('change', e => {
+    values.pitch = Number(e.target.value)
+    pitchValue.removeChild(pitchValue.firstChild)
+    pitchValue.appendChild(document.createTextNode(values.pitch))
+  })
 
   inputs.text = document.querySelector('#text-input')
   inputs.text.disabled = false
@@ -40,27 +84,45 @@ function getValues () {
   return { ...values }
 }
 
+function createLog () {
+  logBody = document.querySelector('.log-body')
+  EasySpeech.debug(debug)
+}
 
+function debug (arg) {
+  logBody.appendChild(textNode(arg))
+}
 
 async function init () {
- 
+  const header = document.querySelector('.init-status-header')
+  const loader = document.querySelector('.init-status-loader')
+  const text = document.querySelector('.init-status-text')
+  const body = document.querySelector('.init-status-body')
 
   let success
   let message
   let summary
   try {
     success = await EasySpeech.init()
-  
+    message = 'Successfully intialized 🎉'
+    summary = 'Successful'
   } catch (e) {
     success = false
-  
+    message = e.message
+    summary = 'Failed'
     const speakBtn = document.querySelector('.speak-btn')
     speakBtn.classList.add('disabled')
     speakBtn.setAttribute('disabled', '')
   } finally {
-  
+    const bg = success
+      ? 'bg-success'
+      : 'bg-danger'
 
-  
+    loader.classList.add('d-none')
+    header.classList.remove('bg-info')
+    header.classList.add(bg)
+    text.textContent = summary
+    body.appendChild(textNode(message))
   }
 
   return success
@@ -69,7 +131,7 @@ async function init () {
 async function populateVoices (initialized) {
   if (!initialized) return
 
-
+  debug('find unique languages...')
   const voices = EasySpeech.voices()
   const languages = new Set()
   let defaultLang
@@ -85,7 +147,8 @@ async function populateVoices (initialized) {
     }
   })
 
-
+  debug(`found ${languages.size} languages`)
+  debug('populate languages to select component')
 
   inputs.language = document.querySelector('#lang-select')
   Array.from(languages).sort().forEach(lang => {
@@ -104,7 +167,7 @@ async function populateVoices (initialized) {
     inputs.language.appendChild(option)
   })
 
-
+  debug('attach events, cleanup')
   inputs.voice = document.querySelector('#voice-select')
 
   inputs.language.addEventListener('change', (e) => updateVoiceSelect(voices, e.target.value))
@@ -174,27 +237,48 @@ function initSpeak (inititalized) {
 
   speakButton.addEventListener('click', async event => {
     speakButton.disabled = true
-    
+    allInputs.forEach(input => {
+      input.disabled = true
+    })
+
     const { pitch, rate, voice, volume } = getValues()
     const text = inputs.text.value
 
     try {
       await EasySpeech.speak({ text, pitch, rate, voice, volume })
     } catch (e) {
-  
+      debug(e.message)
     } finally {
       speakButton.disabled = false
-     
+      allInputs.forEach(input => {
+        input.disabled = false
+      })
     }
   })
 }
 
+function appendFeatures (detected) {
+  const featuresTarget = document.querySelector('.features')
+  const features = {}
 
+  Object.entries(detected).forEach(([key, value]) => {
+    if (typeof value === 'object') {
+      features[key] = value.toString()
+    } else if (typeof value === 'function') {
+      features[key] = value.name
+    } else {
+      features[key] = value
+    }
+  })
+
+  const text = document.createTextNode(JSON.stringify(features, null, 2))
+  featuresTarget.appendChild(text)
+}
 
 function initEvents (initialized) {
   if (!initialized) return
 
-  const logEvent = e => console.log(`event: ${e.type}`)
+  const logEvent = e => debug(`event: ${e.type}`)
   EasySpeech.on({
     boundary: logEvent,
     start: logEvent,
