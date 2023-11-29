@@ -191,33 +191,46 @@ function setVoice(evt)
 }
 
 */
-let timeout = 0
-const maxTimeout = 2000
-const interval = 250
 
-const loadVoices = (cb) => {
-  const voices = speechSynthesis.getVoices()
+var currentPressed;
+PromiseVoices();
 
-  if (voices.length > 0) {
-    return cb(undefined, voices)
+responsiveVoice.setDefaultVoice("US English Female");
+responsiveVoice.setDefaultRate(0.8);
+responsiveVoice.enableEstimationTimeout = false;
+
+function PromiseVoices(){
+
+if(allVoicesObtained == null)
+var allVoicesObtained = new Promise(function resolveVoices(resolve, reject)
+{
+  voices = responsiveVoice.getVoices();
+  if (voices.length !== 0)
+  {
+    resolve(voices);
+
   }
-
-  if (timeout >= maxTimeout) {
-    return cb(new Error('loadVoices max timeout exceeded'))
+  else
+  {
+    responsiveVoice.onvoiceschanged = function()
+    {
+      voices = responsiveVoice.getVoices();
+      resolve(voices);
+    };
   }
+});
 
-  timeout += interval
-  setTimeout(() => loadVoices(cb), interval)
+allVoicesObtained.then(/*voices => LoadVoicesAvatar()*/);
 }
 
-loadVoices((err, voices) => {
-  if (err) return console.error(err)
 
-  voices // voices loaded and available
-})
-var currentPressed;
+document.querySelectorAll('.voicesLauncher').forEach(x=>{
+  x.onpointerup=function(){
+ PlayClick();
+ ToggleVoices('10px');
+};
 
-
+});
 function speakLetters()
 {
   speaker.style.backgroundColor = "#f5971d";

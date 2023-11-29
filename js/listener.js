@@ -1,7 +1,7 @@
 var recognition  = new webkitSpeechRecognition() || new SpeechRecognition();
 
 recognition.interimResults = true;
-recognition.continuous = false;
+recognition.continuous = true;
 recognition.lang = "en-US";
 recognition.localService = false;
 
@@ -48,24 +48,28 @@ recognition.onstart= function(){
 
 recognition.onresult =  function(event) {
  
-       console.log('Got Result');
+       console.log(event.results);
   const transcript = Array.from(event.results)
     .map((result) => result[0].transcript)
     .join("");
 
   result = transcript;
  
+ if(  speechTranscript.style.display != 'block'){
   speechTranscript.style.display = 'block';
   anime({
     targets:speechTranscript,
     opacity:'1',
     duration:800
   })
-  speechText.innerText = result.toLowerCase();
+}
+ var append = replaceString('.',' ',result).toLowerCase();
+ append= replaceString('aye ','I',result);
+  speechText.innerText = append;
 };
 
 pageHolder.onpointerup = function() {
-console.log('stopping listening');
+
 if(recorder!=null)
 stopRecording();
 stopListening();
