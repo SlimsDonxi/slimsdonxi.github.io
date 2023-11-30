@@ -51,16 +51,12 @@ function initTracerText(){
 
 
 
- fetch(`../letters/${url}.svg`) 
-    .then(res => res.text())
-    .then(data =>
-    {
-        pageHolder.querySelector('.tracingMask').innerHTML='';
-        pageHolder.querySelector('.tracingMask').innerHTML=data;
+
         pageHolder.querySelector('.tracingMask').style.width=canvas.width;
         pageHolder.querySelector('.tracingMask').style.height=canvas.height;
+        pageHolder.querySelector('.tracingMask').style.backgroundImage = listPhonicsTracing[currentText];
 
-    });
+ 
 
         if(pageHolder.querySelector('#displayedText').style.display!='none')
         pageHolder.querySelector('#displayedText').style.display="none";

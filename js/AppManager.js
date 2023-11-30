@@ -5,6 +5,8 @@ var selectedVoice = 'UK English Male';
 
 
 
+
+
 function Check(){
   return location.protocol === 'https:'
 }
@@ -13,6 +15,18 @@ if ( !Check()){
   var _newLink = _location.replace('http:', 'https:');
   location = _newLink ;
 }
+
+
+
+
+Array.from(document.querySelectorAll('.lobbyLauncher')).forEach(x=>{
+  x.onpointerup=function(){
+ 
+    PlayClick();
+    loadPage('pageHolder',x.getAttribute('data'))
+  }
+})
+
 
 
 function pageLoaded() {
@@ -25,13 +39,20 @@ function pageLoaded() {
 }
 
 function loadPage(holder, url) {
+
+
+
   DisplayLoader(true);
   pageHolder.innerHTML = '';
   pageHolder.innerText = '';
-  document.querySelector('#loader')
-    .style.display = 'flex';
+
+
+  document.querySelector('#loader').style.display = 'flex';
 
   currentHolderPageTitle = url;
+
+  console.log(url);
+
   fetch(`./${url}.html`)
     .then(res => res.text())
     .then(data => {
@@ -50,14 +71,13 @@ function loadPage(holder, url) {
 
 
 
-        document.querySelector(`#${scriptText}`)
-          .addEventListener('load', function() {
+        document.querySelector(`#${scriptText}`).addEventListener('load', function() {
+          console.log('script loaded');
               initPageScripts(url);
 
-            }
-
-          );
-      } else {
+            });
+      } 
+      else {
         initPageScripts(url);
       }
 

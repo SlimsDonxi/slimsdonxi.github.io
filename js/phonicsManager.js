@@ -10,78 +10,75 @@ var displayedText;
 var readingTemplate;
 var listSentences;
 var listLetterAudios = [];
+var listPhonicsTracing = [];
+
+
+
 
 
 function initPhonicsPage()
 {
-  arrayLetters = ["a", "t", "i", "p", "n", "ck", "e", "h", "r", "m", "d", "g", "o", "u", "l", "f", "b", "ai", "j", "oa", "ie", "ee", "or", "z", "w", "ng", "v", "oo", "oo1", "y", "x", "ch", "sh", "th", "th1", "qu", "ou", "oi", "ue", "er", "ar"];
-  arrayAt = ["bat", "cat", "fat", "hat", "lat", "mat", "pat"];
-  arrayCh = ["chip", "chow", "chew", "chin", "chop", "chess", "chic", "chase", "chalk", "china", "chirp", "chest", "catch", "batch", "fetch", "watch", "match"];
-  arrayOO = ["too", "zoo", "goo", "boo", "poo", "moo", "goop", "tool", "fool", "pool", "root", "loot", "moon", "roof", "doom", "boom", "groom", "vroom", "goose", "cookie", "poor", "good", "look", "took", "book", "foot"
-    , "hook"
-  ];
-  arraySh = ["shake", "shade", "shape", "shack", "she", "sheep", "sheet", "shed", "shy", "shine", "shell", "shin", "shoe", "shut", "shop", "ship", "shot", "ash", "bash", "dash", "flash", "trash", "cash", "mesh", "flesh", "fish", "wash", "push"];
+ 
 
-  listLetterAudios = [];
-  currentText = 0;
+      arrayLetters = ["a", "t", "i", "p", "n", "ck", "e", "h", "r", "m", "d", "g", "o", "u", "l", "f", "b", "ai", "j", "oa", "ie", "ee", "or", "z", "w", "ng", "v", "oo", "oo1", "y", "x", "ch", "sh", "th", "th1", "qu", "ou", "oi", "ue", "er", "ar"];
+      arrayAt = ["bat", "cat", "fat", "hat", "lat", "mat", "pat"];
+      arrayCh = ["chip", "chow", "chew", "chin", "chop", "chess", "chic", "chase", "chalk", "china", "chirp", "chest", "catch", "batch", "fetch", "watch", "match"];
+      arrayOO = ["too", "zoo", "goo", "boo", "poo", "moo", "goop", "tool", "fool", "pool", "root", "loot", "moon", "roof", "doom", "boom", "groom", "vroom", "goose", "cookie", "poor", "good", "look", "took", "book", "foot"
+        , "hook"
+      ];
+      arraySh = ["shake", "shade", "shape", "shack", "she", "sheep", "sheet", "shed", "shy", "shine", "shell", "shin", "shoe", "shut", "shop", "ship", "shot", "ash", "bash", "dash", "flash", "trash", "cash", "mesh", "flesh", "fish", "wash", "push"];
 
-  arrayToHighlight = ["ch", "at", "oo", "sh"]
+      listLetterAudios = [];
+      listPhonicsTracing = [];
+      currentText = 0;
+      arrayToHighlight = ["ch", "at", "oo", "sh"];
+   console.log("HUMM");
+      DisplayLoader(true);
 
 
+      fetch('./readingTemplate.html')
+        .then(res => res.text())
+        .then(data =>
+        {
+            DisplayLoader(false);  
 
-  fetch('./readingTemplate.html')
-    .then(res => res.text())
-    .then(data =>
-    {
-      DisplayLoader(false);
-                
-      setTimeout(() =>
-      {
-        Array.from(document.querySelectorAll('.phonicsBlock'))
-          .forEach(x =>
-          {
-
-            x.onpointerup = function()
-            {DisplayLoader(true);
-              PlayClick();
-              currentText = 0;
-              setTimeout(() =>
+            Array.from(document.querySelectorAll('.phonicsBlock'))
+              .forEach(x =>
               {
-                readingTemplate = document.querySelector('#readingTemplateHolder');
-                readingTemplate.innerHTML = data;
-                initPhonics(x.querySelector('h1')
-                  .innerText);
+                x.onpointerup = function()
+                {
+                 loadInnerPhonicsPage(x,data);
+                }
+              })
 
 
-              }, 100);
-            }
-          })
-
-      }, 200)
-
-    });
+        });
 
 }
 
 
+function loadInnerPhonicsPage(x,data){
+   DisplayLoader(true);
+    PlayClick();
+    currentText = 0;
+    readingTemplate = document.querySelector('#readingTemplateHolder');
+
+    readingTemplate.innerHTML = data;
+    initPhonics(x.querySelector('h1').innerText);             
+}
 
 function initPhonics(el)
 {
-
+ console.log('Zbebb');
   currentText = 0;
 
   displayedtext = readingTemplate.querySelector('#displayedText');
   pageHolder.querySelector('.navButtonTracer').style.display='block';
-  anime(
-  {
-    targets: readingTemplate
-    , left: el + '%'
-    , duration: 500
-    , easing: 'easeInOutQuint'
-  })
+
+ 
   initReadingTemplate();
   GetPhonicsText(el);
-DisplayLoader(false);
+
 
 }
 
@@ -93,6 +90,7 @@ function initReadingTemplate()
   InjectScript('tracer');
 
 }
+
 
 
 function LoadReadingVideos()
@@ -142,9 +140,10 @@ document.querySelector('.traceme').style.display="none";
 
     case 'A ~ Z':
       listSentences = arrayLetters;
-      document.querySelector('.traceme').style.display="block";
-      loadAudios();
 
+      document.querySelector('.traceme').style.display="block";
+      loadAudiosNImages();
+       DisplayLoader(false);
       break;
     case `at`:
       listSentences = arrayAt;
@@ -190,14 +189,17 @@ document.querySelector('.traceme').style.display="none";
 
 }
 
-function loadAudios()
+
+function loadAudiosNImages()
 {
 
  
   listSentences.forEach((x) =>
   {
     listLetterAudios.push(new Audio(`audios/LetterSounds/${x}.mp3`));
+     listPhonicsTracing.push(new Image(`../letters/${x}.svg;`));
   })
+
 
 }
 

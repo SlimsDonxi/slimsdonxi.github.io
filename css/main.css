@@ -559,6 +559,9 @@ opacity:1;
 border-radius: 25px;
   transform: translate(-50%,-50%);
   overflow:hidden;
+  background-image: url('');
+  background-size: 100%;
+
 }
 .tracingMask svg{
  width:100%;
