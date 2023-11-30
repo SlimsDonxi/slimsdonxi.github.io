@@ -157,10 +157,6 @@ margin:0 auto;
 
 }
 
-nav{
-  z-index:7;
-}
-
 
 
 #currentPicture{
@@ -176,8 +172,8 @@ max-width: 95%;
 }
 
 nav{
+    z-index:7;
   padding:10px;
-
   height: 80px;
 }
 
@@ -296,11 +292,7 @@ margin-left: 75px;
     box-shadow: 0px 8px 0px 0px #348acc;
 }
 
-.navButtonTracer{
-  display:none;
-  position:relative;
-  z-index:8888;
-}
+
 #backgroundQuestions{
   background:#f8f8f8;
   position:fixed;
@@ -429,49 +421,77 @@ display:none;
 }
 
 
-
-
-
-
-
-.traceHolder{
-  position:relative;
-  margin-left:50%;
-  transform: translate(-50%);
+.navButtonTracer{
   display:none;
-  width:100%;
-  
+  position:relative;
+  z-index:8888;
+  pointer-events: none;
+
+
 }
+
+ .traceme{
+   pointer-events: auto;
+    padding:10px;
+    padding-right:20px;
+    width:185px;
+    box-shadow: 0px 8px 0px 0px #348acc; 
+    background:#4ba6ec;
+    border-radius: 15px;
+    height:60px;
+    transition: all .75s;
+    margin:0 auto;
+    overflow:hidden;
+}
+
+.tracemeActive{
+   box-shadow: 0px 0px 0px 0px #e7b507; 
+    background:#ffc600;
+      transition: all .75s;
+      overflow:hidden;
+      width:60px;
+      border-radius: 15px;
+    
+    transform: translateX(-120px);
+}
+
+
+.traceme span{
+
+     color:#fff;
+     font-size: 22px;
+    font-weight: bold;
+    margin-left:5px;
+     float:left;
+}
+  .traceme .iconTrace{
+    background-image:url('../animations/pencil.svg');
+    background-repeat: no-repeat;
+    background-size: 80%;
+    background-position: center;
+     height:40px;
+    width:40px;
+    fill:#fff;
+    position:relative;
+        float:left;
+
+  }
+
+
 #sketchpad{
 
   touch-action: none;
-  font-family: 'Poppins';
-  visibility: hidden;
+  visibility:hidden;
   position:absolute;
   left:50%;
- top:-80px;
+ top:40%;
   width:100%;
   max-width: 500px;
-  transform: translate(-50%);
-
+  transform: translate(-50%,-50%);
+  border-radius: 25px;
+box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;;
 }
 
-.maskTrace{  
-
-  pointer-events: none;
-  z-index:9999;
-  position:absolute;
-  left:50%;
-
-  width:500px;
-  height:500px;
-top:-80px;
-  transform: translate(-50%);
-  background-size:100%;
-  background-position: top;
-
-
-}
 
 
 .animationScore{
@@ -600,23 +620,7 @@ margin-bottom:-120px;
      
     }
    
- .traceme{
-    padding:10px;
-    width:150px;
-    box-shadow: 0px 8px 0px 0px #348acc; 
-    background:#4ba6ec;
-    color:#fff;
-    text-align: center;
-    font-size: 22px;
-    font-weight: bold;
-    border-radius: 15px;
-    margin:0 auto;
-    height:auto;
-    display:none;
 
-    }
-
-   
 
     .scoreOK{
     padding:10px;

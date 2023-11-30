@@ -50,15 +50,19 @@
 
     <div  class=" user-selectNone" id="displayedText"></div>
       <nav class="navButtonTracer">
-         <div class="traceme shake" style="margin-top:-50px"onclick="ToggleTracer(); ">Trace me</div>
-         <div class="traceme sdfsd shake" style="margin-top:-50px; margin-left:-120px "onclick="ToggleTracer(); ">Clear</div>
+         <div class="traceme" style="margin-top:-50px"onclick="ToggleTracer(); ">
+          <div class="iconTrace">
+            
+          </div>
+          <span>
+         Trace me</span>
+       </div>
+        
      </nav>
-    <div class="traceHolder">
+
       <canvas id="sketchpad"> </canvas>  
 
-      <div  class="maskTrace user-selectNone" style="z-index:9999;"></div>
-        
-      </div>
+
 
     </div>    
   

@@ -6,15 +6,53 @@
     // Variables to keep track of the mouse position and left-button status 
     var mouseX,mouseY,mouseDown=0;
 var tracing= false;
-var traceHolder;
+var traceme;
+
+
+   initTracer();
+  // Set-up the canvas and add our event handlers after the page has loaded
+    function initTracer() {
+      
+
+        // Get the specific canvas element from the HTML document
+        canvas = pageHolder.querySelector('#sketchpad');    
+        canvas.height = canvas.width;
+
+        // If the browser supports the canvas tag, get the 2d drawing context for this canvas
+        if (canvas.getContext)
+            ctx = canvas.getContext('2d');
+
+        // Check that we have a valid context to draw on/with before adding event handlers
+        if (ctx) {
+            canvas.addEventListener('pointerdown', sketchpad_mouseDown, false);
+            canvas.addEventListener('pointermove', sketchpad_mouseMove, false);
+            window.addEventListener('pointerup', sketchpad_mouseUp, false);
+        }
+
+
+        traceme =  pageHolder.querySelector('.traceme');
+     
+        
+    }
+
+
+
+
+
 function initTracerText(){
 
- pageHolder.querySelector('canvas').getContext('2d').clearRect(0, 0,  pageHolder.querySelector('canvas').width,  pageHolder.querySelector('canvas').height);
- var url = replaceString('1','',listSentences[currentText]);
+        canvas.style.display= 'block';
+        ctx.clearRect(0, 0,  canvas.width,  canvas.height);
+         var url = replaceString('1','',listSentences[currentText]);
 
- pageHolder.querySelector('.maskTrace').style.backgroundImage=`url('../letters/${url}.svg')`;
-if(pageHolder.querySelector('#displayedText').style.display!='none')
-pageHolder.querySelector('#displayedText').style.display="none";
+
+
+       
+         const svg = new Image();
+        svg.onload = () => ctx.drawImage(svg, 0, 0, canvas.width, canvas.width);
+        svg.src = `../letters/${url}.svg`;
+        if(pageHolder.querySelector('#displayedText').style.display!='none')
+        pageHolder.querySelector('#displayedText').style.display="none";
 
 
 }
@@ -26,7 +64,7 @@ pageHolder.querySelector('#displayedText').style.display="none";
 
         // Select a fill style
         ctx.fillStyle = "rgba("+r+","+g+","+b+","+(a/255)+")";
-
+        ctx.globalCompositeOperation='destination-over';
         // Draw a filled circle
         ctx.beginPath();
         ctx.arc(x, y, size, 0, Math.PI*2, true); 
@@ -78,48 +116,36 @@ pageHolder.querySelector('#displayedText').style.display="none";
      }
 
 
-    // Set-up the canvas and add our event handlers after the page has loaded
-    function initTracer() {
-      
-        // Get the specific canvas element from the HTML document
-       canvas = pageHolder.querySelector('#sketchpad');
-
-      
-        canvas.height = canvas.width;
-
-        traceHolder = pageHolder.querySelector('.traceHolder');
-        // If the browser supports the canvas tag, get the 2d drawing context for this canvas
-        if (canvas.getContext)
-            ctx = canvas.getContext('2d');
-
-        // Check that we have a valid context to draw on/with before adding event handlers
-        if (ctx) {
-            canvas.addEventListener('pointerdown', sketchpad_mouseDown, false);
-            canvas.addEventListener('pointermove', sketchpad_mouseMove, false);
-            window.addEventListener('pointerup', sketchpad_mouseUp, false);
-        }
-
-        initTracerText();
-        
-    }
+  
 
     function ToggleTracer(){
-          canvas = pageHolder.querySelector('#sketchpad');
+   
+        PlayClick();
+       
 
-        initTracer();
         if(canvas.style.visibility=='hidden'){
             tracing=true;
-            traceHolder.style.display="block";
+           
             canvas.style.visibility= 'visible';
             inputText.style.display='none';
-            pageHolder.querySelector('.traceme').innerText = "Back";
+            traceme.classList.add('tracemeActive');
+          
+            traceme.querySelector('.iconTrace').style.backgroundImage='url("../animations/cancel.svg")';
+             initTracerText();
          
         }
         else{
             tracing = false;
-             traceHolder.style.display="none";
+          
             canvas.style.visibility= 'hidden';
             inputText.style.display='block';
-             pageHolder.querySelector('.traceme').innerText = "Trace me";
+
+           traceme.classList.remove('tracemeActive');
+           
+              traceme.querySelector('.iconTrace').style.backgroundImage='url("../animations/pencil.svg")';
+         
         }
+
+
+      
     }
