@@ -7,7 +7,7 @@
     var mouseX,mouseY,mouseDown=0;
 var tracing= false;
 var traceme;
-
+var brushWidth;
 
    initTracer();
   // Set-up the canvas and add our event handlers after the page has loaded
@@ -16,8 +16,11 @@ var traceme;
 
         // Get the specific canvas element from the HTML document
         canvas = pageHolder.querySelector('#sketchpad');    
+        canvas.width = window.innerWidth/1.2;
+        if( canvas.width>500)  canvas.width =500;
         canvas.height = canvas.width;
 
+        brushWidth = canvas.width/ 15;
         // If the browser supports the canvas tag, get the 2d drawing context for this canvas
         if (canvas.getContext)
             ctx = canvas.getContext('2d');
@@ -51,6 +54,7 @@ function initTracerText(){
          const svg = new Image();
         svg.onload = () => ctx.drawImage(svg, 0, 0, canvas.width, canvas.width);
         svg.src = `../letters/${url}.svg`;
+        console.log(svg.src);
         if(pageHolder.querySelector('#displayedText').style.display!='none')
         pageHolder.querySelector('#displayedText').style.display="none";
 
@@ -60,7 +64,7 @@ function initTracerText(){
     // Parameters are: A canvas context, the x position, the y position, the size of the dot
     function drawDot(ctx,x,y,size) {
         // Let's use black by setting RGB values to 0, and 255 alpha (completely opaque)
-        r=238; g=58; b=96; a=255;
+        r=238; g=56; b=97; a=255;
 
         // Select a fill style
         ctx.fillStyle = "rgba("+r+","+g+","+b+","+(a/255)+")";
@@ -81,7 +85,7 @@ function initTracerText(){
     // Keep track of the mouse button being pressed and draw a dot at current location
     function sketchpad_mouseDown() {
         mouseDown=1;
-        drawDot(ctx,mouseX,mouseY,20);
+        drawDot(ctx,mouseX,mouseY,brushWidth);
     }
 
     // Keep track of the mouse button being released
@@ -95,7 +99,7 @@ function initTracerText(){
         getMousePos(e);
       
         // Draw a dot if the mouse button is currently being pressed
-        drawDot(ctx,mouseX,mouseY,20);
+        drawDot(ctx,mouseX,mouseY,brushWidth);
       
     }
 

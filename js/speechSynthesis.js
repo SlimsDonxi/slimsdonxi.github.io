@@ -384,7 +384,7 @@ function replaceString(oldS, newS, fullS)
 function Next()
 {
   
-
+PlayClick();
   currentText += 1;
 
  
@@ -433,7 +433,7 @@ function Next()
 
 function Previous()
 {
-
+PlayClick();
   currentText -= 1;
 
  

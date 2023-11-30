@@ -397,20 +397,18 @@ function retractScore() {
 
   
   
-      pageHolder.querySelector(".player").onclick = function(){
+      pageHolder.querySelector(".recordingAudioButton").onclick = function(){
 
        audioRecording.pause();
          audioRecording.currentTime =0;
          audioRecording.play();
-            pageHolder.querySelector(".stick").classList.add('play');
-             pageHolder.querySelector(".record").classList.add('on');
+             pageHolder.querySelector(".recordingAudioButton").classList.add('recordingAudioButtonActive');
          
         
         };
 
        audioRecording.onended = function(){
           
-           pageHolder.querySelector(".stick").classList.remove('play');
-             pageHolder.querySelector(".record").classList.remove('on');
+           pageHolder.querySelector(".recordingAudioButton").classList.remove('recordingAudioButtonActive');
         }
         

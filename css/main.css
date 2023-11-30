@@ -86,7 +86,7 @@ font-weight:bold;
      height:100%;
      width:100%;
      top:0; 
-   background:#f8f8f8;
+   background:#f5f5f5;
      z-index:2;
      display:flex;
      left:100%;
@@ -439,7 +439,7 @@ display:none;
     background:#4ba6ec;
     border-radius: 15px;
     height:60px;
-    transition: all .75s;
+    transition: width 0.3s ease-out, transform .5s ease-out;
     margin:0 auto;
     overflow:hidden;
 }
@@ -447,14 +447,49 @@ display:none;
 .tracemeActive{
    box-shadow: 0px 0px 0px 0px #e7b507; 
     background:#ffc600;
-      transition: all .75s;
-      overflow:hidden;
+      transition: width 0.3s ease-out, transform .5s ease-out;
+
+  
       width:60px;
-      border-radius: 15px;
+    
     
     transform: translateX(-120px);
 }
 
+
+.recordingAudioButton{
+    background:#383838;
+  box-shadow: 0px 8px 0px 0px #272727;
+  width:150px;
+  height: 70px;
+  border-radius:15px;
+      margin:0 auto;
+      display:flex;
+    
+      padding:15px 0px ;
+      gap: 10px;
+      margin-bottom:10px;
+        transition: all .1s ease-in-out;
+}
+
+
+.recordingAudioButton svg{
+  position:relative;
+  margin-left:15px;
+  height:40px;
+  width:40px;
+}
+
+.recordingAudioButton span{
+ color:#Fff;
+  font-weight:bold;
+   font-size: 22px;
+}
+.recordingAudioButtonActive{
+ box-shadow: 0px 0px 0px 0px #272727;
+  transform: translateY(8px);
+  transition: all .1s ease-in-out;
+}
 
 .traceme span{
 
@@ -485,8 +520,8 @@ display:none;
   position:absolute;
   left:50%;
  top:40%;
-  width:100%;
-  max-width: 500px;
+ z-index:0;
+ 
   transform: translate(-50%,-50%);
   border-radius: 25px;
 box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;;
@@ -535,7 +570,8 @@ margin-bottom:-120px;
 }
 .comment{
     margin:0 auto;
-   margin-bottom:-50px;
+    margin-top:30px;
+   margin-bottom:50px;
    
     
 }
@@ -552,6 +588,10 @@ margin-bottom:-120px;
 }
 
 @media only screen and (min-width: 768px){
+.containerAudio{
+top:100px;
+}
+
 
 
 .bannerScore .animationScore:nth-child(1){
@@ -947,6 +987,7 @@ font-size: clamp(16px, 2vw, 18px);
    background:#f2f2f2;
    border-radius: 25px;
 }
+
 
 
 
