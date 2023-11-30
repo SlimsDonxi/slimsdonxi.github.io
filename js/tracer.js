@@ -19,6 +19,7 @@ var brushWidth;
         canvas.width = window.innerWidth/1.2;
         if( canvas.width>500)  canvas.width =500;
         canvas.height = canvas.width;
+        pageHolder.querySelector(".navButtonTracer").style.height = canvas.height
 
         brushWidth = canvas.width/ 15;
         // If the browser supports the canvas tag, get the 2d drawing context for this canvas
@@ -78,8 +79,11 @@ function initTracerText(){
 
     // Clear the canvas context using the canvas width and height
     function clearCanvas() {
-        canvas.style.visibility= 'hidden';
-        pageHolder.querySelector('#displayedText').style.display="block";
+        ctx.clearRect(0, 0,  canvas.width,  canvas.height);
+        var url = replaceString('1','',listSentences[currentText]);
+         const svg = new Image();
+        svg.onload = () => ctx.drawImage(svg, 0, 0, canvas.width, canvas.width);
+        svg.src = `../letters/${url}.svg`;
     }
 
     // Keep track of the mouse button being pressed and draw a dot at current location
@@ -136,6 +140,10 @@ function initTracerText(){
           
             traceme.querySelector('.iconTrace').style.backgroundImage='url("../animations/cancel.svg")';
              initTracerText();
+
+             setTimeout(()=>{
+                   document.querySelector('.clearCanvas').classList.add('clearCanvasActive');
+               },400)
          
         }
         else{
@@ -143,7 +151,7 @@ function initTracerText(){
           
             canvas.style.visibility= 'hidden';
             inputText.style.display='block';
-
+ document.querySelector('.clearCanvas').classList.remove('clearCanvasActive');
            traceme.classList.remove('tracemeActive');
            
               traceme.querySelector('.iconTrace').style.backgroundImage='url("../animations/pencil.svg")';

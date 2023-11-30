@@ -419,44 +419,6 @@ display:none;
 #displayedText span{
    color: #ef3f58;
 }
-
-
-.navButtonTracer{
-  display:none;
-  position:relative;
-  z-index:8888;
-  pointer-events: none;
-
-
-}
-
- .traceme{
-   pointer-events: auto;
-    padding:10px;
-    padding-right:20px;
-    width:185px;
-    box-shadow: 0px 8px 0px 0px #348acc; 
-    background:#4ba6ec;
-    border-radius: 15px;
-    height:60px;
-    transition: width 0.3s ease-out, transform .5s ease-out;
-    margin:0 auto;
-    overflow:hidden;
-}
-
-.tracemeActive{
-   box-shadow: 0px 0px 0px 0px #e7b507; 
-    background:#ffc600;
-      transition: width 0.3s ease-out, transform .5s ease-out;
-
-  
-      width:60px;
-    
-    
-    transform: translateX(-120px);
-}
-
-
 .recordingAudioButton{
     background:#383838;
   box-shadow: 0px 8px 0px 0px #272727;
@@ -491,6 +453,77 @@ display:none;
   transition: all .1s ease-in-out;
 }
 
+
+.navButtonTracer{
+  height:400px;
+
+  display:none;
+  position:absolute;
+  width:100%;
+  max-width:500px;
+  z-index:8888;
+  pointer-events: none;
+  display:flex;
+  margin:0 auto;
+  flex-direction: column;
+  margin-top:-45px;
+  top:40%;
+  left:50%;
+  transform:translate(-50%,-60%);
+}
+.clearCanvas{
+  position:absolute;
+    width:60px;
+    height: 60px;
+    pointer-events: auto;
+    padding:10px;
+    padding-right:20px;  
+    border-radius: 15px; 
+    left:100px;
+    background:#d2d2d2;   
+    transform: translateX(-50px);
+    
+    opacity:0;
+  transition: width 0.3s ease-out, left .5s ease-out;
+}
+.clearCanvasActive{
+left:190px;
+display:block;
+opacity:1;
+  transition: opacity 0.3s ease-out, left .5s ease-out;
+}
+
+ .traceme{
+    position:absolute;
+   pointer-events: auto;
+    padding:10px;
+    padding-right:20px;
+    width:185px;
+    box-shadow: 0px 8px 0px 0px #348acc; 
+    background:#4ba6ec;
+    border-radius: 15px;
+    height:60px;
+    transition: width 0.3s ease-out, left .5s ease-out;
+    left:50%;
+    transform: translate(-50%);
+    overflow:hidden;
+}
+
+
+.tracemeActive{
+   box-shadow: 0px 0px 0px 0px #e7b507; 
+    background:#ffc600;
+    transition: width 0.3s ease-out, left .5s ease-out;
+    width:60px;    
+    left:100px;
+}
+
+
+.clearCanvas{
+  
+}
+
+
 .traceme span{
 
      color:#fff;
@@ -499,7 +532,7 @@ display:none;
     margin-left:5px;
      float:left;
 }
-  .traceme .iconTrace{
+   .iconTrace{
     background-image:url('../animations/pencil.svg');
     background-repeat: no-repeat;
     background-size: 80%;
@@ -508,9 +541,15 @@ display:none;
     width:40px;
     fill:#fff;
     position:relative;
-        float:left;
+    float:left;
 
   }
+
+  .trash{
+      background-image:url('../animations/garbage.svg');
+  }
+
+
 
 
 #sketchpad{
