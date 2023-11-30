@@ -51,16 +51,36 @@ function initTracerText(){
 
 
 
-       
-         const svg = new Image();
-        svg.onload = () => ctx.drawImage(svg, 0, 0, canvas.width, canvas.width);
-        svg.src = `../letters/${url}.svg`;
-        console.log(svg.src);
+ fetch(`../letters/${url}.svg`) 
+    .then(res => res.text())
+    .then(data =>
+    {
+        pageHolder.querySelector('.tracingMask').innerHTML='';
+        pageHolder.querySelector('.tracingMask').innerHTML=data;
+        pageHolder.querySelector('.tracingMask').style.width=canvas.width;
+        pageHolder.querySelector('.tracingMask').style.height=canvas.height;
+
+    });
+
         if(pageHolder.querySelector('#displayedText').style.display!='none')
         pageHolder.querySelector('#displayedText').style.display="none";
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // Draws a dot at a specific position on the supplied canvas name
     // Parameters are: A canvas context, the x position, the y position, the size of the dot
     function drawDot(ctx,x,y,size) {
