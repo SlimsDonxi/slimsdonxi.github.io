@@ -128,6 +128,7 @@ function GetReadingText(element)
   {
 
     readingTempalte.style.display = 'block';
+      pageHolder.querySelector('.navButtonTracer').style.display='none';
     InjectScript('speechSynthesis');
     InjectScript('listener');
   }
