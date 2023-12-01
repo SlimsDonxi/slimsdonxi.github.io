@@ -20,7 +20,7 @@ function initPhonicsPage()
 {
  
 
-      arrayLetters = ["a", "t", "i", "p", "n", "ck", "e", "h", "r", "m", "d", "g", "o", "u", "l", "f", "b", "ai", "j", "oa", "ie", "ee", "or", "z", "w", "ng", "v", "oo", "oo1", "y", "x", "ch", "sh", "th", "th1", "qu", "ou", "oi", "ue", "er", "ar"];
+      arrayLetters = ["a", "t", "i", "p", "n", "ck", "e", "h", "r", "m", "d", "g", "o", "u", "l", "f", "b", "j", "z", "w", "v","y", "x", "ai", "oa", "ie", "ee", "or",  "ng",  "oo", "oo ",  "ch", "sh", "th", "th ", "qu", "ou", "oi", "ue", "er", "ar"];
       arrayAt = ["bat", "cat", "fat", "hat", "lat", "mat", "pat"];
       arrayCh = ["chip", "chow", "chew", "chin", "chop", "chess", "chic", "chase", "chalk", "china", "chirp", "chest", "catch", "batch", "fetch", "watch", "match"];
       arrayOO = ["too", "zoo", "goo", "boo", "poo", "moo", "goop", "tool", "fool", "pool", "root", "loot", "moon", "roof", "doom", "boom", "groom", "vroom", "goose", "cookie", "poor", "good", "look", "took", "book", "foot"
@@ -32,7 +32,7 @@ function initPhonicsPage()
       listPhonicsTracing = [];
       currentText = 0;
       arrayToHighlight = ["ch", "at", "oo", "sh"];
-   console.log("HUMM");
+ 
       DisplayLoader(true);
 
 
@@ -135,12 +135,15 @@ function LoadReadingVideos()
 function GetPhonicsText(element)
 {
 document.querySelector('.traceme').style.display="none";
+  DisplayLoader(false);
   switch (element)
   {
 
+      
     case 'A ~ Z':
       listSentences = arrayLetters;
 
+       DisplayLoader(true);
       document.querySelector('.traceme').style.display="block";
       loadAudiosNImages();
        DisplayLoader(false);
@@ -184,7 +187,7 @@ document.querySelector('.traceme').style.display="none";
     .style.display = 'none';
 
 
-  highlight(listSentences[this.currentText]);
+  highlight(replaceString(' ','',listSentences[this.currentText]));
 
 
 }
@@ -197,11 +200,89 @@ function loadAudiosNImages()
   listSentences.forEach((x) =>
   {
     listLetterAudios.push(new Audio(`audios/LetterSounds/${x}.mp3`));
-     listPhonicsTracing.push(new Image(`../letters/${x}.svg;`));
+     
   })
 
-
+GetPhonicsTracing();
 }
+
+
+
+
+
+var jarOfPromisePhonics=[];
+
+function GetPhonicsTracing()
+{
+
+ DisplayLoader(true);
+
+    for (i = 0; i < arrayLetters.length; i++)
+    {
+
+        jarOfPromisePhonics.push(
+            new Promise((resolve, reject) =>
+            {             
+              var image = new Image();
+        
+                 var url = replaceString(' ','',arrayLetters[i]);
+              image.src = `../letters/${url}.svg`;
+
+              image.addEventListener('load', function()
+              { 
+                    resolve(true);
+                    listPhonicsTracing.push(image);
+
+                });
+            })
+        )
+
+    }
+
+    Promise.all(jarOfPromisePhonics)
+        .then(result =>
+        {
+           
+
+          listPhonicsTracing.forEach(x =>{
+            console.log(x);
+          })
+            
+                DisplayLoader(false);
+               
+          
+
+        });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function highlight(el)

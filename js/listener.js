@@ -41,7 +41,6 @@ microphone.onpointerdown = function(){
 
 recognition.onstart= function(){
       recognizing = true;
-      console.log('recognition Started');
       audio.src = './audios/startRecord.wav';
       audio.play();
 };

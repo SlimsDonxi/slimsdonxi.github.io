@@ -45,7 +45,7 @@ var brushWidth;
 
 function initTracerText(){
 
-        canvas.style.display= 'block';
+        
         ctx.clearRect(0, 0,  canvas.width,  canvas.height);
          var url = replaceString('1','',listSentences[currentText]);
 
@@ -54,12 +54,11 @@ function initTracerText(){
 
         pageHolder.querySelector('.tracingMask').style.width=canvas.width;
         pageHolder.querySelector('.tracingMask').style.height=canvas.height;
-        pageHolder.querySelector('.tracingMask').style.backgroundImage = listPhonicsTracing[currentText];
+        console.log(currentText+"  "+ listPhonicsTracing[currentText].src);
+        pageHolder.querySelector('.tracingMask').src = listPhonicsTracing[currentText].src;
 
  
 
-        if(pageHolder.querySelector('#displayedText').style.display!='none')
-        pageHolder.querySelector('#displayedText').style.display="none";
 
 
 }
@@ -96,6 +95,7 @@ function initTracerText(){
     // Clear the canvas context using the canvas width and height
     function clearCanvas() {
         ctx.clearRect(0, 0,  canvas.width,  canvas.height);
+        console.log("currentText = "+ currentText);
         var url = replaceString('1','',listSentences[currentText]);
          const svg = new Image();
         svg.onload = () => ctx.drawImage(svg, 0, 0, canvas.width, canvas.width);
@@ -145,32 +145,35 @@ function initTracerText(){
     function ToggleTracer(){
    
         PlayClick();
-       
 
-        if(canvas.style.visibility=='hidden'){
-            tracing=true;
+        if(canvas.style.visibility=='visible'){
+        tracing = false;
+         document.querySelector('.tracingMask').style.display = 'none'; 
+            canvas.style.visibility= 'hidden';
+            canvas.style.display="none";
+            document.querySelector('.clearCanvas').classList.remove('clearCanvasActive');
+           traceme.classList.remove('tracemeActive');
+ pageHolder.querySelector('#displayedText').style.display="block";
+
+
+         
+        }
+        else{
            
-            canvas.style.visibility= 'visible';
-            inputText.style.display='none';
-            traceme.classList.add('tracemeActive');
-          
-            traceme.querySelector('.iconTrace').style.backgroundImage='url("../animations/cancel.svg")';
+           
+               
+       
+        pageHolder.querySelector('#displayedText').style.display="none";
+              document.querySelector('.tracingMask').style.display = 'block'; 
+            tracing=true;       
+             canvas.style.display="block";
+            canvas.style.visibility= 'visible';     
+            traceme.classList.add('tracemeActive');    
              initTracerText();
 
              setTimeout(()=>{
                    document.querySelector('.clearCanvas').classList.add('clearCanvasActive');
-               },400)
-         
-        }
-        else{
-            tracing = false;
-          
-            canvas.style.visibility= 'hidden';
-            inputText.style.display='block';
- document.querySelector('.clearCanvas').classList.remove('clearCanvasActive');
-           traceme.classList.remove('tracemeActive');
-           
-              traceme.querySelector('.iconTrace').style.backgroundImage='url("../animations/pencil.svg")';
+               },200)
          
         }
 
