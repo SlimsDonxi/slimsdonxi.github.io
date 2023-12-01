@@ -76,8 +76,6 @@ stopListening();
 
 recognition.onerror=(event)=>{
   recognizing=false;
- console.log('eventError: '+ event.error);
- alert(event.error);
 }
 
 

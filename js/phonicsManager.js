@@ -21,17 +21,20 @@ function initPhonicsPage()
  
 
       arrayLetters = ["a", "t", "i", "p", "n", "ck", "e", "h", "r", "m", "d", "g", "o", "u", "l", "f", "b", "j", "z", "w", "v","y", "x", "ai", "oa", "ie", "ee", "or",  "ng",  "oo", "oo ",  "ch", "sh", "th", "th ", "qu", "ou", "oi", "ue", "er", "ar"];
-      arrayAt = ["bat", "cat", "fat", "hat", "lat", "mat", "pat"];
-      arrayCh = ["chip", "chow", "chew", "chin", "chop", "chess", "chic", "chase", "chalk", "china", "chirp", "chest", "catch", "batch", "fetch", "watch", "match"];
-      arrayOO = ["too", "zoo", "goo", "boo", "poo", "moo", "goop", "tool", "fool", "pool", "root", "loot", "moon", "roof", "doom", "boom", "groom", "vroom", "goose", "cookie", "poor", "good", "look", "took", "book", "foot"
+      arrayAt = ["at", "bat", "cat", "fat", "hat", "lat", "mat", "pat"];
+      arrayCh = ["ch", "chip", "chow", "chew", "chin", "chop", "chess", "chic", "chase", "chalk", "china", "chirp", "chest", "catch", "batch", "fetch", "watch", "match"];
+      arrayOO = ["oo","too", "zoo", "goo", "boo", "poo", "moo", "goop", "tool", "fool", "pool", "root", "loot", "moon", "roof", "doom", "boom", "groom", "vroom", "goose", "cookie", "poor", "good", "look", "took", "book", "foot"
         , "hook"
       ];
-      arraySh = ["shake", "shade", "shape", "shack", "she", "sheep", "sheet", "shed", "shy", "shine", "shell", "shin", "shoe", "shut", "shop", "ship", "shot", "ash", "bash", "dash", "flash", "trash", "cash", "mesh", "flesh", "fish", "wash", "push"];
-
+      arraySh = ["sh", "shake", "shade", "shape", "shack", "she", "sheep", "sheet", "shed", "shy", "shine", "shell", "shin", "shoe", "shut", "shop", "ship", "shot", "ash", "bash", "dash", "flash", "trash", "cash", "mesh", "flesh", "fish", "wash", "push"];
+      arrayEE =['ee', 'bee', 'see', 'fee', 'pee', 'dee', 'gee', 'wee', 'free', 'tree', 'three', 'flee', 'glee', 'meek', 'peek', 'reek', 'leek', 'meet', 'feet', 'seen', 'seem', 'seed', 'seep', 'beef']
+     arrayER = ['her', 'per', 'ser', 'erg', 'ers', 'ern', 'erns', 'perk', 'zerk', 'merk', 'verb', 'berg', 'herb', 'herd', 'germ', 'over', 'ever', 'user' ]
+     arrayNG=['song', 'long', 'tong', 'dong', 'hong', 'hung', 'lung', 'dung', 'sung', 'gang', 'hang', 'sang', 'bang', 'fang', 'king', 'ring', 'wing', 'sing', 'ding']
+arrayQU = ['quiz', 'quid', 'quit', 'quip', 'quag', 'quick', 'queen', 'quilt', 'quiff', 'quash']
       listLetterAudios = [];
       listPhonicsTracing = [];
       currentText = 0;
-      arrayToHighlight = ["ch", "at", "oo", "sh"];
+      arrayToHighlight = ["ch", "at", "oo", "sh", "ee", 'er', 'ng', 'qu'];
  
       DisplayLoader(true);
 
@@ -62,15 +65,14 @@ function loadInnerPhonicsPage(x,data){
     PlayClick();
     currentText = 0;
     readingTemplate = document.querySelector('#readingTemplateHolder');
-
     readingTemplate.innerHTML = data;
     initPhonics(x.querySelector('h1').innerText);             
 }
 
 function initPhonics(el)
 {
- console.log('Zbebb');
-  currentText = 0;
+
+
 
   displayedtext = readingTemplate.querySelector('#displayedText');
   pageHolder.querySelector('.navButtonTracer').style.display='block';
@@ -135,18 +137,19 @@ function LoadReadingVideos()
 function GetPhonicsText(element)
 {
 document.querySelector('.traceme').style.display="none";
-  DisplayLoader(false);
+
+
+
   switch (element)
   {
 
-      
+ 
     case 'A ~ Z':
       listSentences = arrayLetters;
 
        DisplayLoader(true);
-      document.querySelector('.traceme').style.display="block";
-      loadAudiosNImages();
-       DisplayLoader(false);
+       document.querySelector('.traceme').style.display="block";    
+       GetPhonicsTracing();    
       break;
     case `at`:
       listSentences = arrayAt;
@@ -160,12 +163,24 @@ document.querySelector('.traceme').style.display="none";
     case `oo`:
       listSentences = arrayOO;
       break;
+    case `ee`:
+      listSentences = arrayEE;
+      break;
+          case `er`:
+      listSentences = arrayER;
+      break;
+      case `ng`:
+      listSentences = arrayNG;
+      break;
+        case `qu`:
+      listSentences = arrayQU;
+      break;
   }
-
+ loadAudios();
 
   if (element == "A ~ Z") speaker.onpointerup = function upForLetter()
   {
-    speakLetters();
+    speakLetters(currentText);
   }
   else speaker.onpointerup = function upForWord()
   {
@@ -193,19 +208,18 @@ document.querySelector('.traceme').style.display="none";
 }
 
 
-function loadAudiosNImages()
+function loadAudios()
 {
 
  
-  listSentences.forEach((x) =>
+  arrayLetters.forEach((x) =>
   {
     listLetterAudios.push(new Audio(`audios/LetterSounds/${x}.mp3`));
      
   })
+  DisplayLoader(false)
 
-GetPhonicsTracing();
 }
-
 
 
 
@@ -243,14 +257,8 @@ function GetPhonicsTracing()
         .then(result =>
         {
            
-
-          listPhonicsTracing.forEach(x =>{
-            console.log(x);
-          })
-            
                 DisplayLoader(false);
-               
-          
+                       
 
         });
 }

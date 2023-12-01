@@ -12,185 +12,7 @@ var voiceIndex;
 
 
 
-/*
-var arrayWanted = [
-  "Microsoft Clara Online (Natural) - English (Canada)"
-  , "Microsoft Liam Online (Natural) - English (Canada)"
-  , "Microsoft Aria Online (Natural) - English (United States)"
-  , "Microsoft Ana Online (Natural) - English (United States)"
-  , "Microsoft Christopher Online (Natural) - English (United States)"
-, ]
 
-var ulContainer = document.querySelector('#voicesHolder .row');
-
-
-PromiseVoices();
-
-responsiveVoice.setDefaultVoice("US English Female");
-responsiveVoice.setDefaultRate(0.8);
-
-function PromiseVoices(){
-
-if(allVoicesObtained == null)
-var allVoicesObtained = new Promise(function resolveVoices(resolve, reject)
-{
-  voices = responsiveVoice.getVoices();
-  if (voices.length !== 0)
-  {
-    resolve(voices);
-
-  }
-  else
-  {
-    responsiveVoice.onvoiceschanged = function()
-    {
-      voices = responsiveVoice.getVoices();
-      resolve(voices);
-    };
-  }
-});
-
-allVoicesObtained.then(voices => LoadVoicesAvatar());
-}
-
-
-document.querySelectorAll('.voicesLauncher').forEach(x=>{
-  x.onpointerup=function(){
- PlayClick();
- ToggleVoices('10px');
-};
-
-});
-
-
-
-function ToggleVoices(value){
-
-anime({
-  targets:  document.querySelector('#voicesHolder'),
-  top:value,
-  duration:800,
-  easing:'easeOutQuint'
-})
-
-}
-
-
-function LoadVoicesAvatar(){
-
-
-if(voices.length ==0) {
-  speaker.classList.add('disabled');
-  return;
-} else{
-   speaker.classList.remove('disabled');
-}
-
-    fetch(`./animations/avatars/avatars.html`)
-        .then(res => res.text())
-        .then(data =>
-        { 
-           var parser = new DOMParser();
-            var doc = parser.parseFromString(data, "text/html");
-     
-          listAvatars = Array.prototype.slice.call(doc.querySelectorAll("svg"));
-          
-         
-             voiceSettings();
-        });
-}
-
-
-function voiceSettings()
-{
-var counter=0;
-  voices.forEach((voice) =>
-  {
-       
-        if(voice.name.includes('English')){
-        voices.push(voice);
-     
-        insertNewVoice(voice,counter);
-        counter++;  
-      }
-  })
-
-   
-  selectedVoice = voices[0].name;
-
- 
-  voiceIndex = voices.indexOf(voices.filter(function(voice)
-  {
-    return voice == selectedVoice
-  }));
-
-
-}
-
-function insertNewVoice(voice, index){
-
-        var avatar = listAvatars[index];
-      
-        var block = 
-          `<div class="col-12 col-md-5 col-lg-3 voiceContainer shake" onclick="setVoice(this)" >
-            <div class="voiceAvatarContainer"></div>
-            <div class="voiceInfoContainer">${setVoiceText(voice)}</div>
-          </div>`
-
-         // ulContainer.innerHTML += block;
-          
-          var voiceAvatarContainerlist = ulContainer.querySelectorAll('.voiceAvatarContainer');
-        
-          var voiceAvatarContainer = voiceAvatarContainerlist[voiceAvatarContainerlist.length-1];
-
-          if(avatar!=undefined)
-          voiceAvatarContainer.appendChild(listAvatars[index]);
-
-        else{
-          var randomPosition = Math.floor(Math.random() * listAvatars.length);
-         
-    voiceAvatarContainer.appendChild(listAvatars[randomPosition]);
-      }
-
- ulContainer.querySelectorAll('.voiceContainer')[0].classList.add('voiceSelected');
-}
-
-function setVoiceText(voice){
-    var name = replaceString("Microsoft", "", voice.name);
-           name = replaceString("Online (Natural)", "", name);
-            name = replaceString("United Kingdom", "UK", name);
-            name = replaceString("-", "", name);
-           name = replaceString("English", "", name);
-           name = replaceString("United States", "US", name);
-           return name;
-}
-
-
-function setVoice(evt)
-{
-  PlayClick();
-
-  var children = ulContainer.children;
-
-
-  ulContainer.querySelector('.voiceSelected').classList.remove('voiceSelected');
-
-  evt.classList.add('voiceSelected');
-
-
-  selectedVoice = voices.filter(function(voice)
-  {
- 
-    return voice.name.includes(evt.innerText.split(' ')[0].name);
-
-  })[0];
-
-  responsiveVoice.cancel();
-  responsiveVoice.speak(`Hey there!My name is ${evt.innerText.split(' ')[0]}`,selectedVoice);
- 
-}
-
-*/
 
 var currentPressed;
 PromiseVoices();
@@ -231,12 +53,13 @@ document.querySelectorAll('.voicesLauncher').forEach(x=>{
 };
 
 });
-function speakLetters()
+function speakLetters(index)
 {
   speaker.style.backgroundColor = "#f5971d";
   speaker.style.boxShadow = "0px 5px 0px 0px #f5971d";
 
-  var sound = listLetterAudios[currentText];
+
+  var sound = listLetterAudios[index];
   sound.play();
 
  SetSpeakerOn();
@@ -251,9 +74,19 @@ function speakLetters()
 
 function speakSentences()
 {
- 
-  speak(listSentences[currentText].toLowerCase(),parameters);
+ if(typeof arrayLetters!=='undefined'){
+  console.log(arrayLetters.indexOf(listSentences[currentText]));
+  if(arrayLetters.indexOf(listSentences[currentText])>-1){
+      console.log(arrayLetters.length);
+
+    speakLetters(arrayLetters.indexOf(listSentences[currentText]));
+  
+  }
+  else
+    speak(listSentences[currentText].toLowerCase(),parameters);
 }
+}
+
 
 
 
@@ -276,7 +109,7 @@ function speakWord(thisEl)
 
 function speak(speech, params)
 {
-
+  SetSpeakerOn();
   if(responsiveVoice.voiceSupport()) {
 
   responsiveVoice.cancel();
@@ -294,8 +127,7 @@ function speak(speech, params)
 }
 
 function voiceStartCallback(){
-    console.log('VOICE STARTED BASIC');
-  SetSpeakerOn();
+    
  if(currentPressed!=null){
     currentPressed.classList.add('wordActive');
   
